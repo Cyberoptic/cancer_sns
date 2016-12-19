@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: cancer_sns_production
-  username: cancer_sns
-  password: <%= ENV['CANCER_SNS_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: password
