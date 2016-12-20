@@ -30,6 +30,24 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
+      t.string :first_name #(required)
+      t.string :last_name #(required)
+      t.string :first_name_katakana #(required)
+      t.string :last_name_katakana #(required)
+      t.string :nickname
+      t.date :birthday #(required)
+      t.integer :gender #(use enums) (required)
+      t.string :area
+      t.string :profession
+      t.string :email #(required)
+      t.string :partner_age #(required)
+      t.string :cancer_type #(required)
+      t.string :cancer_stage #(required)
+      t.string :hospital
+      t.string :treatment #(required)
+      t.text :problems
+
+
 
       t.timestamps null: false
     end
