@@ -1,0 +1,9 @@
+<h1> <%= @user.first_name %>'s Profile </h1>
+
+ <% if !current_user.friends_with?(@user) %>
+ <%= link_to 'Send Request', user_friend_requests_path(@user.id), method: 'post' %>
+ <% end %>
+ 
+
+ 
+

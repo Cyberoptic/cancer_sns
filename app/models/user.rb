@@ -12,6 +12,8 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, presence: true
 
   mount_uploader :photo, PhotoUploader
+  
+  has_friendship
 
 
   def self.new_with_session(params, session)
