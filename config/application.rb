@@ -18,6 +18,9 @@ module CancerSns
 
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
+
+    config.action_mailer.default_url_options = { :host => 'localhost' }
+
     
     config.generators do |g|
 		  g.helper false
