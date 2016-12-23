@@ -1,4 +1,4 @@
-class FriendRequestDecorator < Draper::Decorator
+class Friend::RequestAcceptDecorator < Draper::Decorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through
