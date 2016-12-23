@@ -6,4 +6,10 @@ class FriendRequestsController < ApplicationController
         redirect_to user_path(params[:user_id])
     end
     
+    def update
+        @user = User.find(params[:user_id])
+        @user.decline_request(current_user)
+        redirect_to user_path(params[:user_id])
+    end
+    
 end
