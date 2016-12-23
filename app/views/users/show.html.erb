@@ -1,0 +1,29 @@
+<h1> <%= @user.first_name %>'s Profile </h1>
+
+<% if @user != current_user %>
+ <% if current_user.friends.exists?(@user) %>
+     <%= link_to 'Remove Friend', user_friend_friendship_path(@user.id), method: 'delete' %>
+ <% elsif !current_user.pending_friends.exists?(@user) %>
+     <%= link_to 'Send Request', user_friend_request_sends_path(@user.id), method: 'post' %>
+ <% elsif current_user.pending_friends.exists?(@user) %>
+     <%= link_to 'Cancle Request', user_friend_request_send_path(@user.id,@user.id), method: 'delete' %>
+ <% end %>
+<% end %>
+ 
+<% if @user == current_user %> 
+<h2> Pending Requests </h2>
+   <% if current_user.requested_friends.count == 0  %><text> No pending requests </text><% end %>
+  <% current_user.requested_friends.each do |friend| %>
+    <h3> <%= friend.first_name %> </h3>
+    <%= link_to 'Accept', user_friend_request_accepts_path(friend.id), method: 'post' %>
+    <%= link_to 'Decline', user_friend_request_accept_path(friend.id), method: 'delete' %>
+  <% end %>
+<% end %>
+
+<h2> Friends </h2>
+   <% if current_user.friends.count == 0  %><text> This user has no friends </text><% end %>
+  <% current_user.friends.each do |friend| %>
+    <h3> <%= friend.first_name %> </h3>
+    <%= link_to 'Remove', user_friend_friendship_path(friend.id), method: 'delete' %>
+  <% end %>
+
