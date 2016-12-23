@@ -35,6 +35,7 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'omniauth-facebook'
 gem 'figaro'
+gem 'has_friendship'
 
 
 gem 'rails_12factor', group: [:production]
