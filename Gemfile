@@ -35,6 +35,8 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'omniauth-facebook'
 gem 'figaro'
+gem "letter_opener", :group => :development
+
 
 
 gem 'rails_12factor', group: [:production]
