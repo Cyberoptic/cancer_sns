@@ -23,7 +23,7 @@ class User < ApplicationRecord
         user.email = data["email"] if user.email.blank?
         user.first_name = data["name"].split.first if user.first_name.blank?
         user.last_name = data["name"].split.last if user.last_name.blank?
-        user.password = data[""]
+        # user.password = data["password"] not sure if this attribute exists
       end
     end
   end
