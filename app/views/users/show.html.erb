@@ -21,9 +21,9 @@
 <% end %>
 
 <h2> Friends </h2>
-   <% if current_user.friends.count == 0  %><text> This user has no friends </text><% end %>
-  <% current_user.friends.each do |friend| %>
+   <% if @user.friends.count == 0  %><text> This user has no friends </text><% end %>
+  <% @user.friends.each do |friend| %>
     <h3> <%= friend.first_name %> </h3>
-    <%= link_to 'Remove', user_friend_friendship_path(friend.id), method: 'delete' %>
+     <% if @user==current_user %> <%= link_to 'Remove', user_friend_friendship_path(friend.id), method: 'delete' %> <% end %>
   <% end %>
 
