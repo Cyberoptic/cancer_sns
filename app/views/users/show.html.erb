@@ -4,9 +4,9 @@
  <% if current_user.friends.exists?(@user) %>
      <%= link_to 'Remove Friend', user_friend_friendship_path(@user.id), method: 'delete' %>
  <% elsif !current_user.pending_friends.exists?(@user) %>
-     <%= link_to 'Send Request', user_friend_request_sends_path(@user.id), method: 'post' %>
+     <%= link_to 'Send Request', user_friend_requests_path(@user.id), method: 'post' %>
  <% elsif current_user.pending_friends.exists?(@user) %>
-     <%= link_to 'Cancle Request', user_friend_request_send_path(@user.id,@user.id), method: 'delete' %>
+     <%= link_to 'Cancle Request', user_friend_request_path(@user.id,@user.id), method: 'delete' %>
  <% end %>
 <% end %>
  
@@ -15,8 +15,8 @@
    <% if current_user.requested_friends.count == 0  %><text> No pending requests </text><% end %>
   <% current_user.requested_friends.each do |friend| %>
     <h3> <%= friend.first_name %> </h3>
-    <%= link_to 'Accept', user_friend_request_accepts_path(friend.id), method: 'post' %>
-    <%= link_to 'Decline', user_friend_request_accept_path(friend.id), method: 'delete' %>
+    <%= link_to 'Accept', user_friend_request_acceptances_path(friend.id), method: 'post' %>
+    <%= link_to 'Decline', user_friend_request_acceptance_path(friend.id), method: 'delete' %>
   <% end %>
 <% end %>
 

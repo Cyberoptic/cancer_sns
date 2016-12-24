@@ -1,4 +1,4 @@
-class Friend::RequestAcceptsController < ApplicationController
+class Friend::RequestAcceptancesController < ApplicationController
     
     def create
         @user = User.find(params[:user_id])
@@ -11,5 +11,6 @@ class Friend::RequestAcceptsController < ApplicationController
         current_user.decline_request(@user)
         redirect_to user_path(current_user.id)        
     end
-    
+
+
 end
