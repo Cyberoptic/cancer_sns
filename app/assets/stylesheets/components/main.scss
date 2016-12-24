@@ -1,1 +1,25 @@
 @import "settings";
+$footer-height: 120px;
+
+.container {
+	background: $white;
+	min-height: 100vh;
+	padding: 16px 24px;
+	position: relative;
+	z-index: -1;    
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin: 0 0 $footer-height;
+}
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: $footer-height;
+  width: 100%;
+}
