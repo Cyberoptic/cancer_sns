@@ -16,6 +16,7 @@
         <li><%= link_to '友達', '' %></li>
         <li><%= link_to 'グループ', '' %></li>
         <li><%= link_to 'メッセージ', '' %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to 'ログイン', new_user_session_path %></li>
         <li><%= link_to '登録する', new_user_session_path %></li>
