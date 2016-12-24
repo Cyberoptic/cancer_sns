@@ -1,0 +1,9 @@
+<h2> Friends </h2>
+   <% if @user.friends.any?  %>
+      <% @user.friends.each do |friend| %>
+        <h3> <%= friend.first_name %> </h3>
+         <% if @user==current_user %> <%= link_to 'Remove', user_friend_friendship_path(friend.id), method: 'delete', remote: true %> <% end %>
+      <% end %>
+   <% else %>
+        <text> This user has no friends </text>   
+   <% end %>

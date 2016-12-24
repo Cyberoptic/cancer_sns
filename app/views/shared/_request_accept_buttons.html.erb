@@ -1,0 +1,12 @@
+<% if @user == current_user %> 
+<h2> Pending Requests </h2>
+   <% if current_user.requested_friends.any? %>
+      <% current_user.requested_friends.each do |friend| %>
+        <h3> <%= friend.first_name %> </h3>
+        <%= link_to 'Accept', user_friend_request_acceptances_path(friend.id), method: 'post', remote: true %>
+        <%= link_to 'Decline', user_friend_request_acceptance_path(friend.id), method: 'delete', remote: true %>
+      <% end %>
+   <% else %>
+        <text> No pending requests </text>
+   <% end %>
+<% end %>

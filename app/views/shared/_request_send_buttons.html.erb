@@ -1,0 +1,11 @@
+<div id="profile" >
+<% if @user != current_user %>
+ <% if current_user.friends.exists?(@user) %>
+     <%= link_to 'Remove Friend', user_friend_friendship_path(@user.id), method: 'delete', remote: true %>
+ <% elsif !current_user.pending_friends.exists?(@user) %>
+     <%= link_to 'Send Request', user_friend_requests_path(@user.id), method: 'post', remote: true %>
+ <% elsif current_user.pending_friends.exists?(@user) %>
+     <%= link_to 'Cancle Request', user_friend_request_path(@user.id,@user.id), method: 'delete', remote: true %>
+ <% end %>
+<% end %>
+</div>
