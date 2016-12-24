@@ -4,12 +4,15 @@
 	border-top: 4px solid $primary-color;
 	box-shadow: 0 3px 2px rgba(0,0,0,0.1);
 
-	#brand-name {
+	#brand-name a {
 		color: $primary-color;
+		font-size: 18px;
+		font-weight: 600;
 	}
 
-	.menu a {
+	.menu-text a {
 		color: $dark-gray;
 		font-size: 14px;
+		font-weight: 300;
 	}
 }
