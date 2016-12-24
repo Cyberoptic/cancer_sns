@@ -10,12 +10,14 @@ class User < ApplicationRecord
   
   enum gender: {female: 0, male: 1, other: 2}
 
-  #uncomment this in production
-  #validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, presence: true
+  # validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, presence: true
 
   mount_uploader :photo, PhotoUploader
   
   has_friendship
+
+  has_many :posts
+  has_many :post_images
 
 
   def self.new_with_session(params, session)
@@ -24,6 +26,7 @@ class User < ApplicationRecord
         user.email = data["email"] if user.email.blank?
         user.first_name = data["name"].split.first if user.first_name.blank?
         user.last_name = data["name"].split.last if user.last_name.blank?
+        # user.password = data["password"] not sure if this attribute exists
       end
     end
   end
@@ -33,9 +36,9 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       # binding.pry
-      # print auth
-      # user.first_name = auth.info.name   # assuming the user model has a name
-      # user.image = auth.info.image # assuming the user model has an image
+      user.first_name = auth.info.name.split.first   # assuming the user model has a name
+      user.last_name = auth.info.name.split.last
+      user.photo = auth.info.image # assuming the user model has an image
     end
   end
 

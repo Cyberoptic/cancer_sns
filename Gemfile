@@ -36,6 +36,8 @@ gem 'carrierwave'
 gem 'omniauth-facebook'
 gem 'figaro'
 gem 'has_friendship'
+gem "letter_opener", :group => :development
+
 
 
 gem 'rails_12factor', group: [:production]
