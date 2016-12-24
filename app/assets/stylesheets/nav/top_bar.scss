@@ -3,6 +3,8 @@
 #top-bar-menu {
 	border-top: 4px solid $primary-color;
 	box-shadow: 0 3px 2px rgba(0,0,0,0.1);
+	position: relative;
+	z-index: 1;
 
 	#brand-name a {
 		color: $primary-color;
