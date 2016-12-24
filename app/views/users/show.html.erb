@@ -12,18 +12,25 @@
  
 <% if @user == current_user %> 
 <h2> Pending Requests </h2>
-   <% if current_user.requested_friends.count == 0  %><text> No pending requests </text><% end %>
-  <% current_user.requested_friends.each do |friend| %>
-    <h3> <%= friend.first_name %> </h3>
-    <%= link_to 'Accept', user_friend_request_acceptances_path(friend.id), method: 'post' %>
-    <%= link_to 'Decline', user_friend_request_acceptance_path(friend.id), method: 'delete' %>
-  <% end %>
+   <% if current_user.requested_friends.any? %>
+      <% current_user.requested_friends.each do |friend| %>
+        <h3> <%= friend.first_name %> </h3>
+        <%= link_to 'Accept', user_friend_request_acceptances_path(friend.id), method: 'post' %>
+        <%= link_to 'Decline', user_friend_request_acceptance_path(friend.id), method: 'delete' %>
+      <% end %>
+   <% else %>
+        <text> No pending requests </text>
+   <% end %>
 <% end %>
 
 <h2> Friends </h2>
-   <% if @user.friends.count == 0  %><text> This user has no friends </text><% end %>
-  <% @user.friends.each do |friend| %>
-    <h3> <%= friend.first_name %> </h3>
-     <% if @user==current_user %> <%= link_to 'Remove', user_friend_friendship_path(friend.id), method: 'delete' %> <% end %>
-  <% end %>
+   <% if @user.friends.any?  %>
+      <% @user.friends.each do |friend| %>
+        <h3> <%= friend.first_name %> </h3>
+         <% if @user==current_user %> <%= link_to 'Remove', user_friend_friendship_path(friend.id), method: 'delete' %> <% end %>
+      <% end %>
+   <% else %>
+        <text> This user has no friends </text>   
+   <% end %>
+
 
