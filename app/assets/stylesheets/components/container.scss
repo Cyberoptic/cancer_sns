@@ -3,6 +3,7 @@
 .container {
 	background: $white;
 	min-height: 100vh;
-	padding: 16px 24px;
+	height: 100%;
+	padding: 16px 24px $footer-height;
   margin-bottom: 50px;
 }

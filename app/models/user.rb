@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   devise :registerable, :confirmable
   
-  enum gender: {female: 0, male: 1, other: 2}
+  enum gender: {男性: 0, 女性: 1, その他: 2}
 
   # validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, presence: true
 

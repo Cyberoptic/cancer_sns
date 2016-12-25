@@ -13,6 +13,24 @@
     <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
     <%= f.input :password_confirmation, required: false %>
     <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :first_name_katakana %>
+    <%= f.input :last_name_katakana %>
+    <%= f.input :birthday %>
+    <%= f.input :gender, collection: User.genders %>
+    <%= f.input :email %>
+    <%= f.input :area, collection: Area::LIST %>
+    <%= f.input :partner_age %>
+    <%= f.input :cancer_type, collection: Cancer::TYPES %>
+    <%= f.input :cancer_stage, collection: Cancer::STAGES %>
+    <%= f.input :treatment %>
+    <%= f.input :problems %>
+    <%= f.input :profession %>
+    <%= f.input :hospital %>
+    <%= f.input :photo %>
+
   </div>
 
   <div class="form-actions">

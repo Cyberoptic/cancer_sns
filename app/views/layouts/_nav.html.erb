@@ -19,6 +19,7 @@
             <li class="menu-text"><%= link_to '友達', '' %></li>
             <li class="menu-text"><%= link_to 'グループ', '' %></li>
             <li class="menu-text"><%= link_to 'メッセージ', '' %></li>
+            <li class="menu-text"><%= link_to '設定', edit_user_registration_path %></li>
             <li class="menu-text"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           <% else %>
             <li class="menu-text"><%= link_to '無料会員登録', new_user_registration_path %></li>
