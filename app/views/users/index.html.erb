@@ -1,5 +1,5 @@
 <div class="search-form">
-	<%= simple_form_for users_path, method: :get do |f| %>
+	<%= simple_form_for :search, url: users_path, method: :get do |f| %>
 		<div class="row">
 			<div class="columns medium-4">
 			</div>
@@ -48,4 +48,9 @@
 	<% end %>
 </div><!-- search-form -->
 
-<%= render @users %>
+<div class="search-results">
+
+	<h6 class="text-center"><%= @users.count%>件の結果</h6>
+
+	<%= render @users %>
+</div><!-- search-results -->
