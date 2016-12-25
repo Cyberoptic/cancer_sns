@@ -5,16 +5,6 @@
       <%= f.error_notification %>
 
       <div class="form-inputs">
-        <div class="row">
-          <div class="columns medium-6 small-12">
-            <%= f.input :last_name, required: true, placeholder: '名' %>
-          </div>
-          <div class="columns medium-6 small-12">
-            <%= f.input :first_name, required: true, autofocus: true, placeholder: '氏' %>
-          </div>
-        </div>
-
-
         <%= f.input :email, required: true, placeholder: "メールアドレス" %>
         <%= f.input :password, required: true, placeholder: 'パスワード', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
         <%= f.input :password_confirmation, required: true, placeholder: 'パスワード（再確認）' %>
