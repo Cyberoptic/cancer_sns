@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @post_attachments = @post.post_attachments.all   
+    @post_attachments = @post.post_images.all   
   end
 
   def new
@@ -16,12 +16,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
     respond_to do |format|
       if @post.save
         params[:post_images]['photo'].each do |a|
-          @post_image = @post.post_images.create!(:photo => a)
+          binding.pry
+          @post_image = @post.post_images.create!(photo: a, user_id: current_user.id)
         end
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
       else
@@ -33,6 +34,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :content, post_images_attributes: [:id, :user_id, :post_id, :photo])
+    params.require(:post).permit(:content, post_images_attributes: [:photo])
   end
 end
