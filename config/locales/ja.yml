@@ -6,12 +6,23 @@ ja:
       user:
         first_name: 氏
         last_name: 名
-        first_name_hiragana: 氏（ひらがな）
-        last_name_hiragana: 名（ひらがな）
+        first_name_katakana: 氏（カタカナ)
+        last_name_katakana: 名（カタカナ)
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（再確認） 
         current_password: 現在のパスワード
+        birthday: 誕生日
+        gender: 性別        
+        partner_age: パートナー年齢 
+        cancer_type: 癌種別
+        cancer_stage: 癌ステージ
+        treatment: 治療内容
+        problems: 一番の悩み
+        area: エリア
+        profession: 職業
+        hospital: 病院
+        photo: プロフィール画像
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

@@ -12,13 +12,26 @@
         </ul>
       </div>
       <div class="top-bar-right">
-        <ul class="menu">
+        <ul class="menu medium-horizontal vertical">
           <% if user_signed_in? %>
+            <li class="menu-text"><%= link_to 'ユーザー検索', users_path %></li>            
             <li class="menu-text"><%= link_to 'タイムライン', '' %></li>
             <li class="menu-text"><%= link_to '友達', '' %></li>
             <li class="menu-text"><%= link_to 'グループ', '' %></li>
             <li class="menu-text"><%= link_to 'メッセージ', '' %></li>
-            <li class="menu-text"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+
+            <li class="menu-text">
+              <ul class="dropdown menu" data-dropdown-menu>
+                <li>
+                  <a href="#"><i class='fa fa-user' aria-hidden='true'></i> </a>
+                  <ul class="menu">
+                    <li class="menu-text"><%= link_to '設定', edit_user_registration_path %></li>
+                    <li class="menu-text"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            
           <% else %>
             <li class="menu-text"><%= link_to '無料会員登録', new_user_registration_path %></li>
             <li class="menu-text"><%= link_to 'ログイン', new_user_session_path %></li>            
