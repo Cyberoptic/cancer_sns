@@ -15,7 +15,7 @@ class User < ApplicationRecord
     user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, presence: true    
   end
 
-  with_options if: :hide_name? do |user|
+  with_options if: :name_hidden? do |user|
     user.validates :nickname, presence: true
   end
 
