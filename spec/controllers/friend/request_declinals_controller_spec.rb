@@ -1,19 +1,19 @@
 require 'rails_helper'
 
-RSpec.describe Friend::RequestAcceptancesController, type: :controller do
+RSpec.describe Friend::RequestDeclinalsController, type: :controller do
 	describe "POST #create" do
 		context "when a friend request exists" do
-			it "should accept the friend request" do
+			it "should delete the friend request" do
 				user = create(:user)
 				other_user = create(:user)
-				other_user.friend_request(user)				
-				friendship = HasFriendship::Friendship.last
+				other_user.friend_request(user)	
 
 				sign_in user
-				post :create, params: { user_id: other_user.id }, format: :js				
-				friendship.reload
 
-				expect(friendship.status).to eq("accepted")
+				expect {
+					post :create, params: { user_id: other_user.id }, format: :js						
+				}.to change(HasFriendship::Friendship, :count).by(-2)
+				
 			end
 		end
 
@@ -28,6 +28,5 @@ RSpec.describe Friend::RequestAcceptancesController, type: :controller do
 				expect(response).to redirect_to root_path
 			end
 		end
-
-	end	
+	end
 end

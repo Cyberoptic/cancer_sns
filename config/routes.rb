@@ -5,13 +5,14 @@ Rails.application.routes.draw do
   resources :users, only: :show do  
     namespace :friend do      
       resources :request_acceptances, only: :create
+      resources :request_declinals, only: :create
       resources :requests, only: :create
     end
   end
   
   # Friend Requests
   namespace :friend do
-    resources :friendships, only: :destroy
+    resources :friendships, only: [:create, :destroy]
     resources :request_acceptances, only: :destroy
     resources :requests, only: :destroy
   end
