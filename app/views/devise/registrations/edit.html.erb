@@ -34,11 +34,7 @@
 
           <div class="columns medium-6 small-12">
             <%= f.input :last_name_katakana %>
-          </div>
-
-          <div class="columns medium-6 small-12">
-            <%= f.input :birthday %>
-          </div>
+          </div>          
 
           <div class="columns medium-6 small-12">
             <%= f.input :gender, collection: User.genders, include_blank: "選択する" %>
@@ -46,6 +42,11 @@
 
           <div class="columns medium-6 small-12">
             <%= f.input :area, collection: Area::LIST, include_blank: "選択する" %>
+          </div>
+
+          <div class="columns medium-6 small-12">
+            <%= f.input :birthday, as: :string, start_year: Date.today.year - 90,
+                              end_year: Date.today.year - 16, input_html: {type: :date, value: nil} %>
           </div>
 
           <div class="columns medium-6 small-12">
