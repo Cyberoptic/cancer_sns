@@ -1,0 +1,26 @@
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+  <div class="title-bar-title">がん患者ポータル</div>
+</div>
+
+<div class="top-bar" id="example-menu">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">がん患者ポータル</li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <% if user_signed_in? %>
+        <li><%= link_to 'タイムライン', '' %></li>
+        <li><%= link_to '友達', '' %></li>
+        <li><%= link_to 'グループ', '' %></li>
+        <li><%= link_to 'メッセージ', '' %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'ログイン', new_user_session_path %></li>
+        <li><%= link_to '登録する', new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
