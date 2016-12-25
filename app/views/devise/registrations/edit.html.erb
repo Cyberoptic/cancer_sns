@@ -37,7 +37,7 @@
           </div>          
 
           <div class="columns medium-6 small-12">
-            <%= f.input :gender, collection: User.genders, include_blank: "選択する" %>
+            <%= f.input :gender, collection: User.genders.keys, include_blank: "選択する" %>
           </div>
 
           <div class="columns medium-6 small-12">
@@ -46,7 +46,11 @@
 
           <div class="columns medium-6 small-12">
             <%= f.input :birthday, as: :string, start_year: Date.today.year - 90,
-                              end_year: Date.today.year - 16, input_html: {type: :date, value: nil} %>
+                              end_year: Date.today.year - 16, input_html: {type: :date, value: resource.birthday} %>
+          </div>
+
+          <div class="columns medium-6 small-12">
+            <%= f.input :is_public, label: 'プロフィールを公開する', input_html: { value: resource.profile_completed ? resource.is_public : true  } %>
           </div>
 
           <div class="columns medium-6 small-12">
@@ -92,6 +96,8 @@
           </div>          
 
         </div>
+
+        <%= f.input :profile_completed, as: :hidden, input_html: { value: true } %>
 
         <div class="form-actions">
           <%= f.button :submit, "登録情報を変更する" %>
