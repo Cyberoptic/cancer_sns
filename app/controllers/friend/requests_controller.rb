@@ -10,7 +10,7 @@ class Friend::RequestsController < ApplicationController
       format.js {}
     end
   end
- 
+
   private
 
   def check_existing_friendship!

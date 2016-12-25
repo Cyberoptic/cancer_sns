@@ -9,9 +9,7 @@ Rails.application.routes.draw do
       resources :request_acceptances, only: :create
       resources :request_declinals, only: :create
       resources :unfriendings, only: :create
-      resources :requests, only: :create
-      resources :friendships, only: :destroy
-
+      resources :requests, only: [:create, :destroy]
     end
   end
 

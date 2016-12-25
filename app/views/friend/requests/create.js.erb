@@ -1,1 +1,1 @@
-$('#request').html("<%= escape_javascript render partial: 'shared/request_send_buttons' %>")
+$('#request').html("<%= escape_javascript render partial: 'shared/request_send_buttons', locals: {user: @user} %>")

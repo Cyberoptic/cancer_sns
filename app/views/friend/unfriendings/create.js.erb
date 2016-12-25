@@ -1,0 +1,2 @@
+$('#request').html("<%= escape_javascript render partial: 'shared/request_send_buttons', locals: {user: @user} %>")
+$('#friend_list').html("<%= escape_javascript render partial: 'shared/friend_list.html.erb', locals: {user: @user} %>")

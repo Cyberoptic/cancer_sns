@@ -3,15 +3,15 @@
 <div id="profile">
     
 <div id="request">
-<%= render 'shared/request_send_buttons.html.erb'  %>
+<%= render partial: 'shared/request_send_buttons.html.erb', locals: {user: @user}  %>
 </div>
 
 <div id="pending_request">
-<%= render 'shared/request_accept_buttons.html.erb' %>
+<%= render partial: 'shared/request_accept_buttons.html.erb', locals: {user: @user} %>
 </div>
 
 <div id="friend_list">
-<%= render 'shared/friend_list.html.erb' %>
+<%= render partial: 'shared/friend_list.html.erb', locals: {user: @user} %>
 </div>
     
 </div>
