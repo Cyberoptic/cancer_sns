@@ -1,0 +1,11 @@
+@import "settings";
+
+.search-form {
+	background: $light-gray;
+	border-radius: $global-radius;
+	padding: 20px;
+
+	.button {
+		background: $success-color;
+	}
+}
