@@ -56,6 +56,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem "factory_girl_rails", "~> 4.0"
   gem 'rspec-rails', '~> 3.5'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -68,7 +69,7 @@ group :development do
 
   # detect N + 1
   gem "bullet"
-  gem 'pry-rails'
+  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
