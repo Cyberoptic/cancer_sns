@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root 'static#home'
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  
-  resources :users, only: :show do  
 
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "registrations" }
+  
+  resources :users, only: [:show, :index]  do  
     # Friendships
     scope module: 'friend' do    
       resources :request_acceptances, only: :create

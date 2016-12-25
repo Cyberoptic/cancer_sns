@@ -1,0 +1,23 @@
+@import "settings";
+@import 'foundation_and_overrides';
+
+.input.error {
+  label {
+    @extend .is-invalid-label;
+  }
+
+  input,
+  textarea,
+  select {
+    @extend .is-invalid-input;
+  }
+
+  small.error {
+    @extend .form-error;
+    @extend .is-visible;
+  }
+}
+
+.alert-box .alert {
+  @extend .callout;
+}

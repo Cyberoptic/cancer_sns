@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Filterable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,9 +9,16 @@ class User < ApplicationRecord
   #uncomment this in production
   #devise :registerable, :confirmable
   
-  enum gender: {female: 0, male: 1, other: 2}
+  enum gender: {男性: 0, 女性: 1, その他: 2}
+  AGE = 16..100
 
-  # validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, presence: true
+  with_options if: :signed_up? do |user|
+    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :cancer_type, :cancer_stage, presence: true    
+  end
+
+  with_options if: :name_hidden? do |user|
+    user.validates :nickname, presence: true
+  end
 
   mount_uploader :photo, PhotoUploader
   
@@ -19,6 +27,16 @@ class User < ApplicationRecord
   has_many :posts
   has_many :post_images
 
+  scope :is_public, -> { where(is_public: true) }
+
+  # Scopes for filtering
+  scope :profession, -> (profession){ where(profession: profession) }
+  scope :partner_age, -> (partner_age){ where(partner_age: partner_age) }
+  scope :cancer_type, -> (cancer_type){ where(cancer_type: cancer_type) }
+  scope :cancer_stage, -> (cancer_stage){ where(cancer_stage: cancer_stage) }
+  scope :hospital, -> (hospital){ where(hospital: hospital) }
+  scope :treatment, -> (treatment){ where(treatment: treatment) }
+  scope :birthday, -> (birthday){ where(birthday: birthday) }
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -40,6 +58,17 @@ class User < ApplicationRecord
       user.last_name = auth.info.name.split.last
       user.photo = auth.info.image # assuming the user model has an image
     end
+  end
+
+  private
+
+  def name_hidden?
+    # implement later
+    false
+  end
+
+  def signed_up?
+    !created_at.nil?
   end
 
 end

@@ -1,0 +1,41 @@
+@import "settings";
+
+footer {
+	background: whitesmoke;
+	border-top: 4px solid $primary-color;
+	height: $footer-height;
+	margin-top: 50px;
+	padding: 30px;
+	position: absolute;
+  left: 0;
+  bottom: 0;  
+  width: 100%;
+
+	p {
+		font-size: 14px;
+		margin-bottom: 0px;
+	}
+
+	.brand-name {
+		color: $primary-color;
+	}
+
+	.sub-text {		
+		font-weight: 400;
+	}
+
+	ul {
+		text-align: right;
+
+		li {
+			display: inline;
+			font-size: 14px;
+	    white-space: nowrap;
+
+	    &:after {
+	    	content: "|";
+	    	margin: 10px;
+	    }
+		}		
+	}
+}

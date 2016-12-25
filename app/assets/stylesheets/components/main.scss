@@ -1,0 +1,10 @@
+@import "settings";
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0 0 $footer-height;
+}
