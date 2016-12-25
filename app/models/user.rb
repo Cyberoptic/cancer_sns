@@ -14,10 +14,16 @@ class User < ApplicationRecord
 
   # validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, presence: true
 
+  with_options if: :is_public? do |user|
+    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, presence: true    
+  end
+
   mount_uploader :photo, PhotoUploader
 
   has_many :posts
   has_many :post_images
+
+  scope :is_public, -> { where(is_public: true) }
 
   # Scopes for filtering
   scope :profession, -> (profession){ where(profession: profession) }
