@@ -25,27 +25,31 @@
           </div>
 
           <div class="columns medium-6 small-12">
-            <%= f.input :first_name %>
+            <%= f.input :first_name, required: true %>
           </div>
 
           <div class="columns medium-6 small-12">
-            <%= f.input :last_name %>
+            <%= f.input :last_name, required: true %>
           </div>
 
           <div class="columns medium-6 small-12">
-            <%= f.input :first_name_katakana %>
+            <%= f.input :first_name_katakana, required: true %>
           </div>
 
           <div class="columns medium-6 small-12">
-            <%= f.input :last_name_katakana %>
+            <%= f.input :last_name_katakana, required: true %>
           </div>          
 
           <div class="columns medium-6 small-12">
-            <%= f.input :gender, collection: User.genders.keys, include_blank: "選択する" %>
+            <%= f.input :gender, collection: User.genders.keys, include_blank: "選択する", required: true %>
           </div>
 
           <div class="columns medium-6 small-12">
             <%= f.input :area, collection: Area::LIST, include_blank: "選択する" %>
+          </div>
+
+          <div class="columns medium-6 small-12">
+            <%= f.input :profession %>
           </div>
 
           <div class="columns medium-6 small-12">
@@ -73,24 +77,20 @@
           </div>
 
           <div class="columns medium-6 small-12">
-            <%= f.input :partner_age, collection: User::AGE.map {|age| "#{age}歳"}, include_blank: "選択する" %>
+            <%= f.input :partner_age, collection: User::AGE.map {|age| "#{age}歳"}, include_blank: "選択する", required: true %>
           </div>
 
           <div class="columns medium-6 small-12">
-            <%= f.input :cancer_type, collection: Cancer::TYPES, include_blank: "選択する" %>
+            <%= f.input :cancer_type, collection: Cancer::TYPES, include_blank: "選択する", required: true %>
           </div>
 
           <div class="columns medium-6 small-12">
-            <%= f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する" %>
+            <%= f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する", required: true %>
           </div>
 
           <div class="columns medium-6 small-12">
             <%= f.input :treatment %>
-          </div>
-
-          <div class="columns medium-6 small-12">
-            <%= f.input :profession %>
-          </div>
+          </div>          
 
           <div class="columns medium-6 small-12">
             <%= f.input :hospital %>
