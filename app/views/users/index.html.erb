@@ -52,5 +52,9 @@
 
 	<h6 class="text-center"><%= @users.count%>件の結果</h6>
 
-	<%= render @users %>
+	<% if @users.any? %>
+		<%= render @users %>
+	<% else %>
+		<h5 class="text-center">該当するユーザーが見つかりませんでした。</h5>
+	<% end %>
 </div><!-- search-results -->
