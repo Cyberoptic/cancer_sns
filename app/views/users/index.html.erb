@@ -11,7 +11,7 @@
 					</div>
 
 					<div class="columns medium-3 small-4">
-						<%= f.input :partner_age, label: false, placeholder: 'パートナー年齢' %>
+						<%= f.input :partner_age, collection: User::AGE.map{|age| "#{age}歳"}, label: false, include_blank: 'パートナー年齢' %>
 					</div>
 
 					<div class="columns medium-3 small-4">
