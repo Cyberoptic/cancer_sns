@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Filterable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -16,6 +17,14 @@ class User < ApplicationRecord
   has_many :posts
   has_many :post_images
 
+  # Scopes for filtering
+  scope :profession, -> (profession){ where(profession: profession) }
+  scope :partner_age, -> (partner_age){ where(partner_age: partner_age) }
+  scope :cancer_type, -> (cancer_type){ where(cancer_type: cancer_type) }
+  scope :cancer_stage, -> (cancer_stage){ where(cancer_stage: cancer_stage) }
+  scope :hospital, -> (hospital){ where(hospital: hospital) }
+  scope :treatment, -> (treatment){ where(treatment: treatment) }
+  scope :birthday, -> (birthday){ where(birthday: birthday) }  
 
   def self.new_with_session(params, session)
     super.tap do |user|

@@ -14,6 +14,7 @@
       <div class="top-bar-right">
         <ul class="menu">
           <% if user_signed_in? %>
+            <li class="menu-text"><%= link_to 'ユーザー検索', users_path %></li>            
             <li class="menu-text"><%= link_to 'タイムライン', '' %></li>
             <li class="menu-text"><%= link_to '友達', '' %></li>
             <li class="menu-text"><%= link_to 'グループ', '' %></li>
