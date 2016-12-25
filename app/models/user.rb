@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   # validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, presence: true
 
-  with_options if: :is_public? do |user|
+  with_options if: :signed_up? do |user|
     user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, presence: true    
   end
 
@@ -32,7 +32,10 @@ class User < ApplicationRecord
   scope :cancer_stage, -> (cancer_stage){ where(cancer_stage: cancer_stage) }
   scope :hospital, -> (hospital){ where(hospital: hospital) }
   scope :treatment, -> (treatment){ where(treatment: treatment) }
-  scope :birthday, -> (birthday){ where(birthday: birthday) }  
+  scope :birthday, -> (birthday){ where(birthday: birthday) }
+
+  after_create :flag_profile_incomplete!
+  before_save :flag_profile_complete!
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -54,6 +57,25 @@ class User < ApplicationRecord
       user.last_name = auth.info.name.split.last
       user.photo = auth.info.image # assuming the user model has an image
     end
+  end
+
+  def profile_completed?
+    !profile_incomplete
+  end
+
+  private
+
+  def signed_up?    
+    !profile_incomplete.nil?
+  end 
+
+  def flag_profile_incomplete!
+    update(profile_incomplete: true)
+  end
+
+  def flag_profile_complete!
+    return if profile_completed?
+    self.profile_incomplete = false 
   end
 
 end
