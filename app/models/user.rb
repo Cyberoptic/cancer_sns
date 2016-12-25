@@ -15,6 +15,10 @@ class User < ApplicationRecord
     user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, presence: true    
   end
 
+  with_options if: :hide_name? do |user|
+    user.validates :nickname, presence: true
+  end
+
   mount_uploader :photo, PhotoUploader
 
   has_many :posts
@@ -54,6 +58,11 @@ class User < ApplicationRecord
   end
 
   private
+
+  def name_hidden?
+    # implement later
+    false
+  end
 
   def signed_up?
     !created_at.nil?

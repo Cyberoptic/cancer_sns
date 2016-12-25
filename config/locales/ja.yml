@@ -4,6 +4,7 @@ ja:
       user: ユーザー
     attributes:
       user:
+        nickname: ニックネーム
         first_name: 氏
         last_name: 名
         first_name_katakana: 氏（カタカナ)
