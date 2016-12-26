@@ -77,10 +77,6 @@ class User < ApplicationRecord
 
   private
 
-  def name_hidden?
-    !show_name
-  end
-
   def signed_up?
     !created_at.nil?
   end
