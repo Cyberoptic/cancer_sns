@@ -1,9 +1,9 @@
 <% if user != current_user %>
  <% if current_user.friends.exists?(user) %>
-     <%= link_to 'Remove Friend',  user_unfriendings_path(user.id), method: 'post', remote: true %>
+    <%= link_to 'Remove Friend',  user_unfriendings_path(user.id), method: 'post', remote: true, class: 'button' %>
  <% elsif !current_user.pending_friends.exists?(user) %>
-     <%= link_to 'Send Request', user_requests_path(user.id), method: 'post', remote: true %>
+    <%= link_to '友達申請する', user_requests_path(user.id), method: 'post', remote: true, class: 'button' %>
  <% elsif current_user.pending_friends.exists?(user) %>
-      <text> Request Sent </text>
+ 		<%= link_to '申請済み',  user_unfriendings_path(user.id), method: 'post', remote: true, class: 'button warning' %>    
  <% end %>
 <% end %>

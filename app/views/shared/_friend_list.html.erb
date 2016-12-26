@@ -1,8 +1,4 @@
-<h2> Friends </h2>
-   <% if user.friends.any?  %>
-      <% user.friends.each do |friend| %>
-        <h3> <%= friend.first_name %> </h3>
-      <% end %>
-   <% else %>
-        <text> This user has no friends </text>   
-   <% end %>
+<h6><strong>友達</strong>(<%= user.friends.count %>人)</h6>
+<% if user.friends.any?  %>
+  <%= render partial: 'users/user', collection: user.friends.decorate %>
+<% end %>

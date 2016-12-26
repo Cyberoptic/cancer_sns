@@ -1,28 +1,30 @@
-<div class="user-list">
-	<div class="display-name">
-		<h5><%= user.display_name %></h5>
+<%= link_to user_path(user) do %>
+	<div class="user-list">
+		<div class="display-name">
+			<h5><%= user.display_name %></h5>
+		</div>
+
+		<div class="user-info">
+			<ul>
+				<li><strong>友達</strong> <%= user.friends.count %>人</li>
+			</ul>
+		</div>
+
+		<% if user.show_area %>
+			<span class="label secondary"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= user.area %></span>
+		<% end %>
+
+		<% if user.show_cancer_type %>
+			<span class="label secondary"><%= user.cancer_type %></span>
+		<% end %>
+
+		<% if user.show_cancer_stage %>
+			<span class="label secondary"><%= user.cancer_stage %></span>
+		<% end %>
+
+		<span class="label secondary"><%= user.gender_icon %></span>
+		
+
 	</div>
 
-	<div class="user-info">
-		<ul>
-			<li><strong>フォロー</strong> 100人</li>
-			<li><strong>フォロワー</strong> 1023人</li>
-		</ul>
-	</div>
-
-	<% if user.show_area %>
-		<span class="label"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= user.area %></span>
-	<% end %>
-
-	<% if user.show_cancer_type %>
-		<span class="label"><%= user.cancer_type %></span>
-	<% end %>
-
-	<% if user.show_cancer_stage %>
-		<span class="label"><%= user.cancer_stage %></span>
-	<% end %>
-
-	<span class="label"><%= user.gender_icon %></span>
-	
-
-</div>
+<% end %>

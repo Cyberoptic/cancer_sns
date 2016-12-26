@@ -1,12 +1,16 @@
 <% if user == current_user %> 
-<h2> Pending Requests </h2>
-   <% if current_user.requested_friends.any? %>
-      <% current_user.requested_friends.each do |friend| %>
-        <h3> <%= friend.first_name %> </h3>
-        <%= link_to 'Accept', user_request_acceptances_path(friend.id), method: 'post', remote: true %>
-        <%= link_to 'Decline', user_request_declinals_path(friend.id), method: 'post', remote: true %>
-      <% end %>
-   <% else %>
-        <text> No pending requests </text>
-   <% end %>
+	<h6><strong>友達申請</strong>(<%= current_user.requested_friends.count %>)</h6>
+	<% if current_user.requested_friends.any? %>
+		<ul class="pending-request-list no-bullet">
+		  <% current_user.requested_friends.decorate.each do |friend| %>
+		    <li>
+		    	<h5><strong><%= friend.name %></strong></h5>
+		    	<%= link_to '許可', user_request_acceptances_path(friend.id), method: 'post', remote: true, class: 'button button-primary' %>
+		    	<%= link_to '拒否', user_request_declinals_path(friend.id), method: 'post', remote: true, class: 'button alert' %>
+		    </li>
+		  <% end %>
+	  </ul>
+	<% else %>
+	  <p>現在友達申請はありません。</p>
+	<% end %>
 <% end %>

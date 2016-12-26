@@ -1,24 +1,79 @@
-<h1> <%= @user.first_name %>'s Profile </h1>
+<div class="row">
+	<div class="columns medium-4 small-12">
+		<div class="callout">
+			<h2><%= @user.name %></h2>
 
-<div id="profile">
-    
-<div id="request">
-<%= render partial: 'shared/request_send_buttons.html.erb', locals: {user: @user}  %>
-</div>
+			<% if @user.nickname.present? %>
+				<h6><%= @user.nickname %></h6>
+			<% end %>
 
-<div id="pending_request">
-<%= render partial: 'shared/request_accept_buttons.html.erb', locals: {user: @user} %>
-</div>
+			
 
-<div id="friend_list">
-<%= render partial: 'shared/friend_list.html.erb', locals: {user: @user} %>
-</div>
-    
-</div>
+			<% if @user.show_area %>
+				<span class="label secondary"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @user.area %></span>
+			<% end %>
+
+			<% if @user.show_profession %>
+				<span class="label secondary"><%= @user.profession %></span>
+			<% end %>
+
+			<%= @user.gender_icon %>
+
+			<hr />
+
+			<% if @user.show_problems && @user.problems.present? %>
+				<p><%= @user.problems %></p>
+
+				<hr />
+			<% end %>
 
 
+			<div id="profile">
+				<div id="request">
+					<%= render partial: 'shared/request_send_buttons.html.erb', locals: {user: @user}  %>
+				</div>
 
+				<div id="pending_request">
+					<%= render partial: 'shared/request_accept_buttons.html.erb', locals: {user: @user} %>
+				</div>
 
+				<div id="friend_list">
+					<%= render partial: 'shared/friend_list.html.erb', locals: {user: @user} %>
+				</div>
+			</div><!-- profile -->
+		</div><!-- callout -->
+
+		<div class="callout">
+			<h6><strong>パートナー（患者）に関する情報</strong></h6>
+
+			<hr />
+
+			<ul class="partner-info no-bullet">
+				<% if @user.show_partner_age && @user.partner_age.present? %>
+					<li><strong>年齢</strong> <%= @user.partner_age %></li>
+				<% end %>
+
+				<% if @user.show_cancer_stage && @user.cancer_stage.present? %>
+					<li><strong>癌ステージ</strong> <%= @user.cancer_stage %></li>
+				<% end %>
+
+				<% if @user.show_cancer_type && @user.cancer_type.present? %>
+					<li><strong>癌種目</strong> <%= @user.cancer_type %></li>
+				<% end %>
+
+				<% if @user.show_hospital && @user.hospital.present? %>
+					<li><strong>病院名</strong> <%= @user.hospital %></li>
+				<% end %>
+
+				<% if @user.show_treatment && @user.treatment.present? %>
+					<li><strong>治療内容</strong> <%= @user.treatment %></li>
+				<% end %>
+			</ul>
+			
+		</div><!-- callout -->
+	</div><!-- columns -->
+
+</div><!-- row -->
 
 
  
