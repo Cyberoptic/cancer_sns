@@ -122,6 +122,9 @@ GEM
       sprockets-es6 (>= 0.9.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    has_friendship (1.0.2)
+      rails (>= 4.0.0, < 5.1.0)
+      stateful_enum
     hashie (3.4.6)
     i18n (0.7.0)
     ice_nine (0.11.2)
@@ -270,6 +273,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stateful_enum (0.3.1)
     storext (2.2.2)
       rails (>= 4.0, < 6.0)
       virtus
@@ -311,6 +315,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   figaro
   foundation-rails
+  has_friendship
   jbuilder (~> 2.5)
   jquery-rails
   letter_opener

@@ -6,7 +6,8 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :trackable, :validatable,
   :omniauthable, :omniauth_providers => [:facebook]
 
-  devise :registerable, :confirmable
+  #uncomment this in production
+  #devise :registerable, :confirmable
   
   enum gender: {男性: 0, 女性: 1, その他: 2}
   AGE = 16..100
@@ -20,6 +21,8 @@ class User < ApplicationRecord
   end
 
   mount_uploader :photo, PhotoUploader
+  
+  has_friendship
 
   has_many :posts
   has_many :post_images
@@ -73,10 +76,6 @@ class User < ApplicationRecord
   end
 
   private
-
-  def name_hidden?
-    !show_name
-  end
 
   def signed_up?
     !created_at.nil?
