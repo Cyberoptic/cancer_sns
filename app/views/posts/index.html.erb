@@ -1,0 +1,8 @@
+<h2>All your posts</h2>
+
+<% @posts.each do |post| %>
+  <p><%= post.content %></p>
+  <% post.post_images.each do |image| %>
+    <%= image_tag image.photo %>
+  <% end %>
+<% end %>
