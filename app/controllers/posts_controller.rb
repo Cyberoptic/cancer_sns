@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @post_attachments = @post.post_images.all   
+    @post_images = @post.post_images.all   
   end
 
   def new
