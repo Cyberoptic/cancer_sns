@@ -25,20 +25,20 @@
           </div>
 
           <div class="columns medium-6 small-12">
-            <%= f.input :first_name, required: true %>
-          </div>
-
-          <div class="columns medium-6 small-12">
             <%= f.input :last_name, required: true %>
           </div>
 
           <div class="columns medium-6 small-12">
-            <%= f.input :first_name_katakana, required: true %>
+            <%= f.input :last_name_katakana, required: true %>
           </div>
 
           <div class="columns medium-6 small-12">
-            <%= f.input :last_name_katakana, required: true %>
-          </div>          
+            <%= f.input :first_name, required: true %>
+          </div>
+
+          <div class="columns medium-6 small-12">
+            <%= f.input :first_name_katakana, required: true %>
+          </div>                    
 
           <div class="columns medium-6 small-12">
             <%= f.input :gender, collection: User.genders.keys, include_blank: "選択する", required: true %>

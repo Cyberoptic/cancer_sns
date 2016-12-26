@@ -1,60 +1,65 @@
-<div class="search-form">
-	<%= simple_form_for :search, url: users_path, method: :get do |f| %>
-		<div class="row">
-			<div class="columns medium-4">
-			</div>
-
-			<div class="columns medium-8">
+<div class="row">
+	<div class="columns medium-10 medium-offset-1 small-12">
+		<div class="search-form">
+			<%= simple_form_for :search, url: users_path, method: :get do |f| %>
 				<div class="row">
-					<div class="columns medium-3 small-4">
-						<%= f.input :profession, label: false, placeholder: '職業' %>
+					<div class="columns medium-4">
 					</div>
 
-					<div class="columns medium-3 small-4">
-						<%= f.input :partner_age, collection: User::AGE.map{|age| "#{age}歳"}, label: false, include_blank: 'パートナー年齢' %>
-					</div>
+					<div class="columns medium-8">
+						<div class="row">
+							<div class="columns medium-3 small-4">
+								<%= f.input :profession, label: false, placeholder: '職業' %>
+							</div>
 
-					<div class="columns medium-3 small-4">
-						<%= f.input :cancer_type, collection: Cancer::TYPES, include_blank: "癌種別", label: false %>
-					</div>
+							<div class="columns medium-3 small-4">
+								<%= f.input :partner_age, collection: User::AGE.map{|age| "#{age}歳"}, label: false, include_blank: 'パートナー年齢' %>
+							</div>
 
-					<div class="columns medium-3 small-4">
-						<%= f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "癌ステージ", label: false %>
-					</div>
-				</div>
+							<div class="columns medium-3 small-4">
+								<%= f.input :cancer_type, collection: Cancer::TYPES, include_blank: "癌種別", label: false %>
+							</div>
 
-				<div class="row">				
-					<div class="columns medium-3 small-4">
-						<%= f.input :hospital, label: false, placeholder: '病院' %>
-					</div>
+							<div class="columns medium-3 small-4">
+								<%= f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "癌ステージ", label: false %>
+							</div>
+						</div>
 
-					<div class="columns medium-3 small-4">
-						<%= f.input :treatment, label: false, placeholder: '治療内容' %>
-					</div>
+						<div class="row">				
+							<div class="columns medium-3 small-4">
+								<%= f.input :hospital, label: false, placeholder: '病院' %>
+							</div>
 
-					<div class="columns medium-3 small-4">
-						<%= f.input :birthday, label: false, placeholder: '誕生日年' %>
-					</div>
+							<div class="columns medium-3 small-4">
+								<%= f.input :treatment, label: false, placeholder: '治療内容' %>
+							</div>
 
-					<div class="columns medium-3 small-4">
-						<%= f.button :button, class: 'button' do %>
-							<i class='fa fa-search' aria-hidden='true'></i> 検索する
-						<% end %>
+							<div class="columns medium-3 small-4">
+								<%= f.input :birthday, label: false, placeholder: '誕生日年' %>
+							</div>
+
+							<div class="columns medium-3 small-4">
+								<%= f.button :button, class: 'button button-primary' do %>
+									<i class='fa fa-search' aria-hidden='true'></i> 検索する
+								<% end %>
+							</div><!-- columns -->
+						</div><!-- row -->
 					</div><!-- columns -->
 				</div><!-- row -->
-			</div><!-- columns -->
-		</div><!-- row -->
-			
-	<% end %>
-</div><!-- search-form -->
+					
+			<% end %>
+		</div><!-- search-form -->
 
-<div class="search-results">
+		<div class="search-results">
 
-	<h6 class="text-center"><%= @users.count%>件の結果</h6>
+			<h6 class="text-center"><%= @users.count%>件の結果</h6>
 
-	<% if @users.any? %>
-		<%= render @users %>
-	<% else %>
-		<h5 class="text-center">該当するユーザーが見つかりませんでした。</h5>
-	<% end %>
-</div><!-- search-results -->
+			<% if @users.any? %>
+				<%= render @users %>
+			<% else %>
+				<h5 class="text-center">該当するユーザーが見つかりませんでした。</h5>
+			<% end %>
+		</div><!-- search-results -->
+
+	</div><!-- columns -->
+</div><!-- row -->
