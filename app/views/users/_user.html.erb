@@ -10,9 +10,18 @@
 		</ul>
 	</div>
 
-	<span class="label"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= user.area %></span>
-	<span class="label"><%= user.cancer_type %></span>
-	<span class="label"><%= user.cancer_stage %></span>
+	<% if user.show_area %>
+		<span class="label"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= user.area %></span>
+	<% end %>
+
+	<% if user.show_cancer_type %>
+		<span class="label"><%= user.cancer_type %></span>
+	<% end %>
+
+	<% if user.show_cancer_stage %>
+		<span class="label"><%= user.cancer_stage %></span>
+	<% end %>
+
 	<span class="label"><%= user.gender_icon %></span>
 	
 

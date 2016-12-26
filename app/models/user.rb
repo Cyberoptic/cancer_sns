@@ -15,7 +15,7 @@ class User < ApplicationRecord
     user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :cancer_type, :cancer_stage, presence: true    
   end
 
-  with_options if: :name_hidden? do |user|
+  with_options unless: :show_name? do |user|
     user.validates :nickname, presence: true
   end
 
@@ -75,8 +75,7 @@ class User < ApplicationRecord
   private
 
   def name_hidden?
-    # implement later
-    false
+    !show_name
   end
 
   def signed_up?
