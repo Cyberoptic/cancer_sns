@@ -35,6 +35,7 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'omniauth-facebook'
 gem 'figaro'
+gem 'has_friendship'
 gem "letter_opener", :group => :development
 
 
@@ -58,6 +59,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem "factory_girl_rails", "~> 4.0"
   gem 'rspec-rails', '~> 3.5'
+  gem 'pry-rails'
 end
 
 group :development do
