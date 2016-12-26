@@ -14,7 +14,6 @@ FactoryGirl.define do
     cancer_type "脳腫瘍"
     cancer_stage "ステージ０"
     treatment "治療法"
-    is_public true
     profile_completed true
   end
 
