@@ -35,6 +35,21 @@ class User < ApplicationRecord
   scope :treatment, -> (treatment){ where(treatment: treatment) }
   scope :birthday, -> (birthday){ where(birthday: birthday) }
 
+  # Settings
+  include Storext.model
+  store_attributes :settings do
+    show_profession Boolean, default: false
+    show_partner_age Boolean, default: false
+    show_cancer_type Boolean, default: true
+    show_cancer_stage Boolean, default: true
+    show_hospital Boolean, default: false
+    show_treatment Boolean, default: true
+    show_birthday Boolean, default: false
+    show_problems Boolean, default: true
+    show_area Boolean, default: true
+    show_name Boolean, default: true
+  end
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]

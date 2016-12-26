@@ -24,6 +24,16 @@ ja:
         profession: 職業
         hospital: 病院
         photo: プロフィール画像
+        show_profession: 職業
+        show_partner_age: パートナー年齢
+        show_cancer_type: 癌種別
+        show_cancer_stage: 癌ステージ
+        show_hospital: 病院
+        show_treatment: 治療内容
+        show_birthday: 誕生日
+        show_problems: 一番の悩み
+        show_area: エリア
+        show_name: 名前
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

@@ -67,8 +67,6 @@
 
           </div>
 
-
-
           <hr />
 
           <div class="row">
@@ -100,7 +98,59 @@
               <%= f.input :problems, input_html: {rows: 5} %>
             </div>          
 
-          </div>
+          </div><!-- row -->
+
+          <hr />
+
+          <div class="row">
+            <div class="columns small-12">
+              <h5>公開設定</h5>
+              <p><small>※公開してもよろしい項目をチェックしてください。</small></p>
+            </div><!-- columns -->
+
+            <div class="columns medium-6 small-12">
+              <%= f.input :show_name, as: :boolean %>
+            </div>
+
+            <div class="columns medium-6 small-12">
+              <%= f.input :show_profession, as: :boolean %>
+            </div>
+
+            <div class="columns medium-6 small-12">
+              <%= f.input :show_partner_age, as: :boolean %>
+            </div>
+
+            <div class="columns medium-6 small-12">
+              <%= f.input :show_cancer_type, as: :boolean %>
+            </div>
+
+            <div class="columns medium-6 small-12">
+              <%= f.input :show_cancer_stage, as: :boolean %>
+            </div>
+
+            <div class="columns medium-6 small-12">
+              <%= f.input :show_hospital, as: :boolean %>
+            </div>
+
+            <div class="columns medium-6 small-12">
+              <%= f.input :show_treatment, as: :boolean %>
+            </div>
+
+            <div class="columns medium-6 small-12">
+              <%= f.input :show_birthday, as: :boolean %>
+            </div>
+
+            <div class="columns medium-6 small-12">
+              <%= f.input :show_problems, as: :boolean %>
+            </div>
+
+            <div class="columns medium-6 small-12">
+              <%= f.input :show_area, as: :boolean %>
+            </div>
+
+          </div><!-- row -->
+
+          <hr />
 
           <%= f.input :profile_completed, as: :hidden, input_html: { value: true } %>
 
