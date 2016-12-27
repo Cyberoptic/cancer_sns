@@ -38,18 +38,18 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update!(post_params)
-    # if @post.valid?
-      redirect_to posts_path # configure apt routes
-    else
-      render :new, status: :unprocessable_entity
-    end
-    # update_attachments if params[:post_images]
-    # if @post.update(post_params)
-    #   redirect_to @post, notice: 'Post was successfully updated.'
+    # if @post.update!(post_params)
+    # # if @post.valid?
+    #   redirect_to posts_path # configure apt routes
     # else
-    #   render :edit
+    #   render :new, status: :unprocessable_entity
     # end
+    update_attachments if params[:post_images]
+    if @post.update(post_params)
+      redirect_to @post, notice: 'Post was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy
