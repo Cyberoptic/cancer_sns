@@ -9,8 +9,9 @@ class UsersController < ApplicationController
 		end
 	end
     
-    def show
-        @user = User.find(params[:id]).decorate
-    end   
+  def show
+      @user = User.find(params[:id]).decorate
+      @suggested_users = User.all
+  end   
     
 end
