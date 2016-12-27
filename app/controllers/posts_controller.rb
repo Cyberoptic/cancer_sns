@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :verify_owner, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -31,9 +32,49 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update!(post_params)
+    # if @post.valid?
+      redirect_to posts_path # configure apt routes
+    else
+      render :new, status: :unprocessable_entity
+    end
+    # update_attachments if params[:post_images]
+    # if @post.update(post_params)
+    #   redirect_to @post, notice: 'Post was successfully updated.'
+    # else
+    #   render :edit
+    # end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
+  end
+
   private
 
-  def post_params
-    params.require(:post).permit(:content, post_images_attributes: [:photo])
-  end
+    def post_params
+      params.require(:post).permit(:content, post_images_attributes: [:photo])
+    end
+
+    def verify_owner
+      redirect_to posts_path if Post.find(params[:id]).user != current_user
+    end
+    
+    def update_attachments
+      @post = Post.find(params[:id])
+      @post.post_images.each(&:destroy) if @post.post_images.present?
+      params[:post_images]['photo'].each do |photo|
+        binding.pry
+        @post_image = @post.post_images.create!(photo: photo)
+      end
+    end
+
 end
