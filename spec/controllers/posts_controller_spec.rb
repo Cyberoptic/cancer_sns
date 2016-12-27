@@ -44,26 +44,26 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'POST #create' do
-    with 'invalid attributes' do
+    context 'with invalid attributes' do
       it 'creates new post' do
       end
       it 'redirects to show page' do
       end
     end
-    with 'validd attributes ' do
+    context 'with validd attributes ' do
       it 'renders new action' do
       end
     end
   end
 
   describe ' PUT #update' do
-    with 'valid attributes' do
+    context 'with valid attributes' do
       it 'updates post' do
       end
       it 'redirects to edit' do
       end
     end
-    with 'invalid attributes' do
+    context 'with invalid attributes' do
       it 'renders edit' do
       end
     end
