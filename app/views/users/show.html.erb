@@ -95,7 +95,13 @@
 	</div><!-- columns -->
 
 	<div class="columns medium-6 small-12">
-		<%= render partial: 'posts/post', collection: @user.posts.includes(:post_images).decorate %>
+		<% if @user.posts.any? %>
+			<%= render partial: 'posts/post', collection: @user.posts.includes(:post_images).decorate %>
+		<% else %>
+			<div class="callout">
+				<h5 class="text-center">このユーザーはまだ投稿していません。</h5>
+			</div>
+		<% end %>
 	</div><!-- columns -->
 
 	<div class="columns medium-3">
