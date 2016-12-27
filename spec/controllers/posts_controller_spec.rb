@@ -24,4 +24,56 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    it 'renders show page' do
+      user = FactoryGirl.create(:user)
+      sign_in user
+      post = FactoryGirl.create(:post)
+      get :show, id: post.id
+      expect(response).to render_template(:show)
+    end
+  end
+
+  describe 'GET #edit' do
+    it 'redners edit page' do
+      user = FactoryGirl.create(:user)
+      sign_in user
+      post = FactoryGirl.create(:post)
+      get :edit, id: post.id
+    end
+  end
+
+  describe 'POST #create' do
+    with 'invalid attributes' do
+      it 'creates new post' do
+      end
+      it 'redirects to show page' do
+      end
+    end
+    with 'validd attributes ' do
+      it 'renders new action' do
+      end
+    end
+  end
+
+  describe ' PUT #update' do
+    with 'valid attributes' do
+      it 'updates post' do
+      end
+      it 'redirects to edit' do
+      end
+    end
+    with 'invalid attributes' do
+      it 'renders edit' do
+      end
+    end
+  end
+
+  describe ' Delete #destroy' do
+    it 'deletes post' do
+    end
+  end
+
+
+
 end
