@@ -95,7 +95,7 @@
 	</div><!-- columns -->
 
 	<div class="columns medium-6 small-12">
-		<%= render partial: 'posts/post', collection: @user.posts.decorate %>
+		<%= render partial: 'posts/post', collection: @user.posts.includes(:post_images).decorate %>
 	</div><!-- columns -->
 
 	<div class="columns medium-3">
