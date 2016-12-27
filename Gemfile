@@ -35,6 +35,7 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'omniauth-facebook'
 gem 'figaro'
+gem 'has_friendship'
 gem "letter_opener", :group => :development
 
 
@@ -49,12 +50,16 @@ gem 'rails-controller-testing'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper', github: 'drapergem/draper'
 
+# For user settings
+gem 'storext'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'shoulda-matchers', '~> 3.1'
   gem "factory_girl_rails", "~> 4.0"
   gem 'rspec-rails', '~> 3.5'
+  gem 'pry-rails'
 end
 
 group :development do

@@ -1,3 +1,36 @@
-<div class="user-snippet">
-	<h5><%= user.email %></h5>
-</div>
+<%= link_to user_path(user) do %>
+	<div class="user-list">
+		<span class="user-image">
+			<%= image_tag user.photo %>	
+		</span>
+
+		<div class="user-info">
+			<span class="display-name">
+				<%= user.display_name %>
+			</span>
+
+			<ul>
+				<li><strong>友達</strong> <%= user.friends.count %>人</li>
+			</ul>
+		</div><!-- user-info -->
+
+		<div class="user-tags">
+			<% if user.show_area %>
+				<span class="label secondary"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= user.area %></span>
+			<% end %>
+
+			<% if user.show_cancer_type %>
+				<span class="label secondary"><%= user.cancer_type %></span>
+			<% end %>
+
+			<% if user.show_cancer_stage %>
+				<span class="label secondary"><%= user.cancer_stage %></span>
+			<% end %>
+
+			<span class="label secondary"><%= user.gender_icon %></span>
+		</div>
+		
+
+	</div>
+
+<% end %>

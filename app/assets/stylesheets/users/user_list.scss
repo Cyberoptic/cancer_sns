@@ -1,0 +1,47 @@
+@import "settings";
+
+.user-list {
+	background: $white;	
+	border: 1px solid $light-gray;
+	border-radius: $global-radius;
+	color: $dark-gray;
+	padding: 16px 24px;	
+	margin-top: 10px;	
+	transition: box-shadow 0.5s ease;
+
+	&:hover {
+		box-shadow: 1px 3px 8px $medium-gray;
+	}
+
+	.display-name {
+		font-size: 24px;
+	}
+}
+
+.user-info {
+	display: inline-table;
+  margin-left: 15px;
+
+	ul {
+		margin-left: 0px;	
+	}
+
+	li {			
+		display: inline;
+		font-size: 12px;
+		&:after {
+			content: '|';
+			padding-left: 5px;
+			padding-right: 0px;
+		}
+		&:last-child:after {
+			content: '';
+		}
+	}
+}
+
+.user-image {
+	img {
+		height: 50px;
+	}
+}

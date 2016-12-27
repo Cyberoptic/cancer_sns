@@ -1,0 +1,4 @@
+<h6><strong>友達</strong>(<%= user.friends.count %>人)</h6>
+<% if user.friends.any?  %>
+  <%= render partial: 'users/user', collection: user.friends.decorate %>
+<% end %>

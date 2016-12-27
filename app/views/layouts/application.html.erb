@@ -11,13 +11,14 @@
     <%= csrf_meta_tags %>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" />
   </head>
 
   <body>    
     <%= render 'layouts/nav' %>
 
     <div class="row">
-      <div class="column small-12">
+      <div class="columns small-12">
         <div class="container">
           <%= render 'shared/flash_messages' %>
           <%= yield %>

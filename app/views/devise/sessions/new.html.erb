@@ -1,19 +1,19 @@
 <div class="row">
 	<div class="columns medium-4 medium-offset-4 small-12">
+		<div class="callout">
+			<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+			  <div class="form-inputs">
+			    <%= f.input :email, required: false, autofocus: true, placeholder: "メールアドレス" %>
+			    <%= f.input :password, required: false, placeholder: "パスワード" %>
+			    <%= f.input :remember_me, as: :boolean, label: 'ブラウザを閉じるときオートログインを有効にする' if devise_mapping.rememberable? %>
+			  </div>
 
-		<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-		  <div class="form-inputs">
-		    <%= f.input :email, required: false, autofocus: true, placeholder: "メールアドレス" %>
-		    <%= f.input :password, required: false, placeholder: "パスワード" %>
-		    <%= f.input :remember_me, as: :boolean, label: 'ブラウザを閉じるときオートログインを有効にする' if devise_mapping.rememberable? %>
-		  </div>
+			  <div class="form-actions">
+			    <%= f.button :submit, "ログイン", class: 'button expanded' %>
+			  </div>
+			<% end %>
 
-		  <div class="form-actions">
-		    <%= f.button :submit, "ログイン" %>
-		  </div>
-		<% end %>
-
-		<%= render "devise/shared/links" %>
-
-	</div>
-</div>
+			<%= render "devise/shared/links" %>
+		</div><!-- callout -->
+	</div><!-- columns -->
+</div><!-- row -->
