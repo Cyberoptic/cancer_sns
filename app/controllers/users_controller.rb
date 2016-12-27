@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     
   def show
     @user = User.find(params[:id]).decorate
+    # implement later
     @suggested_users = User.all
   end   
     
