@@ -45,7 +45,7 @@ class PostsController < ApplicationController
     #   render :new, status: :unprocessable_entity
     # end
     update_attachments if params[:post_images]
-    if @post.update(post_params)
+    if @post.update!(post_params.merge(user_id: current_user.id))
       redirect_to @post, notice: 'Post was successfully updated.'
     else
       render :edit
@@ -72,8 +72,8 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
       @post.post_images.each(&:destroy) if @post.post_images.present?
       params[:post_images]['photo'].each do |photo|
-        binding.pry
-        @post_image = @post.post_images.create!(photo: photo)
+        # binding.pry
+        @post_image = @post.post_images.create!(photo: photo, user_id: current_user.id)
       end
     end
 
