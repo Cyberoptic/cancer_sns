@@ -1,23 +1,35 @@
 <div class="row">
 	<div class="columns medium-4 small-12">
-		<div class="callout">
-			<h2><%= @user.name %></h2>
+		<div class="callout callout-user-info">
+			<div class="row">
+				<div class="columns medium-5 small-12">
+					<div class="user-image-lg">
+						<%= image_tag @user.photo %>
+					</div>
+				</div>
 
-			<% if @user.nickname.present? %>
-				<h6><%= @user.nickname %></h6>
-			<% end %>
+				<div class="columns medium-7 small-12">
+					
+					<div class="name"><%= @user.name %></div>
+					
+					<% if @user.nickname.present? %>
+						<div class="nickname"><%= @user.nickname %></div>
+					<% end %>
 
-			
+				</div>
+			</div><!-- row -->
 
-			<% if @user.show_area %>
-				<span class="label secondary"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @user.area %></span>
-			<% end %>
+			<div class="user-tags">
+				<% if @user.show_area %>
+					<span class="label secondary"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @user.area %></span>
+				<% end %>
 
-			<% if @user.show_profession %>
-				<span class="label secondary"><%= @user.profession %></span>
-			<% end %>
+				<% if @user.show_profession %>
+					<span class="label secondary"><%= @user.profession %></span>
+				<% end %>
 
-			<%= @user.gender_icon %>
+				<%= @user.gender_icon %>
+			</div>
 
 			<hr />
 

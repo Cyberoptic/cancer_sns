@@ -8,37 +8,37 @@
 
 					<div class="columns medium-8">
 						<div class="row">
-							<div class="columns medium-3 small-4">
+							<div class="columns medium-3 small-6">
 								<%= f.input :profession, label: false, placeholder: '職業' %>
 							</div>
 
-							<div class="columns medium-3 small-4">
+							<div class="columns medium-3 small-6">
 								<%= f.input :partner_age, collection: User::AGE.map{|age| "#{age}歳"}, label: false, include_blank: 'パートナー年齢' %>
 							</div>
 
-							<div class="columns medium-3 small-4">
+							<div class="columns medium-3 small-6">
 								<%= f.input :cancer_type, collection: Cancer::TYPES, include_blank: "癌種別", label: false %>
 							</div>
 
-							<div class="columns medium-3 small-4">
+							<div class="columns medium-3 small-6">
 								<%= f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "癌ステージ", label: false %>
 							</div>
 						</div>
 
 						<div class="row">				
-							<div class="columns medium-3 small-4">
+							<div class="columns medium-3 small-6">
 								<%= f.input :hospital, label: false, placeholder: '病院' %>
 							</div>
 
-							<div class="columns medium-3 small-4">
+							<div class="columns medium-3 small-6">
 								<%= f.input :treatment, label: false, placeholder: '治療内容' %>
 							</div>
 
-							<div class="columns medium-3 small-4">
+							<div class="columns medium-3 small-6">
 								<%= f.input :birthday, label: false, placeholder: '誕生日年' %>
 							</div>
 
-							<div class="columns medium-3 small-4">
+							<div class="columns medium-3 small-6">
 								<%= f.button :button, class: 'button button-primary expanded' do %>
 									<i class='fa fa-search' aria-hidden='true'></i> 検索する
 								<% end %>

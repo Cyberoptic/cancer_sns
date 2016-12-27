@@ -3,7 +3,7 @@
 footer {
 	background: $white;
 	border-top: 4px solid $primary-color;
-	height: $footer-height;
+	min-height: $footer-height;	
 	margin-top: 50px;
 	padding: 30px;
 	position: absolute;

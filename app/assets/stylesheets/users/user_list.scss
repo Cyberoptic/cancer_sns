@@ -12,9 +12,16 @@
 	&:hover {
 		box-shadow: 1px 3px 8px $medium-gray;
 	}
+
+	.display-name {
+		font-size: 24px;
+	}
 }
 
 .user-info {
+	display: inline-table;
+  margin-left: 15px;
+
 	ul {
 		margin-left: 0px;	
 	}
@@ -30,5 +37,11 @@
 		&:last-child:after {
 			content: '';
 		}
+	}
+}
+
+.user-image {
+	img {
+		height: 50px;
 	}
 }

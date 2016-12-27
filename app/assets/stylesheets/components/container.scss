@@ -5,4 +5,9 @@
 	height: 100%;
 	padding: 16px 24px $footer-height;
   margin-bottom: 50px;
+
+  @include breakpoint(small) {
+    padding: 0px;
+  }
 }
+
