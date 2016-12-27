@@ -17,14 +17,16 @@
   <body>    
     <%= render 'layouts/nav' %>
 
-    <div class="row">
-      <div class="columns small-12">
-        <div class="container">
-          <%= render 'shared/flash_messages' %>
-          <%= yield %>
-        </div>
-      </div><!-- columns small-12 -->
-    </div><!-- row -->
+    <div class="body-content">
+      <div class="row">
+        <div class="columns small-12">
+          <div class="container">
+            <%= render 'shared/flash_messages' %>
+            <%= yield %>
+          </div>
+        </div><!-- columns small-12 -->
+      </div><!-- row -->
+    </div>
 
     <%= render 'layouts/footer' %>
     

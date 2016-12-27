@@ -5,5 +5,7 @@ class Post < ApplicationRecord
 
   validates :content, :user, presence: true
 
-  scope :newest_first, ->{order(created_at: :desc)}
+  default_scope { order(created_at: :desc) }
+
+  delegate :photo, to: :user, prefix: true
 end
