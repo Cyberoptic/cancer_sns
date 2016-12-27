@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  authenticated :user do
+    root 'posts#index'
+  end
+
   root 'static#home'
 
   resources :posts

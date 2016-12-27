@@ -1,0 +1,30 @@
+<div class="callout">
+	<div class="post-container">	
+		<div class="post-info">
+			<span class="user-image">
+				<%= image_tag post.user_photo %>
+			</span>
+
+			<div class="user-info">
+				<span class="display-name">
+					<%= link_to post.user.display_name, user_path(post.user) %>
+				</span>
+				<div class="timestamp">
+					<%= time_ago_in_words(post.created_at) %>
+				</div>
+			</div><!-- user-info -->
+		</div>
+
+		<div class="post-content">
+			<p><%= post.content %></p>
+		</div>
+
+		<div class="post-images-container">
+			<% post.post_images.each do |image| %>
+			  <%= image_tag image.photo, class: 'post-image' %>
+			<% end %>
+		</div>
+
+		
+	</div>
+</div>

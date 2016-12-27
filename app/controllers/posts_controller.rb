@@ -3,7 +3,9 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.newest_first
+    @posts = Post.all.decorate
+    @post = Post.new
+    @post_images = @post.post_images.build
   end
 
   def show
