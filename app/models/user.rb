@@ -78,10 +78,35 @@ class User < ApplicationRecord
     end
   end
 
+######################################################################
+################### Emotions section BEGIN ###########################
 
   def like(post)
     likes.create({post_id: post.id})
   end
+
+  def unlike(post)
+    likes.find_by(post_id: post.id).destroy
+  end
+
+  def plus_sad(post)
+    sads.create({post_id: post.id})
+  end
+
+  def minus_sad(post)
+    sads.find_by(post_id: post.id).destroy
+  end
+
+  def plus_happy(post)
+    happies.create({post_id: post.id})
+  end
+
+  def minus_happy(post)
+    happies.find_by(post_id: post.id).destroy
+  end
+
+######################################################################
+##################### Emotions section END ###########################
 
   private
 
