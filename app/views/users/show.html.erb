@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="columns medium-4 small-12">
+	<div class="columns medium-3 small-12">
 		<div class="callout callout-user-info">
 			<div class="row">
 				<div class="columns medium-5 small-12">
@@ -93,6 +93,26 @@
 			
 		</div><!-- callout -->
 	</div><!-- columns -->
+
+	<div class="columns medium-6 small-12">
+		<% if @user.posts.any? %>
+			<%= render partial: 'posts/post', collection: @user.posts.includes(:post_images).decorate %>
+		<% else %>
+			<div class="callout">
+				<h5 class="text-center">このユーザーはまだ投稿していません。</h5>
+			</div>
+		<% end %>
+	</div><!-- columns -->
+
+	<div class="columns medium-3">
+		<div class="callout">
+			<h5>友達候補</h5>
+			<% @suggested_users.each do |user| %>
+				<%= render partial: 'suggested_user', locals: {user: user.decorate} %>
+			<% end %>
+			
+		</div><!-- callout -->
+	</div>
 
 </div><!-- row -->
 

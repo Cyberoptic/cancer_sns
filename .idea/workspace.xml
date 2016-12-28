@@ -2,9 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54d37f05-c022-429f-a407-476f1deb8ec9" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/_suggested_user.html.erb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.rakeTasks" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/cancer_sns.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/factories/post_images.rb" afterPath="$PROJECT_DIR$/spec/factories/post_images.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/factories/posts.rb" afterPath="$PROJECT_DIR$/spec/factories/posts.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/_settings.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/_settings.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/users/search_form.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/users/search_form.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/users/show.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/users/show.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/users/user_list.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/users/user_list.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/friend/requests_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/friend/requests_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/posts_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/posts_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/shared/_request_send_buttons.html.erb" afterPath="$PROJECT_DIR$/app/views/shared/_request_send_buttons.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/index.html.erb" afterPath="$PROJECT_DIR$/app/views/users/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" afterPath="$PROJECT_DIR$/app/views/users/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/development.rb" afterPath="$PROJECT_DIR$/config/environments/development.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -24,7 +40,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="posts.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="posts.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/factories/posts.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
@@ -34,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post_images.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="post_images.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/factories/post_images.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="3" column="5" lean-forward="true" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+            <state relative-caret-position="140">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -366,12 +382,12 @@
       <updated>1482846383465</updated>
       <workItem from="1482846385084" duration="2017000" />
       <workItem from="1482849935912" duration="3360000" />
-      <workItem from="1482895154066" duration="70000" />
+      <workItem from="1482895154066" duration="177000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5447000" />
+    <option name="totallyTimeSpent" value="5554000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -493,15 +509,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/factories/post_images.rb">
+    <entry file="file://$PROJECT_DIR$/spec/factories/posts.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="3" column="5" lean-forward="true" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+        <state relative-caret-position="140">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/factories/posts.rb">
+    <entry file="file://$PROJECT_DIR$/spec/factories/post_images.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
