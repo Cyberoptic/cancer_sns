@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   root 'static#home'
 
-  resources :posts
+  resources :posts do
+    resources :likes, only: [:create, :destroy]
+    resources :sads, only: [:create, :destroy]
+    resources :happies, only: [:create, :destroy]    
+  end
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "registrations" }
   

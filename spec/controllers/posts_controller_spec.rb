@@ -28,7 +28,7 @@ RSpec.describe PostsController, type: :controller do
     it 'renders show page' do
       user = FactoryGirl.create(:user)
       sign_in user
-      post = FactoryGirl.create(:post)
+      post = FactoryGirl.create(:post, user_id: user.id)
       get :show, id: post.id
       expect(response).to render_template(:show)
     end
@@ -38,7 +38,7 @@ RSpec.describe PostsController, type: :controller do
     it 'redners edit page' do
       user = FactoryGirl.create(:user)
       sign_in user
-      post = FactoryGirl.create(:post)
+      post = FactoryGirl.create(:post, user_id: user.id)
       get :edit, id: post.id
     end
   end

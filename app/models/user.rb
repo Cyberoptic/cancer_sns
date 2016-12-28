@@ -105,6 +105,16 @@ class User < ApplicationRecord
     happies.find_by(post_id: post.id).destroy
   end
 
+  def self.liked?(post, curr_user)
+    # true if one of the likers of the post is current_user
+    post.likes.each do |like|
+      if like.user == curr_user
+        return true
+      end
+    end
+    return false
+  end
+
 ######################################################################
 ##################### Emotions section END ###########################
 
