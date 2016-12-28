@@ -26,6 +26,9 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :post_images
+  has_many :likes
+  has_many :sads
+  has_many :happies
 
   scope :is_public, -> { where(is_public: true) }
 
