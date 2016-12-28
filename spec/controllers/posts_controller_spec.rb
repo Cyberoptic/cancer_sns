@@ -28,7 +28,7 @@ RSpec.describe PostsController, type: :controller do
     it 'renders show page' do
       user = FactoryGirl.create(:user)
       sign_in user
-      post = FactoryGirl.create(:post)
+      post = FactoryGirl.create(:post, user_id: user.id)
       get :show, id: post.id
       expect(response).to render_template(:show)
     end
@@ -38,19 +38,22 @@ RSpec.describe PostsController, type: :controller do
     it 'redners edit page' do
       user = FactoryGirl.create(:user)
       sign_in user
-      post = FactoryGirl.create(:post)
+      post = FactoryGirl.create(:post,user_id: user.id)
       get :edit, id: post.id
     end
   end
 
   describe 'POST #create' do
-    context 'with invalid attributes' do
+    context 'with valid attributes' do
       it 'creates new post' do
+        user = FactoryGirl.create(:user)
+        sign_in user
+        expect {post :create, post: FactoryGirl.attributes_for(:post, user_id: user.id)}.to change(Post, :count).by(1)
       end
       it 'redirects to show page' do
       end
     end
-    context 'with validd attributes ' do
+    context 'with invalidd attributes ' do
       it 'renders new action' do
       end
     end
