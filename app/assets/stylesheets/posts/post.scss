@@ -1,0 +1,51 @@
+@import "settings";
+
+.post-container {
+	margin-bottom: 30px;
+
+	.dropdown-pane {
+		background: white;		
+		box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
+		border: 1px solid rgba(0, 0, 0, .15);
+		padding-bottom: 0px;
+		min-height: 70px;
+		width: 150px;
+	}
+
+	.post-options-menu {
+		li {
+			border-bottom: 2px solid $light-gray;
+			padding-bottom: 5px;
+			margin-bottom: 5px;
+		}
+
+		a {
+			color: $dark-gray;
+			font-size: 14px;
+			font-weight: 600;
+		}
+	}
+
+	.post-info {
+		.user-image {
+			float: left;
+		}
+	}
+
+	.display-name {
+		font-weight: 600;
+	}
+
+	.post-image {
+		width: 45%;
+	}
+
+	.post-content {
+		margin-top: 20px;
+	}
+
+	.timestamp {
+		color: $medium-gray;
+		font-size: 12px;
+	}
+}

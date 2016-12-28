@@ -14,7 +14,7 @@ class Friend::RequestsController < ApplicationController
   private
 
   def check_existing_friendship!
-    @user = find_user
+    @user = find_user    
     return unless HasFriendship::Friendship.find_by(friend_id: @user.id, friendable_id: current_user.id)
     flash[:alert] = "ユーザーともうすでに友達です。"
     redirect_to root_path

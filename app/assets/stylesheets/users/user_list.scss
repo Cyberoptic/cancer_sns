@@ -16,10 +16,14 @@
 	.display-name {
 		font-size: 24px;
 	}
+
+	.user-tags {
+		clear: both;
+	}
 }
 
-.user-info {
-	display: inline-table;
+.user-info {	
+	display: inline-block;
   margin-left: 15px;
 
 	ul {
@@ -41,7 +45,27 @@
 }
 
 .user-image {
+	float: left;
+
 	img {
 		height: 50px;
+	}
+}
+
+.user-list-suggestions {
+	.user-image {
+		img {
+			height: 40px;
+			width: 40px;
+		}	
+	}
+
+	.display-name {
+		font-size: 16px;
+  	font-weight: 600;
+	}
+
+	.label {
+		font-size: 10px;
 	}
 }

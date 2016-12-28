@@ -26,6 +26,9 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :post_images
+  has_many :likes
+  has_many :sads
+  has_many :happies
 
   scope :is_public, -> { where(is_public: true) }
 
@@ -74,6 +77,46 @@ class User < ApplicationRecord
       user.photo = auth.info.image # assuming the user model has an image
     end
   end
+
+######################################################################
+################### Emotions section BEGIN ###########################
+
+  def like(post)
+    likes.create({post_id: post.id})
+  end
+
+  def unlike(post)
+    likes.find_by(post_id: post.id).destroy
+  end
+
+  def plus_sad(post)
+    sads.create({post_id: post.id})
+  end
+
+  def minus_sad(post)
+    sads.find_by(post_id: post.id).destroy
+  end
+
+  def plus_happy(post)
+    happies.create({post_id: post.id})
+  end
+
+  def minus_happy(post)
+    happies.find_by(post_id: post.id).destroy
+  end
+
+  def self.liked?(post, curr_user)
+    # true if one of the likers of the post is current_user
+    post.likes.each do |like|
+      if like.user == curr_user
+        return true
+      end
+    end
+    return false
+  end
+
+######################################################################
+##################### Emotions section END ###########################
 
   private
 
