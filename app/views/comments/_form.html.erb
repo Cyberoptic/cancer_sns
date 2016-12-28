@@ -1,0 +1,8 @@
+<div class="col-md-3 ">
+
+  <%= form_for([@post,@post.comments.build]) do |f|%>
+      <%= f.text_field :comment %>
+      <%= f.submit "Reply" %>
+
+  <% end %>
+</div>
