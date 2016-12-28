@@ -1,0 +1,2 @@
+class SadsController < ApplicationController
+end

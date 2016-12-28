@@ -78,6 +78,11 @@ class User < ApplicationRecord
     end
   end
 
+
+  def like(post)
+    likes.create({post_id: post.id})
+  end
+
   private
 
   def signed_up?

@@ -1,0 +1,2 @@
+class HappiesController < ApplicationController
+end
