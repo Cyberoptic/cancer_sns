@@ -23,9 +23,10 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        params[:post_images]['photo'].each do |a|
-          # binding.pry
-          @post_image = @post.post_images.create!(photo: a, user_id: current_user.id)
+        if params[:post_images]
+          params[:post_images]['photo'].each do |a|
+            @post_image = @post.post_images.create!(photo: a, user_id: current_user.id)
+          end
         end
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
       else

@@ -54,7 +54,11 @@ RSpec.describe PostsController, type: :controller do
       end
     end
     context 'with invalidd attributes ' do
-      it 'renders new action' do
+      it 'doesnt create a new post' do
+        user = FactoryGirl.create(:user)
+        sign_in user
+        expect {post :create, post: FactoryGirl.attributes_for(:post, content: nil, user_id: user.id)}.to change(Post, :count).by(0)
+        expect(response).to render_template :new
       end
     end
   end
