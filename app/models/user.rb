@@ -105,30 +105,30 @@ class User < ApplicationRecord
     happies.find_by(post_id: post.id).destroy
   end
 
-  def self.liked?(post, curr_user)
+  def liked?(post)
     # true if one of the likers of the post is current_user
     post.likes.each do |like|
-      if like.user == curr_user
+      if like.user == self
         return true
       end
     end
     return false
   end
 
-  def self.plussed_sad?(post, curr_user)
+  def plussed_sad?(post)
     # true if one of the sadders of the post is current_user
     post.sads.each do |sad|
-      if sad.user == curr_user
+      if sad.user == self
         return true
       end
     end
     return false
   end
 
-  def self.plussed_happy?(post, curr_user)
+  def plussed_happy?(post)
     # true if one of the sadders of the post is current_user
     post.happies.each do |happy|
-      if happy.user == curr_user
+      if happy.user == self
         return true
       end
     end

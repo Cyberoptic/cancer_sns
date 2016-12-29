@@ -1,4 +1,4 @@
-<% if User.plussed_sad?(apost, current_user) %>
+<% if current_user.plussed_sad?(apost) %>
   <%= link_to "UnSad", post_sad_path(apost, 5), method: :delete, remote: true %>
 <% else %>
   <%= link_to "Sad", post_sads_path(apost), method: :post, remote: true %>
