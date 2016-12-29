@@ -1,5 +1,6 @@
 <% if User.liked?(apost, current_user) %>
-  <%= link_to "Unlike", post_like_path(apost, 5), method: :delete, remote: true %>
+  <% like = Like.where(user_id: current_user.id, post_id: apost.id) %>
+  <%= link_to "Unlike", post_like_path(apost, like), method: :delete, remote: true %>
 <% else %>
   <%= link_to "Like", post_likes_path(apost), method: :post, remote: true %>
 <% end %>

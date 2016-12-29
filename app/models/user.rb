@@ -115,6 +115,26 @@ class User < ApplicationRecord
     return false
   end
 
+  def self.plussed_sad?(post, curr_user)
+    # true if one of the sadders of the post is current_user
+    post.sads.each do |sad|
+      if sad.user == curr_user
+        return true
+      end
+    end
+    return false
+  end
+
+  def self.plussed_happy?(post, curr_user)
+    # true if one of the sadders of the post is current_user
+    post.happies.each do |happy|
+      if happy.user == curr_user
+        return true
+      end
+    end
+    return false
+  end
+
 ######################################################################
 ##################### Emotions section END ###########################
 
