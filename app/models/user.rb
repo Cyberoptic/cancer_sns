@@ -23,6 +23,8 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   
   has_friendship
+  
+  has_many :comments
 
   has_many :posts
   has_many :post_images
