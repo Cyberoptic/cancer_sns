@@ -15,6 +15,7 @@ class LikesController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     current_user.unlike(@post)
+    
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js {}

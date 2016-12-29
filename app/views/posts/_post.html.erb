@@ -39,7 +39,7 @@
 
 		<%# Add the partial here%>
 		<div class="post-reactions">
-			<span id="post-likes"> <%= render partial: "shared/likes" %> </span>
+			<span id="post-likes"> <%= render partial: "likes", locals: { apost: post } %> </span>
 			<%# render partial: "shared/happies" %>
 			<%# render partial: "shared/sads" %>
 		</div>
