@@ -36,7 +36,14 @@
 			  <%= image_tag image.photo, class: 'post-image' %>
 			<% end %>
 		</div>
-
-		
+			
+		<div id="comments">	
+		<%= render partial: 'shared/comment.html.erb', locals: {post: post} %>
+		<%= simple_form_for Comment.new, url: post_comments_path(post), method: :post, remote: true do |f| %>
+  			<%= f.input :text %>
+  			<%= f.submit 'Post' %>
+		<% end %>
+		</div>	
+				
 	</div>
 </div>
