@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161226112324) do
+ActiveRecord::Schema.define(version: 20161230073217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,24 @@ ActiveRecord::Schema.define(version: 20161226112324) do
     t.datetime "updated_at"
     t.integer  "blocker_id"
     t.integer  "status"
+  end
+
+  create_table "happies", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_happies_on_post_id", using: :btree
+    t.index ["user_id"], name: "index_happies_on_user_id", using: :btree
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id", using: :btree
+    t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
   end
 
   create_table "post_images", force: :cascade do |t|
@@ -38,9 +56,21 @@ ActiveRecord::Schema.define(version: 20161226112324) do
   create_table "posts", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "likes_count",   default: 0
+    t.integer  "sads_count",    default: 0
+    t.integer  "happies_count", default: 0
+    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
+  end
+
+  create_table "sads", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
+    t.index ["post_id"], name: "index_sads_on_post_id", using: :btree
+    t.index ["user_id"], name: "index_sads_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

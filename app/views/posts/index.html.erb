@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="columns medium-6 medium-offset-3 small-12">
+
+		<div class="callout">
+			<%= simple_form_for @post do |f| %>
+			  <%= f.input :content, label: false, placeholder: '投稿内容', input_html: {rows: 5} %>
+			  <%= f.simple_fields_for :post_images do |p| %>
+			    <%= p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]" } %>
+			  <% end %>
+
+			  <%= f.submit "投稿", class: 'button' %>
+			<% end %>
+		</div>
+
+		<%= render @posts %> <%# Same as render partial: "post", collection: @posts %>
+
+	</div><!-- columns -->
+</div><!-- row -->
+

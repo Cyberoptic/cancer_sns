@@ -1,10 +1,21 @@
 @import "settings";
 
-html {
-  position: relative;
-  min-height: 100%;
+body {
+	display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-body {
-  margin: 0 0 $footer-height;
+.body-content {
+	flex: 1;
+}
+
+.visited {
+	a {
+		color: $light-blue;
+	}	
+}
+
+.button.warning {
+	color: $white !important;
 }

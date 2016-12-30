@@ -1,0 +1,10 @@
+<h2>Post your content here</h2>
+
+<%= simple_form_for @post do |f| %>
+  <%= f.input :content %>
+  <%= f.simple_fields_for :post_images do |p| %>
+    <%= p.input :photo, input_html: { multiple: true, name: "post_images[photo][]" } %>
+  <% end %>
+
+  <%= f.submit "Post" %>
+<% end %>

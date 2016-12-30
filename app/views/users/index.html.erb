@@ -1,12 +1,7 @@
 <div class="row">
-	<div class="columns medium-10 medium-offset-1 small-12">
+	<div class="columns medium-6 medium-offset-3 small-12">
 		<div class="search-form">
 			<%= simple_form_for @search, url: users_path, method: :get do |f| %>
-				<div class="row">
-					<div class="columns medium-4">
-					</div>
-
-					<div class="columns medium-8">
 						<div class="row">
 							<div class="columns medium-3 small-6">
 								<%= f.input :profession, label: false, placeholder: '職業' %>
@@ -44,8 +39,6 @@
 								<% end %>
 							</div><!-- columns -->
 						</div><!-- row -->
-					</div><!-- columns -->
-				</div><!-- row -->
 					
 			<% end %>
 		</div><!-- search-form -->
