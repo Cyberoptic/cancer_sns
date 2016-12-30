@@ -104,6 +104,7 @@ RSpec.describe PostsController, type: :controller do
     it 'redirects to posts path' do
       user= create(:user)
       post=create(:post,user_id: user.id)
+      delete :destroy, id: post.id
       expect(response).to redirect_to posts_path
     end
   end
