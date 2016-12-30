@@ -3,7 +3,7 @@ class SadsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])    
-    current_user.plus_sad(@post)
+    current_user.sad(@post)
 
     @post.reload
 
@@ -15,7 +15,7 @@ class SadsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    current_user.minus_sad(@post)
+    current_user.unsad(@post)
 
     @post.reload
 

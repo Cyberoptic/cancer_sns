@@ -24,11 +24,11 @@ class User < ApplicationRecord
   
   has_friendship
 
-  has_many :posts
-  has_many :post_images
-  has_many :likes
-  has_many :sads
-  has_many :happies
+  has_many :posts, dependent: :destroy
+  has_many :post_images, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :sads, dependent: :destroy
+  has_many :happies, dependent: :destroy
 
   scope :is_public, -> { where(is_public: true) }
 
@@ -89,19 +89,19 @@ class User < ApplicationRecord
     likes.find_by(post_id: post.id).destroy
   end
 
-  def plus_sad(post)
+  def sad(post)
     sads.create({post_id: post.id})
   end
 
-  def minus_sad(post)
+  def unsad(post)
     sads.find_by(post_id: post.id).destroy
   end
 
-  def plus_happy(post)
+  def happy(post)
     happies.create({post_id: post.id})
   end
 
-  def minus_happy(post)
+  def unhappy(post)
     happies.find_by(post_id: post.id).destroy
   end
 
@@ -109,11 +109,11 @@ class User < ApplicationRecord
     post.likes.exists?(user_id: self.id)
   end
 
-  def plussed_sad?(post)
+  def sadded?(post)    
     post.sads.exists?(user_id: self.id)    
   end
 
-  def plussed_happy?(post)
+  def happied?(post)
     post.happies.exists?(user_id: self.id)    
   end
 

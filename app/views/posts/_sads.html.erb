@@ -1,4 +1,4 @@
-<% if current_user.plussed_sad?(apost) %>
+<% if current_user.sadded?(apost) %>
   <span class="visited"><%= link_to "悲しいね", sad_path(apost.id), method: :delete, remote: true %></span>
 <% else %>
   <%= link_to "悲しいね", post_sads_path(apost), method: :post, remote: true %>
