@@ -106,15 +106,15 @@ class User < ApplicationRecord
   end
 
   def liked?(post)
-    post.likes.exists?(user_id: self.id)
+    post.likes.pluck(:id).include?(self.id)
   end
 
   def plussed_sad?(post)
-    post.sads.exists?(user_id: self.id)    
+    post.sads.pluck(:id).include?(self.id)    
   end
 
   def plussed_happy?(post)
-    post.happies.exists?(user_id: self.id)    
+    post.happies.pluck(:id).include?(self.id)    
   end
 
 ######################################################################
