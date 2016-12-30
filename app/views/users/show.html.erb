@@ -53,7 +53,7 @@
 					</div>
 
 					<div class="columns medium-6 small-12">
-						<%= link_to 'メッセージ', '', class: 'button expanded small' %>
+						<%= link_to 'メッセージ', '', class: 'button expanded small secondary' %>
 					</div><!-- columns -->
 				</div><!-- row -->
 			<% end %>
@@ -65,7 +65,7 @@
 		</div><!-- callout -->
 
 		<div class="callout">
-			<h6><strong>パートナー（患者）に関する情報</strong></h6>
+			<h6 class="user-header">パートナー（患者）に関する情報</h6>
 
 			<hr />
 
@@ -99,14 +99,14 @@
 			<%= render partial: 'posts/post', collection: @user.posts.includes(:post_images).decorate %>
 		<% else %>
 			<div class="callout">
-				<h5 class="text-center">このユーザーはまだ投稿していません。</h5>
+				<h6 class="text-center">このユーザーはまだ投稿していません。</h6>
 			</div>
 		<% end %>
 	</div><!-- columns -->
 
 	<div class="columns medium-3">
 		<div class="callout">
-			<h5>友達候補</h5>
+			<h6 class="user-header">友達候補</h6>
 			<% @suggested_users.each do |user| %>
 				<%= render partial: 'suggested_user', locals: {user: user.decorate} %>
 			<% end %>

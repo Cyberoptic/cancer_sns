@@ -50,10 +50,10 @@ $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #7cbfa3,
-  secondary: #767676,
+  primary: #475f5f,
+  secondary: #475f5f,
   success: #3adb76,
-  warning: #ed823d,
+  warning: #ff6400,
   alert: #cc4b37,
 );
 $background-color: rgba(20, 148, 148, 0.41);
@@ -145,12 +145,12 @@ $code-font-weight: $global-weight-normal;
 $code-background: $light-gray;
 $code-border: 1px solid $medium-gray;
 $code-padding: rem-calc(2 5 1);
-$anchor-color: #1e2929;
+$anchor-color: #475f5f;
 $anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
 $anchor-text-decoration: none;
 $anchor-text-decoration-hover: none;
 $hr-width: $global-width;
-$hr-border: 1px solid $medium-gray;
+$hr-border: 1px solid $background-color;
 $hr-margin: rem-calc(20) auto;
 $list-lineheight: $paragraph-lineheight;
 $list-margin-bottom: $paragraph-margin-bottom;
