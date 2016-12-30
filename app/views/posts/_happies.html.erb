@@ -5,5 +5,5 @@
 <% end %>
 
 <span class="post-like">
-  <%= pluralize apost.happies.size, "happy" %>
+  <%= pluralize apost.reload.happies_count, "happy" %>
 </span>
