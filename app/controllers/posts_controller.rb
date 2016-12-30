@@ -49,9 +49,9 @@ class PostsController < ApplicationController
     # end
     update_attachments if params[:post_images]
     if @post.update!(post_params)
-      redirect_to root_path, notice: '投稿が更新されました。'
+      redirect_to :back, notice: '投稿が更新されました。'
     else
-      redirect_to root_path, alert: @post.errors.full_messages[0]
+      redirect_to :back, alert: @post.errors.full_messages[0]
     end
   end
 
