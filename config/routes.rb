@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
+  authenticated :user do
+    root 'posts#index'
+  end
+
   root 'static#home'
+
+  resources :posts do
+    resources :likes, only: :create
+    resources :sads, only: :create
+    resources :happies, only: :create    
+  end
+
+  resources :likes, only: :destroy 
+  resources :sads, only: :destroy
+  resources :happies, only: :destroy
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "registrations" }
   

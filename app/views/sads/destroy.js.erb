@@ -1,0 +1,1 @@
+$("#post-sads-<%= @post.id %>").html("<%= escape_javascript render partial: "posts/sads", locals: { apost: @post } %>")
