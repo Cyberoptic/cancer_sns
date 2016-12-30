@@ -13,7 +13,7 @@ class HappiesController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:id])
     current_user.minus_happy(@post)
     respond_to do |format|
       format.html { redirect_to root_path }

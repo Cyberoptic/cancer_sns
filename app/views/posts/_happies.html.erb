@@ -1,5 +1,5 @@
 <% if current_user.plussed_happy?(apost) %>
-  <%= link_to "UnHappy", post_happy_path(apost,111), method: :delete, remote: true %>
+  <%= link_to "UnHappy", happy_path(apost.id), method: :delete, remote: true %>
 <% else %>
   <%= link_to "Happy", post_happies_path(apost), method: :post, remote: true %>
 <% end %>
