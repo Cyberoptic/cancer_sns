@@ -6,7 +6,7 @@
 			</a>
 			<div class="dropdown-pane bottom right" id="post-options-dropdown-<%=post.id %>" data-dropdown data-hover="true" data-hover-pane="true">
 			  <ul class="post-options-menu no-bullet">
-				  <%= link_to "<li><i class='fa fa-pencil' aria-hidden='true'></i> 編集</li>".html_safe, edit_post_path(post) %>
+			  	<a class="edit-post" data-id="<%= post.id %>"><li><i class='fa fa-pencil' aria-hidden='true'></i> 編集</li></a>				  
 				  <%= link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> 削除</li>".html_safe, post_path(post), method: :delete, data: {confirm: "本当に削除してよろしいですか？"} %>
 		    </ul>
 			</div>
@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="post-content">
-			<p><%= post.content %></p>
+			<p id="post-content-<%= post.id %>"><%= post.content %></p>
 		</div>
 
 		<div class="post-images-container">
