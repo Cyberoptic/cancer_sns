@@ -2,7 +2,7 @@ class UserDecorator < Draper::Decorator
   delegate_all
 
   def display_name
-  	object.nickname.empty? ? name : object.nickname
+  	object.try(:nickname).empty? ? name : object.nickname
   end	
 
   def name
