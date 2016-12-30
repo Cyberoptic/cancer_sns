@@ -36,12 +36,11 @@
 			  <%= image_tag image.photo, class: 'post-image' %>
 			<% end %>
 		</div>
-
-		<%# Add the partial here%>
+	
 		<div class="post-reactions">
-			<span id="post-likes-<%= post.id %>"> <%= render partial: "likes", locals: { apost: post } %> </span>
-			<span id="post-happies-<%= post.id %>"> <%= render partial: "happies", locals: { apost: post } %></span>
-			<span id="post-sads-<%= post.id %>"> <%= render partial: "sads", locals: { apost: post } %> </span> 
+			<span id="post-likes-<%= post.id %>"><%= render partial: "likes", locals: { apost: post } %></span>
+			<span id="post-happies-<%= post.id %>"><%= render partial: "happies", locals: { apost: post } %></span>
+			<span id="post-sads-<%= post.id %>"><%= render partial: "sads", locals: { apost: post } %> </span> 
 		</div>
 		
 	</div>

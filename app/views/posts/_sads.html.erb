@@ -1,9 +1,9 @@
 <% if current_user.plussed_sad?(apost) %>
-  <%= link_to "UnSad", sad_path(apost.id), method: :delete, remote: true %>
+  <%= link_to "悲しいね", sad_path(apost.id), method: :delete, remote: true %>
 <% else %>
-  <%= link_to "Sad", post_sads_path(apost), method: :post, remote: true %>
+  <%= link_to "悲しいね", post_sads_path(apost), method: :post, remote: true %>
 <% end %>
 
-<span>
-  <%= pluralize apost.sads_count, "sad" %>
+<span class="post-emotion-count">
+  (<%= apost.sads_count %>)
 </span>

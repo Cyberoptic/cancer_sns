@@ -1,9 +1,9 @@
 <% if current_user.plussed_happy?(apost) %>
-  <%= link_to "UnHappy", happy_path(apost.id), method: :delete, remote: true %>
+  <%= link_to "嬉しいね", happy_path(apost.id), method: :delete, remote: true %>
 <% else %>
-  <%= link_to "Happy", post_happies_path(apost), method: :post, remote: true %>
+  <%= link_to "嬉しいね", post_happies_path(apost), method: :post, remote: true %>
 <% end %>
 
-<span class="post-like">
-  <%= pluralize apost.happies_count, "happy" %>
+<span class="post-emotion-count">
+  (<%= apost.happies_count %>)
 </span>

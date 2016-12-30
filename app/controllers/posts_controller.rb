@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.includes(:user, :post_images).all.decorate
+    @posts = Post.includes(:user, :post_images, :likes, :sads, :happies).all.decorate
     @post = Post.new
     @post_images = @post.post_images.build
   end
@@ -23,9 +23,10 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        params[:post_images]['photo'].each do |a|
-          # binding.pry
-          @post_image = @post.post_images.create!(photo: a, user_id: current_user.id)
+        if params[:post_images]
+          params[:post_images]['photo'].each do |a|
+            @post_image = @post.post_images.create!(photo: a, user_id: current_user.id)
+          end
         end
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
       else

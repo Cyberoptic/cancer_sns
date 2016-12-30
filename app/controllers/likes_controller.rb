@@ -3,8 +3,10 @@ class LikesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    # Like.create({user_id: current_user.id, post_id: @post.id})
-    current_user.like(@post)
+    current_user.like(@post)    
+
+    @post.reload
+
     respond_to do |format|
       format.html { redirect_to root_path}
       format.js {}
@@ -14,6 +16,9 @@ class LikesController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     current_user.unlike(@post)
+
+    @post.reload
+
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js {}

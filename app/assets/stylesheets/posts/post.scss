@@ -48,4 +48,15 @@
 		color: $medium-gray;
 		font-size: 12px;
 	}
+
+	.post-reactions {
+		border-top: 1px solid $light-gray;
+		font-size: 14px;
+		padding-top: 10px;
+		margin-top: 20px;
+	}
+
+	.post-emotion-count {
+		font-size: 10px;
+	}
 }

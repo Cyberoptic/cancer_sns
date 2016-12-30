@@ -106,33 +106,15 @@ class User < ApplicationRecord
   end
 
   def liked?(post)
-    # true if one of the likers of the post is current_user
-    post.likes.each do |like|
-      if like.user == self
-        return true
-      end
-    end
-    return false
+    post.likes.exists?(user_id: self.id)
   end
 
   def plussed_sad?(post)
-    # true if one of the sadders of the post is current_user
-    post.sads.each do |sad|
-      if sad.user == self
-        return true
-      end
-    end
-    return false
+    post.sads.exists?(user_id: self.id)    
   end
 
   def plussed_happy?(post)
-    # true if one of the sadders of the post is current_user
-    post.happies.each do |happy|
-      if happy.user == self
-        return true
-      end
-    end
-    return false
+    post.happies.exists?(user_id: self.id)    
   end
 
 ######################################################################
