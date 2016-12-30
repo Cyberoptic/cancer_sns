@@ -1,5 +1,5 @@
 <% if current_user.plussed_happy?(apost) %>
-  <%= link_to "嬉しいね", happy_path(apost.id), method: :delete, remote: true %>
+  <span class="visited"><%= link_to "嬉しいね", happy_path(apost.id), method: :delete, remote: true %></span>
 <% else %>
   <%= link_to "嬉しいね", post_happies_path(apost), method: :post, remote: true %>
 <% end %>
