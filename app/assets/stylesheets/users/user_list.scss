@@ -14,7 +14,9 @@
 	}
 
 	.display-name {
-		font-size: 24px;
+		color: $anchor-color;
+		font-size: 20px;
+    font-weight: 600;
 	}
 
 	.user-tags {

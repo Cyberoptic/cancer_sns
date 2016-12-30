@@ -22,7 +22,7 @@
 					<%= link_to post.user.display_name, user_path(post.user) %>
 				</span>
 				<div class="timestamp">
-					<%= time_ago_in_words(post.created_at) %>
+					<%= time_ago_in_words(post.created_at) %>前
 				</div>
 			</div><!-- user-info -->
 		</div>
@@ -36,7 +36,12 @@
 			  <%= image_tag image.photo, class: 'post-image' %>
 			<% end %>
 		</div>
-
+	
+		<div class="post-reactions">
+			<span id="post-likes-<%= post.id %>"><%= render partial: "posts/likes", locals: { apost: post } %></span>
+			<span id="post-happies-<%= post.id %>"><%= render partial: "posts/happies", locals: { apost: post } %></span>
+			<span id="post-sads-<%= post.id %>"><%= render partial: "posts/sads", locals: { apost: post } %> </span> 
+		</div>
 		
 	</div>
 </div>

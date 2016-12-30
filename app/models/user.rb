@@ -24,8 +24,11 @@ class User < ApplicationRecord
   
   has_friendship
 
-  has_many :posts
-  has_many :post_images
+  has_many :posts, dependent: :destroy
+  has_many :post_images, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :sads, dependent: :destroy
+  has_many :happies, dependent: :destroy
 
   scope :is_public, -> { where(is_public: true) }
 
@@ -74,6 +77,48 @@ class User < ApplicationRecord
       user.photo = auth.info.image # assuming the user model has an image
     end
   end
+
+######################################################################
+################### Emotions section BEGIN ###########################
+
+  def like(post)
+    likes.create({post_id: post.id})
+  end
+
+  def unlike(post)
+    likes.find_by(post_id: post.id).destroy
+  end
+
+  def sad(post)
+    sads.create({post_id: post.id})
+  end
+
+  def unsad(post)
+    sads.find_by(post_id: post.id).destroy
+  end
+
+  def happy(post)
+    happies.create({post_id: post.id})
+  end
+
+  def unhappy(post)
+    happies.find_by(post_id: post.id).destroy
+  end
+
+  def liked?(post)
+    post.likes.exists?(user_id: self.id)
+  end
+
+  def sadded?(post)    
+    post.sads.exists?(user_id: self.id)    
+  end
+
+  def happied?(post)
+    post.happies.exists?(user_id: self.id)    
+  end
+
+######################################################################
+##################### Emotions section END ###########################
 
   private
 

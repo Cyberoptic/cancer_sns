@@ -1,8 +1,12 @@
+@import "settings";
+
 .callout-user-info {
 	
-	.name {
-		font-size: 24px;
+	.name {		    
+		color: $anchor-color;
 		display: block;
+    font-size: 22px;
+    font-weight: 600;
 	}
 
 	.nickname {
@@ -29,4 +33,9 @@
 
 .user-name {
 	display: inline-block;
+}
+
+.user-header {
+	font-size: 14px;
+	font-weight: 600;
 }

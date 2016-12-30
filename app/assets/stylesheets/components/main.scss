@@ -1,14 +1,5 @@
 @import "settings";
 
-// html {
-//   position: relative;
-//   min-height: 100%;
-// }
-
-// body {
-//   margin: 0 0 $footer-height;
-// }
-
 body {
 	display: flex;
   min-height: 100vh;
@@ -17,4 +8,14 @@ body {
 
 .body-content {
 	flex: 1;
+}
+
+.visited {
+	a {
+		color: $light-blue;
+	}	
+}
+
+.button.warning {
+	color: $white !important;
 }
