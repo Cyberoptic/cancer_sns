@@ -48,7 +48,7 @@ class PostsController < ApplicationController
     #   render :new, status: :unprocessable_entity
     # end
     update_attachments if params[:post_images]
-    if @post.update!(post_params)
+    if @post.update(post_params)
       redirect_to @post, notice: 'Post was successfully updated.'
     else
       render :edit
