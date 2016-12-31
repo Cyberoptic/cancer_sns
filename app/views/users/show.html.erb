@@ -70,23 +70,23 @@
 			<hr />
 
 			<ul class="partner-info no-bullet">
-				<% if @user.show_partner_age && @user.partner_age.present? %>
+				<% if @user.show_partner_age.present? && @user.partner_age.present? %>
 					<li><strong>年齢</strong> <%= @user.partner_age %></li>
 				<% end %>
 
-				<% if @user.show_cancer_stage && @user.cancer_stage.present? %>
+				<% if @user.show_cancer_stage.present? && @user.cancer_stage.present? %>
 					<li><strong>癌ステージ</strong> <%= @user.cancer_stage %></li>
 				<% end %>
 
-				<% if @user.show_cancer_type && @user.cancer_type.present? %>
+				<% if @user.show_cancer_type.present? && @user.cancer_type.present? %>
 					<li><strong>癌種目</strong> <%= @user.cancer_type %></li>
 				<% end %>
 
-				<% if @user.show_hospital && @user.hospital.present? %>
+				<% if @user.show_hospital.present? && @user.hospital.present? %>
 					<li><strong>病院名</strong> <%= @user.hospital %></li>
 				<% end %>
 
-				<% if @user.show_treatment && @user.treatment.present? %>
+				<% if @user.show_treatment.present? && @user.treatment.present? %>
 					<li><strong>治療内容</strong> <%= @user.treatment %></li>
 				<% end %>
 			</ul>

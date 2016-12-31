@@ -62,16 +62,8 @@ RSpec.describe PostsController, type: :controller do
           post :create, post: attributes_for(:post, user_id: user.id)
         }.to change(Post, :count).by(1)
       end
-      it 'redirects to show page' do
-        user = create(:user)
-
-        sign_in user
-        post :create, post: attributes_for(:post)
-
-        expect(response).to redirect_to post_path(assigns[:post].id)
-      end
     end
-    context 'with invalidd attributes' do
+    context 'with invalid attributes' do
       it 'doesnt create a new post' do
         user = create(:user)
 
@@ -90,6 +82,7 @@ RSpec.describe PostsController, type: :controller do
       it 'updates post' do
         user = create(:user)
         post = create(:post, user_id: user.id)
+        request.env["HTTP_REFERER"] = "http://localhost:3000"
 
         sign_in user
         put :update, id: post.id, post: attributes_for(:post, content: "hello there")
@@ -97,27 +90,18 @@ RSpec.describe PostsController, type: :controller do
 
         expect(post.content).to eq("hello there")
       end
-
-      it 'redirects to show path' do
-        user = create(:user)
-        post = create(:post,user_id: user.id)
-
-        sign_in user
-        put :update, id: post.id, post: attributes_for(:post, content: "hello there")
-        post.reload
-
-        expect(response).to redirect_to post_path(assigns[:post])
-      end
     end
     context 'with invalid attributes' do
-      it 'renders edit' do
+      it "doesn't update the post" do
         user = create(:user)
         post = create(:post, user_id: user.id)
+        request.env["HTTP_REFERER"] = "http://localhost:3000"
 
         sign_in user
-        put :update,id: post.id, post: attributes_for(:invalid_post)        
 
-        expect(response).to render_template :edit
+        expect {
+          put :update,id: post.id, post: attributes_for(:post, content: nil)        
+        }.to_not change(post, :content)
       end
     end
   end
