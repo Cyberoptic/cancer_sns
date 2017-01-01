@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.includes(:user, :post_images).all.decorate
+    @posts = Post.includes(:user, :post_images, comments: :user).all.decorate
     @post = Post.new
     @post_images = @post.post_images.build
   end

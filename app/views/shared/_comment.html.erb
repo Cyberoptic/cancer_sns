@@ -1,8 +1,11 @@
-<% post.comments.each do |comment| %>
-			<span class="user-image">
-				<%= image_tag comment.user_photo %>
-			</span>
-    <%= link_to comment.user_nickname, user_path(post.user) %>
-    <%= comment.text %><br>
-<% end %> 
-
+<div class="comment">
+	<span class="user-image">
+		<%= image_tag comment.user_photo %>
+	</span>
+	<div class="nickname">
+		<%= link_to comment.user.display_name, user_path(comment.post_user) %>
+	</div>
+	<div class="comment-text">
+		<%= comment.text %>
+	</div>
+</div>
