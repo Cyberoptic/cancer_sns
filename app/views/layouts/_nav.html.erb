@@ -48,6 +48,6 @@
 
 <div class="dropdown-pane bottom right" id="pending-friend-requests" data-dropdown data-hover="true" data-hover-pane="true">
   <ul class="no-bullet" id="pending-friend-request-list">
-    <%= react_component 'PendingFriendRequests', userId: current_user.id %>
+    <%= react_component 'PendingFriendRequests', userId: current_user.id if user_signed_in? %>
   </ul>
 </div>

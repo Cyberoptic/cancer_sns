@@ -22,8 +22,6 @@ let PendingFriendRequests = React.createClass({
 
 		let id = $(e.target).data("id");
 
-		console.log(id);
-
 		$.ajax({
 			url: `/users/${id}/request_acceptances`,
 			type: 'POST',
@@ -33,6 +31,7 @@ let PendingFriendRequests = React.createClass({
 				let friendRequests = this.state.friendRequests.filter((request) => {
 					return request.friendable_id !== id;
 				})
+
 				this.setState({friendRequests: friendRequests});
 			}
 		})
@@ -49,6 +48,7 @@ let PendingFriendRequests = React.createClass({
 			dataType: 'JSON',
 			context: 'this',
 			success: (data) => {
+				console.log("success");
 				let friendRequests = this.state.friendRequests.filter((request) => {
 					return request.friendable_id != id;
 				})
