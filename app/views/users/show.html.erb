@@ -57,12 +57,14 @@
 					</div><!-- columns -->
 				</div><!-- row -->
 			<% end %>
-
-				<div id="friend_list">
-					<%= render partial: 'shared/friend_list.html.erb', locals: {user: @user} %>
-				</div>
 			
 		</div><!-- callout -->
+
+		<div class="callout">
+			<div id="friend_list">
+				<%= render partial: 'shared/friend_list.html.erb', locals: {user: @user} %>
+			</div>
+		</div>
 
 		<div class="callout">
 			<h6 class="user-header">パートナー（患者）に関する情報</h6>

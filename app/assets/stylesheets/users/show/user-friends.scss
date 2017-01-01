@@ -1,0 +1,31 @@
+@import "settings";
+
+.user-friends {
+
+	a {
+		display: flex;
+
+		.image-wrapper {
+			flex: 0.3;
+			position: relative;
+			width: 100%;
+
+			.display-name {
+				bottom: 5%;
+				right: 0;
+				left: 10%;
+				position: absolute;
+				color: white;
+				font-size: 12px;
+				font-weight: 600;
+				text-shadow: 0px 2px 1px #3b3b3b;
+			}
+		}
+	}
+
+}
+
+.friend-count {
+	font-size: 12px;
+	margin-left: 5px;
+}
