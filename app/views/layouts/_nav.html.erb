@@ -15,7 +15,12 @@
         <ul class="menu medium-horizontal vertical">
           <% if user_signed_in? %>
             <li class="menu-text"><%= link_to '<i class="fi-magnifying-glass"></i> ユーザー検索'.html_safe, users_path %></li>            
-            <li class="menu-text"><%= link_to '<i class="fi-torsos-all"></i> 友達'.html_safe, '' %></li>
+            <li class="menu-text">
+              <a data-toggle="pending-friend-requests" class="float-right">
+                <i class="fi-torsos-all"></i> 友達
+              </a>
+            </li>            
+
             <li class="menu-text"><%= link_to '<i class="fi-torsos-all"></i> グループ'.html_safe, '' %></li>
             <li class="menu-text"><%= link_to '<i class="fi-comments"></i> メッセージ'.html_safe, '' %></li>
 
@@ -39,4 +44,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="dropdown-pane bottom right" id="pending-friend-requests" data-dropdown data-hover="true" data-hover-pane="true">
+  <ul class="no-bullet" id="pending-friend-request-list">
+    Test
+  </ul>
 </div>
