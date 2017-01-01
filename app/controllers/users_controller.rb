@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	before_action :authenticate_user!
+
 	def index		
 		if params[:user_search]			
 			@users = User.is_public.filter(params[:user_search].slice(:profession, :partner_age, :cancer_type, :cancer_stage, :hospital, :treatment, :birthday)).decorate			
@@ -13,6 +15,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]).decorate
     # implement later
     @suggested_users = User.all
-  end   
+  end  
+
+  def pending_requests
+  	user = User.find(params[:user_id])
+  	@requests = user.pending_requests
+  end 
     
 end

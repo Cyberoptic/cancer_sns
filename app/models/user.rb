@@ -122,6 +122,10 @@ class User < ApplicationRecord
 ######################################################################
 ##################### Emotions section END ###########################
 
+  def pending_requests
+    HasFriendship::Friendship.where(friend_id: self.id, status: :pending).order(created_at: :desc)
+  end
+
   private
 
   def signed_up?

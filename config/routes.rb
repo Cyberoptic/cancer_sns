@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "registrations" }
   
   resources :users, only: [:show, :index]  do  
+    get 'pending_requests', to: 'users#pending_requests'
+
     # Friendships
     scope module: 'friend' do    
       resources :request_acceptances, only: :create
@@ -27,6 +29,6 @@ Rails.application.routes.draw do
       resources :unfriendings, only: :create
       resources :requests, only: [:create, :destroy]
     end
-  end
+  end  
 
 end
