@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show, :index]  do  
     get 'pending_requests', to: 'users#pending_requests'
+    get 'friends', to: 'users#friends'
 
     # Friendships
     scope module: 'friend' do    

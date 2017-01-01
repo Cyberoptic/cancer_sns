@@ -21,5 +21,10 @@ class UsersController < ApplicationController
   	user = User.find(params[:user_id])
   	@requests = user.pending_requests
   end 
+
+  def friends
+  	@user = User.find(params[:user_id]).decorate
+  	@friends = @user.friends.decorate
+  end
     
 end

@@ -20,15 +20,15 @@
 			</div><!-- row -->
 
 			<div class="user-tags">
-				<% if @user.show_area && @user.area.present? %>
+				<% if @user.show_area %>
 					<span class="label secondary"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @user.area %></span>
 				<% end %>
 
-				<% if @user.show_profession && user.profession.present? %>
+				<% if @user.show_profession %>
 					<span class="label secondary"><%= @user.profession %></span>
 				<% end %>
 
-				<span class="label secondary"><%= @user.gender_icon %></span>
+				<%= @user.gender_icon %>
 			</div>
 
 			<hr />
@@ -96,32 +96,13 @@
 		</div><!-- callout -->
 	</div><!-- columns -->
 
-	<div class="columns medium-6 small-12">
-		<% if @user.posts.any? %>
-			<%= render partial: 'posts/post', collection: @user.posts.includes(:post_images).decorate %>
-		<% else %>
-			<div class="callout">
-				<h6 class="text-center">このユーザーはまだ投稿していません。</h6>
-			</div>
-		<% end %>
+	<div class="columns medium-9 small-12">
+		<h6><%= link_to 'タイムラインに戻る', user_path(@user), class: 'button small' %></h6>
+		<h5><%= @user.display_name %>の友達 <span class="friend-count"><%= @user.friends.count %>人</h5>
+
+		<%= render partial: 'users/user', collection: @friends %>
 	</div><!-- columns -->
 
-	<div class="columns medium-3">
-		<div class="callout">
-			<h6 class="user-header">友達候補</h6>
-			<% @suggested_users.each do |user| %>
-				<%= render partial: 'suggested_user', locals: {user: user.decorate} %>
-			<% end %>
-			
-		</div><!-- callout -->
-	</div>
 
 </div><!-- row -->
-
-
- 
-
-
-
-
 

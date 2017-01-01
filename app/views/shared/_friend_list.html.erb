@@ -1,4 +1,4 @@
-<h6><strong>友達</strong><span class="friend-count">(<%= link_to "#{user.friends.count}人", '' %>)</span></h6>
+<h6><strong>友達</strong><span class="friend-count">(<%= link_to "#{user.friends.count}人", user_friends_path(@user.id) %>)</span></h6>
 <% if user.friends.any?  %>	
 	<div class="user-friends">
 		<% user.friends.decorate.each do |friend| %>
