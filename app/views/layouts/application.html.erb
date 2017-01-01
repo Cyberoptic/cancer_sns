@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" />
+
+    <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
   </head>
 
   <body>    
@@ -27,6 +29,8 @@
         </div><!-- columns small-12 -->
       </div><!-- row -->
     </div>
+
+    <div id="modal"></div>    
 
     <%= render 'layouts/footer' %>
     
