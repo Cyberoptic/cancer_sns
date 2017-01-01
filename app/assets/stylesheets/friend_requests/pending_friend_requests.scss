@@ -11,3 +11,31 @@
 #pending-friend-request-list {
 	background: $white;
 }
+
+.request-container {
+	display: flex;
+
+	.display-name {
+		color: $anchor-color;
+		font-size: 14px;
+    font-weight: 600;
+	}
+
+	.timestamp {
+		color: $light-blue;
+		font-size: 10px;
+	}
+}
+
+.request-content {
+	flex: 0.5;
+	margin-left: 10px;
+}
+
+.request-actions {
+	flex: 0.7;
+
+	.button {
+		font-size: 0.75rem !important;
+	}
+}
