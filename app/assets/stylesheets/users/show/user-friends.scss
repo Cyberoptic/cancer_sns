@@ -1,9 +1,10 @@
 @import "settings";
 
 .user-friends {
+	display: flex;
 
 	a {
-		display: flex;
+		flex: 1;
 
 		.image-wrapper {
 			flex: 0.3;
