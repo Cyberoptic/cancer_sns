@@ -44,13 +44,13 @@
 		</div>
 		
 		<div id="comments">	
-		<%= render partial: 'shared/comment.html.erb', locals: {post: post} %>
+		<%= render partial: 'shared/comment', locals: {post: post} %>
+		</div>	
+
 		<%= simple_form_for Comment.new, url: post_comments_path(post), method: :post, remote: true do |f| %>
-  			<%= f.input :text %>
+  			<%= f.input :text, input_html: {class: 'comment_input'} %>
   			<%= f.submit 'Post' %>
 		<% end %>
-		</div>	
-				
 
 	</div>
 </div>
