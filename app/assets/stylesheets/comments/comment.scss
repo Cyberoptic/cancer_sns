@@ -1,4 +1,38 @@
+$img-height: 35px;
+$comment-font-size: 13px;
+
 .comment {
-	display: block;
-	
+	clear: both;
+	display: flex;	
+	margin-top: 10px;
+	margin-bottom: 10px;
+	min-height: $img-height;
+
+	.user-image {
+		margin-right: 10px;
+		img {
+			height: $img-height;
+		}
+	}
+
+	.nickname {
+		font-size: $comment-font-size;
+		font-weight: 600;
+	}
+
+	.comment-content {
+		flex: 1;
+	}
+
+	.comment-text {
+		font-size: $comment-font-size;
+	}
+
+	.timestamp {
+		display: block;
+	}
+}
+
+#new_comment {
+	margin-top: 20px;
 }

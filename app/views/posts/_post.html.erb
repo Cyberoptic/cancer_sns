@@ -43,13 +43,13 @@
 			<span id="post-sads-<%= post.id %>"><%= render partial: "posts/sads", locals: { apost: post } %> </span> 
 		</div>
 		
-		<div id="comments">	
-			<%= render partial: 'shared/comment', collection: post.comments.decorate %>
+		<div id="post-<%= post.id %>-comments">	
+			<%= render partial: 'shared/comment', collection: post.comments.includes(:user).decorate %>
 		</div>	
 
 		<%= simple_form_for Comment.new, url: post_comments_path(post), method: :post, remote: true do |f| %>
-  			<%= f.input :text, input_html: {class: 'comment_input'} %>
-  			<%= f.submit 'Post' %>
+  			<%= f.input :text, label: false, placeholder: "コメント", input_html: {class: 'comment_input'} %>
+  			<%= f.submit '投稿', class: 'button small' %>
 		<% end %>
 
 	</div>
