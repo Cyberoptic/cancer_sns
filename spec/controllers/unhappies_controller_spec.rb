@@ -4,11 +4,14 @@ RSpec.describe UnhappiesController, type: :controller do
   describe "#create" do
     it "unhappies the post with :post_id" do
       user = create(:user)
-      post = create(:post)
-      happy = create(:happy, user_id: user.id, post_id: post.id)
+      user_post = create(:post, user_id: user.id)
+      
+      create(:happy, user_id: user.id, post_id: user_post.id)
 
+      sign_in user
+      
       expect {
-        post :create, params: { post_id: post.id }, format: :js
+        post :create, params: { post_id: user_post.id }, format: :js
       }.to change(Happy, :count).by(-1)
   
     end

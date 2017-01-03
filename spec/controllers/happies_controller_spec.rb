@@ -5,12 +5,12 @@ RSpec.describe HappiesController, type: :controller do
 		context "when attriutes are valid" do	
 			it "creates a happy" do 
 				user = create(:user)
-				post = create(:post)
+				user_post = create(:post, user_id: user.id)
 
 				sign_in user
 
 				expect {
-					post :create, params: { post_id: post.id }, format: :js
+					post :create, params: { post_id: user_post.id }, format: :js
 				}.to change(Happy, :count).by(1)
 
 			end
