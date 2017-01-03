@@ -11,7 +11,6 @@ RSpec.describe UnlikesController, type: :controller do
         post :create, params: { post_id: post.id }, format: :js
       }.to change(Like, :count).by(-1)
       
-      post.reload
     end
   end
 end

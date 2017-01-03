@@ -13,7 +13,6 @@ RSpec.describe SadsController, type: :controller do
 					post :create, params: { post_id: post.id }, format: :js
 				}.to change(Sad, :count).by(1)
 
-				post.reload
 			end
 		end
 	end

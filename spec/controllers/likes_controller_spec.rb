@@ -10,10 +10,9 @@ RSpec.describe LikesController, type: :controller do
 				sign_in user
 
 				expect {
-					post :create, params: { post_id: post.id }, format: :js
+					post :create, post_id: post.id , format: :js
 				}.to change(Like, :count).by(1)
 
-				post.reload
 			end
 		end
 	end

@@ -10,8 +10,7 @@ RSpec.describe UnsadsController, type: :controller do
       expect {
         post :create, params: { post_id: post.id }, format: :js
       }.to change(Sad, :count).by(-1)
-      
-      post.reload 
+       
     end
   end
 end
