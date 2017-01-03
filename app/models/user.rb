@@ -23,6 +23,8 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   
   has_friendship
+  
+  has_many :comments
 
   has_many :posts, dependent: :destroy
   has_many :post_images, dependent: :destroy
@@ -119,6 +121,10 @@ class User < ApplicationRecord
 
 ######################################################################
 ##################### Emotions section END ###########################
+
+  def pending_requests
+    HasFriendship::Friendship.where(friend_id: self.id, status: :pending).order(created_at: :desc)
+  end
 
   private
 

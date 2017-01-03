@@ -28,7 +28,7 @@ class PostsController < ApplicationController
             @post_image = @post.post_images.create!(photo: a, user_id: current_user.id)
           end
         end
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to root_path }
       else
         format.html { render action: 'new' }
       end
@@ -49,9 +49,9 @@ class PostsController < ApplicationController
     # end
     update_attachments if params[:post_images]
     if @post.update(post_params)
-      redirect_to @post, notice: 'Post was successfully updated.'
+      redirect_to :back, notice: '投稿が更新されました。'
     else
-      render :edit
+      redirect_to :back, alert: @post.errors.full_messages[0]
     end
   end
 
