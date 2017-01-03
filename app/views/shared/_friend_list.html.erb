@@ -1,4 +1,15 @@
-<h6><strong>友達</strong>(<%= user.friends.count %>人)</h6>
-<% if user.friends.any?  %>
-  <%= render partial: 'users/user', collection: user.friends.decorate %>
+<h6><strong>友達</strong><span class="friend-count">(<%= link_to "#{user.friends.count}人", user_friends_path(@user.id) %>)</span></h6>
+<% if user.friends.any?  %>	
+	<div class="user-friends">
+		<% user.friends.decorate.each do |friend| %>
+			<a href="/users/<%= friend.id %>">
+				<div class="image-wrapper">
+					<%= image_tag friend.photo %>	
+					<div class="display-name">
+						<%= friend.display_name %>
+					</div>
+				</div>
+			</a>
+		<% end %>
+	</div>  	
 <% end %>

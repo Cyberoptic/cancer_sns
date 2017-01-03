@@ -1,4 +1,7 @@
 require 'rails_helper'
+require 'spec_helper'
+require 'rspec/rails'
+require 'devise'
 
 RSpec.describe HappiesController, type: :controller do
   describe "POST #create" do
