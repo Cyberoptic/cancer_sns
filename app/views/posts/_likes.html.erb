@@ -1,8 +1,8 @@
 <% if current_user.liked?(apost) %>
-  <span class="visited"><%= link_to "いいね", like_path(apost.id), method: :delete, remote: true %></span>
+  <span class="visited"><%= link_to "いいね", post_unlikes_path(apost.id), method: :post, remote: true %></span>
 <% else %>
   <%= link_to "いいね", post_likes_path(apost), method: :post, remote: true %>
-<% end %>
+<% end %> 
 
 
 <span class="post-emotion-count">
