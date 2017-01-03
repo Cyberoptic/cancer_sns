@@ -2,9 +2,10 @@ class SadsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @post = Post.find(params[:post_id])
-    # Sad.create({user_id: current_user.id, post_id: @post.id})
-    current_user.plus_sad(@post)
+    @post = Post.find(params[:post_id])    
+    current_user.sad(@post)
+
+    @post.reload
 
     respond_to do |format|
       format.html { redirect_to root_path}
@@ -14,7 +15,10 @@ class SadsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    current_user.minus_sad(@post)
+    current_user.unsad(@post)
+
+    @post.reload
+
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js {}

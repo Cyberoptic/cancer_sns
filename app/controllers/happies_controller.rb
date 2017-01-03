@@ -3,8 +3,9 @@ class HappiesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    # Happy.create({user_id: current_user.id, post_id: @post.id})
-    current_user.plus_happy(@post)
+    current_user.happy(@post)
+
+    @post.reload
 
     respond_to do |format|
       format.html { redirect_to root_path}
@@ -14,7 +15,10 @@ class HappiesController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    current_user.minus_happy(@post)
+    current_user.unhappy(@post)
+
+    @post.reload
+
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js {}

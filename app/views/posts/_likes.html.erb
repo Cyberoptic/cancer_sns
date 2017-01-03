@@ -1,10 +1,10 @@
 <% if current_user.liked?(apost) %>
-  <%# like = Like.where(user_id: current_user.id, post_id: apost.id).first %>
-  <%= link_to "Unlike", like_path(apost.id), method: :delete, remote: true %>
+  <span class="visited"><%= link_to "いいね", like_path(apost.id), method: :delete, remote: true %></span>
 <% else %>
-  <%= link_to "Like", post_likes_path(apost), method: :post, remote: true %>
+  <%= link_to "いいね", post_likes_path(apost), method: :post, remote: true %>
 <% end %>
 
-<span class="post-like">
-  <%= pluralize apost.reload.likes_count, "like" %>
+
+<span class="post-emotion-count">
+  (<%= apost.likes_count %>)
 </span>
