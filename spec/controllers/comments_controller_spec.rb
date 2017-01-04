@@ -9,7 +9,7 @@ describe 'POST #create' do
           sign_in user
           user_post = create(:post, user_id: user.id)
 
-          post :create, post_id: user_post.id , comment: attributes_for(:comment, text: 'Valid'), format: :js
+          post :create, post_id: user_post.id , comment: attributes_for(:comment), format: :js
 
           expect(Comment.count).to eq 1 
       	 end
