@@ -9,11 +9,10 @@ describe 'POST #create' do
           sign_in user
           user_post = create(:post, user_id: user.id)
 
+          post :create, post_id: user_post.id , comment: attributes_for(:comment, text: 'Valid'), format: :js
 
-        expect{
-             post :create, post_id: user_post.id , comment: attributes_for(:comment), format: :js
-        }.to change(Comment, :count).by(1)
-      	end
+          expect(Comment.count).to eq 1 
+      	 end
     end
     context 'with invalid attributes' do
      	it 'should not create a new comment' do
@@ -21,9 +20,9 @@ describe 'POST #create' do
 		    sign_in user
 		    user_post = create(:post, user_id: user.id)
 
-		    expect{
-		         post :create, post_id: user_post.id , comment: attributes_for(:comment, text: nil), format: :js
-		    }.to change(Comment, :count).by(0)
+        post :create, post_id: user_post.id , comment: attributes_for(:comment, text: nil), format: :js
+
+        expect(Comment.count).to eq 0
       	end
     end
 end	
