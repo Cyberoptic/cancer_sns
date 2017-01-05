@@ -8,14 +8,16 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
     resources :likes, only: :create
+    resources :unlikes, only: :create
     resources :sads, only: :create
-    resources :happies, only: :create    
+    resources :unsads, only: :create
+    resources :happies, only: :create
+    resources :unhappies, only: :create    
   end
 
   resources :likes, only: :destroy 
   resources :sads, only: :destroy
   resources :happies, only: :destroy
-
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "registrations" }
   
