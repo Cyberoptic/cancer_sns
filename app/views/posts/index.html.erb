@@ -11,7 +11,12 @@
 			  <%= f.submit "投稿", class: 'button' %>
 			<% end %>
 		</div>
+		<div id="posts">
+			<%= render @posts %> <%# Same as render partial: "post", collection: @posts %>
+		</div>
 
-		<%= render @posts %> <%# Same as render partial: "post", collection: @posts %>
+		<%= will_paginate @posts %>
+
+
 	</div><!-- columns -->
 </div><!-- row -->

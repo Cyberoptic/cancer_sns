@@ -38,7 +38,7 @@ gem 'figaro'
 gem 'has_friendship'
 gem "letter_opener", :group => :development
 
-
+gem 'will_paginate'
 
 gem 'rails_12factor', group: [:production]
 
