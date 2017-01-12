@@ -11,7 +11,7 @@ $( document ).ready(function() {
 
   // hide spinner on AJAX stop
   $(document).ajaxStop(function(){
-    $(".spinner").delay(3000).hide(0); // for development
+    $(".spinner").hide(); // for development
   });
 
 });
