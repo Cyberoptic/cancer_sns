@@ -132,6 +132,11 @@ class User < ApplicationRecord
     email.split('@')[0]
   end
 
+  def accept_request(friend)
+    super
+    chat_rooms.create!
+  end
+
   private
 
   def signed_up?
