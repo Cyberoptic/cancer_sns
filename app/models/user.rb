@@ -31,6 +31,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :sads, dependent: :destroy
   has_many :happies, dependent: :destroy
+  has_many :chat_rooms, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   scope :is_public, -> { where(is_public: true) }
 
@@ -124,6 +126,10 @@ class User < ApplicationRecord
 
   def pending_requests
     HasFriendship::Friendship.where(friend_id: self.id, status: :pending).order(created_at: :desc)
+  end
+
+  def name
+    email.split('@')[0]
   end
 
   private

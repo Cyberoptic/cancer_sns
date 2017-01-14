@@ -38,13 +38,12 @@ gem 'figaro'
 gem 'has_friendship'
 gem "letter_opener", :group => :development
 
-
-
 gem 'rails_12factor', group: [:production]
 
 gem 'foundation-rails'
 
-gem 'rails-controller-testing' 
+gem 'rails-controller-testing'
+gem 'turbolinks', '~> 5.0.0'
 
 # Draper gem for decorator
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
@@ -55,6 +54,7 @@ gem 'storext'
 
 # React.js
 gem 'react-rails'
+gem 'redis', '~> 3.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
