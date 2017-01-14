@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :likes, only: :destroy 
   resources :sads, only: :destroy
   resources :happies, only: :destroy
-  resources :chat_rooms, only: [:new, :create, :show, :index]
+  resources :chat_rooms, only: [:show, :index]
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "registrations" }
   

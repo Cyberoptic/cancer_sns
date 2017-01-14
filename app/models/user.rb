@@ -129,16 +129,12 @@ class User < ApplicationRecord
   end
 
   def name
-    email.split('@')[0]
+    "#{first_name} #{last_name}"
   end
 
   def accept_request(friend)
     super
     chat_rooms.create! member: friend
-  end
-
-  def chat_room_with(friend)
-    chat_rooms.room_with(self, friend)
   end
 
   private
