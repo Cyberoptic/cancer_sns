@@ -4,6 +4,7 @@ class Friend::RequestAcceptancesController < ApplicationController
 
   def create    
     current_user.accept_request(@user)
+    @user.chat_rooms.create!
     respond_to do |format|
       format.html {}
       format.js {}
