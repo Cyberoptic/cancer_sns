@@ -2,6 +2,6 @@
 
 <ul>
   <% current_user.friends.each do |f| %>
-  <li><%= link_to f.name, chat_room_path(ChatRoom.room_with(current_user, f)) %></li>
+  <li><%= link_to f.decorate.display_name, chat_room_path(ChatRoom.room_with(current_user, f)) %></li>
   <% end %>
 </ul>
