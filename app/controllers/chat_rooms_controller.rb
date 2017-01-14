@@ -2,7 +2,6 @@ class ChatRoomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    binding.pry
     @chat_rooms = ChatRoom.all
   end
 

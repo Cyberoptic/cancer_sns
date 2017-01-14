@@ -2,14 +2,6 @@
 
 <ul>
   <% current_user.friends.each do |f| %>
-  <li><%= f.name %></li>
+  <li><%= link_to f.name, chat_room_path(ChatRoom.room_with(current_user, f)) %></li>
   <% end %>
-</ul>
-
-<p class="lead">
-  <%= link_to 'New chat room', new_chat_room_path, class: 'btn btn-primary' %>
-</p>
-
-<ul>
-  <%= render @chat_rooms %>
 </ul>
