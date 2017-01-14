@@ -341,7 +341,7 @@ DEPENDENCIES
   rails-controller-testing
   rails_12factor
   react-rails
-  redis (~> 3.2)
+  redis (~> 3.0)
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   shoulda-matchers (~> 3.1)
