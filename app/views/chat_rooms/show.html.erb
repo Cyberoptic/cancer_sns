@@ -6,13 +6,8 @@
       <%= render @chat_room.messages %>
     </div>
 
-    <%= form_for @message, url: '#' do |f| %>
-      <div class="form-group">    
-        <%= f.text_area :body, class: 'form-control' %>
-        <small class="text-muted">2〜1000文字まで</small>
-      </div>
-
-      <%= f.submit "送信", class: 'button primary' %>
+    <%= form_for @message, url: '#' do |f| %>      
+      <%= f.text_area :body, class: 'message-form', autofocus: true, placeholder: 'メッセージ' %>      
     <% end %>
   </div>
 </div>

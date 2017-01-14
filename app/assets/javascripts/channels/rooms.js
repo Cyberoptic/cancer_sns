@@ -1,6 +1,7 @@
 $(document).on('turbolinks:load', function () {
-  var messages, messages_to_bottom;
+  var messages, messages_to_bottom, form;
   messages = $('#messages');
+  form = $('#new_message');
 
   if (messages.length > 0) {
 
@@ -30,16 +31,22 @@ $(document).on('turbolinks:load', function () {
       }
     });
 
-    $('#new_message').submit(function (e) {
-      var $this, textarea;
-      $this = $(this);
-      textarea = $this.find('#message_body');
+    form.submit(function (e) {
+      var textarea;
+      textarea = $('#message_body');
       if ($.trim(textarea.val()).length > 1) {
         App.global_chat.send_message(textarea.val(), messages.data('chat-room-id'));
         textarea.val('');
       }
       e.preventDefault();
       return false;
+    });
+
+    form.keypress(function(e){
+      if(e.which == 13){
+        $(this).closest('form').submit();        
+        return false;
+       }
     });
   }
 });
