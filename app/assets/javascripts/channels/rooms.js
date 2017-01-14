@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+$(document).on('ready', function () {
   var messages, messages_to_bottom, form;
   messages = $('#messages');
   form = $('#new_message');

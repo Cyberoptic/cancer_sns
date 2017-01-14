@@ -44,7 +44,6 @@ gem 'rails_12factor', group: [:production]
 gem 'foundation-rails'
 
 gem 'rails-controller-testing'
-gem 'turbolinks', '~> 5.0.0'
 
 # Draper gem for decorator
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
