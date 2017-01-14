@@ -1,0 +1,10 @@
+version: '2'
+services:
+  db:
+    image: postgres:9.4.1
+    container_name: cancer_sns_development
+    environment:
+      - POSTGRES_DB=cancer_sns_development
+    ports:
+      - "5432:5432"
+
