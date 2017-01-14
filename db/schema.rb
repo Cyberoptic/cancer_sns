@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 20170114105813) do
   create_table "chat_rooms", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
+    t.integer  "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_chat_rooms_on_member_id", using: :btree
     t.index ["user_id"], name: "index_chat_rooms_on_user_id", using: :btree
   end
 
@@ -145,6 +147,7 @@ ActiveRecord::Schema.define(version: 20170114105813) do
   end
 
   add_foreign_key "chat_rooms", "users"
+  add_foreign_key "chat_rooms", "users", column: "member_id"
   add_foreign_key "messages", "chat_rooms"
   add_foreign_key "messages", "users"
 end
