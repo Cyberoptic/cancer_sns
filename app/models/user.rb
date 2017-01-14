@@ -134,7 +134,11 @@ class User < ApplicationRecord
 
   def accept_request(friend)
     super
-    chat_rooms.create!
+    chat_rooms.create! member: friend
+  end
+
+  def chat_room_with(friend)
+    chat_rooms.room_with(self, friend)
   end
 
   private
