@@ -1,10 +1,26 @@
-<div class="card">
-  <div class="card-block">
-    <p class="card-text">
-      <span class="text-muted">
-        <%= message.timestamp %>: <%= message.user.name %> says
-      </span><br>
-      <%= message.body %>
-    </p>
+<div class="message-container">  
+  <div class="user-image-small">
+    <%= image_tag message.user_photo %>
+  </div>  
+
+  <div class="message-body-container">
+    <div class="message-user-info">  
+      <div class="user-info">
+        <div class="display-name">
+          <%= message.user.decorate.name %>      
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 0px;">
+      <div class="card-section">    
+        <div class="message-body">
+          <p>      
+            <%= message.body %>
+          </p>
+        </div>
+        <p class="float-right"><small><%= message.timestamp %></small></p>
+      </div>
+    </div>
   </div>
-</div>
+</div><!-- message-container -->

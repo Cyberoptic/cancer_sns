@@ -1,0 +1,43 @@
+@import "settings";
+
+.message-container {
+  align-items: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+  width: 100%;
+
+  .user-image-small {
+    width: 5%;
+
+    @media screen and (max-width: 39.9375em) {
+      width: 15%;
+    }
+  }
+}
+
+.message-body-container {
+  margin-left: 5%;
+  width: 90%;
+
+  @media screen and (max-width: 39.9375em) {
+    margin-left: 5%;
+    width: 80%;
+  }
+}
+
+.message-user-info {
+  .user-info {
+    display: inline-block;
+    margin-left: 15px;
+
+    .display-name {
+      color: $anchor-color;      
+      font-weight: 600;
+    }
+  }
+}
+
+.message-body {
+  clear: both;
+}

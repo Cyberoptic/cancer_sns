@@ -5,7 +5,9 @@ class Message < ApplicationRecord
   validates :body, presence: true, length: {minimum: 2, maximum: 1000}
   after_create_commit { MessageBroadcastJob.perform_later(self) }
 
+  delegate :photo, to: :user, prefix: true
+
   def timestamp
-    created_at.strftime('%H:%M:%S %d %B %Y')
+    created_at.strftime('%-m/%d %H:%M:%S')
   end
 end

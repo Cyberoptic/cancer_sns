@@ -128,10 +128,6 @@ class User < ApplicationRecord
     HasFriendship::Friendship.where(friend_id: self.id, status: :pending).order(created_at: :desc)
   end
 
-  def name
-    "#{first_name} #{last_name}"
-  end
-
   def accept_request(friend)
     super
     chat_rooms.create! member: friend

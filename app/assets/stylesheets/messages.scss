@@ -1,5 +1,9 @@
+@import "settings";
+
 #messages {
+  background: $white;
   max-height: 450px;
+  padding: 20px;
   overflow-y: auto;
   .avatar {
     margin: 0.5rem;
