@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+
   authenticated :user do
     root 'posts#index'
   end
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   resources :likes, only: :destroy 
   resources :sads, only: :destroy
   resources :happies, only: :destroy
+  resources :chat_rooms, only: [:show, :index]
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "registrations" }
   

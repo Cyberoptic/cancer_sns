@@ -1,10 +1,12 @@
 FactoryGirl.define do
+  sequence :email do |n|
+    "person#{n}@example.com"
+  end
+
   factory :user do
     first_name "山本"    
 		last_name "太郎"
-		sequence :email do |n|
-      "random#{n}@email.com"
-    end
+    email { generate(:email) }
     password "password"
     password_confirmation "password"
     is_public true
