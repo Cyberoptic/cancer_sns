@@ -1,17 +1,21 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: 5
-  host:     "192.168.99.100"
-  port:     "5432"
-  username: "postgres"
-  database: "cancer_sns_development"
+  username: postgres
+  password: password
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  port: 5432
 
 development:
   <<: *default
+  database: cancer_sns_development
 
 test:
   <<: *default
+  database: cancer_sns_test
 
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *default
+  database: cancer_sns_production
+  # username: postgres
+  # password: password
