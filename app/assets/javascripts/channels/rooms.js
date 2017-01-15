@@ -44,7 +44,8 @@ $(document).on('ready', function () {
 
     form.keypress(function(e){
       if(e.which == 13){
-        $(this).closest('form').submit();        
+        $('#start-message').remove();
+        $(this).closest('form').submit();   
         return false;
        }
     });
