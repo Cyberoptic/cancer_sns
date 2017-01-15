@@ -1,0 +1,12 @@
+<%= link_to chat_room_path(chat_room), class: 'message-list-item' do %>  
+  <li>
+    <div class="user-image-small">
+      <%= image_tag friend.photo %>
+    </div>
+    <div class="user-info"> 
+      <div class="display-name">
+        <%= friend.decorate.display_name %>
+      </div>
+    </div>  
+  </li>
+<% end %>

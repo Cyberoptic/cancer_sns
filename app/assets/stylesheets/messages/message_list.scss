@@ -1,0 +1,26 @@
+@import "settings";
+
+@mixin transition($property, $ms: 700ms) {
+  transition: $property $ms ease;
+  -webkit-transition: $property $ms ease;
+  -moz-transition: $property $ms ease;
+  -o-transition: $property $ms ease;
+}
+
+
+.message-list {
+  li {  
+    padding: 20px 5px;
+  }
+}
+
+.message-list-item {
+  li {
+    @include transition(background, 300ms);
+
+    &:hover {
+      @include transition(background, 300ms);
+      background: $light-gray;      
+    }
+  }
+}
