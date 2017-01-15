@@ -25,7 +25,6 @@ class User < ApplicationRecord
   has_friendship
   
   has_many :comments
-
   has_many :posts, dependent: :destroy
   has_many :post_images, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -131,6 +130,10 @@ class User < ApplicationRecord
   def accept_request(friend)
     super
     chat_rooms.create! member: friend
+  end
+
+  def chat_rooms
+    ChatRoom.where("member_id = ? or user_id = ?", id, id)    
   end
 
   private
