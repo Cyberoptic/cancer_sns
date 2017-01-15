@@ -129,7 +129,7 @@ class User < ApplicationRecord
 
   def accept_request(friend)
     super
-    chat_rooms.create! member: friend
+    chat_rooms.create! member: friend, user: self
   end
 
   def chat_rooms

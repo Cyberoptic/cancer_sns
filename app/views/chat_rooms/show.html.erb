@@ -12,8 +12,12 @@
   </div>
 
   <div class="columns small-12 medium-9">
-    <div id="messages" class="callout" data-chat-room-id="<%= @chat_room.id %>">
-      <%= render @chat_room.messages %>
+    <div id="messages" class="callout" data-chat-room-id="<%= @chat_room.id %>">      
+      <% if @chat_room.messages.empty? %>
+        <h6 class="text-center">メッセージを開始しましょう。</h6>
+      <% else %>
+        <%= render @chat_room.messages %>
+      <% end %>
     </div>
 
     <%= form_for @message, url: '' do |f| %>      

@@ -7,16 +7,12 @@
   -o-transition: $property $ms ease;
 }
 
-
-.message-list {
-  li {  
-    padding: 20px 5px;
-  }
-}
-
 .message-list-item {
   li {
     @include transition(background, 300ms);
+    clear: both;
+    padding: 20px 5px;    
+    margin-top: 10px;
 
     &:hover {
       @include transition(background, 300ms);
