@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="columns medium-3">
+    <div class="callout">
+      <h5 class="text-center">メッセージ</h5>
+      <%= simple_form_for @message_search, url: chat_room_path, method: :get, remote: true do |f| %>
+        <%= f.input :name, label: false, placeholder: "名前で検索" %>
+      <% end %>
+      <ul class="no-bullet message-list" id="message-list">
+        <%= render partial: 'friend_list', locals: {friends: @friends} %>      
+      </ul>
+    </div>
+  </div>
+
+  <div class="columns small-12 medium-9">
+    <div id="messages" class="callout" data-chat-room-id="<%= @chat_room.id %>">
+      <%= render @chat_room.messages %>
+    </div>
+
+    <%= form_for @message, url: '' do |f| %>      
+      <%= f.text_area :body, class: 'message-form', autofocus: true, placeholder: 'メッセージ' %>      
+    <% end %>
+  </div>
+</div>

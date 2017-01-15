@@ -25,12 +25,13 @@ class User < ApplicationRecord
   has_friendship
   
   has_many :comments
-
   has_many :posts, dependent: :destroy
   has_many :post_images, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :sads, dependent: :destroy
   has_many :happies, dependent: :destroy
+  has_many :chat_rooms, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   scope :is_public, -> { where(is_public: true) }
 
@@ -124,6 +125,15 @@ class User < ApplicationRecord
 
   def pending_requests
     HasFriendship::Friendship.where(friend_id: self.id, status: :pending).order(created_at: :desc)
+  end
+
+  def accept_request(friend)
+    super
+    chat_rooms.create! member: friend
+  end
+
+  def chat_rooms
+    ChatRoom.where("member_id = ? or user_id = ?", id, id)    
   end
 
   private
