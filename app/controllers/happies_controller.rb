@@ -8,20 +8,8 @@ class HappiesController < ApplicationController
     @post.reload
 
     respond_to do |format|
-      format.html { redirect_to root_path}
       format.js {}
     end   
   end
 
-  def destroy
-    @post = Post.find(params[:id])
-    current_user.unhappy(@post)
-
-    @post.reload
-
-    respond_to do |format|
-      format.html { redirect_to root_path }
-      format.js {}
-    end
-  end
 end

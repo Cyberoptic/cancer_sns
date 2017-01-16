@@ -13,16 +13,5 @@ class SadsController < ApplicationController
     end   
   end
 
-  def destroy
-    @post = Post.find(params[:id])
-    current_user.unsad(@post)
-
-    @post.reload
-
-    respond_to do |format|
-      format.html { redirect_to root_path }
-      format.js {}
-    end
-  end
 end
 

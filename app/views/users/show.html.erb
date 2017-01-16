@@ -20,15 +20,15 @@
 			</div><!-- row -->
 
 			<div class="user-tags">
-				<% if @user.show_area %>
+				<% if @user.show_area && @user.area.present? %>
 					<span class="label secondary"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @user.area %></span>
 				<% end %>
 
-				<% if @user.show_profession %>
+				<% if @user.show_profession && @user.profession.present? %>
 					<span class="label secondary"><%= @user.profession %></span>
 				<% end %>
 
-				<%= @user.gender_icon %>
+				<span class="label secondary"><%= @user.gender_icon %></span>
 			</div>
 
 			<hr />
@@ -57,12 +57,14 @@
 					</div><!-- columns -->
 				</div><!-- row -->
 			<% end %>
-
-				<div id="friend_list">
-					<%= render partial: 'shared/friend_list.html.erb', locals: {user: @user} %>
-				</div>
 			
 		</div><!-- callout -->
+
+		<div class="callout">
+			<div id="friend_list">
+				<%= render partial: 'shared/friend_list.html.erb', locals: {user: @user} %>
+			</div>
+		</div>
 
 		<div class="callout">
 			<h6 class="user-header">パートナー（患者）に関する情報</h6>

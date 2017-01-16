@@ -17,15 +17,15 @@
 		</div>
 
 		<div class="user-tags">
-			<% if user.show_area.present? %>
+			<% if user.show_area && user.area.present? %>
 				<span class="label secondary"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= user.area %></span>
 			<% end %>
 
-			<% if user.show_cancer_type.present? %>
+			<% if user.show_cancer_type && user.cancer_type.present? %>
 				<span class="label secondary"><%= user.cancer_type %></span>
 			<% end %>
 
-			<% if user.show_cancer_stage.present? %>
+			<% if user.show_cancer_stage && user.cancer_stage.present? %>
 				<span class="label secondary"><%= user.cancer_stage %></span>
 			<% end %>
 

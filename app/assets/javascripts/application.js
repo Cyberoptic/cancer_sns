@@ -13,6 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require cable
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .
 
 $(function(){ 
