@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     resources :likes, only: :create
     resources :sads, only: :create
     resources :happies, only: :create    
+    member do
+      get 'more_comments'
+    end
   end
 
   resources :likes, only: :destroy 

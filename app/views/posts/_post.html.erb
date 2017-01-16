@@ -43,10 +43,12 @@
 			<span id="post-sads-<%= post.id %>"><%= render partial: "posts/sads", locals: { apost: post } %> </span> 
 		</div>
 		
-		<div id="post-<%= post.id %>-comments">	
+		<div id="post-<%= post.id %>-comments">
+			<%= link_to "Load More Comments", more_comments_post_path(post.id), remote: 'true', class: "more_comments_button", id: post.id %>
 			<% @comments = post.comments.paginate(page: params[:page], per_page: 2).includes(:user).decorate %>
-			<%= render partial: 'shared/comment', collection: @comments  %>
+			<div id="comments"> <%= render partial: 'shared/comment', collection: @comments  %> </div>
 			<%= will_paginate @comments %>
+
 		</div>	
 
 		<%= simple_form_for Comment.new, url: post_comments_path(post), method: :post, remote: true do |f| %>
@@ -56,4 +58,7 @@
 
 	</div>
 </div>
+
+
+
 			

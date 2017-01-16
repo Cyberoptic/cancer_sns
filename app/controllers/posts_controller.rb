@@ -6,6 +6,10 @@ class PostsController < ApplicationController
     @posts = Post.includes(:user, :post_images).all.decorate
     @post = Post.new
     @post_images = @post.post_images.build
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -59,6 +63,15 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
+  end
+
+  def more_comments
+    @post = Post.find(params[:id])
+    @comments = @post.comments.paginate(page: params[:page], per_page: 3).includes(:user).decorate
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private

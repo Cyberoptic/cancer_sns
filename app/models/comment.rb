@@ -6,6 +6,6 @@ class Comment < ApplicationRecord
 	belongs_to :post
 
 	delegate :photo, to: :user, prefix: true
-	delegate :user, to: :post, prefix: true	
+	delegate :user, to: :post, prefix: true
 
 end
