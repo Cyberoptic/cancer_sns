@@ -4,3 +4,4 @@ $(function() {
   $.getScript(more_posts_url);
   });
 });
+ 
