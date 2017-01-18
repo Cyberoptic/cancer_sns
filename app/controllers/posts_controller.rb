@@ -67,10 +67,9 @@ class PostsController < ApplicationController
 
   def more_comments
     @post = Post.find(params[:id])
-    @comments = @post.comments.paginate(page: params[:page], per_page: 3).includes(:user).decorate
+    @comments = @post.comments.paginate(page: params[:page], per_page: 5).includes(:user).decorate
     respond_to do |format|
-      format.html
-      format.js
+      format.js 
     end
   end
 

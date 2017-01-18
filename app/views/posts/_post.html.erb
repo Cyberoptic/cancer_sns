@@ -44,10 +44,10 @@
 		</div>
 		
 		<div id="post-<%= post.id %>-comments">
-			<%= link_to "Load More Comments", more_comments_post_path(post.id), remote: 'true', class: "more_comments_button", id: post.id %>
-			<% @comments = post.comments.paginate(page: params[:page], per_page: 2).includes(:user).decorate %>
+			<% @comments = post.comments.paginate(page: params[:page], per_page: 5).includes(:user).decorate if @load='initial' %>
+			<p class="more_comments_button" data-page="<%= @comments.next_page %>" id= "<%= post.id %>" > Load More Comments </p> 
 			<div id="comments"> <%= render partial: 'shared/comment', collection: @comments  %> </div>
-			<%= will_paginate @comments %>
+			<div id="comments-pagination"> <%= will_paginate @comments %>  </div>
 
 		</div>	
 
