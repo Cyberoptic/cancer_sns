@@ -36,6 +36,7 @@ gem 'carrierwave'
 gem 'omniauth-facebook'
 gem 'figaro'
 gem 'has_friendship'
+gem 'will_paginate'
 gem "letter_opener", :group => :development
 
 gem 'will_paginate'

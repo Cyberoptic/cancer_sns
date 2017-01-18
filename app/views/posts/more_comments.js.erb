@@ -1,0 +1,9 @@
+$(function(){
+var new_page = parseInt($('#post-<%= @post.id %>-comments .more_comments_button').attr('data-page')) + 1; 
+$('#post-<%= @post.id %>-comments .more_comments_button').attr('data-page',new_page);
+var total_pages = parseInt("<%= @comments.total_pages %>")+1;
+if( total_pages <= new_page ){
+	$('#post-<%= @post.id %>-comments .more_comments_button').hide();
+};
+$('#post-<%= @post.id %>-comments #comments').append('<%= j render partial: 'shared/comment', collection: @comments %>');
+})	

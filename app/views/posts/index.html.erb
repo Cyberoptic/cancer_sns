@@ -15,7 +15,7 @@
 			<%= render @posts %> <%# Same as render partial: "post", collection: @posts %>
 		</div>
 
-		<%= will_paginate @posts %>
+		<div id="post-pagination"> <%= will_paginate @posts %> </div>
 
 		<div class="spinner">
 			<div class="sk-cube1 sk-cube"></div>
