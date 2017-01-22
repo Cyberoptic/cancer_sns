@@ -37,4 +37,9 @@ Rails.application.routes.draw do
     end
   end  
 
+  resources :groups do
+    resources :group_memberships, only: :create
+    resources :group_unmemberships, only: :create
+  end
+
 end
