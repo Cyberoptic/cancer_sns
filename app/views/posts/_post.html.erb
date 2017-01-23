@@ -1,3 +1,7 @@
+<script type="text/javascript">
+	$('.gallery-img').Am2_SimpleSlider();
+</script>
+
 <div class="callout">
 	<div class="post-container">	
 		<% if post.user.id == current_user.id %>
@@ -31,11 +35,14 @@
 			<p id="post-content-<%= post.id %>"><%= post.content %></p>
 		</div>
 
-		<div class="post-images-container">
-			<% post.post_images.each do |image| %>
-			  <%= image_tag image.photo, class: 'post-image' %>
-			<% end %>
-		</div>
+			<ul  class="product-gallery">
+				<% post.post_images.each do |image| %>
+					<li class="gallery-img">
+						<%= image_tag image.photo, class: 'post-image' %>
+						<div data-desc="<%= post.content %>"></div>
+					</li>
+				<% end %>
+			</ul>
 	
 		<div class="post-reactions">
 			<span id="post-likes-<%= post.id %>"><%= render partial: "posts/likes", locals: { apost: post } %></span>
