@@ -19,10 +19,12 @@ ja:
         cancer_type: 癌種別
         cancer_stage: 癌ステージ
         treatment: 治療内容
+        treatment_content: 治療内容（詳細）
         problems: 一番の悩み
         area: エリア
+        prefecture: 都道府県
         profession: 職業
-        hospital: 病院
+        hospital: メイン病院
         photo: プロフィール画像
         show_profession: 職業
         show_partner_age: パートナー年齢

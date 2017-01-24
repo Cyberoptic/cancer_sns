@@ -45,7 +45,11 @@
             </div>
 
             <div class="columns medium-6 small-12">
-              <%= f.input :area, collection: Area::LIST, include_blank: "選択する" %>
+              <%= f.input :area, collection: Area::LIST, include_blank: "選択する", required: true %>
+            </div>
+
+            <div class="columns medium-6 small-12">
+              <%= f.input :prefecture, collection: Area::PREFECTURES, include_blank: "選択する", required: true %>
             </div>
 
             <div class="columns medium-6 small-12">
@@ -75,7 +79,7 @@
             </div>
 
             <div class="columns medium-6 small-12">
-              <%= f.input :partner_age, collection: User::AGE.map {|age| "#{age}歳"}, include_blank: "選択する", required: true %>
+              <%= f.input :partner_age, collection: User::AGE, include_blank: "選択する", required: true %>
             </div>
 
             <div class="columns medium-6 small-12">
@@ -87,7 +91,11 @@
             </div>
 
             <div class="columns medium-6 small-12">
-              <%= f.input :treatment %>
+              <%= f.input :treatment, collection: Cancer::TREATMENTS, include_blank: "選択する" %>
+            </div> 
+
+            <div class="columns medium-6 small-12">
+              <%= f.input :treatment_content %>
             </div>          
 
             <div class="columns medium-6 small-12">

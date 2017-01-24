@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114105813) do
+ActiveRecord::Schema.define(version: 20170124045040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,8 @@ ActiveRecord::Schema.define(version: 20170114105813) do
     t.boolean  "is_public",              default: false, null: false
     t.boolean  "profile_completed",      default: false, null: false
     t.jsonb    "settings",               default: {},    null: false
+    t.string   "prefecture"
+    t.text     "treatment_content"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["is_public"], name: "index_users_on_is_public", using: :btree

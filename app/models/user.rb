@@ -10,10 +10,10 @@ class User < ApplicationRecord
   #devise :registerable, :confirmable
   
   enum gender: {男性: 0, 女性: 1, その他: 2}
-  AGE = 16..100
+  AGE = %w(13歳～19歳 20歳～29歳 30歳～34歳 35歳～39歳 40歳～49歳 50歳～64歳 65歳以上)
 
   with_options if: :signed_up? do |user|
-    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :area, presence: true    
+    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :area, :prefecture, presence: true    
   end
 
   with_options unless: :show_name? do |user|
