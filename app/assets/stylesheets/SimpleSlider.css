@@ -284,6 +284,9 @@ a {
     margin: 4% 1%;
 }
 .product-image {
+    align-items: center;
+    background: black;
+    display: flex;
     width: 70%;
     height: 580px;
     overflow: hidden;

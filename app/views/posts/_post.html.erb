@@ -53,7 +53,7 @@
 		<div id="post-<%= post.id %>-comments">
 			<% @comments = post.comments.paginate(page: params[:page], per_page: 5).includes(:user).decorate if @load='initial' %>
 			<% if @comments.current_page < @comments.total_pages %>
-				<a class="more_comments_button" data-page="<%= @comments.next_page %>" id= "<%= post.id %>" ><small>さらに読み込む</small></a> 
+				<a class="more_comments_button" data-page="<%= @comments.next_page %>" id="<%= post.id %>" ><small>さらに読み込む</small></a> 
 			<% end %>
 			<div id="comments">
 				<%= render partial: 'shared/comment', collection: @comments  %>
