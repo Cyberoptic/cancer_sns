@@ -1,6 +1,40 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+	describe "password" do
+		context "when password is all lowercase" do
+			it "should not be valid" do
+				user = build(:user, password: "password", password_confirmation: "password")
+
+				expect(user).to_not be_valid
+			end
+		end
+
+		context "when password is all uppercase" do
+			it "should not be valid" do
+				user = build(:user, password: "PASSWORD", password_confirmation: "PASSWORD")
+
+				expect(user).to_not be_valid
+			end
+		end
+
+		context "has uppercase and lowercase characters and numbers and is not over 8 characters" do
+			it "should not be valid" do
+				user = build(:user, password: "Pass123", password_confirmation: "Pass123")
+
+				expect(user).to_not be_valid
+			end
+		end
+
+		context "has uppercase and lowercase characters and numbers and is over 8 characters" do
+			it "should be valid" do
+				user = build(:user, password: "Password123", password_confirmation: "Password123")
+
+				expect(user).to be_valid
+			end
+		end
+	end
+
 	context "when user has set show_name to true" do
 		it "does not validate presence of nickname" do
 			user = build(:user, show_name: true)

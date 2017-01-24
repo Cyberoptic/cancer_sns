@@ -4,16 +4,16 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,
-  :omniauthable, :omniauth_providers => [:facebook]
-
-  #uncomment this in production
-  #devise :registerable, :confirmable
+  :omniauthable, :registerable, :confirmable, :omniauth_providers => [:facebook]
   
   enum gender: {男性: 0, 女性: 1, その他: 2}
   AGE = %w(13歳～19歳 20歳～29歳 30歳～34歳 35歳～39歳 40歳～49歳 50歳～64歳 65歳以上)
+  PASSWORD_VALIATION_REGEX = /\A.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*\z/
+
+  validates :password, format: { with: PASSWORD_VALIATION_REGEX, message: "は英数字混在、大文字小文字混在で、かつ8文字以上で設定してください。" }
 
   with_options if: :signed_up? do |user|
-    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :area, :prefecture, presence: true    
+    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :area, :prefecture, presence: true
   end
 
   with_options unless: :show_name? do |user|
