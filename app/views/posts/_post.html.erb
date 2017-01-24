@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	$('.gallery-img').Am2_SimpleSlider();
+	$('.js-gallery-img').Am2_SimpleSlider();
 </script>
 
 <div class="callout">
@@ -35,9 +35,9 @@
 			<p id="post-content-<%= post.id %>"><%= post.content %></p>
 		</div>
 
-			<ul  class="product-gallery">
+			<ul class="product-gallery">
 				<% post.post_images.each do |image| %>
-					<li class="gallery-img">
+					<li class="product-gallery-list js-gallery-img">
 						<%= image_tag image.photo, class: 'post-image' %>
 						<div data-desc="<%= post.content %>"></div>
 					</li>
@@ -55,8 +55,12 @@
 			<% if @comments.current_page < @comments.total_pages %>
 				<a class="more_comments_button" data-page="<%= @comments.next_page %>" id= "<%= post.id %>" ><small>さらに読み込む</small></a> 
 			<% end %>
-			<div id="comments"> <%= render partial: 'shared/comment', collection: @comments  %> </div>
-			<div id="comments-pagination"> <%= will_paginate @comments %>  </div>
+			<div id="comments">
+				<%= render partial: 'shared/comment', collection: @comments  %>
+			</div>
+			<div id="comments-pagination">
+				<%= will_paginate @comments %>
+			</div>
 
 		</div>	
 
