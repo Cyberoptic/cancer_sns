@@ -8,9 +8,10 @@ FactoryGirl.define do
 		last_name "太郎"
     email { generate(:email) }
     password "password"
-    password_confirmation "password"
-    is_public true
+    password_confirmation "password"    
     birthday DateTime.now - 40.years
+    area Area::LIST.first
+    prefecture Area::PREFECTURES.first
     gender :男性
     partner_age 40
     cancer_type "脳腫瘍"
