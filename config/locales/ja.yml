@@ -5,10 +5,10 @@ ja:
     attributes:
       user:
         nickname: ニックネーム
-        first_name: 氏
-        last_name: 名
-        first_name_katakana: 氏（カタカナ)
-        last_name_katakana: 名（カタカナ)
+        first_name: 名
+        last_name: 姓
+        first_name_katakana: 名（カタカナ)
+        last_name_katakana: 姓（カタカナ)
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（再確認） 

@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   def ensure_user_is_public
     return unless user_signed_in?
     return if current_user.profile_completed?
-    flash[:success] = "ユーザー登録を完了してください。"
+    flash[:success] = "ご登録ありがとうございます！サービスをよりご活用いただくために、もう少しあなたのことを教えてください。"
     redirect_to edit_user_registration_path
   end
 
