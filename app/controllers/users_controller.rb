@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id]).decorate
     # implement later
-    @suggested_users = User.all
+    @suggested_users = User.take(5)
   end  
 
   def pending_requests

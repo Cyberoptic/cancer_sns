@@ -4,7 +4,7 @@
 		<% user.friends.decorate.each do |friend| %>
 			<a href="/users/<%= friend.id %>">
 				<div class="image-wrapper">
-					<%= image_tag friend.photo %>	
+					<%= image_tag friend.photo, alt: friend.name %>	
 					<div class="display-name">
 						<%= friend.display_name %>
 					</div>

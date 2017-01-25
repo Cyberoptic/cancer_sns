@@ -3,12 +3,9 @@
 	.name {		    
 		color: $anchor-color;
 		display: block;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 600;
-	}
-
-	.nickname {
-
+    word-break: break-all;
 	}
 
 	.user-tags {
@@ -25,7 +22,8 @@
 	display: inline-block;
 
 	img {
-		max-height: 100px;
+		height: 80px;
+		width: 80px;
 	}
 }
 
