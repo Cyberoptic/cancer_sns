@@ -14,7 +14,7 @@
 
 		<div class="post-info">
 			<span class="user-image">
-				<%= image_tag post.user_photo %>
+				<%= image_tag post.user_photo, alt: post.user.name %>
 			</span>
 
 			<div class="user-info">
@@ -34,7 +34,7 @@
 			<ul class="product-gallery">
 				<% post.post_images.each do |image| %>
 					<li class="product-gallery-list js-gallery-img">
-						<%= image_tag image.photo, class: 'post-image' %>
+						<%= image_tag image.photo, class: 'post-image', alt: "#{image.id}" %>
 						<div data-desc="<%= post.content %>"></div>
 					</li>
 				<% end %>

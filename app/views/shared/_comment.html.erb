@@ -1,11 +1,11 @@
 <div class="comment">
 	<div class="user-image">
-		<%= image_tag comment.user_photo %>
+		<%= image_tag comment.user_photo, alt: comment.user.name %>
 	</div>
 	
 	<div class="comment-content">
 		<span class="nickname">
-			<%= link_to comment.user.display_name, user_path(comment.post_user) %>
+			<%= link_to comment.user.display_name, user_path(comment.user) %>
 		</span>
 		<span class="comment-text">
 			<%= simple_format comment.text %>
