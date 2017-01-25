@@ -1,9 +1,11 @@
-@import "settings";
-
 body {
 	display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+
+.callout {
+  border: 1px solid #e6e6e6;
 }
 
 .body-content {
@@ -22,4 +24,8 @@ body {
 
 .muted {
   color: $medium-gray;
+}
+
+.pagination {
+  display:none
 }

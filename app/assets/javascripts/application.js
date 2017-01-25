@@ -21,4 +21,6 @@
 
 $(function(){ 
 	$(document).foundation(); 
+  
+  $('.js-gallery-img').Am2_SimpleSlider();
 });

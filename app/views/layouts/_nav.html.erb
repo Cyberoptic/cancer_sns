@@ -8,7 +8,11 @@
     <div class="column small-12">
       <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-text" id="brand-name"><%= link_to 'Cancer Partners', root_path %></li>
+          <li class="menu-text" id="brand-name">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png' %>
+            <% end %>    
+          </li>
         </ul>
       </div>
       <div class="top-bar-right">

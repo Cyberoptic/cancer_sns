@@ -1,5 +1,3 @@
-@import "settings";
-
 $img-height: 35px;
 $comment-font-size: 13px;
 
@@ -28,10 +26,15 @@ $comment-font-size: 13px;
 
 	.comment-text {
 		font-size: $comment-font-size;
+
+		p {
+			margin-bottom: 0px;
+		}
 	}
 
 	.timestamp {
 		display: block;
+		text-align: right;
 	}
 }
 

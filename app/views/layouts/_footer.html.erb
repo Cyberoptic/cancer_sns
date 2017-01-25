@@ -1,8 +1,9 @@
 <footer class="footer">
 	<div class="row">
 		<div class="column medium-4 small-12">
-			<h3 class="brand-name">がん患者ポータル</h3>
-			<p class="sub-text">タグラインをここに</p>
+			<%= link_to root_path do %>
+        <%= image_tag 'logo.png' %>
+      <% end %>    
 		</div>
 
 		<div class="column medium-8 small-12">
@@ -14,7 +15,7 @@
 
 				<li><%= link_to '個人情報保護方針', '' %></li>
 			</ul>
-			<p class="float-right">© Corp. <%= Date.current.year %></p>
+			<p class="float-right">© Cancer Partners <%= Date.current.year %></p>
 		</div><!-- column -->
 	</div><!-- row -->
 </footer>
