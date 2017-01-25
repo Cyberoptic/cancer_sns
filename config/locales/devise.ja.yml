@@ -16,9 +16,9 @@ ja:
       unconfirmed: "本登録を行ってください。"
     mailer:
       confirmation_instructions:
-        subject: "アカウントの登録方法"
+        subject: "[Cancer Partners] アカウント確認"
       reset_password_instructions:
-        subject: "パスワードの再設定"
+        subject: "[Cancer Partners] パスワード再設定"
       unlock_instructions:
         subject: "アカウントのロック解除"
     omniauth_callbacks:

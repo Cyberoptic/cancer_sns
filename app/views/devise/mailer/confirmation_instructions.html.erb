@@ -1,5 +1,21 @@
-<p>Welcome <%= @email %>!</p>
+<p>Cancer Partners 運営事務局です。</p>
+<p>この度は Cancer Partners にご登録いただきまして、ありがとうございます。</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>今回ご登録いただいたアカウントは以下のとおりです。</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<ul>
+　<li>ログインID：<%= @email %></li>  
+　<li>パスワード：個人情報のため表示を伏せています</li>
+</ul>
+
+<p>
+  ご本人様確認のため、こちらのURL に「24時間以内」にアクセスして、アカウントの本登録を完了させて下さい。
+</p>
+
+<p>
+  このメールに心当たりがない場合、他の方が誤ってあなたのメールアドレスを入力した可能性があります。ご自身でリクエストした覚えがない場合は、何も行わずにこのメールを破棄してください。
+</p>
+
+<p>ご不明な点がございましたら事務局 support@cancer-partners.com までお問い合わせください。</p>
+
+<p>※ 本メールは配信専用です。ご返信なさらぬようご注意ください</p>
