@@ -5,8 +5,8 @@
       <%= simple_form_for @message_search, url: chat_rooms_path, method: :get, remote: true do |f| %>
         <%= f.input :name, label: false, placeholder: "名前で検索" %>
       <% end %>
-      <ul class="no-bullet message-list" id="message-list">
-        <%= render partial: 'friend_list', locals: {friends: @friends} %>      
+      <ul class="no-bullet message-list" id="js-message-list">
+        <%= render partial: 'chat_room_list', locals: {chat_rooms: @chat_rooms} %>
       </ul>
     </div>
   </div>

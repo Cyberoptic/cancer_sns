@@ -3,9 +3,9 @@ class ChatRoomsController < ApplicationController
 
   def index
     if params[:message_search]
-      @friends = current_user.friends.where("first_name LIKE ? OR last_name LIKE ? or nickname LIKE ?", "%#{params[:message_search][:name]}%", "%#{params[:message_search][:name]}%", "%#{params[:message_search][:name]}%")
+      @chat_rooms = current_user.chat_rooms.find_with_name(params[:message_search][:name]).includes(:member, :user)
     else
-      @friends = current_user.friends
+      @chat_rooms = current_user.chat_rooms.includes(:member, :user)
     end
     @message_search = MessageSearch.new(params[:message_search])
     @message = Message.new      
@@ -14,9 +14,9 @@ class ChatRoomsController < ApplicationController
 
   def show
     if params[:message_search]
-      @friends = current_user.friends.where("first_name LIKE ? OR last_name LIKE ? or nickname LIKE ?", "%#{params[:message_search][:name]}%", "%#{params[:message_search][:name]}%", "%#{params[:message_search][:name]}%")
+      @chat_rooms = current_user.chat_rooms.find_with_name(params[:message_search][:name]).includes(:member, :user)
     else
-      @friends = current_user.friends
+      @chat_rooms = current_user.chat_rooms.includes(:member, :user)
     end
     @chat_room = ChatRoom.includes(messages: :user).find_by(id: params[:id])
     @message = Message.new    
