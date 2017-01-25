@@ -124,6 +124,16 @@ class User < ApplicationRecord
 ######################################################################
 ##################### Emotions section END ###########################
 
+
+
+##################### GROUPs ###########################
+
+def joined?(group)
+  self.group_memberships.exists?(group_id: group.id)
+end
+
+##################### GROUPs END ###########################
+
   def pending_requests
     HasFriendship::Friendship.where(friend_id: self.id, status: :pending).order(created_at: :desc)
   end
