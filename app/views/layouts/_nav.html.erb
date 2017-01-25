@@ -31,7 +31,7 @@
             <li class="menu-text">
               <ul class="dropdown menu" data-dropdown-menu>
                 <li>
-                  <a href="#"><%= image_tag current_user.photo %> </a>
+                  <a href="#"><%= image_tag current_user.photo, class: 'nav-prof-img' %> </a>
                   <ul class="menu">
                     <li class="menu-text"><%= link_to '自分のプロフィール', user_path(current_user) %></li>
                     <li class="menu-text"><%= link_to '設定', edit_user_registration_path %></li>
