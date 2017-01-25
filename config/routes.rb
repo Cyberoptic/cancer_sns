@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :sads, only: :destroy
   resources :happies, only: :destroy
   resources :chat_rooms, only: [:show, :index]
+  resources :chat_room_searches, only: :create
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "registrations" }
   

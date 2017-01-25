@@ -1,3 +1,7 @@
 <% chat_rooms.each do |chat_room| %>        
-  <%= render partial: 'message_list', locals: {friend: chat_room.other_user_for(current_user), chat_room: chat_room} %>
+  <%= render partial: '/chat_rooms/message_list', locals: {friend: chat_room.other_user_for(current_user), chat_room: chat_room} %>
+<% end %>
+
+<% if chat_rooms.empty? %>
+  <p class="text-center">該当するユーザーがいません。</p>
 <% end %>

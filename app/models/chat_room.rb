@@ -8,7 +8,7 @@ class ChatRoom < ApplicationRecord
   scope :user_with_name, -> (name) { joins(:user).where("LOWER(users.first_name) LIKE ? OR LOWER(users.last_name) LIKE ?", "#{name[0..2]}%", "#{name[0..2]}%")}
   scope :member_with_name, -> (name) { joins(:member).where("LOWER(users.first_name) LIKE ? OR LOWER(users.last_name) LIKE ?", "#{name[0..2]}%", "#{name[0..2]}%")}
 
-  def other_user_for(current_user) 
+  def other_user_for(current_user)     
     return member if current_user == user
     user
   end
