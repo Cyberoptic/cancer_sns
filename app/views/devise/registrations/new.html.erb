@@ -13,8 +13,8 @@
         <%= f.error_notification %>
 
         <div class="form-inputs">
-          <%= f.input :email, required: true, placeholder: "メールアドレス" %>
-          <%= f.input :password, required: true, placeholder: 'パスワード', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          <%= f.input :email, required: true, placeholder: "メールアドレス" %>          
+          <%= f.input :password, required: true, placeholder: 'パスワード', label: 'パスワード（※英数字8文字以上、大文字小文字混在）' %>
           <%= f.input :password_confirmation, required: true, placeholder: 'パスワード（再確認）' %>
         </div>
 
