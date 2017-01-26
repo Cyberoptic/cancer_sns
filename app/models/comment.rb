@@ -10,4 +10,8 @@ class Comment < ApplicationRecord
 
   scope :visible, ->{ where(visible: true) }
 
+  def toggle_visibility!
+    self.visible = !visible
+    save
+  end
 end

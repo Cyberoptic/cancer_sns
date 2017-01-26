@@ -1,18 +1,32 @@
-<div class="comment">
-	<div class="user-image">
-		<%= image_tag comment.user_photo, alt: comment.user.name %>
-	</div>
-	
-	<div class="comment-content">
-		<span class="nickname">
-			<%= link_to comment.user.display_name, user_path(comment.user) %>
-		</span>
-		<span class="comment-text">
-			<%= simple_format comment.text %>
-		</span>
+<div class="comment <%= 'comment-hidden' unless comment.visible %>" data-comment-id="<%= comment.id %>">
+	<% if comment.visible || comment.user == current_user || comment.post_user == current_user %>		
+		<div class="user-image">
+			<%= image_tag comment.user_photo, alt: comment.user.name %>
+		</div>
+		
+		<div class="comment-content">
+			<% if comment.user.id == current_user.id || comment.post_user == current_user %>
+				<a data-toggle="comment-options-dropdown-<%= comment.id %>" class="float-right">
+					<i class="fa fa-caret-down dropdown-caret" aria-hidden="true"></i>
+				</a>
+				<div class="dropdown-pane bottom right" id="comment-options-dropdown-<%= comment.id %>" data-dropdown data-hover="true" data-hover-pane="true">
+				  <ul class="post-options-menu no-bullet">			  
+				  	<%= link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> #{comment.visible ? '非表示' : '表示'}</li>".html_safe, comment_visibility_toggles_path(comment), method: :post, remote: true %>
+					  <%= link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> 削除</li>".html_safe, comment_path(comment), method: :delete, data: {confirm: "本当に削除してよろしいですか？"}, remote: true %>
+			    </ul>
+				</div>
+			<% end %>
 
-		<span class="timestamp">
-			<%= time_ago_in_words(comment.created_at) %>前
-		</span>
-	</div>
+			<span class="nickname">
+				<%= link_to comment.user.display_name, user_path(comment.user) %> <%= "（非表示）" unless comment.visible %>
+			</span>
+			<span class="comment-text">
+				<%= simple_format comment.text %>
+			</span>
+
+			<span class="timestamp">
+				<%= time_ago_in_words(comment.created_at) %>前
+			</span>
+		</div>
+	<% end %>
 </div>

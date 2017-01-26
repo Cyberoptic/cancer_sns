@@ -21,6 +21,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :comments, only: [:destroy] do
+    post :visibility_toggles, to: "comments/visibility_toggles#create" 
+  end
+
   resources :likes, only: :destroy 
   resources :sads, only: :destroy
   resources :happies, only: :destroy

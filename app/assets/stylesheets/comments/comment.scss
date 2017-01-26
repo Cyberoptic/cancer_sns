@@ -47,3 +47,17 @@ $comment-font-size: 13px;
 	cursor: pointer;
 	margin-top: 10px; 
 }
+
+.comment-hidden {
+	color: $light-gray;
+
+	.nickname {
+		a {
+			color: $light-gray;
+		}
+	}
+
+	.timestamp {
+		color: $light-gray;
+	}
+}

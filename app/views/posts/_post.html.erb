@@ -2,7 +2,7 @@
 	<div class="post-container">	
 		<% if post.user.id == current_user.id %>
 			<a data-toggle="post-options-dropdown-<%=post.id %>" class="float-right">
-				<i class="fa fa-caret-down" aria-hidden="true"></i>
+				<i class="fa fa-caret-down dropdown-caret" aria-hidden="true"></i>
 			</a>
 			<div class="dropdown-pane bottom right" id="post-options-dropdown-<%=post.id %>" data-dropdown data-hover="true" data-hover-pane="true">
 			  <ul class="post-options-menu no-bullet">
@@ -46,16 +46,16 @@
 			<span id="post-sads-<%= post.id %>"><%= render partial: "posts/sads", locals: { apost: post } %> </span> 
 		</div>
 		
-		<div id="post-<%= post.id %>-comments">
-			<% @comments = post.comments.visible.paginate(page: params[:page], per_page: 5).includes(:user).decorate if @load='initial' %>
-			<% if @comments.current_page < @comments.total_pages %>
-				<a class="more_comments_button" data-page="<%= @comments.next_page %>" id="<%= post.id %>" ><small>さらに読み込む</small></a> 
+		<div id="post-<%= post.id %>-comments">			
+			<% comments = post.comments.paginate(page: params[:page], per_page: 5).includes(:user).decorate %>
+			<% if comments.current_page < comments.total_pages %>
+				<a class="more_comments_button" data-page="<%= comments.next_page %>" id="<%= post.id %>" ><small>さらに読み込む</small></a> 
 			<% end %>
 			<div id="comments">
-				<%= render partial: 'shared/comment', collection: @comments  %>
+				<%= render partial: 'shared/comment', collection: comments  %>
 			</div>
 			<div id="comments-pagination">
-				<%= will_paginate @comments %>
+				<%= will_paginate comments %>
 			</div>
 
 		</div>	
