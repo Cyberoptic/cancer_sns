@@ -1,0 +1,19 @@
+.concept {
+  background: #EEF7F2;
+  border-radius: 5px;
+  padding: 10px 20px;
+
+  p {
+    margin: 1.2rem 0;
+    letter-spacing: 1px;
+    line-height: 1.5rem;
+  }
+}
+
+.facebook-page {
+  @include breakpoint(medium down) {
+    margin-top: 30px;
+  }
+}
+
+
