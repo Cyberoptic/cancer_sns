@@ -28,7 +28,9 @@
 		</div>
 
 		<div class="post-content">
-			<p id="post-content-<%= post.id %>"><%= simple_format post.content %></p>
+			<div id="js-post-content-<%= post.id %>">
+				<%= simple_format post.content %>
+			</div>
 		</div>
 
 			<ul class="product-gallery">

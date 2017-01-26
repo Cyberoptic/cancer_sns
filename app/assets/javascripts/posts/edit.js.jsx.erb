@@ -1,0 +1,23 @@
+$(function(){
+  $(".edit-post").on("click", function(){
+    var id = $(this).data("id");  
+    var content = $(`#js-post-content-${id}`).text().trim();
+    
+    var html = `<div class="tiny reveal" id="edit-post-modal" data-reveal>
+                  <form novalidate="novalidate" class="simple_form edit_post" id="edit_post_${id}" enctype="multipart/form-data" action="/posts/${id}" accept-charset="UTF-8" method="post">
+                    <input type="hidden" name="_method" value="patch">
+                    <input type="hidden" name="authenticity_token" value="${window._token}">
+                    
+                    <textarea class="text required" rows="5" autofocus="true" name="post[content]" id="post_content">${content}</textarea>
+
+                    <input type="submit" name="commit" class="button secondary" value="編集する" data-disable-with="編集する">
+                  </form>
+                </div>`    
+
+    $("#edit-post-modal").remove();
+    $("#modal").html(html);
+
+    $('#edit-post-modal').foundation();
+    $('#edit-post-modal').foundation('open');
+  });
+});
