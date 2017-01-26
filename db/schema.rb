@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117092020) do
+ActiveRecord::Schema.define(version: 20170125142855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(version: 20170117092020) do
     t.index ["user_id"], name: "index_group_memberships_on_user_id", using: :btree
   end
 
+  create_table "group_posts", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_posts_on_group_id", using: :btree
+    t.index ["user_id", "group_id"], name: "index_group_posts_on_user_id_and_group_id", using: :btree
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -95,6 +105,7 @@ ActiveRecord::Schema.define(version: 20170117092020) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "post_type"
     t.index ["post_id"], name: "index_post_images_on_post_id", using: :btree
     t.index ["user_id"], name: "index_post_images_on_user_id", using: :btree
   end

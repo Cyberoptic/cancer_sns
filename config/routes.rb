@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   resources :groups do
     resources :group_memberships, only: :create
     resources :group_unmemberships, only: :create
+    resources :group_posts, as: :posts
   end
 
 end

@@ -33,6 +33,7 @@ class User < ApplicationRecord
   has_many :chat_rooms, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :group_memberships, dependent: :destroy
+  has_many :group_posts, dependent: :destroy
 
   scope :is_public, -> { where(is_public: true) }
 

@@ -5,3 +5,7 @@
 <div id="join-group">
   <%= render partial: "groups/join", locals: { group: @group } %>
 </div>
+
+<% if current_user.joined?(@group) %>
+  <%= link_to "View posts", group_posts_path(@group) %>
+<% end %>
