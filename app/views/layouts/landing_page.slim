@@ -12,6 +12,16 @@ html lang="en"
     link href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" rel="stylesheet" /
     = javascript_tag "window._token = '#{form_authenticity_token}'"
   body style="background-color: white;"
+    #fb-root
+    javascript:
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=138234586583685";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+     
     = render 'layouts/nav'
     .orbit data-orbit="" role="region"
       ul.orbit-container
