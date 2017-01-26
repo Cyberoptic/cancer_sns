@@ -14,7 +14,7 @@ var app = {
       var id = $(this).data("id");  
       var content = $(`#js-post-content-${id}`).text().trim();
       
-      var html = `<div class="tiny reveal" id="edit-post-modal" data-reveal>
+      var html = `<div class="tiny reveal" id="edit-post-modal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
                     <form novalidate="novalidate" class="simple_form edit_post" id="edit_post_${id}" enctype="multipart/form-data" action="/posts/${id}" accept-charset="UTF-8" method="post">
                       <input type="hidden" name="_method" value="patch">
                       <input type="hidden" name="authenticity_token" value="${window._token}">
@@ -38,7 +38,7 @@ var app = {
       var id = $(this).data("comment-id");  
       var content = $(`#js-comment-content-${id}`).text().trim();
       
-      var html = `<div class="tiny reveal" id="edit-comment-modal" data-reveal>
+      var html = `<div class="tiny reveal" id="edit-comment-modal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
                     <form novalidate="novalidate" class="simple_form edit_comment" id="edit_comment_${id}" enctype="multipart/form-data" action="/comments/${id}" accept-charset="UTF-8" method="post" data-remote="true">
                       <input type="hidden" name="_method" value="patch">
                       <input type="hidden" name="authenticity_token" value="${window._token}">
