@@ -6,6 +6,9 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :trackable, :validatable,
   :omniauthable, :omniauth_providers => [:facebook]
 
+  #Notifications associations
+  has_many :notifications, foreign_key: :recipient_id
+
   #uncomment this in production
   #devise :registerable, :confirmable
   
