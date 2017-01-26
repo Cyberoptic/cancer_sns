@@ -9,3 +9,11 @@
     line-height: 1.5rem;
   }
 }
+
+.facebook-page {
+  @include breakpoint(medium down) {
+    margin-top: 30px;
+  }
+}
+
+
