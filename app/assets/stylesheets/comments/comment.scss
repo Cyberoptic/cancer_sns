@@ -51,6 +51,10 @@ $comment-font-size: 13px;
 .comment-hidden {
 	color: $medium-gray;
 
+	.dropdown-caret {
+		color: $medium-gray;
+	}
+
 	.nickname {
 		a {
 			color: $medium-gray;

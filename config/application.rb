@@ -20,8 +20,10 @@ module CancerSns
     config.active_record.default_timezone = :local
 
     config.generators do |g|
-		  g.helper false
-		  g.assets false
-		end
+  	  g.helper false
+  	  g.assets false
+  	end
+
+    config.autoload_paths << Rails.root.join('policies')
   end
 end

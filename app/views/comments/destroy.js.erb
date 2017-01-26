@@ -1,1 +1,5 @@
-$("div[data-comment-id='<%= @comment_id %>']").fadeOut(300, function() { $(this).remove(); })
+$("div[data-comment-id='<%= @comment.id %>']").replaceWith("<%= escape_javascript render partial: 'shared/comment', locals: { comment: @comment.decorate } %>");
+
+$(function(){ 
+  $(document).foundation(); 
+});

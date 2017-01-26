@@ -14,4 +14,12 @@ class Comment < ApplicationRecord
     self.visible = !visible
     save
   end
+
+  def delete!
+    update(deleted_at: DateTime.now)
+  end
+
+  def deleted?
+    deleted_at.present?
+  end
 end
