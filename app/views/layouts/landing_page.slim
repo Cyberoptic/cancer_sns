@@ -1,0 +1,36 @@
+doctype html
+html lang="en" 
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta charset="utf-8" /
+    meta content="width=device-width, initial-scale=1.0" name="viewport" /
+    title= content_for?(:title) ? yield(:title) : "がん患者のためのポータルサイト"
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application", 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /
+    link href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" rel="stylesheet" /
+    = javascript_tag "window._token = '#{form_authenticity_token}'"
+  body style="background-color: white;"
+    = render 'layouts/nav'
+    .orbit data-orbit="" role="region"
+      ul.orbit-container
+        button.orbit-previous
+          span.show-for-sr> Previous Slide
+          | ◀︎
+        button.orbit-next
+          span.show-for-sr> Next Slide
+          | ▶︎
+        li.is-active.orbit-slide
+          = image_tag 'top/top-slider-1.jpg', class: 'orbit-image', alt: 'Cancer Partners'      
+        li.orbit-slide
+           = image_tag 'top/top-slider-1.jpg', class: 'orbit-image', alt: 'Cancer Partners'     
+    .body-content
+      .row
+        .columns.small-12
+          .container
+            = render 'shared/flash_messages'
+            = yield
+    #modal
+    = render 'layouts/footer'
+ 
