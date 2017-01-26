@@ -49,15 +49,15 @@ $comment-font-size: 13px;
 }
 
 .comment-hidden {
-	color: $light-gray;
+	color: $medium-gray;
 
 	.nickname {
 		a {
-			color: $light-gray;
+			color: $medium-gray;
 		}
 	}
 
 	.timestamp {
-		color: $light-gray;
+		color: $medium-gray;
 	}
 }
