@@ -8,4 +8,6 @@ class Comment < ApplicationRecord
 	delegate :photo, to: :user, prefix: true
 	delegate :user, to: :post, prefix: true
 
+  scope :visible, ->{ where(visible: true) }
+
 end
