@@ -15,7 +15,7 @@ class User < ApplicationRecord
     user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :area, :prefecture, presence: true
   end
 
-  with_options unless: :show_name? do |user|
+  with_options unless: :display_name_to_everyone? do |user|
     user.validates :nickname, presence: true
   end
 
@@ -44,16 +44,16 @@ class User < ApplicationRecord
   # Settings
   include Storext.model
   store_attributes :settings do
-    show_profession String, default: SETTING_OPTIONS.first
-    show_partner_age String, default: SETTING_OPTIONS.first
-    show_cancer_type String, default: SETTING_OPTIONS.first
-    show_cancer_stage String, default: SETTING_OPTIONS.first
-    show_hospital String, default: SETTING_OPTIONS.first
-    show_treatment String, default: SETTING_OPTIONS.first
-    show_birthday String, default: SETTING_OPTIONS.first
-    show_problems String, default: SETTING_OPTIONS.first
-    show_area String, default: SETTING_OPTIONS.first
-    show_name String, default: SETTING_OPTIONS.first
+    profession_visibility String, default: SETTING_OPTIONS.first
+    partner_age_visibility String, default: SETTING_OPTIONS.first
+    cancer_type_visibility String, default: SETTING_OPTIONS.first
+    cancer_stage_visibility String, default: SETTING_OPTIONS.first
+    hospital_visibility String, default: SETTING_OPTIONS.first
+    treatment_visibility String, default: SETTING_OPTIONS.first
+    birthday_visibility String, default: SETTING_OPTIONS.first
+    problems_visibility String, default: SETTING_OPTIONS.first
+    area_visibility String, default: SETTING_OPTIONS.first
+    name_visibility String, default: SETTING_OPTIONS.first
   end
 
   def self.new_with_session(params, session)
@@ -133,7 +133,18 @@ class User < ApplicationRecord
     ChatRoom.where("member_id = ? or user_id = ?", id, id)    
   end
 
+  def posts_visible_for(current_user:)  
+    return posts if self == current_user 
+    return posts.visible_to_friends + posts.visible_to_everyone if self.friends_with?(current_user) 
+
+    posts.visible_to_everyone
+  end
+
   private
+
+  def display_name_to_everyone?
+    name_visibility == SETTING_OPTIONS.first
+  end
 
   def signed_up?   
     created_at.present? && profile_completed?

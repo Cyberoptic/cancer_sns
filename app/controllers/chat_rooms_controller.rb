@@ -14,4 +14,16 @@ class ChatRoomsController < ApplicationController
     @message = Message.new    
     @message_search = MessageSearch.new(params[:message_search])
   end
+
+  def create
+    user = User.find(params[:user_id])
+    @chat_room = ChatRoom.new(member: user, user: current_user)
+
+    if @chat_room.save
+      redirect_to chat_room_path(@chat_room)
+    else
+      flash[:alert] = @chat_room.errors.full_messages[0]
+      redirect_to :back
+    end
+  end
 end

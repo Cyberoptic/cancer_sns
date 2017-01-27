@@ -54,25 +54,25 @@
             small ※公開してもよろしい項目をチェックしてください。
         /! columns
         .columns.medium-6.small-12
-          = f.input :show_name, collection: User::SETTING_OPTIONS, include_blank: false
+          = f.input :name_visibility, collection: User::SETTING_OPTIONS, include_blank: false
         .columns.medium-6.small-12
-          = f.input :show_profession, collection: User::SETTING_OPTIONS, include_blank: false
+          = f.input :profession_visibility, collection: User::SETTING_OPTIONS, include_blank: false
         .columns.medium-6.small-12
-          = f.input :show_partner_age, collection: User::SETTING_OPTIONS, include_blank: false
+          = f.input :partner_age_visibility, collection: User::SETTING_OPTIONS, include_blank: false
         .columns.medium-6.small-12
-          = f.input :show_cancer_type, collection: User::SETTING_OPTIONS, include_blank: false
+          = f.input :cancer_type_visibility, collection: User::SETTING_OPTIONS, include_blank: false
         .columns.medium-6.small-12
-          = f.input :show_cancer_stage, collection: User::SETTING_OPTIONS, include_blank: false
+          = f.input :cancer_stage_visibility, collection: User::SETTING_OPTIONS, include_blank: false
         .columns.medium-6.small-12
-          = f.input :show_hospital, collection: User::SETTING_OPTIONS, include_blank: false
+          = f.input :hospital_visibility, collection: User::SETTING_OPTIONS, include_blank: false
         .columns.medium-6.small-12
-          = f.input :show_treatment, collection: User::SETTING_OPTIONS, include_blank: false
+          = f.input :treatment_visibility, collection: User::SETTING_OPTIONS, include_blank: false
         .columns.medium-6.small-12
-          = f.input :show_birthday, collection: User::SETTING_OPTIONS, include_blank: false
+          = f.input :birthday_visibility, collection: User::SETTING_OPTIONS, include_blank: false
         .columns.medium-6.small-12
-          = f.input :show_problems, collection: User::SETTING_OPTIONS, include_blank: false
+          = f.input :problems_visibility, collection: User::SETTING_OPTIONS, include_blank: false
         .columns.medium-6.small-12
-          = f.input :show_area, collection: User::SETTING_OPTIONS, include_blank: false
+          = f.input :area_visibility, collection: User::SETTING_OPTIONS, include_blank: false
       /! row
       hr/
       = f.input :profile_completed, as: :hidden, input_html: { value: true }

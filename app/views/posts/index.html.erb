@@ -3,10 +3,21 @@
 
 		<div class="callout">
 			<%= simple_form_for @post do |f| %>
+				<a data-toggle="new-post-dropdown" class="new-post-dropdown-anchor">
+					<i class="fa fa-caret-down dropdown-caret" aria-hidden="true"></i>
+				</a>
+				<div class="dropdown-pane bottom right" id="new-post-dropdown" data-dropdown data-hover="true" data-hover-pane="true">
+				  <ul class="new-post-menu no-bullet">
+				  	<%= f.input :visibility, collection: Post.visibilities.keys, include_blank: false, label: false %>
+			    </ul>
+				</div>
+
 			  <%= f.input :content, label: false, placeholder: 'ここに投稿内容を入力', input_html: {rows: 2, class: 'post-text-area'} %>
 			  <%= f.simple_fields_for :post_images do |p| %>
 			    <%= p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]" } %>
 			  <% end %>
+
+			  
 
 			  <%= f.submit "投稿", class: 'button button-right' %>
 			<% end %>

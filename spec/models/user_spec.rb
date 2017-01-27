@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
 
 	context "when user has set show_name to true" do
 		it "does not validate presence of nickname" do
-			user = build(:user, show_name: true)
+			user = build(:user, name_visibility: User::SETTING_OPTIONS.first)
 			user.nickname = nil
 
 			expect(user).to be_valid
@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
 
 	context "when user has set show_name to false" do
 		it "validates presence of nickname" do
-			user = build(:user, show_name: false)
+			user = build(:user, name_visibility: User::SETTING_OPTIONS.last)
 			user.nickname = nil
 
 			expect(user).to_not be_valid
@@ -181,6 +181,44 @@ RSpec.describe User, type: :model do
 				post = create(:post, user_id: user.id)	
 
 				expect(user.happied?(post)).to eq(false)
+			end
+		end
+	end
+
+	describe "#posts_visible_for" do
+		context "when current_user is self" do
+			it "returns all posts" do
+				user = create(:user)				
+				visible_to_everyone = create(:post, visibility: 0, user: user)
+				visible_to_friends = create(:post, visibility: 1, user: user)
+				hidden = create(:post, visibility: 2, user: user)
+
+				expect(user.posts_visible_for(current_user: user)).to include(visible_to_friends, visible_to_everyone, hidden)
+			end
+		end
+
+		context "when current_user is friends with self" do
+			it "returns posts visible to friends and visible to everyone" do
+				user = create(:user)	
+				friend = create(:user)			
+				allow(user).to receive(:friends_with?).with(friend).and_return(true)
+				visible_to_everyone = create(:post, visibility: 0, user: user)
+				visible_to_friends = create(:post, visibility: 1, user: user)
+				hidden = create(:post, visibility: 2, user: user)
+
+				expect(user.posts_visible_for(current_user: friend)).to include(visible_to_friends, visible_to_everyone)
+			end
+		end
+
+		context "when current_user is not friends with self" do
+			it "returns posts visible to everyone" do
+				user = create(:user)	
+				other_user = create(:user)							
+				visible_to_everyone = create(:post, visibility: 0, user: user)
+				visible_to_friends = create(:post, visibility: 1, user: user)
+				hidden = create(:post, visibility: 2, user: user)
+
+				expect(user.posts_visible_for(current_user: other_user)).to include(visible_to_everyone)
 			end
 		end
 	end
