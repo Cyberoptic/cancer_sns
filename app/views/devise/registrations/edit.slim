@@ -1,0 +1,83 @@
+.callout
+  h3 プロフィール登録編集
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, data: 'abide'}) do |f|
+    = f.error_notification
+    .form-inputs
+      .row
+        .columns.medium-6.small-12
+          = f.input :nickname, autofocus: true
+        .columns.medium-6.small-12
+          = f.input :email, required: true
+        .columns.large-3.medium-6.small-12
+          = f.input :last_name, required: true
+        .columns.large-3.medium-6.small-12
+          = f.input :last_name_katakana, required: true
+        .columns.large-3.medium-6.small-12
+          = f.input :first_name, required: true
+        .columns.large-3.medium-6.small-12
+          = f.input :first_name_katakana, required: true
+        .columns.large-3.medium-6.small-12
+          = f.input :gender, collection: User.genders.keys, include_blank: "選択する", required: true
+        .columns.large-3.medium-6.small-12
+          = f.input :area, collection: Area::LIST, include_blank: "選択する", required: true
+        .columns.large-3.medium-6.small-12
+          = f.input :prefecture, collection: Area::PREFECTURES, include_blank: "選択する", required: true
+        .columns.large-3.medium-6.small-12
+          = f.input :profession
+        .columns.medium-6.small-12
+          = f.input :birthday, as: :string, start_year: Date.today.year - 90, end_year: Date.today.year - 16, input_html: {type: :date, value: resource.birthday} 
+        .columns.medium-6.small-12
+          = f.input :photo
+      hr/
+      .row
+        .columns.small-12
+          h5 パートナー（患者）について
+        .columns.large-3.medium-6.small-12
+          = f.input :partner_age, collection: User::AGE, include_blank: "選択する", required: true
+        .columns.large-3.medium-6.small-12
+          = f.input :cancer_type, collection: Cancer::TYPES, include_blank: "選択する", required: true
+        .columns.large-3.medium-6.small-12
+          = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する", required: true
+        .columns.large-3.medium-6.small-12
+          = f.input :treatment, collection: Cancer::TREATMENTS, include_blank: "選択する"
+        .columns.medium-6.small-12
+          = f.input :treatment_content, input_html: {rows: 5}        
+        .columns.medium-6.small-12
+          = f.input :problems, input_html: {rows: 5}
+        .columns.medium-6.small-12
+          = f.input :hospital
+      hr/
+      .row
+        .columns.small-12
+          h5 公開設定
+          p
+            small ※公開してもよろしい項目をチェックしてください。
+        /! columns
+        .columns.medium-6.small-12
+          = f.input :show_name, collection: User::SETTING_OPTIONS, include_blank: false
+        .columns.medium-6.small-12
+          = f.input :show_profession, collection: User::SETTING_OPTIONS, include_blank: false
+        .columns.medium-6.small-12
+          = f.input :show_partner_age, collection: User::SETTING_OPTIONS, include_blank: false
+        .columns.medium-6.small-12
+          = f.input :show_cancer_type, collection: User::SETTING_OPTIONS, include_blank: false
+        .columns.medium-6.small-12
+          = f.input :show_cancer_stage, collection: User::SETTING_OPTIONS, include_blank: false
+        .columns.medium-6.small-12
+          = f.input :show_hospital, collection: User::SETTING_OPTIONS, include_blank: false
+        .columns.medium-6.small-12
+          = f.input :show_treatment, collection: User::SETTING_OPTIONS, include_blank: false
+        .columns.medium-6.small-12
+          = f.input :show_birthday, collection: User::SETTING_OPTIONS, include_blank: false
+        .columns.medium-6.small-12
+          = f.input :show_problems, collection: User::SETTING_OPTIONS, include_blank: false
+        .columns.medium-6.small-12
+          = f.input :show_area, collection: User::SETTING_OPTIONS, include_blank: false
+      /! row
+      hr/
+      = f.input :profile_completed, as: :hidden, input_html: { value: true }
+      .form-actions
+        = f.button :submit, "登録情報を変更する"
+  hr/
+  p
+    small= link_to "アカウントを消す", registration_path(resource_name), data: {confirm: "本当にアカウントを消してよろしいですか？（この操作を取り消すことはできません）"}, method: :delete

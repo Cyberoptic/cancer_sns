@@ -7,7 +7,9 @@ class User < ApplicationRecord
   :omniauthable, :registerable, :confirmable, :secure_validatable, :omniauth_providers => [:facebook]
   
   enum gender: {男性: 0, 女性: 1, その他: 2}
+
   AGE = %w(13歳～19歳 20歳～29歳 30歳～34歳 35歳～39歳 40歳～49歳 50歳～64歳 65歳以上)
+  SETTING_OPTIONS = %w(公開 友達にのみ公開 非公開)
 
   with_options if: :signed_up? do |user|
     user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :area, :prefecture, presence: true
@@ -42,16 +44,16 @@ class User < ApplicationRecord
   # Settings
   include Storext.model
   store_attributes :settings do
-    show_profession Boolean, default: false
-    show_partner_age Boolean, default: false
-    show_cancer_type Boolean, default: true
-    show_cancer_stage Boolean, default: true
-    show_hospital Boolean, default: false
-    show_treatment Boolean, default: true
-    show_birthday Boolean, default: false
-    show_problems Boolean, default: true
-    show_area Boolean, default: true
-    show_name Boolean, default: true
+    show_profession String, default: SETTING_OPTIONS.first
+    show_partner_age String, default: SETTING_OPTIONS.first
+    show_cancer_type String, default: SETTING_OPTIONS.first
+    show_cancer_stage String, default: SETTING_OPTIONS.first
+    show_hospital String, default: SETTING_OPTIONS.first
+    show_treatment String, default: SETTING_OPTIONS.first
+    show_birthday String, default: SETTING_OPTIONS.first
+    show_problems String, default: SETTING_OPTIONS.first
+    show_area String, default: SETTING_OPTIONS.first
+    show_name String, default: SETTING_OPTIONS.first
   end
 
   def self.new_with_session(params, session)
@@ -133,7 +135,7 @@ class User < ApplicationRecord
 
   private
 
-  def signed_up?    
+  def signed_up?   
     created_at.present? && profile_completed?
   end
 
