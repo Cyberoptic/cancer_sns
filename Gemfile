@@ -27,6 +27,8 @@ gem "slim-rails"
 
 # User authentication
 gem 'devise'
+gem 'devise_security_extension'
+gem 'rails_email_validator'
 
 gem 'simple_form'
 gem 'carrierwave'

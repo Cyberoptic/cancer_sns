@@ -37,6 +37,12 @@ ja:
         show_area: エリア
         show_name: 名前
     errors:
+      models:
+        user:
+          attributes:
+            password:
+              password_format: は英数字8文字以上、大文字小文字混在で入力してください。
+              equal_to_current_password: は現在のパスワードと異なるパスワードを入力してください。
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
         restrict_dependent_destroy:
