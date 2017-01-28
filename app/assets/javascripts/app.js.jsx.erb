@@ -11,21 +11,31 @@ var app = {
 
   onEditPostClick: function(){
     $(".edit-post").on("click", function(){
-      var id = $(this).data("id");  
-      var content = $(`#js-post-content-${id}`).text().trim();
+      var visibilityDropdown, id, content, action, name, html;
+      isPost = $(this).data("isPost") === true;
+      id = $(this).data("id");  
+      content = $(`#js-post-content-${id}`).text().trim();
+      action = isPost ? `/posts/${id}` : `/group_posts/${id}`
+      name = isPost ? "post" : "group_post";
+
+      if (isPost) {
+        visibilityDropdown = `<select class="select optional" name="post[visibility]" id="post_visibility">
+                                <option selected="selected" value="公開">公開</option>
+                                <option value="友達にのみ公開">友達にのみ公開</option>
+                                <option value="非公開">非公開</option>
+                              </select>`;
+      } else {
+        visibilityDropdown = "";
+      }
       
-      var html = `<div class="tiny reveal" id="edit-post-modal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
-                    <form novalidate="novalidate" class="simple_form edit_post" id="edit_post_${id}" enctype="multipart/form-data" action="/posts/${id}" accept-charset="UTF-8" method="post">
+      html = `<div class="tiny reveal" id="edit-post-modal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
+                    <form novalidate="novalidate" class="simple_form edit_post" id="edit_post_${id}" enctype="multipart/form-data" action="${action}" accept-charset="UTF-8" method="post" data-remote="true">
                       <input type="hidden" name="_method" value="patch">
                       <input type="hidden" name="authenticity_token" value="${window._token}">
                       
-                      <textarea class="text required" rows="5" autofocus="true" name="post[content]" id="post_content">${content}</textarea>
+                      <textarea class="text required" rows="5" autofocus="true" name="${name}[content]" id="post_content">${content}</textarea>
 
-                      <select class="select optional" name="post[visibility]" id="post_visibility">
-                        <option selected="selected" value="公開">公開</option>
-                        <option value="友達にのみ公開">友達にのみ公開</option>
-                        <option value="非公開">非公開</option>
-                      </select>
+                      ${visibilityDropdown}
 
                       <input type="submit" name="commit" class="button secondary" value="編集する" data-disable-with="編集する">                      
                     </form>

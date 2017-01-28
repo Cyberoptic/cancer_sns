@@ -15,10 +15,10 @@
 			  <%= f.input :content, label: false, placeholder: 'ここに投稿内容を入力', input_html: {rows: 2, class: 'post-text-area'} %>			  
 
 			  <%= f.simple_fields_for :post_images do |p| %>
-			    <%= p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]", class: 'post-images-file-field' } %>
+			    <%= p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]", class: 'post-images-file-field', id: 'post_images_upload' } %>
 			  <% end %>
 
-			  <label for="post_post_images_attributes_0_photo" class="file-upload-label"><i class="fi-paperclip"></i> 画像を選択する</label>
+			  <label for="post_images_upload" class="file-upload-label"><i class="fi-paperclip"></i> 画像を選択する</label>
 
 			  
 

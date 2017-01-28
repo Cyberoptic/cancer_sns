@@ -38,19 +38,9 @@ class PostsController < ApplicationController
       end
     end
   end
-
-  def edit
-    @post = Post.find(params[:id])
-  end
-
+  
   def update
     @post = Post.find(params[:id])
-    # if @post.update!(post_params)
-    # # if @post.valid?
-    #   redirect_to posts_path # configure apt routes
-    # else
-    #   render :new, status: :unprocessable_entity
-    # end
     update_attachments if params[:post_images]
     if @post.update(post_params)
       redirect_to :back, notice: '投稿が更新されました。'

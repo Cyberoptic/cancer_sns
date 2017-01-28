@@ -1,11 +1,11 @@
-.callout
+.callout data-post-id="#{post.id}"
   .post-container
     - if post.user.id == current_user.id
       a.float-right data-toggle="post-options-dropdown-#{post.id}" 
         i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
       .dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" id="post-options-dropdown-#{post.id}" 
         ul.post-options-menu.no-bullet
-          a.edit-post data-id="#{post.id}" 
+          a.edit-post data-id="#{post.id}" data-isPost="#{post.class.name == 'Post'}"
             li
               i.fa.fa-pencil aria-hidden="true" 
               | 編集

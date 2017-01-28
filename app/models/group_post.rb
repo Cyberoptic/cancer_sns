@@ -9,7 +9,7 @@ class GroupPost < ApplicationRecord
   
   accepts_nested_attributes_for :post_images
 
-  validates :content, :user, :group, presence: true
+  validates :content, :user, :group_id, presence: true
 
   default_scope { order(created_at: :desc) }
 

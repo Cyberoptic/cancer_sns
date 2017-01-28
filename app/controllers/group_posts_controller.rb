@@ -5,7 +5,6 @@ class GroupPostsController < ApplicationController
   def index
     @posts = GroupPost.includes(:user, :post_images).paginate(page: params[:page], per_page: 5).decorate
     @post = GroupPost.new
-    # the line below is causing problems
     @post_images = @post.post_images.build
   end
 
@@ -36,36 +35,26 @@ class GroupPostsController < ApplicationController
     end
   end
 
-  def edit
-    @post = Post.find(params[:id])
-  end
-
   def update
-    @post = Post.find(params[:id])
-    # if @post.update!(post_params)
-    # # if @post.valid?
-    #   redirect_to posts_path # configure apt routes
-    # else
-    #   render :new, status: :unprocessable_entity
-    # end
+    @post = GroupPost.find(params[:id])
     update_attachments if params[:post_images]
-    if @post.update(post_params)
-      redirect_to :back, notice: '投稿が更新されました。'
+    
+    if @post.update(group_post_params)
+      @post.reload
     else
       redirect_to :back, alert: @post.errors.full_messages[0]
     end
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path
+    @post = GroupPost.find(params[:id])
+    @post.destroy    
   end
 
   private
 
     def group_post_params
-      params.require(:group_post).permit(:content, post_images_attributes: [:photo]).merge(group_id: params[:group_id])
+      params.require(:group_post).permit(:content, post_images_attributes: [:photo]).merge(group_id: params[:id])
     end
 
     def verify_owner
