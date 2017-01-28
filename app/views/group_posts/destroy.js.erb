@@ -1,0 +1,4 @@
+$("div[data-post-id='<%= @post.id %>']").fadeOut(300, function() { $(this).remove(); });
+
+$(document).foundation(); 
+app.rebind();

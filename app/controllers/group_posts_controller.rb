@@ -19,7 +19,7 @@ class GroupPostsController < ApplicationController
   end
 
   def create
-    @post = current_user.group_posts.new(group_post_params)
+    @post = current_user.group_posts.new(group_post_params.merge(group_id: params[:group_id]))
 
     respond_to do |format|
       if @post.save!
@@ -35,15 +35,10 @@ class GroupPostsController < ApplicationController
     end
   end
 
-  def update
+  def update    
     @post = GroupPost.find(params[:id])
     update_attachments if params[:post_images]
-    
-    if @post.update(group_post_params)
-      @post.reload
-    else
-      redirect_to :back, alert: @post.errors.full_messages[0]
-    end
+    @post.update(group_post_params)    
   end
 
   def destroy
@@ -54,7 +49,7 @@ class GroupPostsController < ApplicationController
   private
 
     def group_post_params
-      params.require(:group_post).permit(:content, post_images_attributes: [:photo]).merge(group_id: params[:id])
+      params.require(:group_post).permit(:content, post_images_attributes: [:photo])
     end
 
     def verify_owner
@@ -65,7 +60,6 @@ class GroupPostsController < ApplicationController
       @post = GroupPost.find(params[:id])
       @post.post_images.each(&:destroy) if @post.post_images.present?
       params[:post_images]['photo'].each do |photo|
-        # binding.pry
         @post_image = @post.post_images.create!(photo: photo, user_id: current_user.id)
       end
     end

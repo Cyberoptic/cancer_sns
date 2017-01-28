@@ -5,11 +5,11 @@
         i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
       .dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" id="post-options-dropdown-#{post.id}" 
         ul.post-options-menu.no-bullet
-          a.edit-post data-id="#{post.id}" data-isPost="#{post.class.name == 'Post'}"
+          a.edit-post data-id="#{post.id}" data-is-post="#{post.class.name == 'Post'}"
             li
               i.fa.fa-pencil aria-hidden="true" 
-              | 編集
-          = link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> 削除</li>".html_safe, post_path(post), method: :delete, data: {confirm: "本当に削除してよろしいですか？"}
+              |  編集
+          = link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> 削除</li>".html_safe, send("#{post.class.name.underscore}_path", post), method: :delete, data: {confirm: "本当に削除してよろしいですか？", remote: true}
     .post-info
       span.user-image
         = image_tag post.user_photo, alt: post.user.name
