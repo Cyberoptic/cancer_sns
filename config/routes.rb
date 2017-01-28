@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'static#home'
 
   resources :posts do
-    resources :comments
+    post :comments, to: "posts/comments#create"
     resources :likes, only: :create
     resources :unlikes, only: :create
     resources :sads, only: :create    
@@ -50,7 +50,11 @@ Rails.application.routes.draw do
   resources :groups do
     resources :group_memberships, only: :create
     resources :group_unmemberships, only: :create
-    resources :group_posts, as: :posts
+    resources :group_posts, as: :posts, only: [:create]
+  end
+
+  resources :group_posts, only: [:edit, :update, :destroy] do
+    post :comments, to: "group_posts/comments#create"
   end
 
 end
