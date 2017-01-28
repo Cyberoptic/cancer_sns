@@ -2,7 +2,7 @@
 	<div class="columns medium-6 medium-offset-3 small-12">
 
 		<div class="callout">
-			<%= simple_form_for @post do |f| %>
+			<%= simple_form_for @post, remote: true do |f| %>
 				<a data-toggle="new-post-dropdown" class="new-post-dropdown-anchor">
 					<i class="fa fa-caret-down dropdown-caret" aria-hidden="true"></i>
 				</a>

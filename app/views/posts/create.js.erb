@@ -1,0 +1,6 @@
+$('#post_content').val('');
+
+$("<%= escape_javascript render partial: 'posts/post', locals: { post: @post.decorate }%>").prependTo('#posts').hide().fadeIn('slow');
+
+$(document).foundation(); 
+app.rebind();

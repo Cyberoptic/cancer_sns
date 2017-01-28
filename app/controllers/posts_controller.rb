@@ -32,9 +32,7 @@ class PostsController < ApplicationController
             @post_image = @post.post_images.create!(photo: a, user_id: current_user.id)
           end
         end
-        format.html { redirect_to root_path }
-      else
-        format.html { render action: 'new' }
+        format.js {}
       end
     end
   end
@@ -48,7 +46,6 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
   end
 
   def more_comments

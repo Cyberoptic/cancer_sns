@@ -28,9 +28,7 @@ class GroupPostsController < ApplicationController
             @post_image = @post.post_images.create!(photo: a, user_id: current_user.id)
           end
         end
-        format.html { redirect_to group_path(params[:group_id]) }
-      else
-        format.html { render action: 'new' }
+        format.js {}
       end
     end
   end
