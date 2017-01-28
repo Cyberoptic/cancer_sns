@@ -36,6 +36,9 @@ ja:
         problems_visibility: 一番の悩み公開設定
         area_visibility: エリア公開設定
         name_visibility: 名前公開設定
+      group:
+          name: グループ名
+          description: 概要
     errors:
       models:
         user:

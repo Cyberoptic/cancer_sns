@@ -23,13 +23,13 @@ class GroupPostsController < ApplicationController
     @post = current_user.group_posts.new(group_post_params)
 
     respond_to do |format|
-      if @post.save
+      if @post.save!
         if params[:post_images]
           params[:post_images]['photo'].each do |a|
             @post_image = @post.post_images.create!(photo: a, user_id: current_user.id)
           end
         end
-        format.html { redirect_to root_path }
+        format.html { redirect_to group_path(params[:group_id]) }
       else
         format.html { render action: 'new' }
       end
@@ -65,7 +65,7 @@ class GroupPostsController < ApplicationController
   private
 
     def group_post_params
-      params.require(:group_post).permit(:content, post_images_attributes: [:photo])
+      params.require(:group_post).permit(:content, post_images_attributes: [:photo]).merge(group_id: params[:group_id])
     end
 
     def verify_owner

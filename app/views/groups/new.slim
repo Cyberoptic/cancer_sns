@@ -1,0 +1,6 @@
+.row
+  .columns.small-12.medium-6.medium-offset-3
+    = simple_form_for @group do |f|
+      = f.input :name
+      = f.input :description
+      = f.submit "グループを作成する", class: 'button primary'
