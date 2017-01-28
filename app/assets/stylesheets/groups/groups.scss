@@ -1,0 +1,27 @@
+.group-membership-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+
+  a {
+    width: 16%;
+
+    .image-wrapper {      
+      height: 100%;
+      position: relative;
+      width: 100%;
+
+      .display-name {
+        bottom: 5%;
+        right: 0;
+        left: 10%;
+        position: absolute;
+        color: white;
+        font-size: 8px;
+        font-weight: 600;
+        text-shadow: 0px 2px 1px #3b3b3b;
+      }
+    }
+  }
+
+}

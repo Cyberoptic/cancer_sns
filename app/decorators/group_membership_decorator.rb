@@ -1,4 +1,5 @@
 class GroupMembershipDecorator < Draper::Decorator
+  decorates_association :user, with: UserDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through
