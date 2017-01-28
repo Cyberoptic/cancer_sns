@@ -1,0 +1,19 @@
+h3
+  | あなたのグループ
+
+.row
+  - @groups.each do |group|
+    .columns.large-3.medium-4.small-12
+      .callout
+        h5.bold
+          - if current_user.joined?(group)
+            = link_to group.name, group_path(group)
+          - else
+            = group.name
+        p.faded
+          = pluralize(group.group_memberships_count, "member")
+        p
+          = group.description
+
+        #join-group
+          = render partial: "groups/join", locals: { group: group }

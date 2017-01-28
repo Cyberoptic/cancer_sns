@@ -1,0 +1,33 @@
+.row
+  .columns.large-3.medium-3.small-12
+    .callout
+      h3
+        = @group.name
+
+      #join-group
+        = render partial: "groups/join", locals: { group: @group }
+      - if current_user.joined?(@group)
+        = link_to "View posts", group_posts_path(@group)
+       
+  .columns.large-6.medium-6.small-12
+    .callout
+      = simple_form_for @post, url: group_posts_path(@group), method: :post do |f|      
+        = f.input :content, label: false, placeholder: 'ここに投稿内容を入力', input_html: {rows: 2, class: 'post-text-area'}
+        = f.simple_fields_for :post_images do |p|
+          = p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]", class: 'post-images-file-field' }
+        label.file-upload-label for="post_post_images_attributes_0_photo" 
+          i.fi-paperclip
+          | 画像を選択する
+        = f.submit "投稿", class: 'button button-right'
+
+    #posts
+      = render partial: 'posts/post', collection: @posts
+    #post-pagination
+      = will_paginate @posts
+    .spinner
+      .sk-cube1.sk-cube
+      .sk-cube2.sk-cube
+      .sk-cube4.sk-cube
+      .sk-cube3.sk-cube
+ 
+  .columns.large-3.medium-3.small-12

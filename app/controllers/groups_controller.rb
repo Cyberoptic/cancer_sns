@@ -1,8 +1,13 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @groups = current_user.groups
+  end
+
   def show
     @group = Group.find(params[:id])
+    @posts = @group.group_posts.includes(:user, :post_images).paginate(page: params[:page], per_page: 5).decorate
     @post = GroupPost.new
     @post_images = @post.post_images.build
   end

@@ -31,6 +31,7 @@ class User < ApplicationRecord
   has_many :happies, dependent: :destroy
   has_many :chat_rooms, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :groups, through: :group_memberships
   has_many :group_memberships, dependent: :destroy
   has_many :group_posts, dependent: :destroy
 
@@ -84,27 +85,27 @@ class User < ApplicationRecord
 ################### Emotions section BEGIN ###########################
 
   def like(post)
-    likes.create({post_id: post.id})
+    likes.create({post_id: post.id, post_type: post.class.name})
   end
 
   def unlike(post)
-    likes.find_by(post_id: post.id).destroy
+    likes.find_by(post_id: post.id, post_type: post.class.name).destroy
   end
 
   def sad(post)
-    sads.create({post_id: post.id})
+    sads.create({post_id: post.id, post_type: post.class.name})
   end
 
   def unsad(post)
-    sads.find_by(post_id: post.id).destroy
+    sads.find_by(post_id: post.id, post_type: post.class.name).destroy
   end
 
   def happy(post)
-    happies.create({post_id: post.id})
+    happies.create({post_id: post.id, post_type: post.class.name})
   end
 
   def unhappy(post)
-    happies.find_by(post_id: post.id).destroy
+    happies.find_by(post_id: post.id, post_type: post.class.name).destroy
   end
 
   def liked?(post)
