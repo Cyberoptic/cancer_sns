@@ -25,5 +25,7 @@ module CancerSns
   	end
 
     config.autoload_paths << Rails.root.join('policies')
+
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end

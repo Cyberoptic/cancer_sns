@@ -25,6 +25,8 @@ gem 'redis', '~> 3.0'
 
 gem "slim-rails"
 
+gem "remotipart"
+
 # User authentication
 gem 'devise'
 gem 'devise_security_extension'
