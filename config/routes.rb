@@ -9,13 +9,13 @@ Rails.application.routes.draw do
 
   resources :posts do
     post :comments, to: "posts/comments#create"
-    resources :likes, only: :create
-    resources :unlikes, only: :create
-    resources :sads, only: :create    
-    resources :unsads, only: :create
-    resources :happies, only: :create
-    resources :unhappies, only: :create    
-    
+    post :likes, to: "posts/likes#create"
+    post :happies, to: "posts/happies#create"
+    post :sads, to: "posts/sads#create"
+    post :unlikes, to: "posts/unlikes#create"
+    post :unsads, to: "posts/unsads#create"
+    post :unhappies, to: "posts/unhappies#create"
+
     member do
       get 'more_comments'
     end
@@ -25,9 +25,6 @@ Rails.application.routes.draw do
     post :visibility_toggles, to: "comments/visibility_toggles#create" 
   end
 
-  resources :likes, only: :destroy 
-  resources :sads, only: :destroy
-  resources :happies, only: :destroy
   resources :chat_rooms, only: [:show, :index]
   resources :chat_room_searches, only: :create
 
@@ -55,6 +52,12 @@ Rails.application.routes.draw do
 
   resources :group_posts, only: [:edit, :update, :destroy] do
     post :comments, to: "group_posts/comments#create"
+    post :likes, to: "group_posts/likes#create"
+    post :happies, to: "group_posts/happies#create"
+    post :sads, to: "group_posts/sads#create"
+    post :unlikes, to: "group_posts/unlikes#create"
+    post :unsads, to: "group_posts/unsads#create"
+    post :unhappies, to: "group_posts/unhappies#create"
   end
 
 end

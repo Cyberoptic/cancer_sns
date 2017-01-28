@@ -1,8 +1,8 @@
-class HappiesController < ApplicationController
+class GroupPosts::HappiesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @post = Post.find(params[:post_id])
+    @post = GroupPost.find(params[:group_post_id])
     current_user.happy(@post)
 
     @post.reload
@@ -11,5 +11,4 @@ class HappiesController < ApplicationController
       format.js {}
     end   
   end
-
 end

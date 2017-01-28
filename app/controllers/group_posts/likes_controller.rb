@@ -1,8 +1,8 @@
-class LikesController < ApplicationController
+class GroupPosts::LikesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @post = Post.find(params[:post_id])
+    @post = GroupPost.find(params[:group_post_id])
     current_user.like(@post)    
 
     @post.reload
@@ -11,5 +11,4 @@ class LikesController < ApplicationController
       format.js {}
     end   
   end
-
 end

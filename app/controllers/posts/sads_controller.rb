@@ -1,4 +1,4 @@
-class SadsController < ApplicationController
+class Posts::SadsController < ApplicationController
   before_action :authenticate_user!
 
   def create
@@ -12,6 +12,4 @@ class SadsController < ApplicationController
       format.js {}
     end   
   end
-
 end
-

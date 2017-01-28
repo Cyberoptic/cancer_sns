@@ -1,8 +1,8 @@
-class UnhappiesController < ApplicationController
+class GroupPosts::UnhappiesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @post = Post.find(params[:post_id])    
+    @post = GroupPost.find(params[:group_post_id])    
     current_user.unhappy(@post)
 
     @post.reload

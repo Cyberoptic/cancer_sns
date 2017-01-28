@@ -1,8 +1,8 @@
-class UnlikesController < ApplicationController
+class GroupPosts::UnlikesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @post = Post.find(params[:post_id])
+    @post = GroupPost.find(params[:group_post_id])
     current_user.unlike(@post)
 
     @post.reload

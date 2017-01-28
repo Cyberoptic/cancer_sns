@@ -5,5 +5,9 @@ class GroupPostDecorator < Draper::Decorator
   def self.collection_decorator_class
     PaginatingDecorator
   end
+
+  def class
+    object.class
+  end
   
 end
