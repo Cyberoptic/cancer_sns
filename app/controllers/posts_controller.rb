@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :verify_owner, only: [:edit, :update, :destroy]
+  before_action :ensure_owner, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -33,6 +33,8 @@ class PostsController < ApplicationController
           end
         end
         format.js {}
+      else
+        format.js { render json: :no_head }
       end
     end
   end
@@ -62,7 +64,7 @@ class PostsController < ApplicationController
       params.require(:post).permit(:content, :visibility, post_images_attributes: [:photo])
     end
 
-    def verify_owner
+    def ensure_owner
       redirect_to posts_path if Post.find(params[:id]).user != current_user
     end
     

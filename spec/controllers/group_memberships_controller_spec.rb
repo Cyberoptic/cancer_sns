@@ -9,19 +9,19 @@ RSpec.describe GroupMembershipsController, type: :controller do
         user = create(:user)
 
         sign_in user
-        post :create, params: {group_id: group.id}
+        post :create, params: {group_id: group.id}, format: :js
 
         expect(response).to_not redirect_to new_user_session_path
       end
     end
     
     context "when user is not signed in" do
-      it "redirects to new_user_session_path" do
+      it "is unauthorized" do
         group = create(:group)
 
-        post :create, params: {group_id: group.id}
+        post :create, params: {group_id: group.id}, format: :js
 
-        expect(response).to redirect_to new_user_session_path
+        expect(response.status).to eq(401)
       end
     end
     
@@ -33,7 +33,7 @@ RSpec.describe GroupMembershipsController, type: :controller do
         sign_in user
 
         expect {
-          post :create, params: { group_id: group.id }
+          post :create, params: { group_id: group.id }, format: :js
         }.to change(GroupMembership, :count).by(1)
         
       end

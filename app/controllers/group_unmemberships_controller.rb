@@ -17,7 +17,7 @@ class GroupUnmembershipsController < ApplicationController
     @group_membership = GroupMembership.find_by(user_id: current_user.id, group_id: @group.id)
     return if @group_membership.present?
     flash[:alert] = "You must be a member to leave the group!"
-    redirect_to group
+    redirect_to @group
   end
 
 end

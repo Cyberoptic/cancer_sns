@@ -68,7 +68,7 @@ RSpec.describe User, type: :model do
 		it "deletes a like" do
 			user = create(:user)
 			post = create(:post, user_id: user.id)
-			create(:like, user_id: user.id, post_id: post.id)
+			create(:like, user_id: user.id, post_id: post.id, post_type: post.class.name)
 
 			expect {
 				user.unlike(post)
@@ -91,7 +91,7 @@ RSpec.describe User, type: :model do
 		it "deletes a like" do
 			user = create(:user)
 			post = create(:post, user_id: user.id)
-			create(:sad, user_id: user.id, post_id: post.id)
+			create(:sad, user_id: user.id, post_id: post.id, post_type: post.class.name)
 
 			expect {
 				user.unsad(post)
@@ -114,7 +114,7 @@ RSpec.describe User, type: :model do
 		it "deletes a like" do
 			user = create(:user)
 			post = create(:post, user_id: user.id)
-			create(:happy, user_id: user.id, post_id: post.id)
+			create(:happy, user_id: user.id, post_id: post.id, post_type: post.class.name)
 
 			expect {
 				user.unhappy(post)

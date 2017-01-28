@@ -16,41 +16,6 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  describe 'GET #new' do
-    it 'renders new page' do
-      user = create(:user)
-
-      sign_in user
-      get :new
-
-      expect(response).to render_template(:new)
-    end
-  end
-
-  describe 'GET #show' do
-    it 'renders show page' do
-      user = create(:user)
-      post = create(:post, user_id: user.id)
-
-      sign_in user      
-      get :show, id: post.id
-
-      expect(response).to render_template(:show)
-    end
-  end
-
-  describe 'GET #edit' do
-    it 'renders edit page' do
-      user = create(:user)
-      post = create(:post, user_id: user.id)
-
-      sign_in user
-      get :edit, id: post.id
-
-      expect(response).to render_template(:edit)
-    end
-  end
-
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates new post' do
@@ -59,7 +24,7 @@ RSpec.describe PostsController, type: :controller do
         sign_in user
 
         expect {
-          post :create, post: attributes_for(:post, user_id: user.id)
+          post :create, post: attributes_for(:post, user_id: user.id), format: :js
         }.to change(Post, :count).by(1)
       end
     end
@@ -70,9 +35,8 @@ RSpec.describe PostsController, type: :controller do
         sign_in user
 
         expect {
-          post :create, post: attributes_for(:post, content: nil, user_id: user.id)
+          post :create, post: attributes_for(:post, content: nil, user_id: user.id), format: :js
         }.to change(Post, :count).by(0)
-        expect(response).to render_template :new
       end
     end
   end
@@ -85,7 +49,7 @@ RSpec.describe PostsController, type: :controller do
         request.env["HTTP_REFERER"] = "http://localhost:3000"
 
         sign_in user
-        put :update, id: post.id, post: attributes_for(:post, content: "hello there")
+        put :update, id: post.id, post: attributes_for(:post, content: "hello there"), format: :js
         post.reload
 
         expect(post.content).to eq("hello there")
@@ -100,7 +64,7 @@ RSpec.describe PostsController, type: :controller do
         sign_in user
 
         expect {
-          put :update,id: post.id, post: attributes_for(:post, content: nil)        
+          put :update,id: post.id, post: attributes_for(:post, content: nil), format: :js        
         }.to_not change(post, :content)
       end
     end
@@ -114,18 +78,8 @@ RSpec.describe PostsController, type: :controller do
       sign_in user
 
       expect {
-        delete :destroy, id: post.id
+        delete :destroy, id: post.id, format: :js
       }.to change(Post,:count).by(-1)
-    end
-    
-    it 'redirects to posts path' do
-      user = create(:user)
-      post = create(:post,user_id: user.id)
-
-      sign_in user
-      delete :destroy, id: post.id
-
-      expect(response).to redirect_to posts_path
     end
   end
 

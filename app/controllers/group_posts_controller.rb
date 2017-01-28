@@ -1,22 +1,6 @@
 class GroupPostsController < ApplicationController
-  before_action :verify_owner, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!
-
-  def index
-    @posts = GroupPost.includes(:user, :post_images).paginate(page: params[:page], per_page: 5).decorate
-    @post = GroupPost.new
-    @post_images = @post.post_images.build
-  end
-
-  def show
-    @post = GroupPost.find(params[:id])
-    @post_images = @post.post_images.all   
-  end
-
-  def new
-    @post = GroupPost.new
-    @post_image = @post.post_images.build
-  end
+  before_action :ensure_owner, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!  
 
   def create
     @post = current_user.group_posts.new(group_post_params.merge(group_id: params[:group_id]))
@@ -29,6 +13,8 @@ class GroupPostsController < ApplicationController
           end
         end
         format.js {}
+      else
+        format.js { render js: :no_head }
       end
     end
   end
@@ -50,7 +36,7 @@ class GroupPostsController < ApplicationController
       params.require(:group_post).permit(:content, post_images_attributes: [:photo])
     end
 
-    def verify_owner
+    def ensure_owner
       redirect_to group_posts_path if GroupPost.find(params[:id]).user != current_user
     end
     
