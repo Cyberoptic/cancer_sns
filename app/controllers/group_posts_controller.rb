@@ -32,20 +32,20 @@ class GroupPostsController < ApplicationController
 
   private
 
-    def group_post_params
-      params.require(:group_post).permit(:content, post_images_attributes: [:photo])
-    end
+  def group_post_params
+    params.require(:group_post).permit(:content, post_images_attributes: [:photo])
+  end
 
-    def ensure_owner
-      redirect_to group_posts_path if GroupPost.find(params[:id]).user != current_user
+  def ensure_owner
+    redirect_to group_posts_path if GroupPost.find(params[:id]).user != current_user
+  end
+  
+  def update_attachments
+    @post = GroupPost.find(params[:id])
+    @post.post_images.each(&:destroy) if @post.post_images.present?
+    params[:post_images]['photo'].each do |photo|
+      @post_image = @post.post_images.create!(photo: photo, user_id: current_user.id)
     end
-    
-    def update_attachments
-      @post = GroupPost.find(params[:id])
-      @post.post_images.each(&:destroy) if @post.post_images.present?
-      params[:post_images]['photo'].each do |photo|
-        @post_image = @post.post_images.create!(photo: photo, user_id: current_user.id)
-      end
-    end
+  end
 
 end
