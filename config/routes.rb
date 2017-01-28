@@ -11,22 +11,32 @@ Rails.application.routes.draw do
     resources :comments
     resources :likes, only: :create
     resources :unlikes, only: :create
-    resources :sads, only: :create
+    resources :sads, only: :create    
     resources :unsads, only: :create
     resources :happies, only: :create
     resources :unhappies, only: :create    
+    
+    member do
+      get 'more_comments'
+    end
+  end
+
+  resources :comments, only: [:update, :destroy] do
+    post :visibility_toggles, to: "comments/visibility_toggles#create" 
   end
 
   resources :likes, only: :destroy 
   resources :sads, only: :destroy
   resources :happies, only: :destroy
   resources :chat_rooms, only: [:show, :index]
+  resources :chat_room_searches, only: :create
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "registrations" }
   
   resources :users, only: [:show, :index]  do  
     get 'pending_requests', to: 'users#pending_requests'
     get 'friends', to: 'users#friends'
+    resources :chat_rooms, only: :create
 
     # Friendships
     scope module: 'friend' do    

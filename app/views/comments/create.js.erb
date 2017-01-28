@@ -1,2 +1,5 @@
 $('#post-<%= @post.id %>-comments').html("<%= escape_javascript render partial: '/shared/comment', collection: @post.comments.includes(:user).decorate %>");
 $('.comment_input').val('');
+
+$(document).foundation(); 
+app.rebind();

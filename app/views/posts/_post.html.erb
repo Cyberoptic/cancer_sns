@@ -2,7 +2,7 @@
 	<div class="post-container">	
 		<% if post.user.id == current_user.id %>
 			<a data-toggle="post-options-dropdown-<%=post.id %>" class="float-right">
-				<i class="fa fa-caret-down" aria-hidden="true"></i>
+				<i class="fa fa-caret-down dropdown-caret" aria-hidden="true"></i>
 			</a>
 			<div class="dropdown-pane bottom right" id="post-options-dropdown-<%=post.id %>" data-dropdown data-hover="true" data-hover-pane="true">
 			  <ul class="post-options-menu no-bullet">
@@ -14,7 +14,7 @@
 
 		<div class="post-info">
 			<span class="user-image">
-				<%= image_tag post.user_photo %>
+				<%= image_tag post.user_photo, alt: post.user.name %>
 			</span>
 
 			<div class="user-info">
@@ -28,14 +28,19 @@
 		</div>
 
 		<div class="post-content">
-			<p id="post-content-<%= post.id %>"><%= post.content %></p>
+			<div id="js-post-content-<%= post.id %>">
+				<%= simple_format post.content %>
+			</div>
 		</div>
 
-		<div class="post-images-container">
-			<% post.post_images.each do |image| %>
-			  <%= image_tag image.photo, class: 'post-image' %>
-			<% end %>
-		</div>
+			<ul class="product-gallery">
+				<% post.post_images.each do |image| %>
+					<li class="product-gallery-list js-gallery-img">
+						<%= image_tag image.photo, class: 'post-image', alt: "#{image.id}" %>
+						<div data-desc="<%= post.content %>"></div>
+					</li>
+				<% end %>
+			</ul>
 	
 		<div class="post-reactions">
 			<span id="post-likes-<%= post.id %>"><%= render partial: "posts/likes", locals: { apost: post } %></span>
@@ -43,8 +48,18 @@
 			<span id="post-sads-<%= post.id %>"><%= render partial: "posts/sads", locals: { apost: post } %> </span> 
 		</div>
 		
-		<div id="post-<%= post.id %>-comments">	
-			<%= render partial: 'shared/comment', collection: post.comments.includes(:user).decorate %>
+		<div id="post-<%= post.id %>-comments">			
+			<% comments = post.comments.paginate(page: params[:page], per_page: 5).includes(:user).decorate %>
+			<% if comments.current_page < comments.total_pages %>
+				<a class="more_comments_button" data-page="<%= comments.next_page %>" id="<%= post.id %>" ><small>さらに読み込む</small></a> 
+			<% end %>
+			<div id="comments">
+				<%= render partial: 'shared/comment', collection: comments  %>
+			</div>
+			<div id="comments-pagination">
+				<%= will_paginate comments %>
+			</div>
+
 		</div>	
 
 		<%= simple_form_for Comment.new, url: post_comments_path(post), method: :post, remote: true do |f| %>
@@ -54,3 +69,7 @@
 
 	</div>
 </div>
+
+
+
+			

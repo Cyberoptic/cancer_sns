@@ -1,22 +1,21 @@
-@import "settings";
-
 .callout-user-info {
 	
 	.name {		    
 		color: $anchor-color;
 		display: block;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 600;
-	}
-
-	.nickname {
-
+    word-break: break-all;
 	}
 
 	.user-tags {
 		display: block;
 		margin-top: 10px;
 	}
+}
+
+.label-user-attributes {
+	margin-right: 5px;
 }
 
 .partner-info {
@@ -27,7 +26,8 @@
 	display: inline-block;
 
 	img {
-		max-height: 100px;
+		height: 80px;
+		width: 80px;
 	}
 }
 

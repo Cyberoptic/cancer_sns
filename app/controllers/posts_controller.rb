@@ -3,9 +3,13 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.includes(:user, :post_images).paginate(page: params[:page], per_page: 5).decorate
+    @posts = Post.includes(:user, :post_images).visible_to_everyone.paginate(page: params[:page], per_page: 5).decorate
     @post = Post.new
     @post_images = @post.post_images.build
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -61,10 +65,18 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def more_comments
+    @post = Post.find(params[:id])
+    @comments = @post.comments.paginate(page: params[:page], per_page: 5).includes(:user).decorate
+    respond_to do |format|
+      format.js 
+    end
+  end
+
   private
 
     def post_params
-      params.require(:post).permit(:content, post_images_attributes: [:photo])
+      params.require(:post).permit(:content, :visibility, post_images_attributes: [:photo])
     end
 
     def verify_owner

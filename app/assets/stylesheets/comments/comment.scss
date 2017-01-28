@@ -12,6 +12,7 @@ $comment-font-size: 13px;
 		margin-right: 10px;
 		img {
 			height: $img-height;
+			width: $img-height;
 		}
 	}
 
@@ -26,13 +27,41 @@ $comment-font-size: 13px;
 
 	.comment-text {
 		font-size: $comment-font-size;
+
+		p {
+			margin-bottom: 0px;
+		}
 	}
 
 	.timestamp {
 		display: block;
+		text-align: right;
 	}
 }
 
 #new_comment {
 	margin-top: 20px;
+}
+
+.more_comments_button{
+	cursor: pointer;
+	margin-top: 10px; 
+}
+
+.comment-hidden {
+	color: $medium-gray;
+
+	.dropdown-caret {
+		color: $medium-gray;
+	}
+
+	.nickname {
+		a {
+			color: $medium-gray;
+		}
+	}
+
+	.timestamp {
+		color: $medium-gray;
+	}
 }

@@ -2,24 +2,28 @@ class ChatRoomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params[:message_search]
-      @friends = current_user.friends.where("first_name LIKE ? OR last_name LIKE ? or nickname LIKE ?", "%#{params[:message_search][:name]}%", "%#{params[:message_search][:name]}%", "%#{params[:message_search][:name]}%")
-    else
-      @friends = current_user.friends
-    end
+    @chat_rooms = current_user.chat_rooms.includes(:member, :user)
     @message_search = MessageSearch.new(params[:message_search])
     @message = Message.new      
     @chat_room = current_user.chat_rooms.includes(messages: :user).most_recent 
   end
 
   def show
-    if params[:message_search]
-      @friends = current_user.friends.where("first_name LIKE ? OR last_name LIKE ? or nickname LIKE ?", "%#{params[:message_search][:name]}%", "%#{params[:message_search][:name]}%", "%#{params[:message_search][:name]}%")
-    else
-      @friends = current_user.friends
-    end
+    @chat_rooms = current_user.chat_rooms.includes(:member, :user)
     @chat_room = ChatRoom.includes(messages: :user).find_by(id: params[:id])
     @message = Message.new    
     @message_search = MessageSearch.new(params[:message_search])
+  end
+
+  def create
+    user = User.find(params[:user_id])
+    @chat_room = ChatRoom.new(member: user, user: current_user)
+
+    if @chat_room.save
+      redirect_to chat_room_path(@chat_room)
+    else
+      flash[:alert] = @chat_room.errors.full_messages[0]
+      redirect_to :back
+    end
   end
 end

@@ -6,8 +6,8 @@ ja:
       send_paranoid_instructions: "ご登録のメールアドレスが保存されている場合、アカウントの確認方法をメールでご連絡します。"
     failure:
       already_authenticated: "既にログインしています。"
-      inactive: "Your account is not activated yet."
-      invalid: "Invalid email or password."
+      inactive: "アカウントはアクティブになっていないため利用できません。"
+      invalid: "メールアドレスまたはパスワードが無効です。"
       locked: "アカウントがロックされています。"
       last_attempt: "あなたのアカウントがロックされる前に、もう1つの試みを持っています。"
       not_found_in_database: "メールアドレスまたはパスワードが無効です。"
@@ -16,9 +16,9 @@ ja:
       unconfirmed: "本登録を行ってください。"
     mailer:
       confirmation_instructions:
-        subject: "アカウントの登録方法"
+        subject: "[Cancer Partners] アカウント確認"
       reset_password_instructions:
-        subject: "パスワードの再設定"
+        subject: "[Cancer Partners] パスワード再設定"
       unlock_instructions:
         subject: "アカウントのロック解除"
     omniauth_callbacks:

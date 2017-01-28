@@ -1,0 +1,70 @@
+var app = {
+  onload: function(){
+    this.onEditPostClick();
+    this.onEditCommentClick();
+  },
+
+  rebind: function(){
+    this.onEditPostClick();
+    this.onEditCommentClick();
+  },
+
+  onEditPostClick: function(){
+    $(".edit-post").on("click", function(){
+      var id = $(this).data("id");  
+      var content = $(`#js-post-content-${id}`).text().trim();
+      
+      var html = `<div class="tiny reveal" id="edit-post-modal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
+                    <form novalidate="novalidate" class="simple_form edit_post" id="edit_post_${id}" enctype="multipart/form-data" action="/posts/${id}" accept-charset="UTF-8" method="post">
+                      <input type="hidden" name="_method" value="patch">
+                      <input type="hidden" name="authenticity_token" value="${window._token}">
+                      
+                      <textarea class="text required" rows="5" autofocus="true" name="post[content]" id="post_content">${content}</textarea>
+
+                      <select class="select optional" name="post[visibility]" id="post_visibility">
+                        <option selected="selected" value="公開">公開</option>
+                        <option value="友達にのみ公開">友達にのみ公開</option>
+                        <option value="非公開">非公開</option>
+                      </select>
+
+                      <input type="submit" name="commit" class="button secondary" value="編集する" data-disable-with="編集する">                      
+                    </form>
+                  </div>`    
+
+      $("#edit-post-modal").remove();
+      $("#modal").html(html);
+
+      $('#edit-post-modal').foundation();
+      $('#edit-post-modal').foundation('open');
+    });
+  },
+
+  onEditCommentClick: function(){
+    $(".edit-comment").on("click", function(){
+      var id = $(this).data("comment-id");  
+      var content = $(`#js-comment-content-${id}`).text().trim();
+      
+      var html = `<div class="tiny reveal" id="edit-comment-modal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
+                    <form novalidate="novalidate" class="simple_form edit_comment" id="edit_comment_${id}" enctype="multipart/form-data" action="/comments/${id}" accept-charset="UTF-8" method="post" data-remote="true">
+                      <input type="hidden" name="_method" value="patch">
+                      <input type="hidden" name="authenticity_token" value="${window._token}">
+                      
+                      <textarea class="text required" rows="5" autofocus="true" name="comment[text]" id="post_text">${content}</textarea>
+
+                      <input type="submit" name="commit" class="button secondary" value="編集する" data-disable-with="編集する">
+                    </form>
+                  </div>`    
+
+      $("#edit-comment-modal").remove();
+      $("#edit-post-modal").remove();
+      $("#modal").html(html);
+
+      $('#edit-comment-modal').foundation();
+      $('#edit-comment-modal').foundation('open');
+    });
+  }
+}
+
+$(function(){
+  app.onload();
+})

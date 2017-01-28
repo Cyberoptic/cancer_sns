@@ -22,20 +22,20 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem "slim-rails"
 
 # User authentication
 gem 'devise'
+gem 'devise_security_extension'
+gem 'rails_email_validator'
 
 gem 'simple_form'
 gem 'carrierwave'
 gem 'omniauth-facebook'
 gem 'figaro'
 gem 'has_friendship'
+gem 'will_paginate'
 gem "letter_opener", :group => :development
 
 gem 'will_paginate'

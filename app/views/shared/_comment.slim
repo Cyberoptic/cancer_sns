@@ -1,0 +1,29 @@
+div class=("comment #{'comment-hidden' if !comment.visible || comment.deleted?}") data-comment-id="#{comment.id}" 
+  - if comment.visible || comment.user == current_user || comment.post_user == current_user
+    .user-image
+      = image_tag comment.user_photo, alt: comment.user.name
+    .comment-content
+      - if CommentOptionsVisibilityPolicy.new(comment: comment, user: current_user).visible?
+        a.float-right data-toggle="comment-options-dropdown-#{comment.id}" 
+          i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
+        .dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" id="comment-options-dropdown-#{comment.id}" 
+          ul.post-options-menu.no-bullet
+            - if comment.user == current_user
+              a class="edit-comment" data-comment-id="#{comment.id}"
+                li
+                  i class='fa fa-pencil' aria-hidden='true'
+                  |  編集
+            = link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> #{comment.visible ? '非表示' : '表示'}</li>".html_safe, comment_visibility_toggles_path(comment), method: :post, remote: true
+            = link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> 削除</li>".html_safe, comment_path(comment), method: :delete, data: {confirm: "本当に削除してよろしいですか？"}, remote: true
+      span.nickname
+        = link_to comment.user.display_name, user_path(comment.user) unless comment.deleted?
+        = "（非表示）" unless comment.visible
+      span.comment-text id="js-comment-content-#{comment.id}"
+        - if comment.deleted?
+          p コメント主によって削除されました
+        - else
+          = simple_format comment.text
+      span.timestamp
+        = time_ago_in_words(comment.created_at)
+        | 前
+ 

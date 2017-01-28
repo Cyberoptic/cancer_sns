@@ -3,19 +3,33 @@
 
 		<div class="callout">
 			<%= simple_form_for @post do |f| %>
-			  <%= f.input :content, label: false, placeholder: '投稿内容', input_html: {rows: 5} %>
+				<a data-toggle="new-post-dropdown" class="new-post-dropdown-anchor">
+					<i class="fa fa-caret-down dropdown-caret" aria-hidden="true"></i>
+				</a>
+				<div class="dropdown-pane bottom right" id="new-post-dropdown" data-dropdown data-hover="true" data-hover-pane="true">
+				  <ul class="new-post-menu no-bullet">
+				  	<%= f.input :visibility, collection: Post.visibilities.keys, include_blank: false, label: false %>
+			    </ul>
+				</div>
+
+			  <%= f.input :content, label: false, placeholder: 'ここに投稿内容を入力', input_html: {rows: 2, class: 'post-text-area'} %>			  
+
 			  <%= f.simple_fields_for :post_images do |p| %>
-			    <%= p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]" } %>
+			    <%= p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]", class: 'post-images-file-field' } %>
 			  <% end %>
 
-			  <%= f.submit "投稿", class: 'button' %>
+			  <label for="post_post_images_attributes_0_photo" class="file-upload-label"><i class="fi-paperclip"></i> 画像を選択する</label>
+
+			  
+
+			  <%= f.submit "投稿", class: 'button button-right' %>
 			<% end %>
 		</div>
 		<div id="posts">
 			<%= render @posts %> <%# Same as render partial: "post", collection: @posts %>
 		</div>
 
-		<%= will_paginate @posts %>
+		<div id="post-pagination"> <%= will_paginate @posts %> </div>
 
 		<div class="spinner">
 			<div class="sk-cube1 sk-cube"></div>

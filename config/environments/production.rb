@@ -11,7 +11,7 @@ Rails.application.configure do
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
-  config.action_mailer.default_url_options = { host: 'cancer-patients-sns.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'cancer-partners.com' }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -52,7 +52,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -96,6 +96,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.web_socket_server_url = "wss://cancer-patients-sns.herokuapp.com/cable" 
-  config.action_cable.allowed_request_origins = ['https://cancer-patients-sns.herokuapp.com', 'http://cancer-patients-sns.herokuapp.com']
+  config.web_socket_server_url = "wss://cancer-partners.com/cable" 
+  config.action_cable.allowed_request_origins = ['https://cancer-partners.com', 'cancer-partners.com']
 end

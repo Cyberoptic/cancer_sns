@@ -4,19 +4,18 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,
-  :omniauthable, :omniauth_providers => [:facebook]
-
-  #uncomment this in production
-  #devise :registerable, :confirmable
+  :omniauthable, :registerable, :confirmable, :secure_validatable, :omniauth_providers => [:facebook]
   
   enum gender: {男性: 0, 女性: 1, その他: 2}
-  AGE = 16..100
+
+  AGE = %w(13歳～19歳 20歳～29歳 30歳～34歳 35歳～39歳 40歳～49歳 50歳～64歳 65歳以上)
+  SETTING_OPTIONS = %w(公開 友達にのみ公開 非公開)
 
   with_options if: :signed_up? do |user|
-    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :cancer_type, :cancer_stage, presence: true    
+    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :area, :prefecture, presence: true
   end
 
-  with_options unless: :show_name? do |user|
+  with_options unless: :display_name_to_everyone? do |user|
     user.validates :nickname, presence: true
   end
 
@@ -35,8 +34,6 @@ class User < ApplicationRecord
   has_many :group_memberships, dependent: :destroy
   has_many :group_posts, dependent: :destroy
 
-  scope :is_public, -> { where(is_public: true) }
-
   # Scopes for filtering
   scope :profession, -> (profession){ where(profession: profession) }
   scope :partner_age, -> (partner_age){ where(partner_age: partner_age) }
@@ -49,16 +46,16 @@ class User < ApplicationRecord
   # Settings
   include Storext.model
   store_attributes :settings do
-    show_profession Boolean, default: false
-    show_partner_age Boolean, default: false
-    show_cancer_type Boolean, default: true
-    show_cancer_stage Boolean, default: true
-    show_hospital Boolean, default: false
-    show_treatment Boolean, default: true
-    show_birthday Boolean, default: false
-    show_problems Boolean, default: true
-    show_area Boolean, default: true
-    show_name Boolean, default: true
+    profession_visibility String, default: SETTING_OPTIONS.first
+    partner_age_visibility String, default: SETTING_OPTIONS.first
+    cancer_type_visibility String, default: SETTING_OPTIONS.first
+    cancer_stage_visibility String, default: SETTING_OPTIONS.first
+    hospital_visibility String, default: SETTING_OPTIONS.first
+    treatment_visibility String, default: SETTING_OPTIONS.first
+    birthday_visibility String, default: SETTING_OPTIONS.first
+    problems_visibility String, default: SETTING_OPTIONS.first
+    area_visibility String, default: SETTING_OPTIONS.first
+    name_visibility String, default: SETTING_OPTIONS.first
   end
 
   def self.new_with_session(params, session)
@@ -148,10 +145,21 @@ end
     ChatRoom.where("member_id = ? or user_id = ?", id, id)    
   end
 
+  def posts_visible_for(current_user:)  
+    return posts if self == current_user 
+    return posts.visible_to_friends + posts.visible_to_everyone if self.friends_with?(current_user) 
+
+    posts.visible_to_everyone
+  end
+
   private
 
-  def signed_up?
-    !created_at.nil?
+  def display_name_to_everyone?
+    name_visibility == SETTING_OPTIONS.first
+  end
+
+  def signed_up?   
+    created_at.present? && profile_completed?
   end
 
 end

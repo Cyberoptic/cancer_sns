@@ -2,7 +2,7 @@
 	<div class="user-list user-list-suggestions">
 		<div class="user-details">
 			<span class="user-image">
-				<%= image_tag user.photo %>	
+				<%= image_tag user.photo, alt: user.name %>	
 			</span>
 
 			<div class="user-info">
@@ -17,15 +17,15 @@
 		</div>
 
 		<div class="user-tags">
-			<% if user.show_area && user.area.present? %>
+			<% if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :area).visible? %>
 				<span class="label secondary"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= user.area %></span>
 			<% end %>
 
-			<% if user.show_cancer_type && user.cancer_type.present? %>
+			<% if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_type).visible? %>
 				<span class="label secondary"><%= user.cancer_type %></span>
 			<% end %>
 
-			<% if user.show_cancer_stage && user.cancer_stage.present? %>
+			<% if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_stage).visible? %>
 				<span class="label secondary"><%= user.cancer_stage %></span>
 			<% end %>
 

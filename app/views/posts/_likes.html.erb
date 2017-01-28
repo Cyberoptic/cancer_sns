@@ -1,7 +1,7 @@
 <% if current_user.liked?(apost) %>
-  <span class="visited"><%= link_to "いいね", post_unlikes_path(apost.id), method: :post, remote: true %></span>
+  <span class="visited"><%= link_to "いいね！を取り消す", post_unlikes_path(apost.id), method: :post, remote: true %></span>
 <% else %>
-  <%= link_to "いいね", post_likes_path(apost), method: :post, remote: true %>
+  <%= link_to "いいね！", post_likes_path(apost), method: :post, remote: true %>
 <% end %> 
 
 

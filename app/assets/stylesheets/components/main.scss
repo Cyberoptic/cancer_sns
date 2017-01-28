@@ -1,13 +1,16 @@
-@import "settings";
-
 body {
 	display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 
+.callout {
+  border: 1px solid #e6e6e6;
+}
+
 .body-content {
 	flex: 1;
+  margin-top: 50px;
 }
 
 .visited {
@@ -22,4 +25,14 @@ body {
 
 .muted {
   color: $medium-gray;
+}
+
+.pagination {
+  display:none
+}
+
+.file-upload-label {
+  color: $secondary-color;
+  font-weight: 600;
+  cursor: pointer;
 }

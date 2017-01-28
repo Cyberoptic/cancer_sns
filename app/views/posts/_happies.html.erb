@@ -1,7 +1,7 @@
 <% if current_user.happied?(apost) %>
-  <span class="visited"><%= link_to "嬉しいね", post_unhappies_path(apost.id), method: :post, remote: true %></span>
+  <span class="visited"><%= link_to "嬉しいね！を取り消す", post_unhappies_path(apost.id), method: :post, remote: true %></span>
 <% else %>
-  <%= link_to "嬉しいね", post_happies_path(apost), method: :post, remote: true %>
+  <%= link_to "嬉しいね!", post_happies_path(apost), method: :post, remote: true %>
 <% end %>
 
 

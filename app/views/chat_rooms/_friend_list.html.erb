@@ -1,3 +1,0 @@
-<% friends.each do |friend| %>        
-  <%= render partial: 'message_list', locals: {friend: friend, chat_room: ChatRoom.room_with(current_user, friend)} %>
-<% end %>

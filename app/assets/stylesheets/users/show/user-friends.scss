@@ -1,14 +1,16 @@
-@import "settings";
-
 .user-friends {
 	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	// justify-content: space-around;
 
 	a {
-		flex: 1;
+		width: 33%;
 
 		.image-wrapper {			
+			height: 100%;
 			position: relative;
-			width: 33%;
+			width: 100%;
 
 			.display-name {
 				bottom: 5%;
@@ -16,7 +18,7 @@
 				left: 10%;
 				position: absolute;
 				color: white;
-				font-size: 12px;
+				font-size: 8px;
 				font-weight: 600;
 				text-shadow: 0px 2px 1px #3b3b3b;
 			}
