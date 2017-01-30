@@ -58,18 +58,6 @@
 	}
 }
 
-.post-text-area {
-	background: white;
-	border: none;
-	border-radius: 0px;
-	box-shadow: none;
-	padding: 10px 0px;
-	&:focus {
-		border: none;
-		box-shadow: none;
-	}
-}
-
 .new-post-dropdown-anchor {
 	right: 15px;
 	top: 15px;
@@ -83,4 +71,9 @@
 	overflow: hidden;
 	position: absolute;
 	z-index: -1;
+}
+
+.post-textarea {
+	margin-top: 20px;
+  margin-bottom: 30px;
 }

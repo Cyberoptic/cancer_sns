@@ -19,7 +19,6 @@ FactoryGirl.define do
     partner_age 40
     cancer_type "脳腫瘍"
     cancer_stage "ステージ１"
-    treatment "治療法"
     profile_completed true
   end
 
