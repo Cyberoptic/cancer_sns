@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :provider, :uid) }
     devise_parameter_sanitizer.permit(:sign_in) { |u| u.permit(:email, :password, :remember_me) }
-    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:nickname, :email, :password, :password_confirmation, :current_password, :photo, :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, :area, :treatment,:treatment_content, :prefecture, :profession, :hospital, :problems, :profile_completed, :is_public, :show_name, :show_profession, :show_partner_age, :show_cancer_type, :show_cancer_stage, :show_hospital, :show_treatment, :show_birthday, :show_problems, :show_area) }
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:nickname, :email, :password, :password_confirmation, :current_password, :photo, :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, :area, :treatment,:treatment_content, :prefecture, :profession, :hospital, :problems, :profile_completed, :is_public, :name_visibility, :profession_visibility, :partner_age_visibility, :cancer_type_visibility, :cancer_stage_visibility, :hospital_visibility, :treatment_visibility, :birthday_visibility, :problems_visibility, :area_visibility, :partner_relationship) }
   end
 
 end

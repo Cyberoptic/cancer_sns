@@ -20,6 +20,8 @@ class User < ApplicationRecord
     user.validates :nickname, presence: true
   end
 
+  validates :introduction, length: { maximum: 1000 }
+
   mount_uploader :photo, PhotoUploader
   
   has_friendship

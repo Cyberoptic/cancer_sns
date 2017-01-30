@@ -14,7 +14,8 @@ ja:
         password_confirmation: パスワード（再確認） 
         current_password: 現在のパスワード
         birthday: 誕生日
-        gender: 性別        
+        gender: 性別     
+        introduction: 自己紹介   
         partner_age: パートナー年齢 
         partner_relationship: パートナーとの関係
         cancer_type: 癌種別

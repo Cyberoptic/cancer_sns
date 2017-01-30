@@ -28,6 +28,9 @@
           = f.input :birthday, as: :string, start_year: Date.today.year - 90, end_year: Date.today.year - 16, input_html: {type: :date, value: resource.birthday} 
         .columns.medium-6.small-12
           = f.input :photo
+      .row
+        .columns.medium-6.small-12
+          = f.input :introduction, input_html: {rows: 5}    
       hr/
       .row
         .columns.small-12
