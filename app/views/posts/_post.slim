@@ -9,10 +9,11 @@
             li
               i.fa.fa-pencil aria-hidden="true" 
               |  編集
-          a.edit-post-visibility data-id="#{post.id}" data-visibility="#{post.visibility}"
-            li
-              i.fa.fa-eye aria-hidden="true" 
-              |  公開設定
+          - if post.is_a? Post
+            a.edit-post-visibility data-id="#{post.id}" data-visibility="#{post.visibility}"
+              li
+                i.fa.fa-eye aria-hidden="true" 
+                |  公開設定
           = link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> 削除</li>".html_safe, send("#{post.class.name.underscore}_path", post), method: :delete, data: {confirm: "本当に削除してよろしいですか？", remote: true}
     .post-info
       span.user-image

@@ -27,7 +27,8 @@
                 = render partial: "groups/join", locals: { group: group }
   .columns.small-12.medium-6
     h3.bold
-      | あなたのグループ
+      | マイグループ 
+      = link_to '新しいグループを作成', new_group_path, class: 'button small float-right'    
 
     .row
       - @my_groups.each do |group|
@@ -42,3 +43,6 @@
               = pluralize(group.group_memberships_count, "member")
             p
               = group.description
+    - if @my_groups.empty?
+      p
+        | 現在所属しているグループはありません。
