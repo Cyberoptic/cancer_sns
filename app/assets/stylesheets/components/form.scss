@@ -18,3 +18,7 @@
 .alert-box .alert {
   @extend .callout;
 }
+
+.relative-form {
+  position: relative;
+}

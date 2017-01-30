@@ -2,8 +2,8 @@ class PostsController < ApplicationController
   before_action :ensure_owner, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
-  def index
-    @posts = Post.includes(:user, :post_images).visible_to_everyone.paginate(page: params[:page], per_page: 5).decorate
+  def index    
+    @posts = TimelinePosts.new(user: current_user).posts.paginate(page: params[:page], per_page: 5).decorate
     @post = Post.new
     @post_images = @post.post_images.build
     respond_to do |format|

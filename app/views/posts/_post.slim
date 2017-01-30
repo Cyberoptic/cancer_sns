@@ -48,7 +48,8 @@
         = render partial: 'shared/comment', collection: comments
       #comments-pagination
         = will_paginate comments
-    = simple_form_for Comment.new, url: send("#{post.class.name.underscore}_comments_path", post.id), method: :post, remote: true do |f|
+    = simple_form_for Comment.new, url: send("#{post.class.name.underscore}_comments_path", post.id), method: :post, remote: true, html: {class: 'relative-form'} do |f|
       = f.input :text, label: false, placeholder: "コメント", input_html: {class: 'comment_input'}
-      = f.submit '投稿', class: 'button small'
+      .button-container
+        = f.submit '投稿', class: 'button small button-right-comment-form'
  

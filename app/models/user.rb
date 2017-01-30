@@ -161,11 +161,11 @@ end
     ChatRoom.where("member_id = ? or user_id = ?", id, id)    
   end
 
-  def posts_visible_for(current_user:)  
-    return posts if self == current_user 
-    return posts.visible_to_friends + posts.visible_to_everyone if self.friends_with?(current_user) 
+  def posts_visible_for(current_user:)     
+    return posts.includes(:post_images) if self == current_user 
+    return posts.includes(:post_images).visible_to_friends + posts.includes(:post_images).visible_to_everyone if self.friends_with?(current_user) 
 
-    posts.visible_to_everyone
+    posts.includes(:post_images).visible_to_everyone
   end
 
   def treatment_options
