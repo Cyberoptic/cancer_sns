@@ -5,6 +5,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,
   :omniauthable, :registerable, :confirmable, :secure_validatable, :omniauth_providers => [:facebook]
+  姓
+・名
+・性別
+・エリア
+・誕生日
+・パートナーとの関係
+・パートナーの年齢
+・癌種別
   
   enum gender: {男性: 0, 女性: 1, その他: 2}
 
@@ -12,7 +20,7 @@ class User < ApplicationRecord
   SETTING_OPTIONS = %w(公開 友達にのみ公開 非公開)
 
   with_options if: :signed_up? do |user|
-    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :area, :prefecture, presence: true
+    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :cancer_type, :area, :prefecture, presence: true
   end
 
   with_options unless: :display_name_to_everyone? do |user|
