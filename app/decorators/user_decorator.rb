@@ -9,6 +9,10 @@ class UserDecorator < Draper::Decorator
   	"#{last_name}#{first_name}"
   end
 
+  def treatment
+    object.treatments.map{|treatment| treatment.name}.join(", ")
+  end
+
   def introduction
     object.introduction.blank? ? "このユーザーは紹介文をまだ書いていません。" : object.introduction
   end

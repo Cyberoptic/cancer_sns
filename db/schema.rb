@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130140050) do
+ActiveRecord::Schema.define(version: 20170130164457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,23 @@ ActiveRecord::Schema.define(version: 20170130140050) do
     t.index ["user_id"], name: "index_sads_on_user_id", using: :btree
   end
 
+  create_table "treatments", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "default",    default: false, null: false
+  end
+
+  create_table "user_treatments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "treatment_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["treatment_id"], name: "index_user_treatments_on_treatment_id", using: :btree
+    t.index ["user_id", "treatment_id"], name: "index_user_treatments_on_user_id_and_treatment_id", using: :btree
+    t.index ["user_id"], name: "index_user_treatments_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "encrypted_password",     default: "",    null: false
@@ -166,7 +183,6 @@ ActiveRecord::Schema.define(version: 20170130140050) do
     t.string   "cancer_type"
     t.string   "cancer_stage"
     t.string   "hospital"
-    t.string   "treatment"
     t.text     "problems"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false

@@ -49,29 +49,30 @@
       ul.partner-info.no-bullet
         - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :partner_age).visible?
           li
-            strong 年齢
+            strong 年齢 
             = @user.partner_age
         - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_stage).visible?
           li
-            strong 癌ステージ
+            strong 癌ステージ 
             = @user.cancer_stage
         - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_type).visible?
           li
-            strong 癌種目
+            strong 癌種目 
             = @user.cancer_type
         - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :hospital).visible?
           li
-            strong 病院名
+            strong 病院名 
             = @user.hospital
         - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :treatment).visible?
           li
-            strong 治療内容
+            strong 治療内容 
             = @user.treatment
     /! callout
   /! columns
   .columns.medium-6.small-12
     - if @user.posts.any?
-      = render partial: 'posts/post', collection: @user.posts_visible_for(current_user: current_user).includes(:post_images).decorate
+      - @user.posts_visible_for(current_user: current_user).each do |post|
+        = render partial: 'posts/post', locals: {post: post.decorate}
     - else
       .callout
         h6.text-center このユーザーはまだ投稿していません。

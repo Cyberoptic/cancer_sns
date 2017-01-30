@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,
-  :omniauthable, :registerable, :confirmable, :secure_validatable, :omniauth_providers => [:facebook]
+  :omniauthable, :registerable, :confirmable, :secure_validatable, :omniauth_providers => [:facebook]  
   
   enum gender: {男性: 0, 女性: 1, その他: 2}
 
@@ -37,6 +37,11 @@ class User < ApplicationRecord
   has_many :groups, through: :group_memberships
   has_many :group_memberships, dependent: :destroy
   has_many :group_posts, dependent: :destroy
+  has_many :user_treatments, dependent: :destroy
+  has_many :treatments, through: :user_treatments
+
+  accepts_nested_attributes_for :user_treatments
+  accepts_nested_attributes_for :treatments
 
   # Scopes for filtering
   scope :profession, -> (profession){ where(profession: profession) }
@@ -44,7 +49,11 @@ class User < ApplicationRecord
   scope :cancer_type, -> (cancer_type){ where(cancer_type: cancer_type) }
   scope :cancer_stage, -> (cancer_stage){ where(cancer_stage: cancer_stage) }
   scope :hospital, -> (hospital){ where(hospital: hospital) }
-  scope :treatment, -> (treatment){ where(treatment: treatment) }
+  scope :treatment, -> (treatment){ 
+    self.joins(:treatments)
+        .where("treatments.name LIKE ?", "#{treatment[0..2]}%") 
+        .uniq
+  }
   scope :birthday, -> (birthday){ where(birthday: birthday) }
 
   # Settings
@@ -155,6 +164,10 @@ end
     return posts.visible_to_friends + posts.visible_to_everyone if self.friends_with?(current_user) 
 
     posts.visible_to_everyone
+  end
+
+  def treatment_options
+    Treatment.default + treatments.where(default: false)
   end
 
   private
