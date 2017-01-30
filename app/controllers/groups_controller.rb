@@ -2,7 +2,14 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @groups = current_user.groups
+    @my_groups = current_user.groups
+
+    if params[:group_search] && params[:group_search][:keyword]   
+    
+      @groups = Group.search(params[:group_search][:keyword])
+    end
+
+    @group_search = GroupSearch.new(params[:group_search])
   end
 
   def show

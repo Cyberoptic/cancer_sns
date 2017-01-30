@@ -10,6 +10,16 @@ GIT
       request_store (~> 1.0)
 
 GIT
+  remote: git://github.com/elasticsearch/elasticsearch-rails.git
+  revision: 1dc6b8e1b84828d75308abdd62cc1d55ded1453a
+  specs:
+    elasticsearch-model (0.1.9)
+      activesupport (> 3)
+      elasticsearch (~> 1.1)
+      hashie
+    elasticsearch-rails (0.1.9)
+
+GIT
   remote: git://github.com/rails/activemodel-serializers-xml.git
   revision: 570ee7ed33d60e44ca1f3ccbec3d1fbf61d52cbf
   specs:
@@ -107,6 +117,14 @@ GEM
       devise (>= 2.0.0)
       rails (>= 3.1.1)
     diff-lcs (1.2.5)
+    elasticsearch (1.1.2)
+      elasticsearch-api (= 1.1.2)
+      elasticsearch-transport (= 1.1.2)
+    elasticsearch-api (1.1.2)
+      multi_json
+    elasticsearch-transport (1.1.2)
+      faraday
+      multi_json
     equalizer (0.0.11)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -337,6 +355,8 @@ DEPENDENCIES
   devise
   devise_security_extension
   draper!
+  elasticsearch-model!
+  elasticsearch-rails!
   factory_girl_rails (~> 4.0)
   figaro
   foundation-rails
