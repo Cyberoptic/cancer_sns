@@ -27,14 +27,16 @@
         .columns.medium-6.small-12
           = f.input :birthday, as: :string, start_year: Date.today.year - 90, end_year: Date.today.year - 16, input_html: {type: :date, value: resource.birthday} 
         .columns.medium-6.small-12
-          = f.input :photo
+          = f.input :introduction, input_html: {rows: 5}    
       .row
         .columns.medium-6.small-12
-          = f.input :introduction, input_html: {rows: 5}    
+          p.bold 現在のプロフィール写真
+          = image_tag current_user.photo, class: 'img-responsive'
+          = f.input :photo, label: '新しいプロフィール写真を選択'        
       hr/
       .row
         .columns.small-12
-          h5 パートナー（患者）について
+          h5.bold パートナー（患者）について
         .columns.large-3.medium-6.small-12
           = f.input :partner_age, collection: User::AGE, include_blank: "選択する", required: true
         .columns.large-3.medium-6.small-12
@@ -45,12 +47,15 @@
           = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する"
         .columns.large-3.medium-6.small-12
           = f.input :treatment, collection: Cancer::TREATMENTS, include_blank: "選択する"
+        .columns.large-3.medium-6.small-12
+          = f.input :hospital
+        .columns.large-6
+      .row
         .columns.medium-6.small-12
           = f.input :treatment_content, input_html: {rows: 5}        
         .columns.medium-6.small-12
           = f.input :problems, input_html: {rows: 5}
-        .columns.medium-6.small-12
-          = f.input :hospital
+        
       hr/
       .row
         .columns.small-12

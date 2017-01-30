@@ -21,8 +21,12 @@
         span.label.secondary.label-user-attributes
           = @user.gender_icon
       hr/
+      p
+        = @user.introduction
+      hr/
       - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :problems).visible?
-        p= @user.problems
+        p
+          = @user.problems
         hr/
       - if @user != current_user
         .row

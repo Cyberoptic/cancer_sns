@@ -13,7 +13,7 @@ class User < ApplicationRecord
   PARTNER_RELATIONSHIPS = %w(婚姻 恋人 その他)
 
   with_options if: :signed_up? do |user|
-    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :partner_relationship, :cancer_type, :area, presence: true
+    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :partner_relationship, :cancer_type, :area, presence: true, unless: Proc.new{|u| u.encrypted_password_changed? }
   end
 
   with_options unless: :display_name_to_everyone? do |user|
