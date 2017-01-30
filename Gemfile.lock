@@ -82,6 +82,9 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.11)
+    bonsai-elasticsearch-rails (0.1.0)
+      elasticsearch-model (~> 0)
+      elasticsearch-rails (~> 0)
     builder (3.2.2)
     bullet (5.4.3)
       activesupport (>= 3.0.0)
@@ -490,6 +493,7 @@ PLATFORMS
 
 DEPENDENCIES
   activemodel-serializers-xml!
+  bonsai-elasticsearch-rails
   bullet
   byebug
   carrierwave
