@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   AGE = %w(13歳～19歳 20歳～29歳 30歳～34歳 35歳～39歳 40歳～49歳 50歳～64歳 65歳以上)
   SETTING_OPTIONS = %w(公開 友達にのみ公開 非公開)
+  PARTNER_RELATIONSHIPS = %w(婚姻 恋人 その他)
 
   with_options if: :signed_up? do |user|
     user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :partner_relationship, :cancer_type, :area, presence: true

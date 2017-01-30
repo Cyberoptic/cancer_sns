@@ -35,7 +35,7 @@
         .columns.large-3.medium-6.small-12
           = f.input :partner_age, collection: User::AGE, include_blank: "選択する", required: true
         .columns.large-3.medium-6.small-12
-          = f.input :partner_relationship, required: true
+          = f.input :partner_relationship, collection: User::PARTNER_RELATIONSHIPS, include_blank: "選択する", required: true
         .columns.large-3.medium-6.small-12
           = f.input :cancer_type, collection: Cancer::TYPES, include_blank: "選択する", required: true
         .columns.large-3.medium-6.small-12
