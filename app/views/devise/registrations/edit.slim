@@ -2,6 +2,17 @@
   h3.bold プロフィール登録編集  
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, data: 'abide'}) do |f|
     = f.error_notification
+    - if resource.errors.any?
+      #error_explanation
+        .alert.alert-danger.alert-dismissable
+          button.close aria-hidden="true" data-dismiss="alert" type="button"  ×
+          p
+            strong
+              | This form contains #{pluralize(resource.errors.count, 'error')}.
+          ul
+            - resource.errors.full_messages.each do |msg|
+              li= msg
+     
     .form-inputs
       .row
         .columns.large-3.small-12
@@ -42,7 +53,16 @@
           = image_tag current_user.photo, class: 'img-responsive'
           = f.input :photo, label: '新しいプロフィール写真を選択'       
         .columns.medium-6.small-12
-          = f.input :introduction, input_html: {rows: 5}    
+          = f.input :introduction, input_html: {rows: 5}
+          label
+            | 子ども年齢
+            .row
+              #js-children-form-container
+                = f.fields_for :children do |ff|
+                  .columns.medium-3.small-12.end
+                    = ff.input :age, placeholder: "年齢", label: false, required: false        
+          button#js-add-children.button.primary
+            | 子どもを追加する
       hr/
       .row
         .columns.small-12
@@ -72,9 +92,16 @@
               label
                 = check_box_tag "user[treatment_ids][]", treatment.id, resource.user_treatments.find_by(treatment_id: treatment.id)
                 = treatment.name
-            = f.fields_for :treatments do |ff|
-              - if ff.index == 0
-                = ff.input :name, label: "自由記述", input_html: {value: ''}
+          = f.input :other_treatment, label: '自由記述'
+            / .input.string.required.user_user_treatments_treatment_name
+            /   label.string.required for="user_user_treatments_attributes_0_treatment_attributes_name" 
+            /     | 自由記述
+            / input#user_user_treatments_attributes_0_treatment_attributes_name.string name="user[user_treatments_attributes][0][treatment_attributes][name]" type="text" value=""
+ 
+            / = f.fields_for :user_treatments do |ff|
+            /   - if ff.index == 0
+            /     = ff.fields_for :treatment do |treatment|
+            /       = treatment.input :name, label: '自由記述'
         .columns.large-3.medium-6.small-12
           = f.input :treatment_visibility, collection: User::SETTING_OPTIONS, include_blank: false
         .columns.large-3.medium-6.small-12
@@ -90,7 +117,6 @@
         .columns.medium-6.small-12
           = f.input :problems_visibility, collection: User::SETTING_OPTIONS, include_blank: false
                             
-      /! row
       hr/
       = f.input :profile_completed, as: :hidden, input_html: { value: true }
       .form-actions
@@ -98,3 +124,12 @@
   hr/
   p
     small= link_to "アカウントを消す", registration_path(resource_name), data: {confirm: "本当にアカウントを消してよろしいですか？（この操作を取り消すことはできません）"}, method: :delete
+javascript:
+  $('#js-add-children').on('click', function(e){
+    e.preventDefault();
+
+    var html = '<div class="columns medium-3 small-12 end"><div class="input integer required user_children_age"><input class="numeric integer" placeholder="年齢" type="number" step="1" name="user[children_attributes][1][age]"></div></div>';
+
+    $('#js-children-form-container').append(html);
+  });
+  

@@ -10,7 +10,9 @@ class UserDecorator < Draper::Decorator
   end
 
   def treatment
-    object.treatments.map{|treatment| treatment.name}.join(", ")
+    treatment = ""
+    treatment += "#{object.other_treatment}, " if object.other_treatment
+    treatment += object.treatments.map{|treatment| treatment.name}.join(", ")
   end
 
   def introduction

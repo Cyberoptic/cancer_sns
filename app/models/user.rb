@@ -39,9 +39,11 @@ class User < ApplicationRecord
   has_many :group_posts, dependent: :destroy
   has_many :user_treatments, dependent: :destroy
   has_many :treatments, through: :user_treatments
+  has_many :children, dependent: :destroy 
 
-  accepts_nested_attributes_for :user_treatments
-  accepts_nested_attributes_for :treatments
+  accepts_nested_attributes_for :user_treatments, reject_if: proc { |attributes| attributes['name'].blank? }
+  accepts_nested_attributes_for :treatments, reject_if: proc { |attributes| attributes['name'].blank? }
+  accepts_nested_attributes_for :children, reject_if: proc { |attributes| attributes['age'].blank? }
 
   # Scopes for filtering
   scope :profession, -> (profession){ where(profession: profession) }
