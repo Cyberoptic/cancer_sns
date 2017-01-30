@@ -278,6 +278,7 @@ GEM
       rails (>= 4.0.0, < 5.1.0)
       stateful_enum
     hashie (3.4.6)
+    high_voltage (3.0.0)
     i18n (0.7.0)
     ice_nine (0.11.2)
     inflecto (0.0.2)
@@ -503,6 +504,7 @@ DEPENDENCIES
   fog
   foundation-rails
   has_friendship
+  high_voltage (~> 3.0.0)
   jbuilder (~> 2.5)
   jquery-rails
   letter_opener
