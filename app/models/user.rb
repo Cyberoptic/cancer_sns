@@ -52,6 +52,7 @@ class User < ApplicationRecord
   store_attributes :settings do
     profession_visibility String, default: SETTING_OPTIONS.first
     partner_age_visibility String, default: SETTING_OPTIONS.first
+    partner_relationship_visibility String, default: SETTING_OPTIONS.first
     cancer_type_visibility String, default: SETTING_OPTIONS.first
     cancer_stage_visibility String, default: SETTING_OPTIONS.first
     hospital_visibility String, default: SETTING_OPTIONS.first

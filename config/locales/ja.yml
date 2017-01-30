@@ -30,6 +30,7 @@ ja:
         photo: プロフィール画像
         profession_visibility: 職業公開設定
         partner_age_visibility: パートナー年齢公開設定
+        partner_relationship_visibility: パートナー関係公開設定
         cancer_type_visibility: 癌種別公開設定
         cancer_stage_visibility: 癌ステージ公開設定
         hospital_visibility: 病院公開設定
