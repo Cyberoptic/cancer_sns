@@ -16,6 +16,7 @@ ja:
         birthday: 誕生日
         gender: 性別        
         partner_age: パートナー年齢 
+        partner_relationship: パートナーとの関係
         cancer_type: 癌種別
         cancer_stage: 癌ステージ
         treatment: 治療内容
