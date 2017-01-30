@@ -5,14 +5,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,
   :omniauthable, :registerable, :confirmable, :secure_validatable, :omniauth_providers => [:facebook]
-  姓
-・名
-・性別
-・エリア
-・誕生日
-・パートナーとの関係
-・パートナーの年齢
-・癌種別
   
   enum gender: {男性: 0, 女性: 1, その他: 2}
 
