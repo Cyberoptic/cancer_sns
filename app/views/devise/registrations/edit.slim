@@ -76,7 +76,19 @@
         .columns.large-3.medium-6.small-12
           = f.input :partner_relationship_visibility, collection: User::SETTING_OPTIONS, include_blank: false
         .columns.large-3.medium-6.small-12
-          = f.input :cancer_type, collection: Cancer::TYPES, include_blank: "選択する", required: true
+          .input.select.required.user_cancer_type
+            label.select.required for="user_cancer_type" 
+              abbr title="required"  *
+              | 癌種別
+            select#user_cancer_type.select.required aria-required="true" name="user[cancer_type]" required="required" 
+              option value=""  選択する
+              - Cancer::TYPES.each do |key, value|
+                optgroup label="#{key}"
+                  - value.each do |type|
+                    option value="#{type}"
+                      = type
+ 
+          / = f.input :cancer_type, collection: Cancer::TYPES, include_blank: "選択する", required: true
         .columns.large-3.medium-6.small-12
           = f.input :cancer_type_visibility, collection: User::SETTING_OPTIONS, include_blank: false
         .columns.large-3.medium-6.small-12
