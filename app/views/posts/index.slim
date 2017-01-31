@@ -18,7 +18,7 @@
           li.bold
             = link_to group.name, group_path(group)
           p
-            = group.description
+            = group.description.truncate(27)
   .columns.large-6.small-12
     .callout
       = simple_form_for @post, remote: true do |f|
@@ -32,7 +32,7 @@
           = p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]", class: 'post-images-file-field', id: 'post_images_upload' }
         label.file-upload-label for="post_images_upload" 
           i.fi-paperclip
-          | 画像を選択する
+          |  画像を選択する
         = f.submit "投稿", class: 'button button-right'
     #posts
       = render @posts
@@ -55,7 +55,7 @@
         | 検索
       = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
         .input-group
-          = f.input :name_search, label: false, input_html: {class: 'input-group-field'}
+          = f.input :name_search, label: false, placeholder: '名前', input_html: {class: 'input-group-field'}
           .input-group-button
             = button_tag class: 'button'            
               i.fi-magnifying-glass
