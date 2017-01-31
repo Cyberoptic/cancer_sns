@@ -57,6 +57,9 @@ class User < ApplicationRecord
         .uniq
   }
   scope :birthday, -> (birthday){ where(birthday: birthday) }
+  scope :name_search, -> (name_search){
+    where("LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ?", "#{name_search}%", "#{name_search}%", "#{name_search}%", "#{name_search}%")
+  }
 
   # Settings
   include Storext.model
