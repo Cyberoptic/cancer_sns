@@ -18,12 +18,19 @@
           th
             | パートナー年齢
           td
-            = f.input :partner_age, collection: User::AGE.map{|age| "#{age}歳"}, label: false, include_blank: 'パートナー年齢'
+            = f.input :partner_age, collection: User::AGE.map{|age| age}, label: false, include_blank: 'パートナー年齢'
         tr
           th
             | パートナー癌種目
           td
-            = f.input :cancer_type, collection: Cancer::TYPES, include_blank: "癌種別", label: false
+            .input.select.required.user_cancer_type              
+              select#user_cancer_type.select.required aria-required="true" name="user_search[cancer_type]" required="required" 
+                option value=""  選択する
+                - Cancer::TYPES.each do |key, value|
+                  optgroup label="#{key}"
+                    - value.each do |type|
+                      option value="#{type}"
+                        = type
         tr
           th
             | パートナー癌ステージ
@@ -39,11 +46,6 @@
             | 治療内容
           td
             = f.input :treatment, label: false, placeholder: '治療内容'
-        tr
-          th
-            | 誕生日年
-          td
-            = f.input :birthday, as: :string, start_year: Date.today.year - 90, end_year: Date.today.year - 16, input_html: {type: :date}, label: false
 
       = f.button :button, class: 'button button-primary'
         i.fa.fa-search aria-hidden="true" 
