@@ -12,48 +12,66 @@
           ul
             - resource.errors.full_messages.each do |msg|
               li= msg
-     
-    .form-inputs
-      .row
-        .columns.large-3.small-12
+    table.unstriped
+      tr
+        th
+          | ニックネーム
+        td
           = f.input :nickname, autofocus: true
-        .columns.large-3.small-12
+      tr
+        th
+          | メールアドレス
+        td
           = f.input :email, required: true
-        .columns.large-3.small-12
-          = f.input :birthday, as: :string, start_year: Date.today.year - 90, end_year: Date.today.year - 16, input_html: {type: :date, value: resource.birthday} 
-        .columns.large-3.small-12
+      tr
+        th
+          | 誕生日
+        td
+          = f.input :birthday, as: :string, start_year: Date.today.year - 90, end_year: Date.today.year - 16, input_html: {type: :date, value: resource.birthday}
           = f.input :birthday_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-      .row.small-up-1.medium-up-2.large-up-5
-        .column
+      tr
+        th
+          | 名前
+        td
           = f.input :last_name, required: true
-        .column
           = f.input :last_name_katakana, required: true
-        .column
           = f.input :first_name, required: true
-        .column
           = f.input :first_name_katakana, required: true
-        .column
           = f.input :name_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-      .row
-        .column.medium-2.small-12
+      tr
+        th
+          | 性別
+        td
           = f.input :gender, collection: User.genders.keys, include_blank: "選択する", required: true
-        .column.medium-2.small-12
+      tr
+        th
+          | エリア
+        td
           = f.input :area, collection: Area::LIST, include_blank: "選択する", required: true
-        .column.medium-2.small-12
           = f.input :area_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-        .column.medium-2.small-12
           = f.input :prefecture, collection: Area::PREFECTURES, include_blank: "選択する"
-        .column.medium-2.small-12
+      tr
+        th
+          | 職業
+        td
           = f.input :profession  
-        .column.medium-2.small-12
           = f.input :profession_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-      .row      
-        .columns.medium-6.small-12
+      tr
+        th
+          | プロフィール画像
+        td
           p.bold 現在のプロフィール写真
           = image_tag current_user.photo, class: 'img-responsive'
-          = f.input :photo, label: '新しいプロフィール写真を選択'       
-        .columns.medium-6.small-12
+          = f.input :photo, label: '新しいプロフィール写真を選択'    
+      tr
+        th
+          | 自己紹介
+        td
           = f.input :introduction, input_html: {rows: 5}
+      tr
+        th
+          | 子ども
+        td          
           label
             | 子ども年齢
             .row
@@ -61,21 +79,24 @@
                 = f.fields_for :children do |ff|
                   .columns.medium-3.small-12.end
                     = ff.input :age, placeholder: "年齢", label: false, required: false        
-          button#js-add-children.button.primary
+          button#js-add-children.button.warning
             | 子どもを追加する
-      hr/
-      .row
-        .columns.small-12
-          h5.bold パートナー（患者）について
-        .columns.large-3.medium-6.small-12
+      tr
+        th
+          | 年齢
+        td
           = f.input :partner_age, collection: User::AGE, include_blank: "選択する", required: true
-        .columns.large-3.medium-6.small-12
           = f.input :partner_age_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-        .columns.large-3.medium-6.small-12
+      tr
+        th
+          | 関係
+        td
           = f.input :partner_relationship, collection: User::PARTNER_RELATIONSHIPS, include_blank: "選択する", required: true
-        .columns.large-3.medium-6.small-12
           = f.input :partner_relationship_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-        .columns.large-3.medium-6.small-12
+      tr
+        th
+          | 癌種別
+        td
           .input.select.required.user_cancer_type
             label.select.required for="user_cancer_type" 
               abbr title="required"  *
@@ -87,15 +108,17 @@
                   - value.each do |type|
                     option value="#{type}"
                       = type
- 
-          / = f.input :cancer_type, collection: Cancer::TYPES, include_blank: "選択する", required: true
-        .columns.large-3.medium-6.small-12
           = f.input :cancer_type_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-        .columns.large-3.medium-6.small-12
+      tr
+        th
+          | 癌ステージ
+        td
           = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する"
-        .columns.large-3.medium-6.small-12
           = f.input :cancer_stage_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-        .columns.large-3.medium-6.small-12
+      tr
+        th
+          | 治療内容
+        td
           .input.text.optional.user_treatments
             label.text.optional for="user_problems"
               | 治療内容
@@ -105,34 +128,29 @@
                 = check_box_tag "user[treatment_ids][]", treatment.id, resource.user_treatments.find_by(treatment_id: treatment.id)
                 = treatment.name
           = f.input :other_treatment, label: '自由記述'
-            / .input.string.required.user_user_treatments_treatment_name
-            /   label.string.required for="user_user_treatments_attributes_0_treatment_attributes_name" 
-            /     | 自由記述
-            / input#user_user_treatments_attributes_0_treatment_attributes_name.string name="user[user_treatments_attributes][0][treatment_attributes][name]" type="text" value=""
- 
-            / = f.fields_for :user_treatments do |ff|
-            /   - if ff.index == 0
-            /     = ff.fields_for :treatment do |treatment|
-            /       = treatment.input :name, label: '自由記述'
-        .columns.large-3.medium-6.small-12
           = f.input :treatment_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-        .columns.large-3.medium-6.small-12
+      tr
+        th
+          | メイン病院
+        td
           = f.input :hospital
-        .columns.large-3.medium-6.small-12
           = f.input :hospital_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-        .columns.large-6
-      .row
-        .columns.medium-6.small-12
+      tr
+        th
+          | 治療内容
+        td
           = f.input :treatment_content, input_html: {rows: 5}        
-        .columns.medium-6.small-12
+      tr
+        th
+          | 一番の悩み
+        td
           = f.input :problems, input_html: {rows: 5}
-        .columns.medium-6.small-12
           = f.input :problems_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-                            
+
       hr/
       = f.input :profile_completed, as: :hidden, input_html: { value: true }
-      .form-actions
-        = f.button :submit, "登録情報を変更する"
+    .form-actions
+      = f.button :submit, "登録情報を変更する"
   hr/
   p
     small= link_to "アカウントを消す", registration_path(resource_name), data: {confirm: "本当にアカウントを消してよろしいですか？（この操作を取り消すことはできません）"}, method: :delete
