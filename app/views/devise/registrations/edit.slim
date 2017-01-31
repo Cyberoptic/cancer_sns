@@ -81,19 +81,19 @@
                     = ff.input :age, placeholder: "年齢", label: false, required: false        
           button#js-add-children.button.warning
             | 子どもを追加する
-      tr
+      tr.partner-info-tr
         th
           | 年齢
         td
           = f.input :partner_age, collection: User::AGE, include_blank: "選択する", required: true
           = f.input :partner_age_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-      tr
+      tr.partner-info-tr
         th
           | 関係
         td
           = f.input :partner_relationship, collection: User::PARTNER_RELATIONSHIPS, include_blank: "選択する", required: true
           = f.input :partner_relationship_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-      tr
+      tr.partner-info-tr
         th
           | 癌種別
         td
@@ -109,13 +109,13 @@
                     option value="#{type}"
                       = type
           = f.input :cancer_type_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-      tr
+      tr.partner-info-tr
         th
           | 癌ステージ
         td
           = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する"
           = f.input :cancer_stage_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-      tr
+      tr.partner-info-tr
         th
           | 治療内容
         td
@@ -129,18 +129,18 @@
                 = treatment.name
           = f.input :other_treatment, label: '自由記述'
           = f.input :treatment_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-      tr
+      tr.partner-info-tr
         th
           | メイン病院
         td
           = f.input :hospital
           = f.input :hospital_visibility, collection: User::SETTING_OPTIONS, include_blank: false
-      tr
+      tr.partner-info-tr
         th
           | 治療内容
         td
           = f.input :treatment_content, input_html: {rows: 5}        
-      tr
+      tr.partner-info-tr
         th
           | 一番の悩み
         td
