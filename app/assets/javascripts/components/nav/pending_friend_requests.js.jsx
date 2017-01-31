@@ -1,4 +1,4 @@
-let PendingFriendRequests = React.createClass({
+var PendingFriendRequests = React.createClass({
 	getInitialState() {
 		return {
 			friendRequests: []
@@ -20,7 +20,7 @@ let PendingFriendRequests = React.createClass({
 	handleAcceptRequest(e){
 		e.preventDefault();
 
-		let id = $(e.target).data("id");
+		var id = $(e.target).data("id");
 
 		$.ajax({
 			url: `/users/${id}/request_acceptances`,
@@ -28,7 +28,7 @@ let PendingFriendRequests = React.createClass({
 			dataType: 'JSON',
 			context: 'this',
 			success: (data) => {
-				let friendRequests = this.state.friendRequests.filter((request) => {
+				var friendRequests = this.state.friendRequests.filter((request) => {
 					return request.friendable_id !== id;
 				})
 
@@ -40,7 +40,7 @@ let PendingFriendRequests = React.createClass({
 	handleDeclineRequest(e){
 		e.preventDefault();
 
-		let id = $(e.target).data("id");
+		var id = $(e.target).data("id");
 
 		$.ajax({
 			url: `/users/${id}/request_declinals`,
@@ -48,8 +48,7 @@ let PendingFriendRequests = React.createClass({
 			dataType: 'JSON',
 			context: 'this',
 			success: (data) => {
-				console.log("success");
-				let friendRequests = this.state.friendRequests.filter((request) => {
+				var friendRequests = this.state.friendRequests.filter((request) => {
 					return request.friendable_id != id;
 				})
 				this.setState({friendRequests: friendRequests});
@@ -58,7 +57,7 @@ let PendingFriendRequests = React.createClass({
 	},
 
 	requests(){
-		let requests = this.state.friendRequests.map((request) => {
+		var requests = this.state.friendRequests.map((request) => {
 			return (
 				<li key={request.id} className="request-container">
 					<div className="user-image-small">
@@ -66,7 +65,7 @@ let PendingFriendRequests = React.createClass({
 					</div>
 					<div className="request-content">
 						<div className="display-name">
-							{`${request.friendable_last_name}${request.friendable_first_name}`}
+							{`${request.friendable_last_name} ${request.friendable_first_name}`}
 						</div>
 						<div className="timestamp">
 							{request.created_at}

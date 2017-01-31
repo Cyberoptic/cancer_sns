@@ -1,0 +1,196 @@
+.callout
+  h3.bold プロフィール登録編集  
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, data: 'abide'}) do |f|
+    = f.error_notification
+    - if resource.errors.any?
+      #error_explanation
+        .alert.alert-danger.alert-dismissable
+          button.close aria-hidden="true" data-dismiss="alert" type="button"  ×
+          p
+            strong
+              | This form contains #{pluralize(resource.errors.count, 'error')}.
+          ul
+            - resource.errors.full_messages.each do |msg|
+              li= msg
+    table.unstriped.stack
+      tr
+        th
+          | ニックネーム
+        td
+          = f.input :nickname, autofocus: true, label: false
+      tr
+        th
+          | メールアドレス
+        td
+          = f.input :email, required: true, label: false
+      tr
+        th
+          | 誕生日
+        td
+          = f.input :birthday, as: :string, start_year: Date.today.year - 90, end_year: Date.today.year - 16, input_html: {type: :date, value: resource.birthday}, label: false
+          label for="birthday_visibility"
+            i class="fi-lock"
+            |  誕生日公開設定
+          = f.input :birthday_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+      tr
+        th
+          | 名前
+        td
+          = f.input :last_name, required: true
+          = f.input :last_name_katakana, required: true
+          = f.input :first_name, required: true
+          = f.input :first_name_katakana, required: true          
+          label for="name_visibility"
+            i class="fi-lock"
+            |  名前公開設定
+          = f.input :name_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+      tr
+        th
+          | 性別
+        td
+          = f.input :gender, collection: User.genders.keys, include_blank: "選択する", required: true, label: false
+      tr
+        th
+          | エリア
+        td          
+          = f.input :prefecture, collection: Area::PREFECTURES, include_blank: "選択する"
+          = f.input :area, collection: Area::LIST, include_blank: "選択する", required: true
+          label for="area_visibility"
+            i class="fi-lock" 
+            |  エリア公開設定
+          = f.input :area_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+      tr
+        th
+          | 職業
+        td
+          = f.input :profession
+          label for="profession_visibility"
+            i class="fi-lock"
+            |  職業公開設定  
+          = f.input :profession_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+      tr
+        th
+          | プロフィール画像
+        td
+          p.bold 現在のプロフィール写真
+          = image_tag current_user.photo, class: 'img-responsive'
+          = f.input :photo, label: '新しいプロフィール写真を選択'    
+      tr
+        th
+          | 自己紹介
+        td
+          = f.input :introduction, input_html: {rows: 5}, label: false
+      tr
+        th
+          | 子ども
+        td          
+          .row
+            #js-children-form-container
+              = f.fields_for :children do |ff|
+                .columns.medium-3.small-12.end
+                  = ff.input :age, placeholder: "年齢", label: false, required: false        
+          button#js-add-children.button.warning
+            | 子どもを追加する
+      tr.partner-info-tr
+        th
+          | パートナー年齢
+        td
+          = f.input :partner_age, collection: User::AGE, include_blank: "選択する", required: true
+          label for="partner_age_visibility"
+            i class="fi-lock"
+            |  パートナー年齢公開設定
+          = f.input :partner_age_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+      tr.partner-info-tr
+        th
+          | パートナー関係
+        td
+          = f.input :partner_relationship, collection: User::PARTNER_RELATIONSHIPS, include_blank: "選択する", required: true
+          label for="partner_relationship_visibility"
+            i class="fi-lock"
+            |  パートナー関係公開設定
+          = f.input :partner_relationship_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+      tr.partner-info-tr
+        th
+          | パートナー癌種別
+        td
+          .input.select.required.user_cancer_type
+            label.select.required for="user_cancer_type" 
+              abbr title="required"  *
+              | 癌種別
+            select#user_cancer_type.select.required aria-required="true" name="user[cancer_type]" required="required" 
+              option value=""  選択する
+              - Cancer::TYPES.each do |key, value|
+                optgroup label="#{key}"
+                  - value.each do |type|
+                    option value="#{type}"
+                      = type
+          label for="cancer_type_visibility"
+            i class="fi-lock"
+            |  パートナー癌種別公開設定                      
+          = f.input :cancer_type_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+      tr.partner-info-tr
+        th
+          | パートナー癌ステージ
+        td
+          = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する"
+          label for="cancer_stage_visibility"
+            i class="fi-lock"
+            |  パートナー癌ステージ公開設定  
+          = f.input :cancer_stage_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+      tr.partner-info-tr
+        th
+          | 治療内容
+        td
+          .input.text.optional.user_treatments
+            label.text.optional for="user_problems"
+              | 治療内容
+            br            
+            - current_user.treatment_options.each do |treatment|
+              label
+                = check_box_tag "user[treatment_ids][]", treatment.id, resource.user_treatments.find_by(treatment_id: treatment.id)
+                = treatment.name
+          = f.input :other_treatment, label: '自由記述'
+          label for="treatment_visibility"
+            i class="fi-lock"
+            |  パートナー治療内容公開設定  
+            = f.input :treatment_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+      tr.partner-info-tr
+        th
+          | 治療内容
+        td
+          = f.input :treatment_content, input_html: {rows: 5} 
+      tr.partner-info-tr
+        th
+          | メイン病院
+        td
+          = f.input :hospital
+          label for="hospital_visibility"
+            i class="fi-lock"
+            |  メイン病院公開設定  
+          = f.input :hospital_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+      tr.partner-info-tr
+        th
+          | 一番の悩み
+        td
+          = f.input :problems, input_html: {rows: 5}, label: false
+          label for="problems_visibility"
+            i class="fi-lock"
+            |  一番の悩み公開設定  
+          = f.input :problems_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+
+      hr/
+      = f.input :profile_completed, as: :hidden, input_html: { value: true }
+    .form-actions
+      = f.button :submit, "登録情報を変更する"
+  hr/
+  p
+    small= link_to "アカウントを消す", registration_path(resource_name), data: {confirm: "本当にアカウントを消してよろしいですか？（この操作を取り消すことはできません）"}, method: :delete
+javascript:
+  $('#js-add-children').on('click', function(e){
+    e.preventDefault();
+
+    var html = '<div class="columns medium-3 small-12 end"><div class="input integer required user_children_age"><input class="numeric integer" placeholder="年齢" type="number" step="1" name="user[children_attributes][1][age]"></div></div>';
+
+    $('#js-children-form-container').append(html);
+  });
+  

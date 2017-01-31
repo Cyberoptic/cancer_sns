@@ -1,20 +1,11 @@
-<footer class="footer">
-	<div class="row">
-		<div class="column medium-4 small-12">
-			<h3 class="brand-name">がん患者ポータル</h3>
-			<p class="sub-text">タグラインをここに</p>
-		</div>
 
-		<div class="column medium-8 small-12">
-			<ul>
-				<li><%= link_to 'お問い合わせ', '' %></li>
-				<li><%= link_to '会員規約', '' %></li>
-				<li><%= link_to '利用規約', '' %></li>
-				<li><%= link_to '個人情報の取り扱いについて', '' %></li>
-
-				<li><%= link_to '個人情報保護方針', '' %></li>
-			</ul>
-			<p class="float-right">© Corp. <%= Date.current.year %></p>
-		</div><!-- column -->
-	</div><!-- row -->
+<footer>
+	<nav>
+		<ul>
+			<li><a href="">Cancer Partnersについて</a></li>
+			<li><a href="">お問い合わせ</a></li>
+      <li><%= link_to '利用規約', page_path('terms_and_conditions') %></li>
+		</ul>
+	</nav>
+	<p>Copytight &copy; Cancer Partners</p>
 </footer>

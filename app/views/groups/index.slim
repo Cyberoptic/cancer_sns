@@ -1,0 +1,48 @@
+.row
+  .columns.small-12.medium-6
+    h3.bold 
+      | 検索
+    = simple_form_for @group_search, url: groups_path, method: :get do |f|
+      .input-group
+        = f.input :keyword, label: false, placeholder: "キーワード", input_html: {class: 'input-group-field'}
+        .input-group-button
+          = f.submit '検索', class: 'button primary'
+
+    - if @groups
+      .row
+        - @groups.each do |group|
+          .columns.small-12
+            .callout
+              h5.bold
+                - if current_user.joined?(group)
+                  = link_to group.name, group_path(group.name)
+                - else
+                  = group.name
+              p.faded
+                = pluralize(group.group_memberships_count, "member")
+              p
+                = group.description
+
+              #join-group
+                = render partial: "groups/join", locals: { group: group }
+  .columns.small-12.medium-6
+    h3.bold
+      | マイグループ 
+      = link_to '新しいグループを作成', new_group_path, class: 'button small float-right'    
+
+    .row
+      - @my_groups.each do |group|
+        .columns.small-12
+          .callout
+            h5.bold
+              - if current_user.joined?(group)
+                = link_to group.name, group_path(group.name)
+              - else
+                = group.name
+            p.faded
+              = pluralize(group.group_memberships_count, "member")
+            p
+              = group.description
+    - if @my_groups.empty?
+      p
+        | 現在所属しているグループはありません。

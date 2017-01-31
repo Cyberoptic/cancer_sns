@@ -1,36 +1,33 @@
-@import "settings";
-
 footer {
 	background: $white;
-	border-top: 4px solid $primary-color;
 	min-height: $footer-height;	
-	padding: 30px;  
+	width: 100%;
+}
 
-	p {
-		font-size: 14px;
-		margin-bottom: 0px;
-	}
+footer nav {
+	background: #EEF7F2;
+	border-bottom: 1px solid #55AD81;
+}
 
-	.brand-name {
-		color: $primary-color;
-	}
-
-	.sub-text {		
-		font-weight: 400;
-	}
-
-	ul {
-		text-align: right;
-
-		li {
-			display: inline;
-			font-size: 14px;
-	    white-space: nowrap;
-
-	    &:after {
-	    	content: "|";
-	    	margin: 10px;
-	    }
-		}		
-	}
+footer nav ul {
+	text-align: center;
+	margin-bottom: 0px;
+}
+footer nav li {
+	display: inline-block;
+	margin: 0 5px;
+}
+footer nav li a {
+	display: inline-block;
+	padding: 10px;
+}
+footer nav li a:before{
+	content: '';
+	color: #55AD81;
+	margin-right: 5px;
+	font-family:'FontAwesome';
+}
+footer p {
+	text-align: center;
+	margin: 1rem;
 }

@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-10.times do |i|
-  Post.create!(user_id: rand(1..2), content: "Content Content Content Content Content Content Content")
+TREATMENTS = %w(手術療法 抗がん剤（化学療法） 放射線療法 ホルモン療法 先進医療 漢方 その他被保険療法)
+TREATMENTS.each do |treatment|
+  Treatment.create(name: treatment, default: true)
 end

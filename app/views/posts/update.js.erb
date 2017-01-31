@@ -1,0 +1,5 @@
+$(".callout[data-post-id='<%= @post.id %>']").replaceWith("<%= escape_javascript render partial: 'posts/post', locals: { post: @post.decorate } %>");
+
+$('.reveal').foundation('close');
+$(".callout[data-post-id='<%= @post.id %>']").foundation(); 
+app.rebind();

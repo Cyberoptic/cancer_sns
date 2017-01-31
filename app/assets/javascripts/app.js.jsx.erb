@@ -1,0 +1,121 @@
+var app = {
+  onload: function(){
+    this.onEditPostClick();
+    this.onEditPostVisibilityClick();
+    this.onEditCommentClick();
+  },
+
+  rebind: function(){
+    this.onEditPostClick();
+    this.onEditPostVisibilityClick();
+    this.onEditCommentClick();
+  },
+
+  onEditPostVisibilityClick: function(){
+    $(".edit-post-visibility").on("click", function(){
+      id = $(this).data("id");  
+      visibility = $(this).data("visibility");
+      
+      html = `<div class="tiny reveal" id="edit-post-visibility-modal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
+                    <form novalidate="novalidate" class="simple_form edit_post" id="edit_post_${id}" enctype="multipart/form-data" action="/posts/${id}" accept-charset="UTF-8" method="post" data-remote="true">
+                      <input type="hidden" name="_method" value="patch">
+                      <input type="hidden" name="authenticity_token" value="${window._token}">
+                      
+                      <select class="select optional" name="post[visibility]" id="post_visibility">
+                        <option value="公開">公開</option>
+                        <option value="友達にのみ公開">友達にのみ公開</option>
+                        <option value="非公開">非公開</option>
+                      </select>
+
+                      <input type="submit" name="commit" class="button secondary" value="へんこう" data-disable-with="へんこう"> 
+                      <button type="button" class="button warning" data-close aria-label="Close modal">キャンセル</button>   
+                    </form>
+                    
+                  </div>`    
+
+      $("#edit-post-visibility-modal").remove();
+      $("#modal").html(html);
+
+      $(`select option[value='${visibility}']`).attr("selected","selected");
+
+      $('#edit-post-visibility-modal').foundation();
+      $('#edit-post-visibility-modal').foundation('open');
+    });
+  },
+
+  onEditPostClick: function(){
+    $(".edit-post").on("click", function(){
+      var visibilityDropdown, visibility, id, content, action, name, html;
+      isPost = $(this).data("is-post") === true;
+      visibility = $(this).data("visibility");
+      id = $(this).data("id");  
+      content = $(`#js-post-content-${id}`).text().trim();
+      action = isPost ? `/posts/${id}` : `/group_posts/${id}`
+      name = isPost ? "post" : "group_post";      
+
+      if (isPost) {
+        visibilityDropdown = `<select class="select optional" name="post[visibility]" id="post_visibility">
+                                <option value="公開">公開</option>
+                                <option value="友達にのみ公開">友達にのみ公開</option>
+                                <option value="非公開">非公開</option>
+                              </select>`;
+      } else {
+        visibilityDropdown = "";
+      }
+      
+      html = `<div class="tiny reveal" id="edit-post-modal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
+                    <form novalidate="novalidate" class="simple_form edit_post" id="edit_post_${id}" enctype="multipart/form-data" action="${action}" accept-charset="UTF-8" method="post" data-remote="true">
+                      <input type="hidden" name="_method" value="patch">
+                      <input type="hidden" name="authenticity_token" value="${window._token}">
+                      
+                      <textarea class="text required" rows="5" autofocus="true" name="${name}[content]" id="post_content">${content}</textarea>
+
+                      ${visibilityDropdown}
+
+                      <input type="submit" name="commit" class="button secondary" value="へんこう" data-disable-with="へんこう"> 
+                      <button type="button" class="button warning" data-close aria-label="Close modal">キャンセル</button>   
+                    </form>
+                    
+                  </div>`    
+
+      $("#edit-post-modal").remove();
+      $("#modal").html(html);
+
+      $(`select option[value='${visibility}']`).attr("selected","selected");
+
+      $('#edit-post-modal').foundation();
+      $('#edit-post-modal').foundation('open');
+    });
+  },
+
+  onEditCommentClick: function(){
+    $(".edit-comment").on("click", function(){
+      var id = $(this).data("comment-id");  
+      var content = $(`#js-comment-content-${id}`).text().trim();
+      
+      var html = `<div class="tiny reveal" id="edit-comment-modal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
+                    <form novalidate="novalidate" class="simple_form edit_comment" id="edit_comment_${id}" enctype="multipart/form-data" action="/comments/${id}" accept-charset="UTF-8" method="post" data-remote="true">
+                      <input type="hidden" name="_method" value="patch">
+                      <input type="hidden" name="authenticity_token" value="${window._token}">
+                      
+                      <textarea class="text required" rows="5" autofocus="true" name="comment[text]" id="post_text">${content}</textarea>
+
+                      <input type="submit" name="commit" class="button secondary" value="へんこう" data-disable-with="へんこう">
+                      <button type="button" class="button warning" data-close aria-label="Close modal">キャンセル</button>
+                    </form>
+
+                  </div>`    
+
+      $("#edit-comment-modal").remove();
+      $("#edit-post-modal").remove();
+      $("#modal").html(html);
+
+      $('#edit-comment-modal').foundation();
+      $('#edit-comment-modal').foundation('open');
+    });
+  }
+}
+
+$(function(){
+  app.onload();
+})

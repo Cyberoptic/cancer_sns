@@ -1,0 +1,4 @@
+$("div[data-comment-id='<%= @comment.id %>']").replaceWith("<%= escape_javascript render partial: 'shared/comment', locals: { comment: @comment.decorate } %>");
+
+$("div[data-comment-id='<%= @comment.id %>']").foundation(); 
+app.rebind();

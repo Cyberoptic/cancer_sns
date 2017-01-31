@@ -9,6 +9,16 @@ class UserDecorator < Draper::Decorator
   	"#{last_name}#{first_name}"
   end
 
+  def treatment
+    treatment = ""
+    treatment += "#{object.other_treatment}, " if object.other_treatment
+    treatment += object.treatments.map{|treatment| treatment.name}.join(", ")
+  end
+
+  def introduction
+    object.introduction.blank? ? "このユーザーは紹介文をまだ書いていません。" : object.introduction
+  end
+
   def gender_icon
   	if object.gender == "男性"
   		'<i class="fa fa-male" aria-hidden="true"></i> 男性'.html_safe 

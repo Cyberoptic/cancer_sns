@@ -1,0 +1,5 @@
+<% if current_user.joined?(group) %>
+  <%= link_to "参加済み", group_group_unmemberships_path(group.id), method: :post, remote: true, class: 'button small button-right', disabled: true %>
+<% else %>
+  <%= link_to "参加する", group_group_memberships_path(group.id), method: :post, remote: true, class: 'button small button-right' %>
+<% end %>

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require foundation
 //= require cable
 //= require react
@@ -21,4 +22,6 @@
 
 $(function(){ 
 	$(document).foundation(); 
+  
+  $('.js-gallery-img').Am2_SimpleSlider();
 });

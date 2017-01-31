@@ -1,25 +1,32 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_owner
 
-def index
-  respond_to do |format|
-    format.html {}
-    format.js {}
-  end  
-end
+  def update
+    @comment = find_comment
+    @comment.update(comment_params)
+  end
 
-def create
-  @post = Post.includes(:comments,:user).find(params[:post_id])
-  @comment = @post.comments.create(comment_params.merge(user_id: current_user.id))
-  respond_to do |format|
-    format.html {}
-    format.js {}
-  end  
-end
+  def destroy
+    @comment = find_comment
+    
+    @comment.delete!
+  end
 
-private 
+  private
 
-def comment_params
-  params.require(:comment).permit(:text, :post_id)
-end
+  def comment_params
+    params.require(:comment).permit(:text)
+  end
+
+  def find_comment
+    @comment ||= Comment.find(params[:id])
+  end
+
+  def ensure_owner
+    @comment = find_comment
+    return if @comment.user == current_user
+    format.json { render json: :unauthorized }
+  end
 
 end

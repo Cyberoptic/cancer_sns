@@ -1,0 +1,65 @@
+= simple_form_for @search, url: users_path, method: :get do |f|
+  .row
+    .columns.medium-10.medium-offset-1.small-12
+      h3.bold
+        | ユーザー検索
+      table.unstriped.user-search-table
+        tr
+          th width="200"
+            | 名前
+          td
+            = f.input :name_search, label: false, placeholder: "名前"
+        tr
+          th
+            | 職業
+          td    
+            = f.input :profession, label: false, placeholder: '職業'
+        tr
+          th
+            | パートナー年齢
+          td
+            = f.input :partner_age, collection: User::AGE.map{|age| age}, label: false, include_blank: 'パートナー年齢'
+        tr
+          th
+            | パートナー癌種目
+          td
+            .input.select.required.user_cancer_type              
+              select#user_cancer_type.select.required aria-required="true" name="user_search[cancer_type]" required="required" 
+                option value=""  選択する
+                - Cancer::TYPES.each do |key, value|
+                  optgroup label="#{key}"
+                    - value.each do |type|
+                      option value="#{type}"
+                        = type
+        tr
+          th
+            | パートナー癌ステージ
+          td
+            = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "癌ステージ", label: false
+        tr
+          th
+            | メイン病院
+          td
+            = f.input :hospital, label: false, placeholder: '病院'
+        tr
+          th
+            | 治療内容
+          td
+            = f.input :treatment, label: false, placeholder: '治療内容'
+
+      = f.button :button, class: 'button button-primary'
+        i.fa.fa-search aria-hidden="true" 
+        |  検索する
+
+
+.row
+  .columns.medium-6.medium-offset-3.small-12    
+    .search-results
+      h6.text-center
+        = @users.count
+        | 件の結果
+      - if @users.any?
+        = render @users
+      - else
+        h5.text-center 該当するユーザーが見つかりませんでした。
+ 

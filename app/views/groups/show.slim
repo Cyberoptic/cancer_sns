@@ -1,0 +1,45 @@
+.row
+  .columns.large-3.medium-3.small-12
+    .callout
+      h4.bold
+        = @group.name 
+      p
+        = @group.description      
+      hr 
+
+      p.faded
+        = pluralize(@group.group_memberships_count, "member")     
+      .group-membership-list
+        - @group.group_memberships.take(20).each do |group_membership|
+          a href="/users/#{group_membership.user.id}" 
+            .image-wrapper
+              = image_tag group_membership.user_photo, alt: group_membership.user.decorate.name
+
+      hr /
+
+      #join-group
+        = render partial: "groups/join", locals: { group: @group }
+ 
+       
+  .columns.large-6.medium-6.small-12
+    .callout
+      = simple_form_for @post, url: group_posts_path(@group), method: :post, remote: true, authenticity_token: true, multipart: true do |f|      
+        = f.input :content, label: false, placeholder: 'ここに投稿内容を入力', input_html: {rows: 2, class: 'post-textarea'}
+        = f.simple_fields_for :post_images do |p|
+          = p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]", class: 'post-images-file-field', id: 'post_images_upload' }
+        label.file-upload-label for="post_images_upload" 
+          i.fi-paperclip
+          |  画像を選択する
+        = f.submit "投稿", class: 'button button-right'
+
+    #posts
+      = render partial: 'posts/post', collection: @posts
+    #post-pagination
+      = will_paginate @posts
+    .spinner
+      .sk-cube1.sk-cube
+      .sk-cube2.sk-cube
+      .sk-cube4.sk-cube
+      .sk-cube3.sk-cube
+ 
+  .columns.large-3.medium-3.small-12

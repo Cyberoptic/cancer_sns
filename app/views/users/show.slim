@@ -1,0 +1,87 @@
+.row
+  .columns.medium-3.small-12
+    .callout.callout-user-info
+      .row
+        .columns.medium-5.small-12
+          .user-image-lg
+            = image_tag @user.photo, alt: @user.name
+        .columns.medium-7.small-12
+          .name= @user.name
+          - if @user.nickname.present?
+            .nickname= @user.nickname
+      /! row
+      .user-tags
+        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :area).visible?
+          span.label.secondary.label-user-attributes
+            i.fa.fa-map-marker aria-hidden="true" 
+            = @user.area
+        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :profession).visible?
+          span.label.secondary.label-user-attributes
+            = @user.profession
+        span.label.secondary.label-user-attributes
+          = @user.gender_icon
+      hr/
+      p
+        = @user.introduction
+      hr/
+      - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :problems).visible?
+        p
+          = @user.problems
+        hr/
+      - if @user != current_user
+        .row
+          .columns.small-12
+            span#request
+              = render partial: 'shared/request_send_buttons.html.erb', locals: {user: @user}
+            span#pending_request
+              = render partial: 'shared/request_accept_buttons.html.erb', locals: {user: @user}
+          .columns.small-12
+            = link_to 'メッセージ', user_chat_rooms_path(@user), method: :post, class: 'button expanded small secondary'
+          /! columns
+        /! row
+    /! callout
+    .callout
+      #friend_list
+        = render partial: 'shared/friend_list.html.erb', locals: {user: @user}
+    .callout
+      h6.user-header パートナー（患者）に関する情報
+      hr/
+      ul.partner-info.no-bullet
+        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :partner_age).visible?
+          li
+            strong 年齢 
+            = @user.partner_age
+        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_stage).visible?
+          li
+            strong 癌ステージ 
+            = @user.cancer_stage
+        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_type).visible?
+          li
+            strong 癌種目 
+            = @user.cancer_type
+        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :hospital).visible?
+          li
+            strong 病院名 
+            = @user.hospital
+        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :treatment).visible?
+          li
+            strong 治療内容 
+            = @user.treatment
+    /! callout
+  /! columns
+  .columns.medium-6.small-12
+    - if @user.posts.any?
+      - @user.posts_visible_for(current_user: current_user).each do |post|
+        = render partial: 'posts/post', locals: {post: post.decorate}
+    - else
+      .callout
+        h6.text-center このユーザーはまだ投稿していません。
+  /! columns
+  .columns.medium-3
+    .callout
+      h6.user-header 友達候補
+      - @suggested_users.each do |user|
+        = render partial: 'suggested_user', locals: {user: user.decorate}
+    /! callout
+/! row
+ 

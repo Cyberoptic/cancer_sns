@@ -25,7 +25,7 @@ RSpec.describe UsersController, type: :controller do
   		user = create(:user)
 
   		sign_in user
-  		get :show, id: user.id 
+  		get :show, id: user.to_param
 
   		expect(response).to render_template :show
   	end

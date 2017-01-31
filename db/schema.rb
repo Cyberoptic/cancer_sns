@@ -9,8 +9,7 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 20170119044510) do
+ActiveRecord::Schema.define(version: 20170131033725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +24,24 @@ ActiveRecord::Schema.define(version: 20170119044510) do
     t.index ["user_id"], name: "index_chat_rooms_on_user_id", using: :btree
   end
 
+  create_table "children", force: :cascade do |t|
+    t.integer  "age"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_children_on_user_id", using: :btree
+  end
+
   create_table "comments", force: :cascade do |t|
     t.integer  "post_id"
     t.integer  "user_id"
     t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "visible",    default: true, null: false
+    t.datetime "deleted_at"
+    t.string   "post_type"
+    t.index ["deleted_at"], name: "index_comments_on_deleted_at", using: :btree
     t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
     t.index ["user_id", "post_id"], name: "index_comments_on_user_id_and_post_id", using: :btree
   end
@@ -45,11 +56,44 @@ ActiveRecord::Schema.define(version: 20170119044510) do
     t.integer  "status"
   end
 
+  create_table "group_memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_memberships_on_group_id", using: :btree
+    t.index ["user_id"], name: "index_group_memberships_on_user_id", using: :btree
+  end
+
+  create_table "group_posts", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "sads_count",    default: 0
+    t.integer  "happies_count", default: 0
+    t.integer  "likes_count",   default: 0
+    t.index ["group_id"], name: "index_group_posts_on_group_id", using: :btree
+    t.index ["user_id", "group_id"], name: "index_group_posts_on_user_id_and_group_id", using: :btree
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "group_memberships_count", default: 0
+    t.string   "slug"
+    t.index ["slug"], name: "index_groups_on_slug", unique: true, using: :btree
+  end
+
   create_table "happies", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "post_type"
     t.index ["post_id"], name: "index_happies_on_post_id", using: :btree
     t.index ["user_id"], name: "index_happies_on_user_id", using: :btree
   end
@@ -59,6 +103,7 @@ ActiveRecord::Schema.define(version: 20170119044510) do
     t.integer  "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "post_type"
     t.index ["post_id"], name: "index_likes_on_post_id", using: :btree
     t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
   end
@@ -89,6 +134,7 @@ ActiveRecord::Schema.define(version: 20170119044510) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "post_type"
     t.index ["post_id"], name: "index_post_images_on_post_id", using: :btree
     t.index ["user_id"], name: "index_post_images_on_user_id", using: :btree
   end
@@ -101,6 +147,7 @@ ActiveRecord::Schema.define(version: 20170119044510) do
     t.integer  "likes_count",   default: 0
     t.integer  "sads_count",    default: 0
     t.integer  "happies_count", default: 0
+    t.integer  "visibility",    default: 0
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
@@ -109,8 +156,27 @@ ActiveRecord::Schema.define(version: 20170119044510) do
     t.integer  "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "post_type"
     t.index ["post_id"], name: "index_sads_on_post_id", using: :btree
     t.index ["user_id"], name: "index_sads_on_user_id", using: :btree
+  end
+
+  create_table "treatments", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "default",    default: false, null: false
+    t.integer  "user_id"
+  end
+
+  create_table "user_treatments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "treatment_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["treatment_id"], name: "index_user_treatments_on_treatment_id", using: :btree
+    t.index ["user_id", "treatment_id"], name: "index_user_treatments_on_user_id_and_treatment_id", using: :btree
+    t.index ["user_id"], name: "index_user_treatments_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -137,7 +203,6 @@ ActiveRecord::Schema.define(version: 20170119044510) do
     t.string   "cancer_type"
     t.string   "cancer_stage"
     t.string   "hospital"
-    t.string   "treatment"
     t.text     "problems"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
@@ -147,17 +212,22 @@ ActiveRecord::Schema.define(version: 20170119044510) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.boolean  "is_public",              default: false, null: false
     t.boolean  "profile_completed",      default: false, null: false
     t.jsonb    "settings",               default: {},    null: false
+    t.string   "prefecture"
+    t.text     "treatment_content"
+    t.string   "partner_relationship"
+    t.text     "introduction"
+    t.string   "other_treatment"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["is_public"], name: "index_users_on_is_public", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
   add_foreign_key "chat_rooms", "users"
   add_foreign_key "chat_rooms", "users", column: "member_id"
+  add_foreign_key "group_memberships", "groups"
+  add_foreign_key "group_memberships", "users"
   add_foreign_key "messages", "chat_rooms"
   add_foreign_key "messages", "users"
 end

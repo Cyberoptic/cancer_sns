@@ -15,6 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+gem 'high_voltage', '~> 3.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -22,19 +23,21 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem "slim-rails"
+
+gem "remotipart"
 
 # User authentication
 gem 'devise'
+gem 'devise_security_extension'
+gem 'rails_email_validator'
 
 gem 'simple_form'
 gem 'carrierwave'
 gem 'omniauth-facebook'
 gem 'figaro'
+gem "fog"
 gem 'has_friendship'
 gem 'will_paginate'
 gem "letter_opener", :group => :development
@@ -55,6 +58,15 @@ gem 'storext'
 
 # React.js
 gem 'react-rails'
+
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+
+gem 'rollbar'
+gem 'bonsai-elasticsearch-rails'
+
+gem 'hashids'
+gem 'friendly_id', '~> 5.2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

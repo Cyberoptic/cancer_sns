@@ -5,36 +5,53 @@ ja:
     attributes:
       user:
         nickname: ニックネーム
-        first_name: 氏
-        last_name: 名
-        first_name_katakana: 氏（カタカナ)
-        last_name_katakana: 名（カタカナ)
+        first_name: 名
+        last_name: 姓
+        first_name_katakana: 名（カタカナ)
+        last_name_katakana: 姓（カタカナ)
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（再確認） 
         current_password: 現在のパスワード
         birthday: 誕生日
-        gender: 性別        
+        gender: 性別     
+        introduction: 自己紹介   
         partner_age: パートナー年齢 
+        partner_relationship: パートナーとの関係
         cancer_type: 癌種別
         cancer_stage: 癌ステージ
         treatment: 治療内容
+        treatment_content: 治療内容（詳細）
         problems: 一番の悩み
         area: エリア
+        prefecture: 都道府県
         profession: 職業
-        hospital: 病院
+        hospital: メイン病院
         photo: プロフィール画像
-        show_profession: 職業
-        show_partner_age: パートナー年齢
-        show_cancer_type: 癌種別
-        show_cancer_stage: 癌ステージ
-        show_hospital: 病院
-        show_treatment: 治療内容
-        show_birthday: 誕生日
-        show_problems: 一番の悩み
-        show_area: エリア
-        show_name: 名前
+        profession_visibility: 職業公開設定
+        partner_age_visibility: パートナー年齢公開設定
+        partner_relationship_visibility: パートナー関係公開設定
+        cancer_type_visibility: 癌種別公開設定
+        cancer_stage_visibility: 癌ステージ公開設定
+        hospital_visibility: 病院公開設定
+        treatment_visibility: 治療内容公開設定
+        birthday_visibility: 誕生日公開設定
+        problems_visibility: 一番の悩み公開設定
+        area_visibility: エリア公開設定
+        name_visibility: 名前公開設定
+        children: 子ども
+      child:
+        age: 年齢
+      group:
+          name: グループ名
+          description: 概要
     errors:
+      models:
+        user:
+          attributes:
+            password:
+              password_format: は英数字8文字以上、大文字小文字混在で入力してください。
+              equal_to_current_password: は現在のパスワードと異なるパスワードを入力してください。
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
         restrict_dependent_destroy:

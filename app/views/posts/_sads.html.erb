@@ -1,7 +1,7 @@
 <% if current_user.sadded?(apost) %>
-  <span class="visited"><%= link_to "悲しいね", post_unsads_path(apost.id), method: :post, remote: true %></span>
+  <span class="visited"><%= link_to "悲しいねを取り消す", send("#{apost.class.name.underscore}_unsads_path", apost), method: :post, remote: true %></span>
 <% else %>
-  <%= link_to "悲しいね", post_sads_path(apost), method: :post, remote: true %>
+  <%= link_to "悲しいね", send("#{apost.class.name.underscore}_sads_path", apost), method: :post, remote: true %>
 <% end %>
 
 
