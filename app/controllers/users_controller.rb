@@ -12,7 +12,8 @@ class UsersController < ApplicationController
 	end
     
   def show
-    @user = User.find(params[:id]).decorate
+    id = Hashids.new("this is my salt").decode(params[:id]).try(:first)
+    @user = User.find(id).decorate
     # implement later
     @suggested_users = User.take(5)
   end  

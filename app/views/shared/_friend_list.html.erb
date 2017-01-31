@@ -2,14 +2,14 @@
 <% if user.friends.any?  %>	
 	<div class="user-friends">
 		<% user.friends.decorate.each do |friend| %>
-			<a href="/users/<%= friend.id %>">
+			<%= link_to user_path(friend) do %>			
 				<div class="image-wrapper">
 					<%= image_tag friend.photo, alt: friend.name %>	
 					<div class="display-name">
 						<%= friend.display_name %>
 					</div>
 				</div>
-			</a>
+			<% end %>
 		<% end %>
 	</div>  	
 <% end %>

@@ -15,7 +15,7 @@
             .callout
               h5.bold
                 - if current_user.joined?(group)
-                  = link_to group.name, group_path(group)
+                  = link_to group.name, group_path(group.name)
                 - else
                   = group.name
               p.faded
@@ -36,7 +36,7 @@
           .callout
             h5.bold
               - if current_user.joined?(group)
-                = link_to group.name, group_path(group)
+                = link_to group.name, group_path(group.name)
               - else
                 = group.name
             p.faded

@@ -65,6 +65,9 @@ gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-ra
 gem 'rollbar'
 gem 'bonsai-elasticsearch-rails'
 
+gem 'hashids'
+gem 'friendly_id', '~> 5.2.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

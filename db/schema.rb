@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130185721) do
+ActiveRecord::Schema.define(version: 20170131033725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 20170130185721) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "group_memberships_count", default: 0
+    t.string   "slug"
+    t.index ["slug"], name: "index_groups_on_slug", unique: true, using: :btree
   end
 
   create_table "happies", force: :cascade do |t|

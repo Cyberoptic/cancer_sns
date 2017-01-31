@@ -172,6 +172,10 @@ end
     Treatment.default + treatments.where(default: false)
   end
 
+  def to_param
+    Hashids.new("this is my salt").encode(id)
+  end
+
   private
 
   def display_name_to_everyone?
