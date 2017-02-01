@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "registrations" }
   
+  get 'users/sign_up/top' => 'high_voltage/pages#show', id: 'sign_up'
+
   resources :users, only: [:show, :index]  do  
     get 'pending_requests', to: 'users#pending_requests'
     get 'friends', to: 'users#friends'

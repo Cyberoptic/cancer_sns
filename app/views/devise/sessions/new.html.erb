@@ -1,10 +1,14 @@
 <div class="row">
 	<div class="columns large-4 large-offset-4 medium-6 medium-offset-3 small-12">
 		<div class="callout">
+			<h3 class="text-center bold">ログイン</h3>
+
+			<hr />
+
 			<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 			  <div class="form-inputs">
-			    <%= f.input :email, required: false, autofocus: true, placeholder: "メールアドレス" %>
-			    <%= f.input :password, required: false, placeholder: "パスワード" %>
+			    <%= f.input :email, required: false, autofocus: true, placeholder: "メールアドレス", label: false %>
+			    <%= f.input :password, required: false, placeholder: "パスワード", label: false %>
 			    <%= f.input :remember_me, as: :boolean, label: 'ブラウザを閉じるときオートログインを有効にする' if devise_mapping.rememberable? %>
 			  </div>
 
@@ -12,6 +16,12 @@
 			    <%= f.button :submit, "ログイン", class: 'button expanded' %>
 			  </div>
 			<% end %>
+
+			<div class="or-line">or</div>
+
+      <%= link_to "<i class='fa fa-facebook-official' aria-hidden='true'></i> Facebookでログインする".html_safe, omniauth_authorize_path(:user, :facebook), class: 'button-facebook' %> 
+
+      <hr/>     
 
 			<%= render "devise/shared/links" %>
 		</div><!-- callout -->
