@@ -2,18 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Posts::UnsadsController, type: :controller do
   describe "#create" do
-    it "unsads the post with :post_id" do
+    it "triggers #unsad" do 
       user = create(:user)
       user_post = create(:post, user_id: user.id)
+      allow(controller).to receive(:current_user).and_return(user)                
+      allow(user).to receive(:unsad).with(user_post).and_return(true)
       
-      create(:sad, user_id: user.id, post_id: user_post.id, post_type: user_post.class.name)
-
       sign_in user
-      
-      expect {
-        post :create, params: { post_id: user_post.id }, format: :js
-      }.to change(Sad, :count).by(-1)
-       
-    end
+      post :create, params: { post_id: user_post.id }, format: :js
+
+      expect(controller.current_user).to have_received(:unsad)
+    end    
   end
 end
