@@ -21,14 +21,14 @@ var app = {
                       <input type="hidden" name="_method" value="patch">
                       <input type="hidden" name="authenticity_token" value="${window._token}">
                       
-                      <select class="select optional" name="post[visibility]" id="post_visibility">
+                      <select class="select visibility-dropdown" name="post[visibility]" id="post_visibility">
                         <option value="公開">公開</option>
                         <option value="友達にのみ公開">友達にのみ公開</option>
                         <option value="非公開">非公開</option>
                       </select>
 
-                      <input type="submit" name="commit" class="button secondary" value="へんこう" data-disable-with="へんこう"> 
-                      <button type="button" class="button warning" data-close aria-label="Close modal">キャンセル</button>   
+                      <input type="submit" name="commit" class="button small secondary" style="margin-bottom: 0px" value="へんこう" data-disable-with="へんこう"> 
+                      <button type="button" class="button small warning" style="margin-bottom: 0px" data-close aria-label="Close modal">キャンセル</button>   
                     </form>
                     
                   </div>`    

@@ -21,19 +21,18 @@
             = group.description.truncate(27)
   .columns.large-6.small-12
     .callout
-      = simple_form_for @post, remote: true do |f|
-        a.new-post-dropdown-anchor.float-right data-toggle="new-post-dropdown" 
-          i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
-        #new-post-dropdown.dropdown-pane.bottom.left data-dropdown="" data-hover="true" data-hover-pane="true" 
-          ul.new-post-menu.no-bullet
-            = f.input :visibility, collection: Post.visibilities.keys, include_blank: false, label: false
+      = simple_form_for @post, remote: true do |f|        
         = f.input :content, label: false, placeholder: 'ここに投稿内容を入力', input_html: {rows: 2, class: 'post-textarea' }
         = f.simple_fields_for :post_images do |p|
           = p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]", class: 'post-images-file-field', id: 'post_images_upload' }
         label.file-upload-label for="post_images_upload" 
           i.fi-paperclip
           |  画像を選択する
-        = f.submit "投稿", class: 'button button-right'
+        select.visibility-dropdown.visibility-dropdown-posts name="post[visibility]" 
+          option selected="selected" value="公開"  公開
+          option value="友達にのみ公開"  友達にのみ公開
+          option value="非公開"  非公開
+        = f.submit "投稿", class: 'button small button-right'
     #posts
       = render @posts
     #post-pagination

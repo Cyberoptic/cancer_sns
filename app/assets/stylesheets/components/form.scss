@@ -22,3 +22,17 @@
 .relative-form {
   position: relative;
 }
+
+.visibility-dropdown {  
+  background-color: #fcfcfc;
+  height: 34px;
+  font-size: 0.75rem;
+  width: 110px;
+}
+
+.visibility-dropdown-posts {
+  bottom: 0px;
+  position: absolute;
+  right: 75px;  
+  font-family: 'FontAwesome', sans-serif;
+}
