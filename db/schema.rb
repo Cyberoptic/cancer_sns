@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170131033725) do
+ActiveRecord::Schema.define(version: 20170201135548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,19 @@ ActiveRecord::Schema.define(version: 20170131033725) do
     t.index ["deleted_at"], name: "index_comments_on_deleted_at", using: :btree
     t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
     t.index ["user_id", "post_id"], name: "index_comments_on_user_id_and_post_id", using: :btree
+  end
+
+  create_table "emotions", force: :cascade do |t|
+    t.integer  "emotion"
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.string   "post_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id", "post_type", "user_id"], name: "index_emotions_on_post_id_and_post_type_and_user_id", using: :btree
+    t.index ["post_id"], name: "index_emotions_on_post_id", using: :btree
+    t.index ["post_type"], name: "index_emotions_on_post_type", using: :btree
+    t.index ["user_id"], name: "index_emotions_on_user_id", using: :btree
   end
 
   create_table "friendships", force: :cascade do |t|

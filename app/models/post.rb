@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_many :likes, as: :post, dependent: :destroy
   has_many :sads, as: :post, dependent: :destroy
   has_many :happies, as: :post, dependent: :destroy
+  has_many :emotions, as: :post, dependent: :destroy
   
   accepts_nested_attributes_for :post_images
 

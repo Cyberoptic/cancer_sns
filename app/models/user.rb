@@ -40,6 +40,7 @@ class User < ApplicationRecord
   has_many :user_treatments, dependent: :destroy
   has_many :treatments, through: :user_treatments
   has_many :children, dependent: :destroy 
+  has_many :emotions
 
   accepts_nested_attributes_for :user_treatments, reject_if: proc { |attributes| attributes['name'].blank? }
   accepts_nested_attributes_for :treatments, reject_if: proc { |attributes| attributes['name'].blank? }
@@ -119,40 +120,39 @@ class User < ApplicationRecord
     liked?(post) || sadded?(post) || happied?(post)
   end
 
-  def like(post)
-    likes.create({post_id: post.id, post_type: post.class.name})
+  Emotion.emotions.keys.each do |emotion|
+    define_method "#{emotion}" do |post|
+      @emotion = emotions.find_or_initialize_by(post_id: post.id, post_type: post.class.name)
+
+      if @emotion.new_record?
+        @emotion.emotion = emotion
+        @emotion.save!        
+      else
+        @emotion.update(emotion: emotion)
+      end
+    end      
   end
 
-  def unlike(post)
-    likes.find_by(post_id: post.id, post_type: post.class.name).destroy
-  end
-
-  def sad(post)
-    sads.create({post_id: post.id, post_type: post.class.name})
-  end
-
-  def unsad(post)
-    sads.find_by(post_id: post.id, post_type: post.class.name).destroy
-  end
-
-  def happy(post)
-    happies.create({post_id: post.id, post_type: post.class.name})
-  end
-
-  def unhappy(post)
-    happies.find_by(post_id: post.id, post_type: post.class.name).destroy
+  Emotion.emotions.keys.each do |emotion|
+    define_method "un#{emotion}" do |post|
+      emotions.find_by(post_id: post.id, post_type: post.class.name, emotion: emotion).destroy
+    end      
   end
 
   def liked?(post)
-    post.likes.exists?(user_id: self.id)
+    post.emotions.exists?(user_id: self.id, emotion: "like")
   end
 
   def sadded?(post)    
-    post.sads.exists?(user_id: self.id)    
+    post.emotions.exists?(user_id: self.id, emotion: "sad")
   end
 
   def happied?(post)
-    post.happies.exists?(user_id: self.id)    
+    post.emotions.exists?(user_id: self.id, emotion: "happy")
+  end
+
+  def madded?(post)
+    post.emotions.exists?(user_id: self.id, emotion: "mad")
   end
 
   def joined?(group)
