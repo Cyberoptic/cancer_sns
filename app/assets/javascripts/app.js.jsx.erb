@@ -3,18 +3,28 @@ var app = {
     this.onEditPostClick();
     this.onEditPostVisibilityClick();
     this.onEditCommentClick();
+    this.onCommentTriggerClick();
   },
 
   rebind: function(){    
     this.onEditPostClick();
     this.onEditPostVisibilityClick();
     this.onEditCommentClick();
+    this.onCommentTriggerClick();
+  },
+
+  onCommentTriggerClick: function(){
+    $('.js-comment-trigger').on('click', function(){
+      var id = $(this).data("post-id");
+      var textarea = $(`#js-comment-textarea-${id}`);
+      textarea.focus(); 
+    })
   },
 
   onEditPostVisibilityClick: function(){
     $(".edit-post-visibility").on("click", function(){
-      id = $(this).data("id");  
-      visibility = $(this).data("visibility");
+      var id = $(this).data("id");  
+      var visibility = $(this).data("visibility");
       
       html = `<div class="tiny reveal" id="edit-post-visibility-modal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
                     <form novalidate="novalidate" class="simple_form edit_post" id="edit_post_${id}" enctype="multipart/form-data" action="/posts/${id}" accept-charset="UTF-8" method="post" data-remote="true">
