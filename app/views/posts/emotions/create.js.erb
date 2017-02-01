@@ -6,7 +6,9 @@ $(function(){
 
   $hoverElement.html("<%= escape_javascript render partial: '/posts/emotion-hover-content', locals: { post: @post } %>");
 
-  $('#js-iine-container-<%= @post.id %>').html("<%= escape_javascript render partial: '/posts/iine', locals: {post: @post} %>");
+  $('#js-iine-container-<%= @post.id %>').html("<%= escape_javascript render partial: '/posts/iine', locals: {post: @post} %>");  
+
+  $('#js-emotion-count-container-<%= @post.id %>').html("<%= escape_javascript render partial: '/posts/emotion_counts', locals: {post: @post} %>");
 
   $('.tooltip').each(function () {
     var tooltip = $(this);
@@ -15,6 +17,6 @@ $(function(){
   });
 
   $hoverElement.foundation('close');
-  new Foundation.Dropdown(hoverElement);
+  new Foundation.Dropdown($hoverElement);
 })
 

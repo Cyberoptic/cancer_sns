@@ -44,9 +44,12 @@
         a.js-comment-trigger.emotion-link data-post-id="#{post.id}"
           i.fi-comment 
           span.reaction-label
-            |  コメント
+            |  コメント      
 
     div id="post-#{post.id}-comments" 
+      div id="js-emotion-count-container-#{post.id}"
+        = render partial: '/posts/emotion_counts', locals: {post: post}        
+
       - comments = post.comments.paginate(page: params[:page], per_page: 5).includes(:user).decorate
       - if comments.current_page < comments.total_pages
         a.more_comments_button data-page="#{comments.next_page}" id="#{post.id}" 

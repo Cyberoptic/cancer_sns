@@ -50,7 +50,6 @@
 		padding-top: 10px;
 		padding-bottom: 10px;
 		margin-top: 20px;
-		margin-bottom: 20px;
 	}
 
 	.post-emotion-count {
@@ -88,4 +87,14 @@
 .dropdown-pane-emotions {
 	width: 205px !important;
   border-radius: 60px;
+}
+
+.emotion-count {
+	margin-left: 5px;
+}
+
+.emotion-count-container {
+	border-bottom: 2px solid #fcfcfc;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }

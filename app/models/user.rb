@@ -28,10 +28,7 @@ class User < ApplicationRecord
   
   has_many :comments
   has_many :posts, dependent: :destroy
-  has_many :post_images, dependent: :destroy
-  has_many :likes, dependent: :destroy
-  has_many :sads, dependent: :destroy
-  has_many :happies, dependent: :destroy
+  has_many :post_images, dependent: :destroy  
   has_many :chat_rooms, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :groups, through: :group_memberships

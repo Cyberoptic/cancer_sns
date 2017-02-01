@@ -1,0 +1,8 @@
+- if post.emotions_count > 0
+  .emotion-count-container 
+    = image_tag 'svgs/like', width: "18px", class: 'post-emotion-svgs' if post.has_likes?
+    = image_tag 'svgs/unhappy', width: "18px", class: 'post-emotion-svgs' if post.has_sads?
+    = image_tag 'svgs/happy', width: "18px", class: 'post-emotion-svgs' if post.has_happies?
+    = image_tag 'svgs/mad', width: "18px", class: 'post-emotion-svgs' if post.has_mads?
+    span.emotion-count
+      = link_to post.emotions_count, "#"
