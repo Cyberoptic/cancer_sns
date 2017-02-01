@@ -1,11 +1,19 @@
-$("#js-emotion-link-<%= @post.id %>").removeClass("is-liked");
+$(function(){
 
-$('#emotion-hover-<%= @post.id %>').html("<%= escape_javascript render partial: '/posts/emotion-hover-content', locals: { post: @post } %>");
+  var $hoverElement = $("#emotion-hover-<%= @post.id %>");
 
-$('.tooltip').each(function () {
-  var tooltip = $(this);
-  tooltip.data("is-active", false);
-  tooltip.css("display", "none");
-});
+  $("#js-emotion-link-<%= @post.id %>").removeClass("is-liked");
 
-$('#emotion-hover-<%= @post.id %>').foundation();
+  $hoverElement.html("<%= escape_javascript render partial: '/posts/emotion-hover-content', locals: { post: @post } %>");
+
+  $('#js-iine-container-<%= @post.id %>').html("<%= escape_javascript render partial: '/posts/iine', locals: {post: @post} %>");
+
+  $('.tooltip').each(function () {
+    var tooltip = $(this);
+    tooltip.data("is-active", false);
+    tooltip.css("display", "none");
+  });
+
+  $hoverElement.foundation('close');
+  new Foundation.Dropdown(hoverElement);
+})
