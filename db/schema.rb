@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201135548) do
+ActiveRecord::Schema.define(version: 20170201141501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,11 +83,8 @@ ActiveRecord::Schema.define(version: 20170201135548) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "group_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "sads_count",    default: 0
-    t.integer  "happies_count", default: 0
-    t.integer  "likes_count",   default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_group_posts_on_group_id", using: :btree
     t.index ["user_id", "group_id"], name: "index_group_posts_on_user_id_and_group_id", using: :btree
   end
@@ -100,26 +97,6 @@ ActiveRecord::Schema.define(version: 20170201135548) do
     t.integer  "group_memberships_count", default: 0
     t.string   "slug"
     t.index ["slug"], name: "index_groups_on_slug", unique: true, using: :btree
-  end
-
-  create_table "happies", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "post_type"
-    t.index ["post_id"], name: "index_happies_on_post_id", using: :btree
-    t.index ["user_id"], name: "index_happies_on_user_id", using: :btree
-  end
-
-  create_table "likes", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "post_type"
-    t.index ["post_id"], name: "index_likes_on_post_id", using: :btree
-    t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
@@ -146,23 +123,10 @@ ActiveRecord::Schema.define(version: 20170201135548) do
   create_table "posts", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "likes_count",   default: 0
-    t.integer  "sads_count",    default: 0
-    t.integer  "happies_count", default: 0
-    t.integer  "visibility",    default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "visibility", default: 0
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
-  end
-
-  create_table "sads", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "post_type"
-    t.index ["post_id"], name: "index_sads_on_post_id", using: :btree
-    t.index ["user_id"], name: "index_sads_on_user_id", using: :btree
   end
 
   create_table "treatments", force: :cascade do |t|
