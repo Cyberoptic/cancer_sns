@@ -8,7 +8,7 @@ class GroupPosts::LikesController < ApplicationController
     @post.reload
 
     respond_to do |format|
-      format.js {}
+      format.js { render '/posts/emotions/create' }
     end   
   end
 end

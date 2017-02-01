@@ -8,7 +8,7 @@ class GroupPosts::UnmadsController < ApplicationController
     @post.reload
 
     respond_to do |format|
-      format.js {}
+      format.js { render '/posts/emotions/destroy' }
     end
   end
 end

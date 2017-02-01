@@ -8,8 +8,7 @@ class Posts::SadsController < ApplicationController
     @post.reload
 
     respond_to do |format|
-      format.html { redirect_to root_path}
-      format.js {}
+      format.js { render '/posts/emotions/create' }
     end   
   end
 end

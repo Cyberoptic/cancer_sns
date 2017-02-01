@@ -7,9 +7,8 @@ class GroupPosts::SadsController < ApplicationController
 
     @post.reload
 
-    respond_to do |format|
-      format.html { redirect_to root_path}
-      format.js {}
+    respond_to do |format|      
+      format.js { render '/posts/emotions/create' }
     end   
   end
 end
