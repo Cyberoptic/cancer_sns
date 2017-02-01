@@ -1,11 +1,1 @@
-$("#js-emotion-link-<%= @post.id %>").removeClass("is-liked");
-
-$('#emotion-hover-<%= @post.id %>').html("<%= escape_javascript render partial: '/posts/emotion-hover-content', locals: { post: @post } %>");
-
-$('.tooltip').each(function () {
-  var tooltip = $(this);
-  tooltip.data("is-active", false);
-  tooltip.css("display", "none");
-});
-
-$('#emotion-hover-<%= @post.id %>').foundation();
+<%= render partial: '/posts/after_emotion_actions' %>
