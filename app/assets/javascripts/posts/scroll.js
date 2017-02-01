@@ -3,10 +3,15 @@ $(document).ready(function() {
     $(window).scroll(function() {
       var url = $('#post-pagination .pagination .next_page').attr('href');
       if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
-        $('#post-pagination .pagination').text("Please Wait...");
-        return $.getScript(url);
+        $.getScript(url, function(){
+          app.rebind();
+          $('#posts').foundation(); 
+        })
+
+        return;
       }
-    });
-    return $(window).scroll();
+    });    
+
+    return $(window).scroll();    
   }
 });
