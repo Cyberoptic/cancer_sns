@@ -115,8 +115,9 @@ class User < ApplicationRecord
     end
   end
 
-######################################################################
-################### Emotions section BEGIN ###########################
+  def emotioned_on?(post)
+    liked?(post) || sadded?(post) || happied?(post)
+  end
 
   def like(post)
     likes.create({post_id: post.id, post_type: post.class.name})
@@ -154,18 +155,9 @@ class User < ApplicationRecord
     post.happies.exists?(user_id: self.id)    
   end
 
-######################################################################
-##################### Emotions section END ###########################
-
-
-
-##################### GROUPs ###########################
-
-def joined?(group)
-  self.group_memberships.exists?(group_id: group.id)
-end
-
-##################### GROUPs END ###########################
+  def joined?(group)
+    self.group_memberships.exists?(group_id: group.id)
+  end
 
   def pending_requests
     HasFriendship::Friendship.where(friend_id: self.id, status: :pending).order(created_at: :desc)
