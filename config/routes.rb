@@ -12,9 +12,11 @@ Rails.application.routes.draw do
     post :likes, to: "posts/likes#create"
     post :happies, to: "posts/happies#create"
     post :sads, to: "posts/sads#create"
+    post :mads, to: "posts/mads#create"
     post :unlikes, to: "posts/unlikes#create"
     post :unsads, to: "posts/unsads#create"
     post :unhappies, to: "posts/unhappies#create"
+    post :unmads, to: "posts/unmads#create"
 
     member do
       get 'more_comments'
@@ -57,9 +59,11 @@ Rails.application.routes.draw do
     post :likes, to: "group_posts/likes#create"
     post :happies, to: "group_posts/happies#create"
     post :sads, to: "group_posts/sads#create"
+    post :mads, to: "group_posts/mads#create"
     post :unlikes, to: "group_posts/unlikes#create"
     post :unsads, to: "group_posts/unsads#create"
     post :unhappies, to: "group_posts/unhappies#create"
+    post :unmads, to: "group_posts/unmads#create"
   end
 
 end

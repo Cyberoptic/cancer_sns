@@ -1,4 +1,4 @@
-$("#js-emotion-link-<%= @post.id %>").removeClass("is-liked");
+$("#js-emotion-link-<%= @post.id %>").addClass("is-liked");
 
 $('#emotion-hover-<%= @post.id %>').html("<%= escape_javascript render partial: '/posts/emotion-hover-content', locals: { post: @post } %>");
 

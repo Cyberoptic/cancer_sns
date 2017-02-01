@@ -7,5 +7,5 @@
 = link_to send(EmotionLink.new(emotion: "sad", user: current_user, post: post).url, post), method: :post, remote: true, class: 'post-emotion-svg-link has-tip top', data: {"tooltip": true, "disable-hover": false, "click-open": false}, aria: {"haspopup": "true"}, tabindex: "2", title: "悲しいね！"
   = image_tag 'svgs/unhappy', width: "35px", class: 'post-emotion-svgs'
 
-= link_to send(EmotionLink.new(emotion: "sad", user: current_user, post: post).url, post), method: :post, remote: true, class: 'post-emotion-svg-link has-tip top', data: {"tooltip": true, "disable-hover": false, "click-open": false}, aria: {"haspopup": "true"}, tabindex: "2", title: "怒りたいね"
+= link_to send(EmotionLink.new(emotion: "mad", user: current_user, post: post).url, post), method: :post, remote: true, class: 'post-emotion-svg-link has-tip top', data: {"tooltip": true, "disable-hover": false, "click-open": false}, aria: {"haspopup": "true"}, tabindex: "2", title: "怒りたいね"
   = image_tag 'svgs/mad', width: "35px", class: 'post-emotion-svgs'

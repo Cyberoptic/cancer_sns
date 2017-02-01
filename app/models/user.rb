@@ -117,7 +117,7 @@ class User < ApplicationRecord
   end
 
   def emotioned_on?(post)
-    liked?(post) || sadded?(post) || happied?(post)
+    liked?(post) || sadded?(post) || happied?(post) || madded?(post)
   end
 
   Emotion.emotions.keys.each do |emotion|

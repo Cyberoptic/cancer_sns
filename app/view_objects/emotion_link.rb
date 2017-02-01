@@ -2,7 +2,8 @@ class EmotionLink
   PAST_TENSE_EMOTIONS = {
     like: :liked,
     happy: :happied,
-    sad: :sadded
+    sad: :sadded,
+    mad: :madded
   }.freeze
 
   def initialize(post:, emotion:, user:)
