@@ -3,9 +3,7 @@ class GroupPost < ApplicationRecord
   belongs_to :user
   has_many :comments, as: :post
   has_many :post_images, as: :post
-  has_many :likes, as: :post, dependent: :destroy
-  has_many :sads, as: :post, dependent: :destroy
-  has_many :happies, as: :post, dependent: :destroy
+  has_many :emotions, as: :post
   
   accepts_nested_attributes_for :post_images
 
@@ -14,4 +12,10 @@ class GroupPost < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   delegate :photo, to: :user, prefix: true
+
+  %w(like happy sad mad).each do |emotion|
+    define_method "has_#{emotion.pluralize}?" do
+      emotions.exists?(emotion: emotion)
+    end      
+  end  
 end

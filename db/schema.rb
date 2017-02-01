@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201175039) do
+ActiveRecord::Schema.define(version: 20170201194901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,8 +83,9 @@ ActiveRecord::Schema.define(version: 20170201175039) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "emotions_count", default: 0, null: false
     t.index ["group_id"], name: "index_group_posts_on_group_id", using: :btree
     t.index ["user_id", "group_id"], name: "index_group_posts_on_user_id_and_group_id", using: :btree
   end

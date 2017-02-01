@@ -5,5 +5,7 @@ class Emotion < ApplicationRecord
   validates :user_id, uniqueness: {scope: :post_id}
   validates :user_id, :post_id, presence: true
 
-  enum emotion: {like: 0, happy: 1, sad: 2, mad: 3}
+  enum emotion: {like: 0, happy: 1, sad: 2, mad: 3} 
+
+  delegate :photo, to: :user, prefix: true
 end

@@ -1,5 +1,6 @@
 var app = {
   onload: function(){    
+    this.onDisplayEmotionedClick();
     this.onEditPostClick();
     this.onEditPostVisibilityClick();
     this.onEditCommentClick();
@@ -7,6 +8,7 @@ var app = {
   },
 
   rebind: function(){    
+    this.onDisplayEmotionedClick();
     this.onEditPostClick();
     this.onEditPostVisibilityClick();
     this.onEditCommentClick();
@@ -18,6 +20,55 @@ var app = {
       var id = $(this).data("post-id");
       var textarea = $(`#js-comment-textarea-${id}`);
       textarea.focus(); 
+    })
+  },
+
+  onDisplayEmotionedClick: function(){
+    $(".js-display-emotions").on('click', function(e){
+      e.preventDefault();
+
+      var id = $(this).data("id"); 
+      var list = ""; 
+
+      $.ajax({
+        url: `posts/${id}/emotions`,
+        type: 'GET',
+        dataType: 'JSON',
+        context: 'this',
+        async: false,
+        success: (data) => {       
+          console.log(data);
+          list += `<img src="assets/svgs/like.svg" width="20" />`;
+          list += `<span class="emotion-count">${data.length}</span>`
+          list += "<hr />";
+
+          data.forEach(function(emotion){            
+            list += `<li class="emotion-list">
+                      
+                      <img src=${emotion.user_photo_url} class="emotion-list-image user-image-small"/>                      
+                      <span class="emotion-list-username">
+                        <a href=${emotion.user_link}>
+                          ${emotion.user_name}
+                        </a>
+                      </span>
+                      <img src=${emotion.emotion_image_url} width="20" class="emotion-list-emotion"/>
+                    </li>`            
+          });
+        }
+      });
+
+      html = `<div class="tiny reveal" id="display-emotions-modal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
+                <ul class="no-bullet">
+                  ${list}
+                </ul>
+              </div>`    
+
+      $("#display-emotions-modal").remove();
+      $("#modal").html(html);
+
+      $('#display-emotions-modal').foundation();
+      $('#display-emotions-modal').foundation('open');
+      
     })
   },
 

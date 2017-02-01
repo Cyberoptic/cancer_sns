@@ -98,3 +98,20 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
+
+.emotion-list {
+	height: 35px;
+	position: relative;    
+}
+
+.emotion-list-emotion {	
+  bottom: -20%;
+  left: 6%;
+  position: absolute;
+}
+
+.emotion-list-username {	
+  bottom: 19%;
+  left: 15%;
+  position: absolute;
+}

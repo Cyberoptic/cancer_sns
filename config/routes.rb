@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     post :unhappies, to: "posts/unhappies#create"
     post :unmads, to: "posts/unmads#create"
 
+    resources :emotions, only: :index
+    
     member do
       get 'more_comments'
     end
