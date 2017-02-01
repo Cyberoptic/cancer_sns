@@ -1,7 +1,10 @@
 <div class="row">
   <div class="columns large-6 large-offset-3 small-12">
     <div class="callout">
-      <h3 class="text-center">新規会員登録</h3>
+      <h3 class="text-center bold">新規会員登録</h3>
+
+      <hr/>
+
       <div class="callout warning">
         <h6 class="text-center">
           <strong>
@@ -13,7 +16,7 @@
         <%= f.error_notification %>
         
         <div class="form-inputs">
-          <%= f.input :email, required: true, placeholder: "メールアドレス" %>          
+          <%= f.input :email, required: true, placeholder: "メールアドレス", label: false %>          
           <% if f.object.password_required? %>
             <%= f.input :password, required: true, placeholder: 'パスワード', label: 'パスワード（※英数字8文字以上、大文字小文字混在）' %>
             <%= f.input :password_confirmation, required: true, placeholder: 'パスワード（再確認）' %>
@@ -32,6 +35,8 @@
           </p>
         </div>        
       <% end %>
+
+      <hr/>
 
       <%= render "devise/shared/links" %>
     </div><!-- callout -->
