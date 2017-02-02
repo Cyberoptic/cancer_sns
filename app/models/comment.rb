@@ -10,6 +10,9 @@ class Comment < ApplicationRecord
 
   scope :visible, ->{ where(visible: true) }
 
+  # creates notification for the recipient after actor comments
+  after_create :notify_recipient
+
   def toggle_visibility!
     self.visible = !visible
     save
@@ -21,5 +24,12 @@ class Comment < ApplicationRecord
 
   def deleted?
     deleted_at.present?
+  end
+
+
+  private
+
+  def notify_recipient
+    Notification.create({recipient: self.post.user, actor: self.user, action: "commented", notifiable: self.post}) if self.user != self.post.user
   end
 end

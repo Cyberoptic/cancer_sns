@@ -5,6 +5,7 @@ class Friend::RequestsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     current_user.friend_request(@user)
+    Notification.create({recipient: @user,actor: current_user,action: "requested", notifiable: current_user}) if @user != current_user
     respond_to do |format|
       format.html {}
       format.js {}

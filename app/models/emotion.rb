@@ -8,4 +8,12 @@ class Emotion < ApplicationRecord
   enum emotion: {like: 0, happy: 1, sad: 2, mad: 3} 
 
   delegate :photo, to: :user, prefix: true
+
+  after_create :notify_recipient
+
+  private 
+
+  def notify_recipient
+    Notification.create({ recipient: self.post.user, actor: self.user, action: "#{self.emotion}", notifiable: self.post }) if self.user != self.post.user
+  end
 end
