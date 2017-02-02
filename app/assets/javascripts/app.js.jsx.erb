@@ -31,14 +31,13 @@ var app = {
       var list = ""; 
 
       $.ajax({
-        url: `posts/${id}/emotions`,
+        url: `/posts/${id}/emotions`,
         type: 'GET',
         dataType: 'JSON',
         context: 'this',
         async: false,
         success: (data) => {       
-          console.log(data);
-          list += `<img src="assets/svgs/like.svg" width="20" />`;
+          list += `<img src="/assets/svgs/like.svg" width="20" />`;
           list += `<span class="emotion-count">${data.length}</span>`
           list += "<hr />";
 
@@ -51,7 +50,7 @@ var app = {
                           ${emotion.user_name}
                         </a>
                       </span>
-                      <img src=${emotion.emotion_image_url} width="20" class="emotion-list-emotion"/>
+                      <img src="/${emotion.emotion_image_url}" width="20" class="emotion-list-emotion"/>
                     </li>`            
           });
         }
