@@ -12,7 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
         params[:user][key] = value.join
       end
     end
-    binding.pry 
+    
     super
   end
 
