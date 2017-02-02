@@ -7,6 +7,12 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update
+    params[:user].each do |key, value|
+      if key.include?("visibility")        
+        params[:user][key] = value.join
+      end
+    end
+    binding.pry 
     super
   end
 

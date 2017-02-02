@@ -1,0 +1,16 @@
+.input.check_boxes.optional
+  .checkbox
+    - checked = resource.send(visibility) == '公開' ? {checked: "checked"} : {}
+    label for="user_#{visibility}_public" 
+      input.check_boxes.optional id="user_#{visibility}_public" name="user[#{visibility}][]" type="checkbox" value="公開" *checked
+      | 公開
+  .checkbox
+    - checked = resource.send(visibility) == '友達にのみ公開' ? {checked: "checked"} : {}
+    label for="user_#{visibility}_friends" 
+      input.check_boxes.optional id="user_#{visibility}_friends" name="user[#{visibility}][]" type="checkbox" value="友達にのみ公開" *checked
+      | 友達にのみ公開
+  .checkbox
+    - checked = resource.send(visibility) == '非公開' ? {checked: "checked"} : {}
+    label for="user_#{visibility}_hidden"                                 
+      input.check_boxes.optional id="user_#{visibility}_hidden" name="user[#{visibility}][]" type="checkbox" value="非公開" *checked
+      | 非公開

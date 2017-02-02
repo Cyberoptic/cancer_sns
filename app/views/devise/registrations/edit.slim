@@ -2,16 +2,8 @@
   h3.bold プロフィール登録編集  
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, data: 'abide'}) do |f|
     = f.error_notification
-    - if resource.errors.any?
-      #error_explanation
-        .alert.alert-danger.alert-dismissable
-          button.close aria-hidden="true" data-dismiss="alert" type="button"  ×
-          p
-            strong
-              | This form contains #{pluralize(resource.errors.count, 'error')}.
-          ul
-            - resource.errors.full_messages.each do |msg|
-              li= msg
+    = devise_error_messages!
+
     table.unstriped.stack
       tr
         th
@@ -28,10 +20,9 @@
           | 誕生日
         td
           = f.input :birthday, as: :string, start_year: Date.today.year - 90, end_year: Date.today.year - 16, input_html: {type: :date, value: resource.birthday}, label: false
-          label for="birthday_visibility"
-            i class="fi-lock"
-            |  誕生日公開設定
-          = f.input :birthday_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :birthday_visibility}
+
       tr
         th
           | 名前
@@ -40,10 +31,8 @@
           = f.input :last_name_katakana, required: true
           = f.input :first_name, required: true
           = f.input :first_name_katakana, required: true          
-          label for="name_visibility"
-            i class="fi-lock"
-            |  名前公開設定
-          = f.input :name_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :name_visibility}
       tr
         th
           | 性別
@@ -51,23 +40,21 @@
           = f.input :gender, collection: User.genders.keys, include_blank: "選択する", required: true, label: false
       tr
         th
+          | 都道府県
+        td
+          = f.input :prefecture, collection: Area::PREFECTURES, include_blank: "選択する"
+      tr
+        th
           | エリア
         td          
-          = f.input :prefecture, collection: Area::PREFECTURES, include_blank: "選択する"
           = f.input :area, collection: Area::LIST, include_blank: "選択する", required: true
-          label for="area_visibility"
-            i class="fi-lock" 
-            |  エリア公開設定
-          = f.input :area_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :area_visibility}
       tr
         th
           | 職業
         td
-          = f.input :profession
-          label for="profession_visibility"
-            i class="fi-lock"
-            |  職業公開設定  
-          = f.input :profession_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+          = f.input :profession 
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :profession_visibility}
       tr
         th
           | プロフィール画像
@@ -96,19 +83,16 @@
           | パートナー年齢
         td
           = f.input :partner_age, collection: User::AGE, include_blank: "選択する", required: true
-          label for="partner_age_visibility"
-            i class="fi-lock"
-            |  パートナー年齢公開設定
-          = f.input :partner_age_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :partner_age_visibility}
       tr.partner-info-tr
         th
           | パートナー関係
         td
           = f.input :partner_relationship, collection: User::PARTNER_RELATIONSHIPS, include_blank: "選択する", required: true
-          label for="partner_relationship_visibility"
-            i class="fi-lock"
-            |  パートナー関係公開設定
-          = f.input :partner_relationship_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :partner_relationship_visibility}
+
       tr.partner-info-tr
         th
           | パートナー癌種別
@@ -122,21 +106,20 @@
               - Cancer::TYPES.each do |key, value|
                 optgroup label="#{key}"
                   - value.each do |type|
-                    option value="#{type}"
+                    - selected = resource.cancer_type == type ? {selected: "selected"} : {}
+                    option value="#{type}" *selected
                       = type
-          label for="cancer_type_visibility"
-            i class="fi-lock"
-            |  パートナー癌種別公開設定                      
-          = f.input :cancer_type_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+ 
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :cancer_type_visibility}                   
+
       tr.partner-info-tr
         th
           | パートナー癌ステージ
         td
-          = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する"
-          label for="cancer_stage_visibility"
-            i class="fi-lock"
-            |  パートナー癌ステージ公開設定  
-          = f.input :cancer_stage_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+          = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する" 
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :cancer_stage_visibility}
+
       tr.partner-info-tr
         th
           | 治療内容
@@ -150,10 +133,11 @@
                 = check_box_tag "user[treatment_ids][]", treatment.id, resource.user_treatments.find_by(treatment_id: treatment.id)
                 = treatment.name
           = f.input :other_treatment, label: '自由記述'
-          label for="treatment_visibility"
-            i class="fi-lock"
-            |  パートナー治療内容公開設定  
-            = f.input :treatment_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+
+          hr 
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :treatment_visibility}
+
       tr.partner-info-tr
         th
           | 治療内容
@@ -164,19 +148,15 @@
           | メイン病院
         td
           = f.input :hospital
-          label for="hospital_visibility"
-            i class="fi-lock"
-            |  メイン病院公開設定  
-          = f.input :hospital_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :hospital_visibility}
       tr.partner-info-tr
         th
           | 一番の悩み
         td
           = f.input :problems, input_html: {rows: 5}, label: false
-          label for="problems_visibility"
-            i class="fi-lock"
-            |  一番の悩み公開設定  
-          = f.input :problems_visibility, collection: User::SETTING_OPTIONS, include_blank: false, label: false
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :problems_visibility}
 
       hr/
       = f.input :profile_completed, as: :hidden, input_html: { value: true }
@@ -193,4 +173,18 @@ javascript:
 
     $('#js-children-form-container').append(html);
   });
-  
+  $("input:checkbox").on('click', function() {
+    // in the handler, 'this' refers to the box clicked on
+    var $box = $(this);
+    if ($box.is(":checked")) {
+      // the name of the box is retrieved using the .attr() method
+      // as it is assumed and expected to be immutable
+      var group = "input:checkbox[name='" + $box.attr("name") + "']";
+      // the checked state of the group/box on the other hand will change
+      // and the current value is retrieved using .prop() method
+      $(group).prop("checked", false);
+      $box.prop("checked", true);
+    } else {
+      $box.prop("checked", false);
+    }
+  });
