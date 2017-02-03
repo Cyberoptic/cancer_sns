@@ -67,6 +67,7 @@ gem 'bonsai-elasticsearch-rails'
 
 gem 'hashids'
 gem 'friendly_id', '~> 5.2.0'
+gem "cocoon"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

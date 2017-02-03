@@ -3,9 +3,10 @@ class GroupPostsController < ApplicationController
   before_action :authenticate_user!  
 
   def create
-    @post = current_user.group_posts.new(group_post_params.merge(group_id: params[:group_id]))
+    @group = Group.find(params[:group_id])
+    @post = current_user.group_posts.new(group_post_params.merge(group_id: @group.id))
 
-    respond_to do |format|
+    respond_to do |format|      
       if @post.save!
         if params[:post_images]
           params[:post_images]['photo'].each do |a|

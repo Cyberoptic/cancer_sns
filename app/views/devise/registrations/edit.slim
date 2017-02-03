@@ -70,14 +70,13 @@
       tr
         th
           | 子ども
-        td          
-          .row
-            #js-children-form-container
-              = f.fields_for :children do |ff|
-                .columns.medium-3.small-12.end
-                  = ff.input :age, placeholder: "年齢", label: false, required: false        
-          button#js-add-children.button.warning
-            | 子どもを追加する
+        td
+          #children
+            = f.simple_fields_for :children do |children|
+              = render 'child_fields', f: children
+            .links
+              = link_to_add_association '<i class="fa fa-plus-circle" aria-hidden="true"></i> 子どもを追加する'.html_safe, f, :children, class: 'button small'
+
       tr.partner-info-tr
         th
           | パートナー年齢
@@ -166,13 +165,6 @@
   p
     small= link_to "アカウントを消す", registration_path(resource_name), data: {confirm: "本当にアカウントを消してよろしいですか？（この操作を取り消すことはできません）"}, method: :delete
 javascript:
-  $('#js-add-children').on('click', function(e){
-    e.preventDefault();
-
-    var html = '<div class="columns medium-3 small-12 end"><div class="input integer required user_children_age"><input class="numeric integer" placeholder="年齢" type="number" step="1" name="user[children_attributes][1][age]"></div></div>';
-
-    $('#js-children-form-container').append(html);
-  });
   $("input:checkbox").on('click', function() {
     // in the handler, 'this' refers to the box clicked on
     var $box = $(this);
@@ -187,4 +179,16 @@ javascript:
     } else {
       $box.prop("checked", false);
     }
+  });
+
+  $(document).ready(function() {
+    $('#children')
+      .on('cocoon:before-insert', function(e,child_to_be_added) {
+        child_to_be_added.fadeIn('slow');
+      })
+      .on('cocoon:before-remove', function(e, child) {
+        // allow some time for the animation to complete
+        $(this).data('remove-timeout', 1000);
+        child.fadeOut('slow');
+      });
   });

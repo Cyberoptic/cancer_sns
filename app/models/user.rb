@@ -42,7 +42,7 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :user_treatments, reject_if: proc { |attributes| attributes['name'].blank? }
   accepts_nested_attributes_for :treatments, reject_if: proc { |attributes| attributes['name'].blank? }
-  accepts_nested_attributes_for :children, reject_if: proc { |attributes| attributes['age'].blank? }
+  accepts_nested_attributes_for :children, reject_if: proc { |attributes| attributes['age'].blank? || attributes['gender'].blank? }, allow_destroy: true
 
   # Scopes for filtering
   scope :profession, -> (profession){ where(profession: profession) }

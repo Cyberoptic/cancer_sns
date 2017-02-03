@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170202141957) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "gender"
     t.index ["user_id"], name: "index_children_on_user_id", using: :btree
   end
 

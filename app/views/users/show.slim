@@ -10,7 +10,7 @@
           - if @user.nickname.present?
             .nickname= @user.nickname
       /! row
-      .user-tags
+      .user-tags        
         - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :area).visible?
           span.label.secondary.label-user-attributes
             i.fa.fa-map-marker aria-hidden="true" 

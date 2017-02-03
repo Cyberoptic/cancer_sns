@@ -1,0 +1,4 @@
+.nested-fields
+  = f.input :age, placeholder: "年齢", label: false, required: false 
+  = f.input :gender, collection: Child.genders.keys, include_blank: "性別を選択する", required: true, label: false
+  = link_to_remove_association "<i class='fa fa-trash' aria-hidden='true'></i> 削除".html_safe, f, class: 'button small alert float-right'
