@@ -1,7 +1,7 @@
 class GroupPost < ApplicationRecord
   belongs_to :group
   belongs_to :user
-  has_many :comments, as: :post
+  has_many :comments, as: :post 
   has_many :post_images, as: :post
   has_many :emotions, as: :post
   
@@ -13,9 +13,18 @@ class GroupPost < ApplicationRecord
 
   delegate :photo, to: :user, prefix: true
 
+  # after_commit :notify_recipient
+
   %w(like happy sad mad).each do |emotion|
     define_method "has_#{emotion.pluralize}?" do
       emotions.exists?(emotion: emotion)
     end      
   end  
+
+  private
+
+  def notify_recipient
+    Notification.create({recipient: self.post.user, actor: self.user, action: "group post", notifiable: self.post}) if self.user != self.post.user
+
+  end
 end
