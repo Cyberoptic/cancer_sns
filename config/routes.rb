@@ -68,4 +68,5 @@ Rails.application.routes.draw do
     post :unmads, to: "group_posts/unmads#create"
   end
 
+  resources :notifications, only: :index
 end

@@ -15,10 +15,10 @@ class Emotion < ApplicationRecord
   private 
 
   def notify_recipient
-    Notification.create({ recipient: self.post.user, actor: self.user, action: "#{self.emotion}", notifiable: self.post }) if self.user != self.post.user
+    Notification.create({ recipient: self.post.user, actor: self.user, action: "#{self.emotion}s", notifiable: self.post }) if self.user != self.post.user
   end
 
   def notify_group_recipient
-    Notification.create({ recipient: self.group_post.user, actor: self.user, action: "#{self.emotion}", notifiable: self.group_post }) if self.user != self.group_post.user
+    Notification.create({ recipient: self.group_post.user, actor: self.user, action: "#{self.emotion}s", notifiable: self.group_post }) if self.user != self.group_post.user
   end 
 end
