@@ -22,6 +22,7 @@ ja:
         cancer_stage: 癌ステージ
         treatment: 治療内容
         treatment_content: 治療内容（詳細）
+        other_treatment: 治療内容自由記述
         problems: 一番の悩み
         area: エリア
         prefecture: 都道府県

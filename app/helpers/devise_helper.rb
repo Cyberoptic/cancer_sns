@@ -9,8 +9,7 @@ module DeviseHelper
 
     html = <<-HTML
     <div id="error_explanation">
-      <h2>#{sentence}</h2>
-      <ul>#{messages}</ul>
+      <ul class="no-bullet callout alert">#{messages}</ul>
     </div>
     HTML
 
