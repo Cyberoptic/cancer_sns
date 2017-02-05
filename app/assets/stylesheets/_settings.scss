@@ -602,11 +602,11 @@ $thumbnail-radius: $global-radius;
 // 35. Title Bar
 // -------------
 
-$titlebar-background: $black;
+$titlebar-background: $white;
 $titlebar-color: $white;
 $titlebar-padding: 0.5rem;
 $titlebar-text-font-weight: bold;
-$titlebar-icon-color: $white;
+$titlebar-icon-color: $secondary-color;
 $titlebar-icon-color-hover: $medium-gray;
 $titlebar-icon-spacing: 0.25rem;
 

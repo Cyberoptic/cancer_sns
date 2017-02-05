@@ -29,6 +29,7 @@ var app = {
         }, 1000);
       }).bind('touchend', function() {
         if (longtouch) {
+          alert("test");
           $(`#${toggleEl}`).foundation('open');  
         }
         longtouch = false;
