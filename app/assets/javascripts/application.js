@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
+//= require jquery.mobile
 //= require foundation
 //= require cable
 //= require react

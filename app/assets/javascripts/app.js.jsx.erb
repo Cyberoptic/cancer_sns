@@ -17,9 +17,16 @@ var app = {
     this.onCommentTriggerClick();
   },
 
-  onLongTouchIine: function(){
-    $(".emotion-link").on("taphold",function(e){
+  preventDefaultOnContextMenu: function(){
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+  },
+
+  onLongTouchIine: function(){    
+    $(".emotion-link").on("taphold",function(e){      
       var toggleEl = $(e.target).data("toggle");
+      console.log(`#${toggleEl}`);
       $(`#${toggleEl}`).foundation('open');  
     });
   },
