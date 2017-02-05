@@ -165,7 +165,7 @@
   p
     small= link_to "アカウントを消す", registration_path(resource_name), data: {confirm: "本当にアカウントを消してよろしいですか？（この操作を取り消すことはできません）"}, method: :delete
 javascript:
-  $("input:checkbox").on('click', function() {
+  $(".visibility_check_boxes").on('click', function() {
     // in the handler, 'this' refers to the box clicked on
     var $box = $(this);
     if ($box.is(":checked")) {
