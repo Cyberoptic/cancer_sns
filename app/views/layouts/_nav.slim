@@ -1,12 +1,14 @@
-.title-bar data-hide-for="medium" data-responsive-toggle="top-bar-menu" 
+.title-bar.text-center data-hide-for="medium" data-responsive-toggle="top-bar-menu" 
   button.menu-icon data-toggle="top-bar-menu" type="button" 
   .title-bar-title
+    = link_to root_path
+      = image_tag 'logo.png', class: 'float-center', width: "150px"
 #top-bar-menu.top-bar
   .column.small-12
     .top-bar-left
-      ul.dropdown.menu data-dropdown-menu="" 
-        li#brand-name.menu-text
-          = link_to root_path do
+      ul.menu
+        li#brand-name.menu-text.hide-for-small-only
+          = link_to root_path
             = image_tag 'logo.png'
     .top-bar-right
       ul.menu.medium-horizontal.vertical
