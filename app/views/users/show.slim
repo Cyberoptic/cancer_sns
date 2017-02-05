@@ -43,32 +43,37 @@
     .callout
       #friend_list
         = render partial: 'shared/friend_list.html.erb', locals: {user: @user}
-    .callout
-      h6.user-header パートナー（患者）に関する情報
-      hr/
-      ul.partner-info.no-bullet
-        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :partner_age).visible?
-          li
-            strong 年齢 
-            = @user.partner_age
-        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_stage).visible?
-          li
-            strong 癌ステージ 
-            = @user.cancer_stage
-        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_type).visible?
-          li
-            strong 癌種目 
-            = @user.cancer_type
-        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :hospital).visible?
-          li
-            strong 病院名 
-            = @user.hospital
-        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :treatment).visible?
-          li
-            strong 治療内容 
-            = @user.treatment
-    /! callout
-  /! columns
+    .card
+      .card-divider
+        h6.user-header.text-center パートナー（患者）に関する情報
+      div
+        table.table.table-fixed
+          - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :partner_age).visible?
+            tr
+              th width="100" 年齢
+              td
+                = @user.partner_age
+          - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_stage).visible?
+            tr
+              th 癌ステージ 
+              td
+                = @user.cancer_stage
+          - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_type).visible?
+            tr
+              th 癌種目 
+              td
+                = @user.cancer_type
+          - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :hospital).visible?
+            tr
+              th 病院名 
+              td style="word-wrap: break-word"
+                = @user.hospital
+          - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :treatment).visible?
+            tr
+              th 治療内容 
+              td
+                = @user.treatment
+    
   .columns.medium-6.small-12
     - if @user.posts.any?
       - @user.posts_visible_for(current_user: current_user).each do |post|
