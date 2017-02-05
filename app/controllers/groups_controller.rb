@@ -17,6 +17,8 @@ class GroupsController < ApplicationController
     @posts = @group.group_posts.includes(:user, :post_images).paginate(page: params[:page], per_page: 5).decorate
     @post = GroupPost.new
     @post_images = @post.post_images.build
+
+    mark_posts_as_read
   end
 
   def new
@@ -37,6 +39,10 @@ class GroupsController < ApplicationController
   end  
 
   private
+
+  def mark_posts_as_read
+    @group.group_posts.mark_as_read! :all, for: current_user
+  end
 
   def group_params
     params.require(:group).permit(:name, :description)

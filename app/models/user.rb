@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   include Filterable
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  acts_as_reader
+  has_friendship
+
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,
   :omniauthable, :registerable, :confirmable, :secure_validatable, :omniauth_providers => [:facebook]  
@@ -22,9 +23,7 @@ class User < ApplicationRecord
 
   validates :introduction, length: { maximum: 1000 }
 
-  mount_uploader :photo, PhotoUploader
-  
-  has_friendship
+  mount_uploader :photo, PhotoUploader  
   
   has_many :comments
   has_many :posts, dependent: :destroy

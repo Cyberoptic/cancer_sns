@@ -1,24 +1,25 @@
 .row
-  .columns.large-3.medium-3.small-12
-    .callout
-      h4.bold
-        = @group.name 
-      p
-        = @group.description      
-      hr 
+  .columns.large-3.medium-3.small-12 data-sticky-container="true"
+    .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
+      .callout
+        h4.bold
+          = @group.name 
+        p
+          = @group.description      
+        hr 
 
-      p.faded
-        = pluralize(@group.group_memberships_count, "member")     
-      .group-membership-list
-        - @group.group_memberships.take(20).each do |group_membership|
-          a href="/users/#{group_membership.user.id}" 
-            .image-wrapper
-              = image_tag group_membership.user_photo, alt: group_membership.user.decorate.name
+        p.faded
+          = pluralize(@group.group_memberships_count, "member")     
+        .group-membership-list
+          - @group.group_memberships.take(20).each do |group_membership|
+            a href="/users/#{group_membership.user.id}" 
+              .image-wrapper
+                = image_tag group_membership.user_photo, alt: group_membership.user.decorate.name
 
-      hr /
+        hr /
 
-      #join-group
-        = render partial: "groups/join", locals: { group: @group }
+        #join-group
+          = render partial: "groups/join", locals: { group: @group }
  
        
   .columns.large-6.medium-6.small-12

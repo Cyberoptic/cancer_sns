@@ -7,6 +7,7 @@
 		color: $primary-color;
 		font-size: 18px;
 		font-weight: 600;
+		padding: 0px;
 	}
 
 	.menu-text a {
@@ -18,7 +19,7 @@
 	}
 
 	img {
-		height: 60px;
+		height: 50px;
 	}
 
 	.nav-prof-img {
@@ -27,5 +28,9 @@
 }
 
 .top-bar-right {
-	padding-top: 15px;
+	padding-top: 10px;
+}
+
+.nav-menu-dropdown-text {
+	padding: 0.7rem;
 }

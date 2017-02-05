@@ -37,9 +37,7 @@
               = render partial: 'shared/request_accept_buttons.html.erb', locals: {user: @user}
           .columns.small-12
             = link_to 'メッセージ', user_chat_rooms_path(@user), method: :post, class: 'button expanded small secondary'
-          /! columns
-        /! row
-    /! callout
+
     .callout
       #friend_list
         = render partial: 'shared/friend_list.html.erb', locals: {user: @user}
@@ -81,12 +79,12 @@
     - else
       .callout
         h6.text-center このユーザーはまだ投稿していません。
-  /! columns
-  .columns.medium-3
-    .callout
-      h6.user-header 友達候補
-      - @suggested_users.each do |user|
-        = render partial: 'suggested_user', locals: {user: user.decorate}
-    /! callout
-/! row
+  
+  .columns.medium-3 data-sticky-container="true"
+    .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
+      .callout
+        h6.user-header 友達候補
+        - @suggested_users.each do |user|
+          = render partial: 'suggested_user', locals: {user: user.decorate}
+
  

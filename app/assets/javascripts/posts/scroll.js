@@ -6,6 +6,7 @@ $(document).ready(function() {
         $.getScript(url, function(){
           app.rebind();
           $('#posts').foundation(); 
+          $('.sticky').foundation('_calc', true);          
         })
 
         return;
