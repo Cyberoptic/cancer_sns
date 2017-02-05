@@ -18,24 +18,9 @@ var app = {
   },
 
   onLongTouchIine: function(){
-    $('.emotion-link').each(function() {
-
-      var timeout, longtouch, toggleEl;      
-
-      $(this).bind('touchstart', function(e) {
-        toggleEl = $(e.target).data("toggle");
-        timeout = setTimeout(function() {
-          longtouch = true;
-        }, 1000);
-      }).bind('touchend', function() {
-        if (longtouch) {
-          alert("test");
-          $(`#${toggleEl}`).foundation('open');  
-        }
-        longtouch = false;
-        clearTimeout(timeout);
-      });
-
+    $(".emotion-link").on("taphold",function(e){
+      var toggleEl = $(e.target).data("toggle");
+      $(`#${toggleEl}`).foundation('open');  
     });
   },
 
