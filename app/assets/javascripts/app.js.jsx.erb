@@ -1,5 +1,6 @@
 var app = {
-  onload: function(){    
+  onload: function(){
+    this.onLongTouchIine();    
     this.onDisplayEmotionedClick();
     this.onEditPostClick();
     this.onEditPostVisibilityClick();
@@ -7,12 +8,34 @@ var app = {
     this.onCommentTriggerClick();
   },
 
-  rebind: function(){    
+  rebind: function(){
+    this.onLongTouchIine();
     this.onDisplayEmotionedClick();
     this.onEditPostClick();
     this.onEditPostVisibilityClick();
     this.onEditCommentClick();
     this.onCommentTriggerClick();
+  },
+
+  onLongTouchIine: function(){
+    $('.emotion-link').each(function() {
+
+      var timeout, longtouch, toggleEl;      
+
+      $(this).bind('touchstart', function(e) {
+        toggleEl = $(e.target).data("toggle");
+        timeout = setTimeout(function() {
+          longtouch = true;
+        }, 1000);
+      }).bind('touchend', function() {
+        if (longtouch) {
+          $(`#${toggleEl}`).foundation('open');  
+        }
+        longtouch = false;
+        clearTimeout(timeout);
+      });
+
+    });
   },
 
   onCommentTriggerClick: function(){

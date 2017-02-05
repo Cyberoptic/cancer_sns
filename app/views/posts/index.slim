@@ -14,6 +14,9 @@
       h5.bold
         | マイグループ
       ul.no-bullet
+        - if current_user.groups.empty?
+          p
+            | 現在参加しているグループはありません。
         - current_user.groups.each do |group|      
           li.bold
             = link_to group.name, group_path(group)
