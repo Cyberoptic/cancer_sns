@@ -1,5 +1,4 @@
 $(function(){
-
   var $hoverElement = $("#emotion-hover-<%= @post.id %>");
 
   $("#js-emotion-link-<%= @post.id %>").addClass("is-liked");
@@ -18,5 +17,7 @@ $(function(){
 
   $hoverElement.foundation('close');
   new Foundation.Dropdown($hoverElement);
+
+  app.rebind();
 })
 
