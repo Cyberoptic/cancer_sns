@@ -21,6 +21,7 @@ class Friend::RequestAcceptancesController < ApplicationController
   end
 
   def find_user
-    @user ||= User.find(params[:user_id])
+    id = Hashids.new("this is my salt").decode(params[:user_id]).try(:first)    
+    @user ||= User.find(id)
   end
 end

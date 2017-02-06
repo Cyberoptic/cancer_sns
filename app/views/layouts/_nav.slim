@@ -10,7 +10,7 @@
         ul.menu
           li#brand-name.menu-text.hide-for-small-only
             = link_to root_path
-              = image_tag 'logo.png'
+              = image_tag 'logo.png', class: 'top-bar-menu-logo'
       - if user_signed_in?
         .top-bar-left.top-bar-search
           ul.menu.medium-horizontal.vertical

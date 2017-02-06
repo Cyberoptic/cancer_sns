@@ -60,17 +60,19 @@ var PendingFriendRequests = React.createClass({
 		var requests = this.state.friendRequests.map((request) => {
 			return (
 				<li key={request.id} className="request-container">
-					<div className="user-image-small">
-						<img src={request.friendable_photo_url} />
-					</div>
-					<div className="request-content">
-						<div className="display-name">
-							{`${request.friendable_last_name} ${request.friendable_first_name}`}
+					<a href={`/users/${request.friendable_id}`} className="request-container-link">
+						<div className="user-image-small">
+							<img src={request.friendable_photo_url} />
 						</div>
-						<div className="timestamp">
-							{request.created_at}
+						<div className="request-content">
+							<div className="display-name">
+								{`${request.friendable_last_name} ${request.friendable_first_name}`}
+							</div>
+							<div className="timestamp">
+								{request.created_at}
+							</div>
 						</div>
-					</div>
+					</a>
 
 					<div className="request-actions button-group">
 						<button className="button secondary small" data-id={request.friendable_id} onClick={this.handleAcceptRequest}><i className="fi-check"></i> 承認</button>

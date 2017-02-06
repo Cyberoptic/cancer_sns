@@ -5,4 +5,5 @@ json.array! @requests do |request|
   json.friendable_first_name request.friendable.first_name
   json.friendable_last_name request.friendable.last_name  
   json.friendable_photo_url request.friendable.photo.url
+  json.friendable_id request.friendable.to_param
 end
