@@ -1,7 +1,10 @@
 class User < ApplicationRecord
+  extend FriendlyId
   include Filterable
   acts_as_reader
   has_friendship
+
+  friendly_id :hash_id, use: [:slugged, :finders]
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,
@@ -24,6 +27,8 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 1000 }
 
   mount_uploader :photo, PhotoUploader  
+
+  before_create :set_hash_id!
   
   has_many :comments
   has_many :posts, dependent: :destroy
@@ -179,11 +184,17 @@ class User < ApplicationRecord
     Treatment.default + treatments.where(default: false)
   end
 
-  def to_param
-    Hashids.new("this is my salt").encode(id)
+  # set hash_id for user to use in slug
+  def set_hash_id!
+    hash_id = nil
+    loop do
+      hash_id = SecureRandom.urlsafe_base64(9).gsub(/-|_/,('a'..'z').to_a[rand(26)])
+      break unless self.class.name.constantize.where(:hash_id => hash_id).exists?
+    end
+    self.hash_id = hash_id
   end
 
-  private
+  private  
 
   def display_name_to_everyone?
     name_visibility == SETTING_OPTIONS.first

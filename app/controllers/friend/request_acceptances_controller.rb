@@ -8,7 +8,7 @@ class Friend::RequestAcceptancesController < ApplicationController
       format.html {}
       format.js {}
       format.json { render json: 200 }
-    end   
+    end
   end
   
   private
@@ -20,8 +20,7 @@ class Friend::RequestAcceptancesController < ApplicationController
     redirect_to root_path
   end
 
-  def find_user
-    id = Hashids.new("this is my salt").decode(params[:user_id]).try(:first)    
-    @user ||= User.find(id)
+  def find_user    
+    @user ||= User.find(params[:user_id])
   end
 end
