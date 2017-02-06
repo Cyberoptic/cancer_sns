@@ -8,6 +8,7 @@ json.array! @notifications do |notification|
     json.type "a post" if notification.notifiable_type == "Post"
     json.type "a group post" if notification.notifiable_type == "GroupPost"
     json.type "to you" if notification.notifiable_type == "User"
+    # json.type "a #{notification.notifiable.class.to_s.underscore.humanize.downcase}"
   end
   # notification.notifiable_type == "Post" ? json.url posts_path(anchor: notification.notifiable) : group_posts_path(anchor: notification.notifiable) 
 end
