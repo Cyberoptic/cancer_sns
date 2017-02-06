@@ -34,7 +34,8 @@
             li
               a data-toggle="pending-friend-requests" 
                 i.fi-torsos-all
-                = "(" + current_user.pending_requests.count.to_s + ")" if current_user.pending_requests.count > 0
+                span#js-pending-requests-count
+                  = "(" + current_user.pending_requests.count.to_s + ")" if current_user.pending_requests.count > 0
             / li.menu-text= link_to '<i class="fi-torsos-all"></i>'.html_safe, groups_path
             li= link_to "<i class='fi-comments'></i> (#{Message.unread_by(current_user).count})".html_safe, chat_rooms_path
             li

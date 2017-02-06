@@ -12,7 +12,7 @@ var PendingFriendRequests = React.createClass({
 			dataType: 'JSON',
 			context: 'this',
 			success: (data) => {
-				this.setState({friendRequests: data});
+				this.setState({friendRequests: data});				
 			}
 		})
 	},
@@ -33,6 +33,8 @@ var PendingFriendRequests = React.createClass({
 				})
 
 				this.setState({friendRequests: friendRequests});
+
+				$('#js-pending-requests-count').text(`(${this.state.friendRequests.length})`);
 			}
 		})
 	},
@@ -50,8 +52,11 @@ var PendingFriendRequests = React.createClass({
 			success: (data) => {
 				var friendRequests = this.state.friendRequests.filter((request) => {
 					return request.friendable_id != id;
-				})
+				});
+				
 				this.setState({friendRequests: friendRequests});
+
+				$('#js-pending-requests-count').text(`(${this.state.friendRequests.length})`);
 			}
 		})
 	},
