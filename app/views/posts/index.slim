@@ -13,7 +13,7 @@
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       .callout
         h5.bold
-          | マイグループ <small>(新着#{@unread_group_posts.count}件)</small>
+          | #{link_to 'マイグループ', groups_path} <small>(新着#{@unread_group_posts.count}件)</small>
         ul.no-bullet
           - if current_user.groups.empty?
             p
@@ -59,7 +59,7 @@
     .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
       .callout
         h5.bold
-          | メッセージ <small>(新着#{@unread_messages.count}件)</small>
+          | #{link_to 'メッセージ', chat_rooms_path} <small>(新着#{@unread_messages.count}件)</small>
         ul.no-bullet
           - @unread_messages.select('DISTINCT on (user_id) *').limit(10).each do |message|
             - chat_room = message.chat_room          

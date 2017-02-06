@@ -11,10 +11,19 @@
           li#brand-name.menu-text.hide-for-small-only
             = link_to root_path
               = image_tag 'logo.png'
+      - if user_signed_in?
+        .top-bar-left.top-bar-search
+          ul.menu.medium-horizontal.vertical
+            = simple_form_for UserSearch.new, url: users_path, method: :get
+              li.menu-search-li
+                input.menu-search-bar type="search" name="user_search[name_search]" placeholder="名前で検索"
+              / li.menu-search-li
+              /   button type="button" class="button"
+              /     | 検索
+              
       .top-bar-right
         ul.menu.medium-horizontal.vertical
-          - if user_signed_in?          
-            / li.menu-text= link_to '<i class="fi-magnifying-glass"></i> ユーザー検索'.html_safe, users_path
+          - if user_signed_in?
             li.menu-user-profile
               = link_to user_path(current_user)
                 = image_tag current_user.photo, class: 'nav-prof-img'

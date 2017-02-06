@@ -31,6 +31,22 @@
 	padding-top: 7px;
 }
 
+.top-bar-search {
+	padding-top: 10px;
+}
+
 .nav-menu-dropdown-text {
 	padding: 0.7rem;
+}
+
+.top-bar {
+	input {
+		margin-right: 0.1rem;
+	}
+}
+
+.menu-search-bar {
+	border-radius: 100px;
+	height: 2rem;
+	padding: 1.1rem;
 }
