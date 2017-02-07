@@ -57,6 +57,10 @@ gem 'draper', github: 'drapergem/draper'
 # For user settings
 gem 'storext'
 
+# Admin
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
+
 # React.js
 gem 'react-rails'
 
