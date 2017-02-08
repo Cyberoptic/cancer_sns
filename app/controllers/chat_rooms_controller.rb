@@ -12,7 +12,7 @@ class ChatRoomsController < ApplicationController
 
   def show
     @chat_rooms = current_user.chat_rooms.includes(:member, :user)
-    @chat_room = ChatRoom.includes(messages: :user).find_by(id: params[:id])
+    @chat_room = ChatRoom.includes(messages: :user).find(params[:id])
     @message = Message.new    
     @message_search = MessageSearch.new(params[:message_search])
     
