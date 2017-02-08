@@ -9,11 +9,11 @@ class Emotion < ApplicationRecord
 
   delegate :photo, to: :user, prefix: true
 
-  after_create :notify_recipient
+  after_create :create_notification
 
   private 
 
-  def notify_recipient
-    Notification.create({ recipient: self.post.user, actor: self.user, action: "反応", notifiable: self.post }) if self.user != self.post.user
+  def create_notification
+    Notification.create({ recipient: post.user, actor: user, action: "反応", notifiable: post }) if user != post.user
   end
 end
