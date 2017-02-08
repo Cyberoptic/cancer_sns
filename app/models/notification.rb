@@ -4,5 +4,6 @@ class Notification < ApplicationRecord
   belongs_to :notifiable, polymorphic: true
 
   scope :unread, ->{ where(read_at: nil) }
+  scope :recent, -> { order("created_at DESC").limit(10) }
 
 end

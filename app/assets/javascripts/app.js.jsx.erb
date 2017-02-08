@@ -1,5 +1,6 @@
 var app = {
-  onload: function(){    
+  onload: function(){
+    this.onLongTouchIine();    
     this.onDisplayEmotionedClick();
     this.onEditPostClick();
     this.onEditPostVisibilityClick();
@@ -7,12 +8,26 @@ var app = {
     this.onCommentTriggerClick();
   },
 
-  rebind: function(){    
+  rebind: function(){
+    this.onLongTouchIine();
     this.onDisplayEmotionedClick();
     this.onEditPostClick();
     this.onEditPostVisibilityClick();
     this.onEditCommentClick();
     this.onCommentTriggerClick();
+  },
+
+  preventDefaultOnContextMenu: function(){
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+  },
+
+  onLongTouchIine: function(){    
+    $(".emotion-link").on("taphold",function(e){      
+      var toggleEl = $(e.target).parent().data("toggle");      
+      $(`#${toggleEl}`).foundation('open');  
+    });
   },
 
   onCommentTriggerClick: function(){

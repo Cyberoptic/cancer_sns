@@ -6,6 +6,8 @@ class ChatRoomsController < ApplicationController
     @message_search = MessageSearch.new(params[:message_search])
     @message = Message.new      
     @chat_room = current_user.chat_rooms.includes(messages: :user).most_recent 
+
+    mark_messages_as_read
   end
 
   def show
@@ -13,6 +15,8 @@ class ChatRoomsController < ApplicationController
     @chat_room = ChatRoom.includes(messages: :user).find_by(id: params[:id])
     @message = Message.new    
     @message_search = MessageSearch.new(params[:message_search])
+    
+    mark_messages_as_read
   end
 
   def create
@@ -25,5 +29,12 @@ class ChatRoomsController < ApplicationController
       flash[:alert] = @chat_room.errors.full_messages[0]
       redirect_to :back
     end
+  end
+
+  private
+
+  def mark_messages_as_read
+    return if @chat_room || @chat_room.messages.empty?
+    @chat_room.messages.mark_as_read! :all, for: current_user
   end
 end

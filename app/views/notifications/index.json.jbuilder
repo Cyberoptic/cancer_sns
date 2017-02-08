@@ -1,14 +1,22 @@
 json.array! @notifications do |notification|
-  # json.recipient notification.recipient
-  json.actor notification.actor
+  json.actor notification.actor.decorate.name
+  json.actor_photo_url notification.actor.photo.url
   json.action notification.action
-  # json.notifiable notification.notifiable
-  json.notifiable do 
-    # json.type "a comment" if notifiable.notifiable_type == "Comment"
-    json.type "a post" if notification.notifiable_type == "Post"
-    json.type "a group post" if notification.notifiable_type == "GroupPost"
-    json.type "to you" if notification.notifiable_type == "User"
-    # json.type "a #{notification.notifiable.class.to_s.underscore.humanize.downcase}"
+  json.read_at notification.read_at
+  json.created_at notification.created_at
+
+  notifiable = notification.notifiable.class.to_s == "Post" || notification.notifiable.class.to_s == "GroupPost" ? "投稿" : notification.notifiable.class.to_s
+
+  json.notifiable do
+    json.type "あなたの#{notifiable}"
   end
-  # notification.notifiable_type == "Post" ? json.url posts_path(anchor: notification.notifiable) : group_posts_path(anchor: notification.notifiable) 
+  json.url "/" + notification.notifiable.class.to_s.underscore.humanize.downcase + "s/" + (notification.notifiable_id).to_s
+end
+
+def transform_to_hiragana(word)
+  if word == "Post" || word == "GroupPost"
+    return "投稿"
+  else
+    return word
+  end
 end

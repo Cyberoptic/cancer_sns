@@ -19,6 +19,7 @@ gem 'high_voltage', '~> 3.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery_mobile_rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -56,6 +57,10 @@ gem 'draper', github: 'drapergem/draper'
 # For user settings
 gem 'storext'
 
+# Admin
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
+
 # React.js
 gem 'react-rails'
 
@@ -68,6 +73,7 @@ gem 'bonsai-elasticsearch-rails'
 gem 'hashids'
 gem 'friendly_id', '~> 5.2.0'
 gem "cocoon"
+gem 'unread'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

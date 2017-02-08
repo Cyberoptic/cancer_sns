@@ -13,7 +13,7 @@ class ChatRoom < ApplicationRecord
   scope :member_with_name, -> (name) { joins(:member).where("LOWER(users.first_name) LIKE ? OR LOWER(users.last_name) LIKE ?", "#{name[0..2]}%", "#{name[0..2]}%")}
 
   def last_message
-    return if messages.empty?
+    return nil if messages.empty?
     messages.last.body
   end
 
@@ -28,9 +28,7 @@ class ChatRoom < ApplicationRecord
   end
 
   def self.find_with_name(name)
-    (
-      user_with_name(name) + member_with_name(name)
-    ).uniq
+    (user_with_name(name) + member_with_name(name)).uniq
   end
 
   def self.room_with(user, member)

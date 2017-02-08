@@ -1,24 +1,37 @@
-.row
-  .columns.large-3.small-12
-    .callout  
-      h5.bold
-        | ニュース
-      p
-        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    .callout
-      h5.bold
-        | マイグループ
-      ul.no-bullet
-        - current_user.groups.each do |group|      
-          li.bold
-            = link_to group.name, group_path(group)
-          p
-            = group.description.truncate(27)
+.row 
+  .columns.large-3.small-12 data-sticky-container="true"
+    .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
+      .callout  
+        h5.bold
+          | ニュース
+        p
+          | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      .callout
+        h5.bold
+          | #{link_to 'マイグループ', groups_path} <small>(新着#{@unread_group_posts.count}件)</small>
+        ul.no-bullet
+          - if current_user.groups.empty?
+            p
+              | 現在参加しているグループはありません。
+          - @unread_group_posts.limit(5).each do |post|
+            li
+              .row
+                .columns.small-3
+                  = image_tag post.user_photo
+                .columns.small-9
+                  = truncate(post.content, length: 35)
+                  = link_to '(続きを読む)', post.group, class: 'underlined float-right'                  
+              hr
+          - current_user.groups.each do |group|      
+            li.bold
+              = link_to group.name, group_path(group)
+            p
+              = group.description.truncate(27)
   .columns.large-6.small-12
     .callout
       = simple_form_for @post, remote: true do |f|        
@@ -42,22 +55,25 @@
       .sk-cube2.sk-cube
       .sk-cube4.sk-cube
       .sk-cube3.sk-cube
-  .columns.large-3.small-12
-    .callout
-      h5.bold
-        | メッセージ
-      ul.no-bullet
-        - current_user.chat_rooms.includes(:messages, :user, :member).recent.each do |chat_room|
-          = render partial: 'recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room} 
-    .callout
-      h5.bold
-        | 検索
-      = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
-        .input-group
-          = f.input :name_search, label: false, placeholder: '名前', input_html: {class: 'input-group-field'}
-          .input-group-button
-            = button_tag class: 'button'            
-              i.fi-magnifying-glass
+  .columns.large-3.small-12 data-sticky-container="true"
+    .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
+      .callout
+        h5.bold
+          | #{link_to 'メッセージ', chat_rooms_path} <small>(新着#{@unread_messages.count}件)</small>
+        ul.no-bullet
+          - @unread_messages.select('DISTINCT on (user_id) *').limit(10).each do |message|
+            - chat_room = message.chat_room          
+            = render partial: 'recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room}        
+
+      .callout
+        h5.bold
+          | 検索
+        = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
+          .input-group
+            = f.input :name_search, label: false, placeholder: '名前', input_html: {class: 'input-group-field'}
+            .input-group-button
+              = button_tag class: 'button'            
+                i.fi-magnifying-glass
             
 javascript:
   $(function(){

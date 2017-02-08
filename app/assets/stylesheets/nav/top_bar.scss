@@ -7,6 +7,7 @@
 		color: $primary-color;
 		font-size: 18px;
 		font-weight: 600;
+		padding: 0px;
 	}
 
 	.menu-text a {
@@ -14,18 +15,47 @@
 		font-size: 14px;
 		font-weight: 300;
 		line-height: 1.5;
-		
-	}
-
-	img {
-		height: 60px;
 	}
 
 	.nav-prof-img {
 		height: 30px;
+		width: 30px;
 	}
 }
 
+.top-bar-menu-logo {
+	height: 50px;
+}
+
 .top-bar-right {
-	padding-top: 15px;
+	padding-top: 7px;
+}
+
+.top-bar-search {
+	padding-top: 10px;
+}
+
+.nav-menu-dropdown-text {
+	padding: 0.7rem;
+}
+
+.top-bar {
+	input {
+		margin-right: 0.1rem;
+	}
+}
+
+.menu-search-bar {
+	border-radius: 100px;
+	height: 2rem;
+	padding: 1.1rem;
+}
+
+.notifications-menu {
+	a {
+		&:after {
+			display: none !important;
+			border: none !important;		
+		}
+	}
 }

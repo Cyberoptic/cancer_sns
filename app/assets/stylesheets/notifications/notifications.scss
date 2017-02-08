@@ -1,0 +1,95 @@
+.notification-prof {
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+  float: left;
+}
+
+.notification-menu {
+  width: 400px;
+  height: 300px;
+  overflow: auto;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 999999;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0px;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: $white !important;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid #ccc !important;
+  border: 1px solid rgba(0, 0, 0, .15) !important;
+  border-radius: $global-radius;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175) !important;
+          box-shadow: 0 6px 12px rgba(0, 0, 0, .175) !important;
+  li:first-child {
+    color: #333;
+    padding: 3px 20px;
+    border-bottom: 1px solid #ddd; 
+  }
+  time {
+    margin-top: 5px;
+    display: block;
+    color: $secondary-color;
+  }
+}
+.notification-menu.pull-right {
+  right: 0;
+  left: auto;
+}
+.notification-menu .divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #ddd !important;
+}
+.notification-link {
+  border-bottom: 1px solid #ccc !important;
+  display: block;
+  padding: 10px 20px !important;
+  clear: both;  
+  line-height: 1.42857143 !important;
+  color: $medium-gray !important;
+  white-space: nowrap;
+  overflow: auto;
+  font-weight: 300 !important;
+}
+.notification-link:hover,
+.notification-link:focus {
+  color: $dark-gray !important;
+  text-decoration: none;
+  background-color: #f5f5f5 !important;
+}
+.notification-menu > .active > a,
+.notification-menu > .active > a:hover,
+.notification-menu > .active > a:focus {
+  color: #fff !important;
+  text-decoration: none;
+  background-color: #337ab7 !important;
+  outline: 0;
+}
+.notification-menu > .disabled > a,
+.notification-menu > .disabled > a:hover,
+.notification-menu > .disabled > a:focus {
+  color: #777 !important;
+}
+.notification-menu > .disabled > a:hover,
+.notification-menu > .disabled > a:focus {
+  text-decoration: none;
+  cursor: not-allowed;
+  background-color: transparent;
+  background-image: none;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+
+.notification-menu:before {
+  border-bottom: 10px solid #ddd !important;
+  right: 23px !important;
+}

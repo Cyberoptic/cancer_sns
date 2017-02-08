@@ -1,23 +1,22 @@
 .callout
   h3.bold プロフィール登録編集  
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, data: 'abide'}) do |f|
-    = f.error_notification
     = devise_error_messages!
 
     table.unstriped.stack
       tr
         th
-          | ニックネーム
+          = f.label :nickname
         td
           = f.input :nickname, autofocus: true, label: false
       tr
         th
-          | メールアドレス
+          = f.label :email, required: true
         td
-          = f.input :email, required: true, label: false
+          = f.input :email, label: false
       tr
         th
-          | 誕生日
+          = f.label :birthday
         td
           = f.input :birthday, as: :string, start_year: Date.today.year - 90, end_year: Date.today.year - 16, input_html: {type: :date, value: resource.birthday}, label: false
 
@@ -25,7 +24,10 @@
 
       tr
         th
-          | 名前
+          label
+            abbr title="required"
+              | *
+            |  名前
         td
           = f.input :last_name, required: true
           = f.input :last_name_katakana, required: true
@@ -35,41 +37,45 @@
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :name_visibility}
       tr
         th
-          | 性別
+          = f.label :gender, required: true
         td
           = f.input :gender, collection: User.genders.keys, include_blank: "選択する", required: true, label: false
       tr
         th
-          | 都道府県
-        td
-          = f.input :prefecture, collection: Area::PREFECTURES, include_blank: "選択する"
-      tr
-        th
-          | エリア
+          = f.label :area, required: true
         td          
-          = f.input :area, collection: Area::LIST, include_blank: "選択する", required: true
+          = f.input :area, collection: Area::LIST, include_blank: "選択する", required: true, label: false
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :area_visibility}
+
       tr
         th
-          | 職業
+          = f.label :prefecture
         td
-          = f.input :profession 
+          = f.input :prefecture, collection: Area::PREFECTURES, include_blank: "選択する", label: false
+      tr
+        th
+          = f.label :profession
+        td
+          = f.input :profession, label: false
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :profession_visibility}
       tr
         th
-          | プロフィール画像
+          label
+            | プロフィール画像
         td
           p.bold 現在のプロフィール写真
           = image_tag current_user.photo, class: 'img-responsive'
           = f.input :photo, label: '新しいプロフィール写真を選択'    
       tr
         th
-          | 自己紹介
+          label
+            | 自己紹介
         td
           = f.input :introduction, input_html: {rows: 5}, label: false
       tr
         th
-          | 子ども
+          label
+            | 子ども
         td
           #children
             = f.simple_fields_for :children do |children|
@@ -79,27 +85,24 @@
 
       tr.partner-info-tr
         th
-          | パートナー年齢
+          = f.label :partner_age, required: true
         td
-          = f.input :partner_age, collection: User::AGE, include_blank: "選択する", required: true
+          = f.input :partner_age, collection: User::AGE, include_blank: "選択する", required: true, label: false
 
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :partner_age_visibility}
       tr.partner-info-tr
         th
-          | パートナー関係
+          = f.label :partner_relationship, required: true
         td
-          = f.input :partner_relationship, collection: User::PARTNER_RELATIONSHIPS, include_blank: "選択する", required: true
+          = f.input :partner_relationship, collection: User::PARTNER_RELATIONSHIPS, include_blank: "選択する", required: true, label: false
 
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :partner_relationship_visibility}
 
       tr.partner-info-tr
         th
-          | パートナー癌種別
+          = f.label :cancer_type, required: true
         td
           .input.select.required.user_cancer_type
-            label.select.required for="user_cancer_type" 
-              abbr title="required"  *
-              | 癌種別
             select#user_cancer_type.select.required aria-required="true" name="user[cancer_type]" required="required" 
               option value=""  選択する
               - Cancer::TYPES.each do |key, value|
@@ -113,20 +116,18 @@
 
       tr.partner-info-tr
         th
-          | パートナー癌ステージ
+          = f.label :cancer_stage
         td
-          = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する" 
+          = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する", label: false
 
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :cancer_stage_visibility}
 
       tr.partner-info-tr
         th
-          | 治療内容
+          label
+            | 治療内容
         td
-          .input.text.optional.user_treatments
-            label.text.optional for="user_problems"
-              | 治療内容
-            br            
+          .input.text.optional.user_treatments            
             - current_user.treatment_options.each do |treatment|
               label
                 = check_box_tag "user[treatment_ids][]", treatment.id, resource.user_treatments.find_by(treatment_id: treatment.id)
@@ -139,23 +140,38 @@
 
       tr.partner-info-tr
         th
-          | 治療内容
+          = f.label :treatment_content
         td
-          = f.input :treatment_content, input_html: {rows: 5} 
+          = f.input :treatment_content, input_html: {rows: 5}, label: false
       tr.partner-info-tr
         th
-          | メイン病院
+          = f.label :hospital
         td
-          = f.input :hospital
+          = f.input :hospital, label: false
 
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :hospital_visibility}
       tr.partner-info-tr
         th
-          | 一番の悩み
+          = f.label :problems
         td
           = f.input :problems, input_html: {rows: 5}, label: false
 
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :problems_visibility}
+      tr
+        th
+          = f.label :password, label: '新しいパスワード（変更されたい場合）'
+        td
+          = f.input :password, label: false, autocomplete: 'off'
+      tr
+        th
+          = f.label :password_confirmation, label: '新しいパスワード（確認用）'
+        td
+          = f.input :password_confirmation, label: false, autocomplete: 'off'
+      tr
+        th
+          = f.label :current_password, required: true
+        td
+          = f.input :current_password, label: false, autocomplete: 'off'
 
       hr/
       = f.input :profile_completed, as: :hidden, input_html: { value: true }
@@ -165,7 +181,7 @@
   p
     small= link_to "アカウントを消す", registration_path(resource_name), data: {confirm: "本当にアカウントを消してよろしいですか？（この操作を取り消すことはできません）"}, method: :delete
 javascript:
-  $("input:checkbox").on('click', function() {
+  $(".visibility_check_boxes").on('click', function() {
     // in the handler, 'this' refers to the box clicked on
     var $box = $(this);
     if ($box.is(":checked")) {

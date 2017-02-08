@@ -1,4 +1,6 @@
 class GroupPost < ApplicationRecord
+  acts_as_readable on: :created_at
+  
   belongs_to :group
   belongs_to :user
   has_many :comments, as: :post 

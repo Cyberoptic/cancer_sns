@@ -1,40 +1,74 @@
-.title-bar data-hide-for="medium" data-responsive-toggle="top-bar-menu" 
+.title-bar.text-center data-hide-for="medium" data-responsive-toggle="top-bar-menu" 
   button.menu-icon data-toggle="top-bar-menu" type="button" 
   .title-bar-title
+    = link_to root_path
+      = image_tag 'logo.png', class: 'float-center', width: "150px"
 #top-bar-menu.top-bar
-  .column.small-12
-    .top-bar-left
-      ul.dropdown.menu data-dropdown-menu="" 
-        li#brand-name.menu-text
-          = link_to root_path do
-            = image_tag 'logo.png'
-    .top-bar-right
-      ul.menu.medium-horizontal.vertical
-        - if user_signed_in?
-          li.menu-text= link_to '<i class="fi-magnifying-glass"></i> ユーザー検索'.html_safe, users_path
-          li.menu-text
-            a data-toggle="pending-friend-requests" 
-              i.fi-torsos-all
-              | 友達
-          li.menu-text= link_to '<i class="fi-torsos-all"></i> グループ'.html_safe, groups_path
-          li.menu-text= link_to '<i class="fi-comments"></i> メッセージ'.html_safe, chat_rooms_path
-          li.menu-text= link_to 'Notifications'.html_safe, "#", id: 'notifications'
-          li.menu-text
-            ul.dropdown.menu data-dropdown-menu="" 
-              li
-                a href="#" 
-                  = image_tag current_user.photo, class: 'nav-prof-img'
-                ul.menu
-                  li.menu-text= link_to '自分のプロフィール', user_path(current_user)
-                  li.menu-text= link_to '設定', edit_user_registration_path
-                  li.menu-text= link_to 'ログアウト', destroy_user_session_path, method: :delete
-          #pending-friend-requests.dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" 
-            ul#pending-friend-request-list.no-bullet
-              = react_component 'PendingFriendRequests', userId: current_user.id if user_signed_in?
+  .row
+    .columns.small-12
+      .top-bar-left
+        ul.menu
+          li#brand-name.menu-text.hide-for-small-only
+            = link_to root_path
+              = image_tag 'logo.png', class: 'top-bar-menu-logo'
+      - if user_signed_in?
+        .top-bar-left.top-bar-search
+          ul.menu.medium-horizontal.vertical
+            = simple_form_for UserSearch.new, url: users_path, method: :get
+              li.menu-search-li
+                input.menu-search-bar type="search" name="user_search[name_search]" placeholder="名前で検索"
+              / li.menu-search-li
+              /   button type="button" class="button"
+              /     | 検索
+              
+      .top-bar-right
+        ul.menu.medium-horizontal.vertical
+          - if user_signed_in?
+            li.menu-user-profile
+              = link_to user_path(current_user)
+                = image_tag current_user.photo, class: 'nav-prof-img'
+                span.menu-user-profile-name
+                  = current_user.first_name
+            li.menu-home
+              = link_to 'ホーム', root_path
+            li
+              a data-toggle="pending-friend-requests" 
+                i.fi-torsos-all
+                span#js-pending-requests-count
+                  = "(" + current_user.pending_requests.count.to_s + ")" if current_user.pending_requests.count > 0
+            / li.menu-text= link_to '<i class="fi-torsos-all"></i>'.html_safe, groups_path
+            li= link_to "<i class='fi-comments'></i> (#{Message.unread_by(current_user).count})".html_safe, chat_rooms_path
 
-        - else
-          li.menu-text
-            = link_to '無料会員登録', page_path("prelaunch"), class: 'button warning'
-          li.menu-text
-            = link_to 'ログイン', page_path("prelaunch"), class: 'button secondary'
-          
+            li data-behavior="notifications"
+              ul.dropdown.menu.notifications-menu data-dropdown-menu="" data-close-on-click-inside="false" data-disable-hover="true" data-click-open="true"
+                li
+                  a href="#" data-behavior="notifications-link"
+                    i.fi-web
+                    span data-behavior="unread-count"
+                  ul.menu.notification-menu#notifications data-behavior="notification-items" 
+                    li.nav-menu-dropdown-text
+                      a
+                        span#notification-header
+                          strong 通知            
+ 
+            li
+              ul.dropdown.menu data-dropdown-menu="" data-close-on-click-inside="false"
+                li
+                  a href="#" 
+                  
+                  ul.menu
+                    li.nav-menu-dropdown-text
+                      = link_to '自分のプロフィール', user_path(current_user)
+                    li.nav-menu-dropdown-text
+                      = link_to '設定', edit_user_registration_path
+                    li.nav-menu-dropdown-text
+                      = link_to 'ログアウト', destroy_user_session_path, method: :delete
+            #pending-friend-requests.dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" 
+              ul#pending-friend-request-list.no-bullet
+                = react_component 'PendingFriendRequests', userId: current_user.id if user_signed_in?
+          - else
+            li.menu-text
+              = link_to '無料会員登録', page_path("prelaunch")
+            li.menu-text
+              = link_to 'ログイン', page_path("prelaunch"), class: 'button secondary'
+            

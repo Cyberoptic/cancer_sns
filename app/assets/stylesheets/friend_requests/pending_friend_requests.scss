@@ -4,6 +4,8 @@
 	border: 1px solid rgba(0, 0, 0, .15);
 	padding-bottom: 0px;
 	min-height: 70px;	
+	min-width: 350px;
+	max-width: 500px;
 }
 
 #pending-friend-request-list {
@@ -12,21 +14,22 @@
 
 .request-container {
 	display: flex;
+	padding-bottom: 1rem;
 
 	.display-name {
-		color: $anchor-color;
+		color: $secondary-color;
 		font-size: 14px;
     font-weight: 600;
 	}
 
 	.timestamp {
-		color: $light-blue;
+		color: $medium-gray;
 		font-size: 10px;
 	}
 }
 
 .request-content {
-	flex: 0.5;
+	flex: 1;
 	margin-left: 10px;
 }
 
@@ -36,4 +39,9 @@
 	.button {
 		font-size: 0.75rem !important;
 	}
+}
+
+.request-container-link {
+	flex: 1;
+	display: flex;
 }

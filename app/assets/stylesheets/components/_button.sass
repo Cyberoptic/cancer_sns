@@ -1,0 +1,42 @@
+.button-right
+  position: absolute
+  right: 15px
+  bottom: 0px
+
+.button.secondary
+  color: $white !important  
+
+.button-container
+  position: relative
+  height: 30px
+
+.button-right-comment-form
+  position: absolute
+  right: 0px
+  bottom: 0px
+  margin-bottom: 0px
+
+@mixin login-buttons
+  display: block
+  position: relative
+  width: 100%
+  font-size: 16px
+  height: 44px
+  line-height: 44px  
+  color: #fff
+  text-align: center
+  &:hover, &:active, &:visited
+    color: $white
+
+
+.button-facebook
+  @include login-buttons
+  background: #3b5998  
+
+.button-email
+  @include login-buttons
+  background: $secondary-color
+
+.button.gray
+  background: $medium-gray
+  color: $white !important

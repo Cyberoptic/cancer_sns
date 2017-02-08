@@ -5,6 +5,10 @@ class UserDecorator < Draper::Decorator
   	object.nickname.blank? ? name : object.nickname
   end	
 
+  def to_param
+    object.to_param
+  end
+
   def name
   	"#{last_name}#{first_name}"
   end

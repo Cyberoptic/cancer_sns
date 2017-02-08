@@ -91,4 +91,59 @@ RSpec.describe User, type: :model do
 			end
 		end
 	end
+
+	describe "#emotioned_on?" do
+		context "when user has not emotioned on the post" do
+			it "returns false" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				expect(user.emotioned_on?(post)).to eq(false)
+			end
+		end
+
+		context "when user has liked a post" do
+			it "returns true" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				user.like(post)
+
+				expect(user.emotioned_on?(post)).to eq(true)
+			end
+		end
+
+		context "when user has madded a post" do
+			it "returns true" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				user.mad(post)
+
+				expect(user.emotioned_on?(post)).to eq(true)
+			end
+		end
+
+		context "when user has happied a post" do
+			it "returns true" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				user.happy(post)
+
+				expect(user.emotioned_on?(post)).to eq(true)
+			end
+		end
+
+		context "when user has sadded a post" do
+			it "returns true" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				user.sad(post)
+
+				expect(user.emotioned_on?(post)).to eq(true)
+			end
+		end
+	end
 end

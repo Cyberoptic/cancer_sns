@@ -10,15 +10,10 @@ class Emotion < ApplicationRecord
   delegate :photo, to: :user, prefix: true
 
   after_create :notify_recipient
-  # after_create :notify_group_recipient #### breaks the code
 
   private 
 
   def notify_recipient
-    Notification.create({ recipient: self.post.user, actor: self.user, action: "#{self.emotion}s", notifiable: self.post }) if self.user != self.post.user
+    Notification.create({ recipient: self.post.user, actor: self.user, action: "反応", notifiable: self.post }) if self.user != self.post.user
   end
-
-  def notify_group_recipient
-    Notification.create({ recipient: self.group_post.user, actor: self.user, action: "#{self.emotion}s", notifiable: self.group_post }) if self.user != self.group_post.user
-  end 
 end

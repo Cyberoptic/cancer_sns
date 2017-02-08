@@ -4,6 +4,6 @@
  <% elsif !current_user.requested_friends.exists?(user) && !current_user.pending_friends.exists?(user) %>
     <%= link_to '友達申請する', user_requests_path(user.id), method: 'post', remote: true, class: 'button warning expanded small' %>
  <% elsif current_user.requested_friends.exists?(user) || current_user.pending_friends.exists?(user) %>
- 		<%= link_to '申請済み',  user_unfriendings_path(user.id), method: 'post', remote: true, class: 'button expanded small' %>    
+ 		<%= link_to '申請済み',  user_unfriendings_path(user.id), method: 'post', remote: true, class: 'button gray expanded small' %>    
  <% end %>
 <% end %>
