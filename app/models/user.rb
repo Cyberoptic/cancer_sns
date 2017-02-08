@@ -42,6 +42,7 @@ class User < ApplicationRecord
   has_many :treatments, through: :user_treatments
   has_many :children, dependent: :destroy 
   has_many :emotions
+  has_many :notifications, foreign_key: :recipient_id
 
   accepts_nested_attributes_for :user_treatments, reject_if: proc { |attributes| attributes['name'].blank? }
   accepts_nested_attributes_for :treatments, reject_if: proc { |attributes| attributes['name'].blank? }

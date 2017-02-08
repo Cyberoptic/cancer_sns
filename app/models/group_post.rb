@@ -3,7 +3,7 @@ class GroupPost < ApplicationRecord
   
   belongs_to :group
   belongs_to :user
-  has_many :comments, as: :post
+  has_many :comments, as: :post 
   has_many :post_images, as: :post
   has_many :emotions, as: :post
   
@@ -20,4 +20,5 @@ class GroupPost < ApplicationRecord
       emotions.exists?(emotion: emotion)
     end      
   end  
+
 end

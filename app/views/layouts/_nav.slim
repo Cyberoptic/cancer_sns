@@ -38,6 +38,19 @@
                   = "(" + current_user.pending_requests.count.to_s + ")" if current_user.pending_requests.count > 0
             / li.menu-text= link_to '<i class="fi-torsos-all"></i>'.html_safe, groups_path
             li= link_to "<i class='fi-comments'></i> (#{Message.unread_by(current_user).count})".html_safe, chat_rooms_path
+
+            li data-behavior="notifications"
+              ul.dropdown.menu.notifications-menu data-dropdown-menu="" data-close-on-click-inside="false" data-disable-hover="true" data-click-open="true"
+                li
+                  a href="#" data-behavior="notifications-link"
+                    i.fi-web
+                    span data-behavior="unread-count"
+                  ul.menu.notification-menu#notifications data-behavior="notification-items" 
+                    li.nav-menu-dropdown-text
+                      a
+                        span#notification-header
+                          strong 通知            
+ 
             li
               ul.dropdown.menu data-dropdown-menu="" data-close-on-click-inside="false"
                 li
@@ -53,7 +66,6 @@
             #pending-friend-requests.dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" 
               ul#pending-friend-request-list.no-bullet
                 = react_component 'PendingFriendRequests', userId: current_user.id if user_signed_in?
-
           - else
             li.menu-text
               = link_to '無料会員登録', page_path("prelaunch")

@@ -12,7 +12,6 @@ class RegistrationsController < Devise::RegistrationsController
         params[:user][key] = value.join
       end
     end
-    
     super
   end
 

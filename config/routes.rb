@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   root 'static#home'
 
-  resources :posts, except: [:new, :show, :edit] do
+  resources :posts, except: [:new, :edit] do
     post :comments, to: "posts/comments#create"
     post :likes, to: "posts/likes#create"
     post :happies, to: "posts/happies#create"
@@ -70,4 +70,9 @@ Rails.application.routes.draw do
     post :unmads, to: "group_posts/unmads#create"
   end
 
+  resources :notifications, only: :index do
+    collection do
+      post :mark_as_read
+    end
+  end
 end

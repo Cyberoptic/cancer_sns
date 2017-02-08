@@ -50,3 +50,12 @@
 	height: 2rem;
 	padding: 1.1rem;
 }
+
+.notifications-menu {
+	a {
+		&:after {
+			display: none !important;
+			border: none !important;		
+		}
+	}
+}

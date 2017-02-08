@@ -16,4 +16,23 @@ $(function(){
   $(".ui-loader").hide();
   
   $('.js-gallery-img').Am2_SimpleSlider();
+
+  $.timeago.settings.strings = {
+    prefixAgo: "",
+    prefixFromNow: "今から",
+    suffixAgo: "前",
+    suffixFromNow: "後",
+    seconds: "1分未満",
+    minute: "約1分",
+    minutes: "%d分",
+    hour: "約1時間",
+    hours: "約%d時間",
+    day: "約1日",
+    days: "約%d日",
+    month: "約1月",
+    months: "約%d月",
+    year: "約1年",
+    years: "約%d年",
+    wordSeparator: ""
+  };
 });

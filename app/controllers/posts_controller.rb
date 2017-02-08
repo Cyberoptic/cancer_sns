@@ -15,8 +15,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    @post_images = @post.post_images.all   
+    @post = Post.find(params[:id]).decorate
+    @post_images = @post.post_images.all
+    @unread_messages = Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])
   end
 
   def new
