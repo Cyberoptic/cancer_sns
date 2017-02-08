@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   extend FriendlyId
   include Filterable
+  include Hashable
   acts_as_reader
   has_friendship
 
@@ -27,8 +28,6 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 1000 }
 
   mount_uploader :photo, PhotoUploader  
-
-  before_create :set_hash_id!
   
   has_many :comments
   has_many :posts, dependent: :destroy
@@ -183,11 +182,6 @@ class User < ApplicationRecord
 
   def treatment_options
     Treatment.default + treatments.where(default: false)
-  end
-
-  # set hash_id for user to use in slug
-  def set_hash_id!
-    self.hash_id = UserHashGenerator.new.generate
   end
 
   private  

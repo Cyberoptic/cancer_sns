@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+	describe "hash_id" do
+		context "when user is created" do
+			it "sets a hash_id" do
+				user = build(:user, hash_id: nil)
+
+				user.save
+				user.reload
+
+				expect(user.hash_id).to_not be(nil)
+			end
+		end
+	end
+
 	describe "password" do
 		context "when password is all lowercase" do
 			it "should not be valid" do

@@ -1,7 +1,11 @@
 require 'action_view'
 
 class ChatRoom < ApplicationRecord
+  extend FriendlyId
   include ActionView::Helpers::DateHelper
+  include Hashable
+
+  friendly_id :hash_id, use: [:slugged, :finders]
 
   belongs_to :user
   belongs_to :member, class_name: 'User'
@@ -33,5 +37,5 @@ class ChatRoom < ApplicationRecord
 
   def self.room_with(user, member)
     all.where(user: user, member: member).first ||  all.where(user: member, member: user).first
-  end
+  end  
 end

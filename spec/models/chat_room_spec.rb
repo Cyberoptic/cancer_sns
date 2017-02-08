@@ -4,6 +4,19 @@ RSpec.describe ChatRoom, type: :model do
   let!(:user_1) { create(:user) }
   let!(:user_2) { create(:user) }
 
+  describe "hash_id" do
+    context "when chat_room is created" do
+      it "sets a hash_id" do
+        chat_room = build(:chat_room, hash_id: nil, user: user_1, member: user_2)
+
+        chat_room.save
+        chat_room.reload
+
+        expect(chat_room.hash_id).to_not be(nil)
+      end
+    end
+  end
+
   describe '#room_with' do
     let!(:chat_room) { create(:chat_room, user: user_1, member: user_2)}
 
