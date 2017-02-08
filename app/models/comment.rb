@@ -30,8 +30,8 @@ class Comment < ApplicationRecord
   private
 
   def notify_recipient
-    self.post.comments.each do |comment|
-      Notification.create({recipient: comment.user, actor: self.user, action: "コメント", notifiable: self.post}) unless (comment.user == self.user)
+    post.comments.each do |comment|
+      Notification.create({recipient: comment.user, actor: user, action: "コメント", notifiable: self.post}) unless (comment.user == self.user)
     end
       # Notification.create({recipient: self.post.user, actor: self.user, action: "コメント", notifiable: self.post}) unless self.post.comments.pluck(:user_id).include?(self.post.user.id)
   end
