@@ -1,16 +1,25 @@
 .user-friends {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: flex-start;
-	// justify-content: space-around;
+	justify-content: flex-start;	
 
 	a {
 		width: 33%;
 
 		.image-wrapper {			
 			height: 100%;
+			padding-top: 100%;
 			position: relative;
 			width: 100%;
+
+			.user-friends-image {
+				height: 100%;
+				position: absolute;
+    		top: 0;
+    		bottom: 0;
+    		left: 0;
+    		right: 0;    		
+			}
 
 			.display-name {
 				bottom: 5%;
