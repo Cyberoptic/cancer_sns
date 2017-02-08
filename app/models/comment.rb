@@ -10,8 +10,7 @@ class Comment < ApplicationRecord
 
   scope :visible, ->{ where(visible: true) }
 
-  # creates notification for the recipient after actor comments
-  after_create :notify_recipient
+  after_create :create_notifications
 
   def toggle_visibility!
     self.visible = !visible
@@ -29,10 +28,11 @@ class Comment < ApplicationRecord
 
   private
 
-  def notify_recipient
+  def create_notifications
     post.comments.each do |comment|
       Notification.create({recipient: comment.user, actor: user, action: "コメント", notifiable: self.post}) unless (comment.user == self.user)
     end
-      # Notification.create({recipient: self.post.user, actor: self.user, action: "コメント", notifiable: self.post}) unless self.post.comments.pluck(:user_id).include?(self.post.user.id)
+    
+    Notification.create({recipient: self.post.user, actor: self.user, action: "コメント", notifiable: self.post}) unless self.post.comments.pluck(:user_id).include?(self.post.user.id)
   end
 end

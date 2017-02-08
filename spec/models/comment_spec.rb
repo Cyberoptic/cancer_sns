@@ -1,6 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
+  describe "after_create" do
+    it "creates notifications for all users involved in the parent post" do
+      user = create(:user)
+      user_2 = create(:user)
+      user_3 = create(:user)
+      post = create(:post, user: user)
+      comment = create(:comment, visible: true, post: post, user_id: user_2.id)
+
+      expect {
+        create(:comment, visible: true, post: post, user_id: user_3.id)
+      }.to change(Notification, :count).by(2)
+    end
+  end
+
   describe "#toggle_visibility!" do
     context "when visible is true" do
       it "toggles visibility to false" do
