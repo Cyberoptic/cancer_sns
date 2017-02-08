@@ -45,12 +45,14 @@
       .card-divider
         h6.user-header.text-center パートナー（患者）に関する情報
       div
-        table.table.table-fixed
-          - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :partner_age).visible?
-            tr
-              th width="100" 年齢
-              td
+        table.table.table-fixed          
+          tr
+            th width="100" 年齢
+            td
+              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :partner_age).visible?
                 = @user.partner_age
+              - else
+                | 非公開
           - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_stage).visible?
             tr
               th 癌ステージ 
