@@ -34,7 +34,7 @@ RSpec.describe ChatRoomsController, type: :controller do
         sign_in user
         # exercise + verify at once
         expect {
-          post :create, user_id: another_user
+          post :create, user_id: another_user.id
         }.to change(ChatRoom, :count).by(1)
 
       end
