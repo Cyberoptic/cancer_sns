@@ -4,8 +4,8 @@ class EmotionLink
     happy: :happied,
     sad: :sadded,
     mad: :madded
-  }.freeze
-
+  }
+  
   def initialize(post:, emotion:, user:)
     @post = post
     @emotion = emotion
