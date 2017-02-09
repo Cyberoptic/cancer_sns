@@ -13,11 +13,7 @@ class EmotionLink
   end
 
   def url
-    if @user.send("#{emotion_past_tense}?", @post)
-      "#{@post.class.name.underscore}_un#{@emotion.pluralize}_path"
-    else  
-      "#{@post.class.name.underscore}_#{@emotion.pluralize}_path"
-    end
+    "#{@post.class.name.underscore}_#{@emotion.pluralize}_path"
   end 
 
   private
