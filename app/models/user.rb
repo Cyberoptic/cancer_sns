@@ -167,7 +167,7 @@ class User < ApplicationRecord
 
   def accept_request(friend)
     super
-    return if ChatRoom.exists_for?(user: user, member: member)
+    return if ChatRoom.exists_for?(user: self, member: friend)
     chat_rooms.create! member: friend, user: self
   end
 

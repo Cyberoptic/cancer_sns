@@ -26,7 +26,7 @@
                 .columns.small-9
                   = truncate(post.content, length: 35)
                   = link_to '(続きを読む)', post.group, class: 'underlined float-right'                  
-              hr
+          hr
           - current_user.groups.each do |group|      
             li.bold
               = link_to group.name, group_path(group)
@@ -81,4 +81,4 @@ javascript:
       $('#new-post-dropdown').foundation('close');
     })
   })
- 
+  
