@@ -25,4 +25,18 @@ RSpec.describe GroupsController, type: :controller do
 			expect(response).to render_template(:show)
     end
   end
+
+	describe "POST #create" do
+		context "when attributes are valid" do
+			it "creates a new group" do
+				# setup
+				user = create(:user)
+				# exercise + verify
+				sign_in user
+				expect {
+					post :create, name: "Group1"
+				}.to change(Group, :count).by(1)
+			end
+		end
+	end
 end
