@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'therubyracer', platforms: :ruby
 gem 'high_voltage', '~> 3.0.0'
 gem 'newrelic_rpm'
+gem "rack-timeout"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
