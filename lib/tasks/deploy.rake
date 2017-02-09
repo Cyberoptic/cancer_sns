@@ -7,8 +7,8 @@ namespace :deploy do
       start_time = Time.now
 
       Bundler.with_clean_env do
-        puts "Maintenance On"
-        puts `heroku maintenance:on -a #{production_app}`
+        # puts "Maintenance On"
+        # puts `heroku maintenance:on -a #{production_app}`
 
         puts "Promoting Staging to Production"
         puts `heroku pipelines:promote -a #{staging_app}`
@@ -22,8 +22,8 @@ namespace :deploy do
         puts "Restart Production"
         puts `heroku restart -a #{production_app}`
 
-        puts "Maintenance Off"
-        puts `heroku maintenance:off -a #{production_app}`
+        # puts "Maintenance Off"
+        # puts `heroku maintenance:off -a #{production_app}`
       end
 
       puts "[#{Time.now - start_time}] Total Time"
