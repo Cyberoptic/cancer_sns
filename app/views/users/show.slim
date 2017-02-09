@@ -23,7 +23,7 @@
       hr/
 
       div
-        - if @user.introduction.length > 150
+        - if @user.introduction && @user.introduction.length > 150
           = truncate(@user.introduction, length: 150)
           = link_to '...（続きを読む）', '', class: "js-display-intro-#{@user.id}"
           javascript:
@@ -36,7 +36,7 @@
       hr/
       - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :problems).visible?
         div
-          - if @user.problems.length > 150
+          - if @user.problems && @user.problems.length > 150
             = truncate(@user.problems, length: 150)
             = link_to '...（続きを読む）', '', class: "js-display-problems-#{@user.id}"
             javascript:

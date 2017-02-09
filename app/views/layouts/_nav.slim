@@ -17,9 +17,6 @@
             = simple_form_for UserSearch.new, url: users_path, method: :get
               li.menu-search-li
                 input.menu-search-bar type="search" name="user_search[name_search]" placeholder="名前で検索"
-              / li.menu-search-li
-              /   button type="button" class="button"
-              /     | 検索
               
       .top-bar-right
         ul.menu.medium-horizontal.vertical
@@ -58,9 +55,7 @@
                   
                   ul.menu
                     li.nav-menu-dropdown-text
-                      = link_to '自分のプロフィール', user_path(current_user)
-                    li.nav-menu-dropdown-text
-                      = link_to '設定', edit_user_registration_path
+                      = link_to "<i class='fi-widget'></i> 設定".html_safe, edit_user_registration_path
                     li.nav-menu-dropdown-text
                       = link_to 'ログアウト', destroy_user_session_path, method: :delete
             #pending-friend-requests.dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" 
