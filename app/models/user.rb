@@ -119,7 +119,7 @@ class User < ApplicationRecord
   end
 
   def emotioned_on?(post)
-    emotions.exists?(post: post)    
+    post.emotions.pluck(:user_id).include?(self.id)    
   end
 
   Emotion.emotions.keys.each do |emotion|
