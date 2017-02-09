@@ -55,7 +55,12 @@
                   
                   ul.menu
                     li.nav-menu-dropdown-text
-                      = link_to "<i class='fi-widget'></i> 設定".html_safe, edit_user_registration_path
+                      = link_to 'グループの作成', new_group_path
+                    li.nav-menu-dropdown-text
+                      = link_to 'マイグループ', groups_path
+                    li.nav-menu-spacer                      
+                    li.nav-menu-dropdown-text
+                      = link_to '設定', edit_user_registration_path
                     li.nav-menu-dropdown-text
                       = link_to 'ログアウト', destroy_user_session_path, method: :delete
             #pending-friend-requests.dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" 

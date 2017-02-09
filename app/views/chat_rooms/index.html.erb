@@ -6,25 +6,22 @@
         <%= f.input :name, label: false, placeholder: "名前で検索" %>
       <% end %>
       <ul class="no-bullet message-list" id="js-message-list">
-        <%= render partial: 'chat_room_list', locals: {chat_rooms: @chat_rooms} %>
+        <%= render partial: 'chat_room_list', locals: {chat_rooms: @chat_rooms, active_room: @chat_room} %>
       </ul>
     </div>
   </div>
 
   <div class="columns small-12 medium-9">
-    <% if @chat_room.present? %>
-      <div id="messages" class="callout" data-chat-room-id="<%= @chat_room.id %>">
+    <div id="messages" class="callout" data-chat-room-id="<%= @chat_room.id %>">      
+      <% if @chat_room.messages.empty? %>
+        <h6 class="text-center" id="start-message">メッセージを開始しましょう。</h6>
+      <% else %>
         <%= render @chat_room.messages %>
-      </div>
-
-
-      <%= form_for @message, url: '' do |f| %>      
-        <%= f.text_area :body, class: 'message-form', autofocus: true, placeholder: 'メッセージ' %>      
       <% end %>
-    <% else %>
-      <div id="messages" class="callout">
-        <h5 class="text-center">まだチャット履歴がありません。</h5>
-      </div>
+    </div>
+
+    <%= form_for @message, url: '' do |f| %>      
+      <%= f.text_area :body, class: 'message-form', autofocus: true, placeholder: 'メッセージ' %>      
     <% end %>
   </div>
 </div>

@@ -36,7 +36,19 @@
 }
 
 .nav-menu-dropdown-text {
-	padding: 0.7rem;
+	font-size: 0.7rem;
+	padding: 0.5rem;
+
+	a {
+		color: $dark-gray !important;
+		font-weight: 300 !important;
+	}
+}
+
+.nav-menu-spacer {
+	border-top: 1px solid $light-gray;
+  width: 95% !important;
+  margin: 0 auto;
 }
 
 .top-bar {

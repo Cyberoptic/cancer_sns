@@ -24,6 +24,8 @@
 
       div
         - if @user.introduction && @user.introduction.length > 150
+          h6.bold
+            <small>紹介文</small>
           = truncate(@user.introduction, length: 150)
           = link_to '...（続きを読む）', '', class: "js-display-intro-#{@user.id}"
           javascript:
@@ -37,6 +39,8 @@
       - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :problems).visible?
         div
           - if @user.problems && @user.problems.length > 150
+            h6.bold
+              <small>一番の悩み</small>
             = truncate(@user.problems, length: 150)
             = link_to '...（続きを読む）', '', class: "js-display-problems-#{@user.id}"
             javascript:

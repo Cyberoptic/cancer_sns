@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe User, type: :model do	
 	describe "hash_id" do
 		context "when user is created" do
 			it "sets a hash_id" do
