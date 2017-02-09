@@ -34,7 +34,7 @@ RSpec.describe GroupsController, type: :controller do
 				# exercise + verify
 				sign_in user
 				expect {
-					post :create, name: "Group1"
+					post :create, group: {name: "Group1"}
 				}.to change(Group, :count).by(1)
 			end
 		end
