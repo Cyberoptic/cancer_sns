@@ -1,12 +1,12 @@
 .row.expanded.columns
-  .columns.medium-3
+  .columns.large-3.medium-5
     .callout
       h5.text-center メッセージ
       = simple_form_for @message_search, url: chat_room_searches_path, method: :post, remote: true do |f|
         = f.input :name, label: false, placeholder: "名前で検索"
       ul#js-message-list.no-bullet.message-list
         = render partial: 'chat_room_list', locals: {chat_rooms: @chat_rooms, active_room: @chat_room}
-  .columns.small-12.medium-6
+  .columns.small-12.large-6.medium-7
     #messages.callout data-chat-room-id="#{@chat_room.id}" 
       - if @chat_room.messages.empty?
         h6#start-message.text-center メッセージを開始しましょう。
@@ -15,6 +15,6 @@
     = form_for @message, url: '' do |f|
       = f.text_area :body, class: 'message-form', autofocus: true, placeholder: 'メッセージ'
 
-  .columns.medium-3
+  .columns.large-3.show-for-large
     .callout
       = render partial: 'user_info'

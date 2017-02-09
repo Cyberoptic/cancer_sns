@@ -17,7 +17,8 @@
           = link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> 削除</li>".html_safe, send("#{post.class.name.underscore}_path", post), method: :delete, data: {confirm: "本当に削除してよろしいですか？", remote: true}
     .post-info
       span.user-image
-        = image_tag post.user_photo, alt: post.user.decorate.name
+        = link_to user_path(post.user)
+          = image_tag post.user_photo, alt: post.user.decorate.name.truncate(10)
       .user-info
         span.display-name
           = link_to post.user.decorate.display_name, user_path(post.user)
@@ -31,7 +32,7 @@
     ul.product-gallery
       - post.post_images.each do |image|
         li.product-gallery-list.js-gallery-img
-          = image_tag image.photo, class: 'post-image', alt: "#{image.id}"
+          = image_tag image.photo, class: 'post-image', alt: image.id
           div data-desc="#{post.content}" 
     .post-reactions
       span id="js-iine-container-#{post.id}"

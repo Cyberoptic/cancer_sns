@@ -1,5 +1,5 @@
 .user-image-small
-  = image_tag @other_user.photo
+  = image_tag @other_user.photo, alt: @other_user.name.truncate(10)
 .user-info
   .display-name
     = link_to @other_user.name, user_path(@other_user)

@@ -8,4 +8,4 @@
         div class=("message-list-display-name #{chat_room.has_unread_messages_for?(current_user) ? 'is-active' : ''}") 
           = friend.decorate.display_name
         p class="no-margin #{chat_room.has_unread_messages_for?(current_user) ? 'bold' : 'faded'}"
-          = chat_room.last_message
+          = chat_room.last_message.try(:body).try(:truncate, 25)

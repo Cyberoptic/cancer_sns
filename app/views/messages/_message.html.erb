@@ -1,13 +1,15 @@
 <div class="message-container">  
   <div class="user-image-small">
-    <%= image_tag message.user_photo %>
+    <%= link_to user_path(message.user) do %>
+      <%= image_tag message.user_photo, alt: message.user.decorate.name.truncate(27) %>
+    <% end %>
   </div>  
 
   <div class="message-body-container">
     <div class="message-user-info">  
       <div class="user-info">
         <div class="display-name">
-          <%= message.user.decorate.name %>      
+          <%= link_to message.user.decorate.name, user_path(message.user) %>
         </div>
       </div>
     </div>
