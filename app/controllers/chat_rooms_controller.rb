@@ -4,7 +4,7 @@ class ChatRoomsController < ApplicationController
 
   def index
     @chat_room = current_user.chat_rooms.includes(messages: :user).most_recent 
-    @chat_rooms = current_user.chat_rooms.includes(:member, :user).select{|chat_room| chat_room != @chat_room}
+    @chat_rooms = current_user.chat_rooms.includes(:member, :user, :messages).select{|chat_room| chat_room != @chat_room}
     @message_search = MessageSearch.new(params[:message_search])
     @message = Message.new
     @other_user = @chat_room.other_user_for(current_user).decorate      
@@ -14,7 +14,7 @@ class ChatRoomsController < ApplicationController
 
   def show
     @chat_room = ChatRoom.includes(messages: :user).find(params[:id])
-    @chat_rooms = current_user.chat_rooms.includes(:member, :user).select{|chat_room| chat_room != @chat_room}    
+    @chat_rooms = current_user.chat_rooms.includes(:member, :user, :messages).select{|chat_room| chat_room != @chat_room}    
     @message = Message.new    
     @message_search = MessageSearch.new(params[:message_search])
     @other_user = @chat_room.other_user_for(current_user).decorate      

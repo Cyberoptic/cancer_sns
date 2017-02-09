@@ -2,7 +2,7 @@
   = image_tag @other_user.photo
 .user-info
   .display-name
-    = @other_user.name
+    = link_to @other_user.name, user_path(@other_user)
 hr
 h6.faded
   | プロフィール
