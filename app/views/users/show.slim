@@ -21,12 +21,31 @@
         span.label.secondary.label-user-attributes
           = @user.gender_icon
       hr/
-      p
-        = @user.introduction
+
+      div
+        - if @user.introduction.length > 150
+          = truncate(@user.introduction, length: 150)
+          = link_to '...（続きを読む）', '', class: "js-display-intro-#{@user.id}"
+          javascript:
+            $('.js-display-intro-#{@user.id}').on('click', function(e) {
+              e.preventDefault()
+              $(this).parent().html('#{escape_javascript @user.introduction}')
+            })
+        - else
+          = @user.introduction
       hr/
       - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :problems).visible?
-        p
-          = @user.problems
+        div
+          - if @user.problems.length > 150
+            = truncate(@user.problems, length: 150)
+            = link_to '...（続きを読む）', '', class: "js-display-problems-#{@user.id}"
+            javascript:
+              $('.js-display-problems-#{@user.id}').on('click', function(e) {
+                e.preventDefault()
+                $(this).parent().html('#{escape_javascript @user.problems}')
+              })
+          - else
+            = @user.problems
         hr/
       - if @user != current_user
         .row
@@ -85,8 +104,4 @@
   .columns.medium-3 data-sticky-container="true"
     .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
       .callout
-        h6.user-header 友達候補
-        - @suggested_users.each do |user|
-          = render partial: 'suggested_user', locals: {user: user.decorate}
-
- 
+       

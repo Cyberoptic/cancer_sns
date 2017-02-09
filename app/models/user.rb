@@ -26,6 +26,7 @@ class User < ApplicationRecord
   end
 
   validates :introduction, length: { maximum: 1000 }
+  validates :problems, length: { maximum: 1000 }
 
   mount_uploader :photo, PhotoUploader  
   

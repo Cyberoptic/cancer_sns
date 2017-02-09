@@ -1,7 +1,7 @@
 = simple_form_for @search, url: users_path, method: :get do |f|
   .row
     .columns.medium-10.medium-offset-1.small-12
-      h3.bold
+      h6.bold
         | ユーザー検索
       table.unstriped.user-search-table
         tr
@@ -47,7 +47,7 @@
           td
             = f.input :treatment, label: false, placeholder: '治療内容'
 
-      = f.button :button, class: 'button button-primary'
+      = f.button :button, class: 'button button-primary float-right'
         i.fa.fa-search aria-hidden="true" 
         |  検索する
 

@@ -2,6 +2,11 @@ class GroupPostsController < ApplicationController
   before_action :ensure_owner, only: [:edit, :update, :destroy]
   before_action :authenticate_user!  
 
+  def show
+    @post = GroupPost.find(params[:id])
+    @unread_messages = Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])
+  end
+
   def create
     @group = Group.find(params[:group_id])
     @post = current_user.group_posts.new(group_post_params.merge(group_id: @group.id))

@@ -70,7 +70,7 @@
           | 検索
         = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
           .input-group
-            = f.input :name_search, label: false, placeholder: '名前', input_html: {class: 'input-group-field'}
+            = f.input :name_search, label: false, placeholder: '名前で検索', input_html: {class: 'input-group-field'}
             .input-group-button
               = button_tag class: 'button'            
                 i.fi-magnifying-glass
