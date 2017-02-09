@@ -2,7 +2,7 @@
   .columns.large-3.small-12 data-sticky-container="true"
     .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
       .callout  
-        h5.bold
+        h6.bold
           | ニュース
         p
           | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -12,7 +12,7 @@
             cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       .callout
-        h5.bold
+        h6.bold
           | #{link_to 'マイグループ', groups_path} <small>(新着#{@unread_group_posts.count}件)</small>
         ul.no-bullet
           - if current_user.groups.empty?
@@ -58,7 +58,7 @@
   .columns.large-3.small-12 data-sticky-container="true"
     .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
       .callout
-        h5.bold
+        h6.bold
           | #{link_to 'メッセージ', chat_rooms_path} <small>(新着#{@unread_messages.count}件)</small>
         ul.no-bullet
           - @unread_messages.select('DISTINCT on (user_id) *').limit(10).each do |message|
@@ -66,7 +66,7 @@
             = render partial: 'recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room}        
 
       .callout
-        h5.bold
+        h6.bold
           | 検索
         = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
           .input-group
