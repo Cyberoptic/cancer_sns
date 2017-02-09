@@ -25,4 +25,22 @@ RSpec.describe ChatRoomsController, type: :controller do
       expect(response).to render_template(:show)
     end
   end
+
+  describe "POST #create" do
+    context "with valid attributes" do
+      it "creates a new chat room" do
+        # setup
+        user = create(:user)
+        another_user = create(:user)
+
+        # exercise
+        sign_in user
+        # exercise + verify at once
+        expect {
+          post :create, user_id: another_user
+        }.to change(ChatRoom, :count).by(1)
+
+      end
+    end
+  end
 end
