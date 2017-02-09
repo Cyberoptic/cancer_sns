@@ -7759,40 +7759,41 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  word-break: break-word;
 }
 
-/* line 7, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 8, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .callout, .alert-box .alert {
   border: 1px solid #e6e6e6;
 }
 
-/* line 11, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 12, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .body-content {
   flex: 1;
   margin-top: 50px;
 }
 
-/* line 17, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 18, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .visited a {
   color: #80bba2;
 }
 
-/* line 22, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 23, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .button.warning {
   color: #fefefe !important;
 }
 
-/* line 26, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 27, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .muted {
   color: #7f7f7f;
 }
 
-/* line 30, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 31, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .pagination {
   display: none;
 }
 
-/* line 34, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 35, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .file-upload-label {
   color: #55AD81;
   font-weight: 600;
@@ -8083,7 +8084,7 @@ table th {
 /* line 27, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message.scss */
 .message-user-info .user-info {
   display: inline-block;
-  margin-left: 15px;
+  margin-left: 0px !important;
 }
 /* line 31, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message.scss */
 .message-user-info .user-info .display-name {
