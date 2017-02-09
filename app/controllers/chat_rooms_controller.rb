@@ -21,6 +21,11 @@ class ChatRoomsController < ApplicationController
 
   def create
     user = User.find(params[:user_id])
+
+    if existing_chat_room = ChatRoom.room_with(user, current_user)
+      return redirect_to chat_room_path(existing_chat_room)
+    end
+
     @chat_room = ChatRoom.new(member: user, user: current_user)
 
     if @chat_room.save

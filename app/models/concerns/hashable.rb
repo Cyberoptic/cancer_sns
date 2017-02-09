@@ -14,5 +14,6 @@ module Hashable
     end
 
     self.hash_id = hash_id
+    self.slug = hash_id
   end
 end

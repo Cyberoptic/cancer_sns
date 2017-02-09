@@ -11,7 +11,7 @@ class ChatRoom < ApplicationRecord
   belongs_to :member, class_name: 'User'
   has_many :messages, dependent: :destroy
 
-  validate :does_not_have_duplicate_rooms
+  validate :does_not_have_duplicate_rooms, on: :create
 
   validates :member_id, uniqueness: {scope: :user_id}
   validates :user_id, uniqueness: {scope: :member_id}
