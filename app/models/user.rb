@@ -125,8 +125,9 @@ class User < ApplicationRecord
   Emotion.emotions.keys.each do |emotion|
     define_method "#{emotion}" do |post|
       @emotion = emotions.find_or_initialize_by(post_id: post.id, post_type: post.class.name)
-
-      if @emotion.new_record?
+      if @emotion.emotion == emotion
+        @emotion.destroy
+      elsif @emotion.new_record?
         @emotion.emotion = emotion
         @emotion.save!        
       else

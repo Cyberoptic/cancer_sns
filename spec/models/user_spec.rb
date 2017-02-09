@@ -105,6 +105,31 @@ RSpec.describe User, type: :model do
 		end
 	end
 
+	describe "#like" do
+		context "when user has already liked the post" do
+			it "deletes the like" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				create(:emotion, post: post, user: user, emotion: "like")
+
+				expect{
+					user.like(post)
+				}.to change(Emotion, :count).by(-1)
+			end
+		end
+
+		context "when user has not liked the post yet" do
+			it "creates a new like" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				expect{
+					user.like(post)
+				}.to change(Emotion, :count).by(1)
+			end
+		end
+	end
+
 	describe "#emotioned_on?" do
 		context "when user has not emotioned on the post" do
 			it "returns false" do
