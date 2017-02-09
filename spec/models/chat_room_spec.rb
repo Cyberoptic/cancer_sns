@@ -4,6 +4,67 @@ RSpec.describe ChatRoom, type: :model do
   let!(:user_1) { create(:user) }
   let!(:user_2) { create(:user) }
 
+  describe "does_not_have_duplicate_rooms" do
+    context "chat room exists for users" do
+      it "returns an error" do
+        user = create(:user)
+        other_user = create(:user)
+        chat_room = create(:chat_room, user: user, member: other_user)
+
+        new_chat_room = build(:chat_room, member: user, user: other_user)
+
+        expect(new_chat_room).to_not be_valid
+      end
+    end
+
+    context "chat room does not exist for users" do
+      it "does not return an error" do
+        user = create(:user)
+        other_user = create(:user)
+
+        chat_room = build(:chat_room, member: user, user: other_user)
+
+        expect(chat_room).to be_valid
+      end
+    end
+  end
+
+  describe "#exists_for?" do
+    context "chat room exists for users" do
+      it "returns true" do
+        user = create(:user)
+        other_user = create(:user)
+        chat_room = create(:chat_room, user: user, member: other_user) 
+
+        expect(ChatRoom.exists_for?(user: user, member: other_user)).to eq(true)
+        expect(ChatRoom.exists_for?(user: other_user, member: user)).to eq(true)
+      end
+    end
+
+    context "chat room does not exist for users" do
+      it "returns false" do
+        user = create(:user)
+        other_user = create(:user)
+
+        expect(ChatRoom.exists_for?(user: user, member: other_user)).to eq(false)
+        expect(ChatRoom.exists_for?(user: other_user, member: user)).to eq(false)
+      end
+    end
+  end
+
+  describe "hash_id" do
+    context "when chat_room is created" do
+      it "sets a hash_id" do
+        chat_room = build(:chat_room, hash_id: nil, user: user_1, member: user_2)
+
+        chat_room.save
+        chat_room.reload
+
+        expect(chat_room.hash_id).to_not be(nil)
+      end
+    end
+  end
+
   describe '#room_with' do
     let!(:chat_room) { create(:chat_room, user: user_1, member: user_2)}
 

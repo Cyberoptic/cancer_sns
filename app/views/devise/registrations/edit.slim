@@ -176,7 +176,7 @@
       hr/
       = f.input :profile_completed, as: :hidden, input_html: { value: true }
     .form-actions
-      = f.button :submit, "登録情報を変更する"
+      = f.button :submit, "登録情報を変更する", class: 'float-right'
   hr/
   p
     small= link_to "アカウントを消す", registration_path(resource_name), data: {confirm: "本当にアカウントを消してよろしいですか？（この操作を取り消すことはできません）"}, method: :delete

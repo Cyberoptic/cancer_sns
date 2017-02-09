@@ -58,7 +58,7 @@ Rails.application.routes.draw do
     resources :group_posts, as: :posts, only: [:create]
   end
 
-  resources :group_posts, only: [:edit, :update, :destroy] do
+  resources :group_posts, only: [:show, :edit, :update, :destroy] do
     post :comments, to: "group_posts/comments#create"
     post :likes, to: "group_posts/likes#create"
     post :happies, to: "group_posts/happies#create"

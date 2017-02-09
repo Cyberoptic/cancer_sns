@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206181943) do
+ActiveRecord::Schema.define(version: 20170208104505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,10 @@ ActiveRecord::Schema.define(version: 20170206181943) do
     t.integer  "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
+    t.string   "hash_id"
     t.index ["member_id"], name: "index_chat_rooms_on_member_id", using: :btree
+    t.index ["slug"], name: "index_chat_rooms_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_chat_rooms_on_user_id", using: :btree
   end
 

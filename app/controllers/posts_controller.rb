@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index    
-    @posts = TimelinePosts.new(user: current_user).posts.paginate(page: params[:page], per_page: 5).decorate
+    @posts = TimelinePosts.new(user: current_user).posts.paginate(page: params[:page], per_page: 5)
     @post = Post.new
     @unread_messages = Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])
     @unread_group_posts =  GroupPost.unread_by(current_user).includes(:user, :group)

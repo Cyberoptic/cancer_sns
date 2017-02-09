@@ -13,7 +13,7 @@
         - @groups.each do |group|
           .columns.small-12
             .callout
-              h5.bold
+              h6.bold
                 - if current_user.joined?(group)
                   = link_to group.name, group_path(group)
                 - else
@@ -34,7 +34,7 @@
       - @my_groups.each do |group|
         .columns.small-12
           .callout
-            h5.bold
+            h6.bold
               - if current_user.joined?(group)
                 = link_to group.name, group_path(group)
               - else

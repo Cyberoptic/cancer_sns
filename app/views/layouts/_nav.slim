@@ -17,9 +17,6 @@
             = simple_form_for UserSearch.new, url: users_path, method: :get
               li.menu-search-li
                 input.menu-search-bar type="search" name="user_search[name_search]" placeholder="名前で検索"
-              / li.menu-search-li
-              /   button type="button" class="button"
-              /     | 検索
               
       .top-bar-right
         ul.menu.medium-horizontal.vertical
@@ -58,7 +55,10 @@
                   
                   ul.menu
                     li.nav-menu-dropdown-text
-                      = link_to '自分のプロフィール', user_path(current_user)
+                      = link_to 'グループの作成', new_group_path
+                    li.nav-menu-dropdown-text
+                      = link_to 'マイグループ', groups_path
+                    li.nav-menu-spacer                      
                     li.nav-menu-dropdown-text
                       = link_to '設定', edit_user_registration_path
                     li.nav-menu-dropdown-text

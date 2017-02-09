@@ -17,10 +17,10 @@
           = link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> 削除</li>".html_safe, send("#{post.class.name.underscore}_path", post), method: :delete, data: {confirm: "本当に削除してよろしいですか？", remote: true}
     .post-info
       span.user-image
-        = image_tag post.user_photo, alt: post.user.name
+        = image_tag post.user_photo, alt: post.user.decorate.name
       .user-info
         span.display-name
-          = link_to post.user.display_name, user_path(post.user)
+          = link_to post.user.decorate.display_name, user_path(post.user)
         .timestamp
           = time_ago_in_words(post.created_at)
           | 前
@@ -50,7 +50,7 @@
       div id="js-emotion-count-container-#{post.id}"
         = render partial: '/posts/emotion_counts', locals: {post: post}        
 
-      - comments = post.comments.paginate(page: params[:page], per_page: 5).includes(:user).decorate
+      - comments = post.comments.paginate(page: params[:page], per_page: 5).includes(:user, post: :user).decorate
       - if comments.current_page < comments.total_pages
         a.more_comments_button data-page="#{comments.next_page}" id="#{post.id}" 
           small さらに読み込む
