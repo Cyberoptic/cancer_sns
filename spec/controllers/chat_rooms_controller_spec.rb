@@ -18,8 +18,8 @@ RSpec.describe ChatRoomsController, type: :controller do
 
       sign_in user
       get :show, params: { id: chat_room.id }
-      
+
       expect(response).to render_template(:show)
-    end
-  end
+    end    
+  end  
 end

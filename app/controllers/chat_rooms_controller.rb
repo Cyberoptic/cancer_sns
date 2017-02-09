@@ -39,7 +39,7 @@ class ChatRoomsController < ApplicationController
   private
 
   def mark_messages_as_read
-    return if @chat_room || @chat_room.messages.empty?
+    return if @chat_room.nil? || @chat_room.messages.empty?
     @chat_room.messages.mark_as_read! :all, for: current_user
   end
 end
