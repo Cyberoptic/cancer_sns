@@ -88,7 +88,7 @@ RSpec.describe ChatRoom, type: :model do
         message = create(:message, user: user_1, chat_room: chat_room, body: "first message")
         message_2 = create(:message, user: user_1, chat_room: chat_room, body: "last message")
 
-        expect(chat_room.last_message).to eq("last message")
+        expect(chat_room.last_message).to eq(message_2)
       end
     end    
   end
