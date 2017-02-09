@@ -1,0 +1,9 @@
+.user-image-small
+  = image_tag @other_user.photo
+.user-info
+  .display-name
+    = @other_user.name
+hr
+h6.faded
+  | プロフィール
+= link_to user_url(@other_user)

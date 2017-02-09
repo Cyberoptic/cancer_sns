@@ -37,6 +37,10 @@ class ChatRoom < ApplicationRecord
     user
   end
 
+  def has_unread_messages_for?(user)    
+    messages.unread_by(user).count > 0
+  end
+
   def self.find_with_name(name)
     (user_with_name(name) + member_with_name(name)).uniq
   end
