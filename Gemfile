@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 gem 'high_voltage', '~> 3.0.0'
+gem 'newrelic_rpm'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -43,7 +44,6 @@ gem 'has_friendship'
 gem 'will_paginate'
 gem "letter_opener", :group => :development
 
-gem 'will_paginate'
 gem 'rails_12factor', group: [:production]
 
 gem 'foundation-rails'
