@@ -10,8 +10,14 @@ class Emotion < ApplicationRecord
   delegate :photo, to: :user, prefix: true
 
   after_create :create_notification
+  after_create :increment_counter!
 
   private 
+
+  def increment_counter!
+    post["#{emotion.pluralize}_count"] += 1
+    post.save
+  end
 
   def create_notification
     Notification.create({ recipient: post.user, actor: user, action: "反応", notifiable: post }) if user != post.user
