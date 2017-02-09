@@ -1,1 +1,1 @@
-$('#js-message-list').html("<%= escape_javascript render partial: '/chat_rooms/chat_room_list', locals: {chat_rooms: @chat_rooms} %>");
+$('#js-message-list').html("<%= escape_javascript render partial: '/chat_rooms/chat_room_list', locals: {chat_rooms: @chat_rooms, active_room: nil} %>");
