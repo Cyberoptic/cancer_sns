@@ -105,6 +105,90 @@ RSpec.describe User, type: :model do
 		end
 	end
 
+	describe "#liked?" do
+		context "when user has already liked the post" do
+			it "returns true" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				create(:emotion, post: post, user: user, emotion: "like")
+
+				expect(user.liked?(post)).to eq(true)
+			end
+		end
+
+		context "when user has not liked the post yet" do
+			it "returns false" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				expect(user.liked?(post)).to eq(false)
+			end
+		end
+	end
+
+	describe "#sadded?" do
+		context "when user has already sadded the post" do
+			it "returns true" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				create(:emotion, post: post, user: user, emotion: "sad")
+
+				expect(user.sadded?(post)).to eq(true)
+			end
+		end
+
+		context "when user has not sadded the post yet" do
+			it "returns false" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				expect(user.sadded?(post)).to eq(false)
+			end
+		end
+	end
+
+	describe "#happied?" do
+		context "when user has already happied the post" do
+			it "returns true" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				create(:emotion, post: post, user: user, emotion: "happy")
+
+				expect(user.happied?(post)).to eq(true)
+			end
+		end
+
+		context "when user has not happied the post yet" do
+			it "returns false" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				expect(user.happied?(post)).to eq(false)
+			end
+		end
+	end
+
+	describe "#madded?" do
+		context "when user has already madded the post" do
+			it "returns true" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				create(:emotion, post: post, user: user, emotion: "mad")
+
+				expect(user.madded?(post)).to eq(true)
+			end
+		end
+
+		context "when user has not madded the post yet" do
+			it "returns false" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				expect(user.madded?(post)).to eq(false)
+			end
+		end
+	end
+
 	describe "#like" do
 		context "when user has already liked the post" do
 			it "deletes the like" do
@@ -125,6 +209,81 @@ RSpec.describe User, type: :model do
 
 				expect{
 					user.like(post)
+				}.to change(Emotion, :count).by(1)
+			end
+		end
+	end
+
+	describe "#sad" do
+		context "when user has already sadded the post" do
+			it "deletes the sad" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				create(:emotion, post: post, user: user, emotion: "sad")
+
+				expect{
+					user.sad(post)
+				}.to change(Emotion, :count).by(-1)
+			end
+		end
+
+		context "when user has not liked the post yet" do
+			it "creates a new sad" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				expect{
+					user.sad(post)
+				}.to change(Emotion, :count).by(1)
+			end
+		end
+	end
+
+	describe "#mad" do
+		context "when user has already madded the post" do
+			it "deletes the mad" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				create(:emotion, post: post, user: user, emotion: "mad")
+
+				expect{
+					user.mad(post)
+				}.to change(Emotion, :count).by(-1)
+			end
+		end
+
+		context "when user has not madded the post yet" do
+			it "creates a new mad" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				expect{
+					user.mad(post)
+				}.to change(Emotion, :count).by(1)
+			end
+		end
+	end
+
+	describe "#happy" do
+		context "when user has already happied the post" do
+			it "deletes the happy" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				create(:emotion, post: post, user: user, emotion: "happy")
+
+				expect{
+					user.happy(post)
+				}.to change(Emotion, :count).by(-1)
+			end
+		end
+
+		context "when user has not happied the post yet" do
+			it "creates a new happy" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+
+				expect{
+					user.happy(post)
 				}.to change(Emotion, :count).by(1)
 			end
 		end

@@ -38,22 +38,21 @@
         // problem is here
         = render partial: '/posts/iine', locals: {post: post} 
 
-        .dropdown-pane.top.dropdown-pane-emotions data-dropdown="" id="emotion-hover-#{post.id}" data-hover="true" data-hover-pane="true" data-hover-delay="1000" data-v-offset="15"
-          // problem is here
-          = render partial: '/posts/emotion-hover-content', locals: {post: post} 
+      .dropdown-pane.top.dropdown-pane-emotions data-dropdown="" id="emotion-hover-#{post.id}" data-hover="true" data-hover-pane="true" data-hover-delay="1000" data-v-offset="15"
+        // problem is here
+        = render partial: '/posts/emotion-hover-content', locals: {post: post} 
 
       span
         a.js-comment-trigger.emotion-link data-post-id="#{post.id}"
-          // problem is here
-          div id="js-emotion-count-container-#{post.id}"
-            = render partial: '/posts/emotion_counts', locals: {post: post}
           i.fi-comment 
           span.reaction-label
             |  コメント      
 
     div id="post-#{post.id}-comments" 
+      // problem is here
+      div id="js-emotion-count-container-#{post.id}"
+        = render partial: '/posts/emotion_counts', locals: {post: post}
        
-
       - comments = post.comments.paginate(page: params[:page], per_page: 5).includes(:user, post: :user).decorate
       - if comments.current_page < comments.total_pages
         a.more_comments_button data-page="#{comments.next_page}" id="#{post.id}" 

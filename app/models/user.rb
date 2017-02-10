@@ -2,6 +2,7 @@ class User < ApplicationRecord
   extend FriendlyId
   include Filterable
   include Hashable
+  include Emotionable
   acts_as_reader
   has_friendship
 
@@ -40,8 +41,7 @@ class User < ApplicationRecord
   has_many :group_posts, dependent: :destroy
   has_many :user_treatments, dependent: :destroy
   has_many :treatments, through: :user_treatments
-  has_many :children, dependent: :destroy 
-  has_many :emotions
+  has_many :children, dependent: :destroy   
   has_many :notifications, foreign_key: :recipient_id
 
   accepts_nested_attributes_for :user_treatments, reject_if: proc { |attributes| attributes['name'].blank? }
@@ -116,50 +116,7 @@ class User < ApplicationRecord
     else
       super
     end
-  end
-
-  def emotioned_on?(post)
-    post.emotions.pluck(:user_id).include?(self.id)    
-  end
-
-  Emotion.emotions.keys.each do |emotion|
-    define_method "#{emotion}" do |post|
-      @emotion = emotions.find_or_initialize_by(post_id: post.id, post_type: post.class.name)
-      if @emotion.emotion == emotion
-        @emotion.destroy
-      elsif @emotion.new_record?
-        @emotion.emotion = emotion
-        @emotion.save!        
-      else
-        @emotion.update(emotion: emotion)
-      end
-    end      
-  end
-
-  Emotion.emotions.keys.each do |emotion|
-    define_method "un#{emotion}" do |post|
-      emotions.find_by(post_id: post.id, post_type: post.class.name, emotion: emotion).destroy
-    end      
-  end
-
-  def liked?(post)
-    post.emotions.likes.pluck(:user_id).include?(self.id)
-  end
-
-  def sadded?(post)   
-    post.emotions.sads.pluck(:user_id).include?(self.id) 
-    # post.emotions.exists?(user_id: self.id, emotion: "sad")
-  end
-
-  def happied?(post)
-    post.emotions.happies.pluck(:user_id).include?(self.id)
-    # post.emotions.exists?(user_id: self.id, emotion: "happy")
-  end
-
-  def madded?(post)
-    post.emotions.mads.pluck(:user_id).include?(self.id)
-    # post.emotions.exists?(user_id: self.id, emotion: "mad")
-  end
+  end  
 
   def joined?(group)
     self.group_memberships.exists?(group_id: group.id)
