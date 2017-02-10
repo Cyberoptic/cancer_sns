@@ -1,4 +1,6 @@
 class Emotion < ApplicationRecord  
+  include ActiveModel::Dirty  
+
   belongs_to :user
   belongs_to :post, polymorphic: true, foreign_key: "post_id", counter_cache: true
 
@@ -16,16 +18,17 @@ class Emotion < ApplicationRecord
 
   after_create :create_notification
   after_create :increment_counter!
+  after_update :increment_counter!  
   after_destroy :decrement_counter!
 
-  private 
+  private
 
   def decrement_counter!
     post["#{emotion.pluralize}_count"] -= 1
     post.save
   end
 
-  def increment_counter!
+  def increment_counter!    
     post["#{emotion.pluralize}_count"] += 1
     post.save
   end

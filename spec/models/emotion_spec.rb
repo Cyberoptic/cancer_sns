@@ -165,10 +165,25 @@ RSpec.describe Emotion, type: :model do
           post = create(:post, user: user)
           emotion = create(:emotion, post: post, emotion: "happy")
 
-          expect{
+          expect {
             emotion.destroy
           }.to change(post, :happies_count).by(-1)
         end
+      end
+    end
+  end
+
+  describe "around_update" do
+    context "when emotion is updated from like to happy" do
+      it "increments the happies_count" do
+        user = create(:user)
+        post = create(:post, user: user, likes_count: 0, happies_count: 0)
+        emotion = create(:emotion, post: post, emotion: "like") # increments likes_count by 1
+
+        emotion.update(emotion: "happy")
+        post.reload
+        
+        expect(post.happies_count).to eq(1)
       end
     end
   end

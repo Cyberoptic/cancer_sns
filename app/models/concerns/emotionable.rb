@@ -17,6 +17,7 @@ module Emotionable
       emotion.emotion = "like"
       emotion.save!
     else
+      decrement_post_emotions_count_for!(post: post, emotion: emotion.emotion)
       emotion.update(emotion: "like")
     end
   end
@@ -29,11 +30,12 @@ module Emotionable
       emotion.emotion = "sad"
       emotion.save!
     else
+      decrement_post_emotions_count_for!(post: post, emotion: emotion.emotion)
       emotion.update(emotion: "sad")
     end
   end
 
-  def happy(post)
+  def happy(post)    
     emotion = emotions.find_or_initialize_by(post: post)
     if emotion.emotion == "happy"
       emotion.destroy
@@ -41,6 +43,7 @@ module Emotionable
       emotion.emotion = "happy"
       emotion.save!
     else
+      decrement_post_emotions_count_for!(post: post, emotion: emotion.emotion)
       emotion.update(emotion: "happy")
     end
   end
@@ -53,6 +56,7 @@ module Emotionable
       emotion.emotion = "mad"
       emotion.save!
     else
+      decrement_post_emotions_count_for!(post: post, emotion: emotion.emotion)
       emotion.update(emotion: "mad")
     end
   end
@@ -87,5 +91,12 @@ module Emotionable
 
   def madded?(post)
     post.emotions.mads.pluck(:user_id).include?(self.id)
+  end
+
+  private
+
+  def decrement_post_emotions_count_for!(post:, emotion:)
+    post["#{emotion.pluralize}_count"] -= 1
+    post.save!
   end
 end

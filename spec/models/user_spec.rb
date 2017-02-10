@@ -202,6 +202,29 @@ RSpec.describe User, type: :model do
 			end
 		end
 
+		context "when user has already emotioned the post with another emotion" do
+			it "updates the emotion" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				emotion = create(:emotion, post: post, user: user, emotion: "mad")
+
+				user.like(post)
+				emotion.reload
+				
+				expect(emotion.emotion).to eq("like")
+			end
+
+			it "decrements the previous emotion count" do
+				user = create(:user)
+				post = create(:post, user_id: user.id, mads_count: 0)
+				emotion = create(:emotion, post: post, user: user, emotion: "mad")
+				
+				expect{
+					user.like(post)
+				}.to change(post, :mads_count).by(-1)
+			end
+		end
+
 		context "when user has not liked the post yet" do
 			it "creates a new like" do
 				user = create(:user)
@@ -224,6 +247,29 @@ RSpec.describe User, type: :model do
 				expect{
 					user.sad(post)
 				}.to change(Emotion, :count).by(-1)
+			end
+		end
+
+		context "when user has already emotioned the post with another emotion" do
+			it "updates the emotion" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				emotion = create(:emotion, post: post, user: user, emotion: "mad")
+
+				user.sad(post)
+				emotion.reload
+				
+				expect(emotion.emotion).to eq("sad")
+			end
+
+			it "decrements the previous emotion count" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				emotion = create(:emotion, post: post, user: user, emotion: "mad")
+				
+				expect{
+					user.sad(post)
+				}.to change(post, :mads_count).by(-1)
 			end
 		end
 
@@ -252,6 +298,29 @@ RSpec.describe User, type: :model do
 			end
 		end
 
+		context "when user has already emotioned the post with another emotion" do
+			it "updates the emotion" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				emotion = create(:emotion, post: post, user: user, emotion: "like")
+
+				user.mad(post)
+				emotion.reload
+				
+				expect(emotion.emotion).to eq("mad")
+			end
+
+			it "decrements the previous emotion count" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				emotion = create(:emotion, post: post, user: user, emotion: "like")
+				
+				expect{
+					user.mad(post)
+				}.to change(post, :likes_count).by(-1)
+			end
+		end
+
 		context "when user has not madded the post yet" do
 			it "creates a new mad" do
 				user = create(:user)
@@ -274,6 +343,29 @@ RSpec.describe User, type: :model do
 				expect{
 					user.happy(post)
 				}.to change(Emotion, :count).by(-1)
+			end
+		end
+
+		context "when user has already emotioned the post with another emotion" do
+			it "updates the emotion" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				emotion = create(:emotion, post: post, user: user, emotion: "mad")
+
+				user.happy(post)
+				emotion.reload
+				
+				expect(emotion.emotion).to eq("happy")
+			end
+
+			it "decrements the previous emotion count" do
+				user = create(:user)
+				post = create(:post, user_id: user.id)
+				emotion = create(:emotion, post: post, user: user, emotion: "mad")
+				
+				expect{
+					user.happy(post)
+				}.to change(post, :mads_count).by(-1)
 			end
 		end
 
