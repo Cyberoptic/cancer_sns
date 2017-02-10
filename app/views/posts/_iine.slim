@@ -1,4 +1,4 @@
 - if post.is_a? Post
-  = link_to "<i class='fi-like'></i> <span class='reaction-label'>いいね！</span>".html_safe, post_likes_path(post), method: :post, remote: true, data: {"toggle": "emotion-hover-#{post.id}"}, class: "emotion-link #{'is-liked' if current_user.emotioned_on?(post)}", id: "js-emotion-link-#{post.id}", oncontextmenu: 'app.preventDefaultOnContextMenu()'
+  = link_to "<i class='fi-like'></i> <span class='reaction-label'>いいね！</span>".html_safe, post_likes_path(post), method: :post, remote: true, data: {"toggle": "emotion-hover-#{post.id}"}, class: "emotion-link #{'is-liked'}", id: "js-emotion-link-#{post.id}", oncontextmenu: 'app.preventDefaultOnContextMenu()'
 - if post.is_a? GroupPost
-  = link_to "<i class='fi-like'></i> <span class='reaction-label'>いいね！</span>".html_safe, group_post_likes_path(post), method: :post, remote: true, data: {"toggle": "emotion-hover-#{post.id}"}, class: "emotion-link #{'is-liked' if current_user.emotioned_on?(post)}", id: "js-emotion-link-#{post.id}", oncontextmenu: 'app.preventDefaultOnContextMenu()'
+  = link_to "<i class='fi-like'></i> <span class='reaction-label'>いいね！</span>".html_safe, group_post_likes_path(post), method: :post, remote: true, data: {"toggle": "emotion-hover-#{post.id}"}, class: "emotion-link #{'is-liked'}", id: "js-emotion-link-#{post.id}", oncontextmenu: 'app.preventDefaultOnContextMenu()'
