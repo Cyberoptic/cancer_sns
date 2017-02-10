@@ -16,8 +16,14 @@ class Emotion < ApplicationRecord
 
   after_create :create_notification
   after_create :increment_counter!
+  after_destroy :decrement_counter!
 
   private 
+
+  def decrement_counter!
+    post["#{emotion.pluralize}_count"] -= 1
+    post.save
+  end
 
   def increment_counter!
     post["#{emotion.pluralize}_count"] += 1

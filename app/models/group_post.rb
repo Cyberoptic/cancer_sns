@@ -15,10 +15,20 @@ class GroupPost < ApplicationRecord
 
   delegate :photo, to: :user, prefix: true
 
-  %w(like happy sad mad).each do |emotion|
-    define_method "has_#{emotion.pluralize}?" do
-      emotions.exists?(emotion: emotion)
-    end      
-  end  
+  def has_likes?
+    likes_count > 0
+  end
+
+  def has_mads?
+    mads_count > 0
+  end
+
+  def has_happies?
+    happies_count > 0
+  end
+
+  def has_sads?
+    sads_count > 0
+  end
 
 end

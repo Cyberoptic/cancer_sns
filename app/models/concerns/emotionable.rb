@@ -17,7 +17,7 @@ module Emotionable
       emotion.emotion = "like"
       emotion.save!
     else
-      emotion.update(emotion: emotion)
+      emotion.update(emotion: "like")
     end
   end
 
@@ -29,7 +29,7 @@ module Emotionable
       emotion.emotion = "sad"
       emotion.save!
     else
-      emotion.update(emotion: emotion)
+      emotion.update(emotion: "sad")
     end
   end
 
@@ -41,7 +41,7 @@ module Emotionable
       emotion.emotion = "happy"
       emotion.save!
     else
-      emotion.update(emotion: emotion)
+      emotion.update(emotion: "happy")
     end
   end
 
@@ -53,7 +53,7 @@ module Emotionable
       emotion.emotion = "mad"
       emotion.save!
     else
-      emotion.update(emotion: emotion)
+      emotion.update(emotion: "mad")
     end
   end
 
