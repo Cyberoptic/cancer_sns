@@ -143,19 +143,22 @@ class User < ApplicationRecord
   end
 
   def liked?(post)
-    post.emotions.exists?(user_id: self.id, emotion: "like")
+    post.emotions.likes.pluck(:user_id).include?(self.id)
   end
 
-  def sadded?(post)    
-    post.emotions.exists?(user_id: self.id, emotion: "sad")
+  def sadded?(post)   
+    post.emotions.sads.pluck(:user_id).include?(self.id) 
+    # post.emotions.exists?(user_id: self.id, emotion: "sad")
   end
 
   def happied?(post)
-    post.emotions.exists?(user_id: self.id, emotion: "happy")
+    post.emotions.happies.pluck(:user_id).include?(self.id)
+    # post.emotions.exists?(user_id: self.id, emotion: "happy")
   end
 
   def madded?(post)
-    post.emotions.exists?(user_id: self.id, emotion: "mad")
+    post.emotions.mads.pluck(:user_id).include?(self.id)
+    # post.emotions.exists?(user_id: self.id, emotion: "mad")
   end
 
   def joined?(group)

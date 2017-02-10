@@ -34,10 +34,19 @@
           = image_tag image.photo, class: 'post-image', alt: image.id
           div data-desc="#{post.content}" 
     .post-reactions
-              
+      span id="js-iine-container-#{post.id}"
+        // problem is here
+        = render partial: '/posts/iine', locals: {post: post} 
+
+        .dropdown-pane.top.dropdown-pane-emotions data-dropdown="" id="emotion-hover-#{post.id}" data-hover="true" data-hover-pane="true" data-hover-delay="1000" data-v-offset="15"
+          // problem is here
+          = render partial: '/posts/emotion-hover-content', locals: {post: post} 
 
       span
         a.js-comment-trigger.emotion-link data-post-id="#{post.id}"
+          // problem is here
+          div id="js-emotion-count-container-#{post.id}"
+            = render partial: '/posts/emotion_counts', locals: {post: post}
           i.fi-comment 
           span.reaction-label
             |  コメント      

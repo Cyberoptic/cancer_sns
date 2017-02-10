@@ -7,6 +7,11 @@ class Emotion < ApplicationRecord
 
   enum emotion: {like: 0, happy: 1, sad: 2, mad: 3} 
 
+  scope :likes, ->(){ where(emotion: "like") }
+  scope :happies, ->(){ where(emotion: "happy") }
+  scope :sads, ->(){ where(emotion: "sad") }
+  scope :mads, ->(){ where(emotion: "mad") }
+
   delegate :photo, to: :user, prefix: true
 
   after_create :create_notification
