@@ -11,7 +11,6 @@ RSpec.describe GroupPosts::HappiesController, type: :controller do
         allow(controller).to receive(:current_user).and_return(user)
         allow(user).to receive(:happy).with(group_post).and_return(true)
         # exercise
-        binding.pry
         sign_in user
         post :create, params: { group_post_id: group_post.id }, format: :js
         # verify
