@@ -1,8 +1,12 @@
 = link_to chat_room_path(chat_room)
-  li.recent-chat-list
-    .user-image-small
-      = image_tag other_user.decorate.photo
-    span.recent-chat-list-name
-      = other_user.decorate.name
-    span.float-right
-      =  chat_room.last_active_at
+  li.recent-chat-list        
+    .row.expanded
+      .columns.small-3
+        = image_tag other_user.decorate.photo, class: 'user-image-small'
+      .columns.small-9
+        span.float-right.faded.timestamp
+          =  chat_room.last_active_at
+        span.faded
+          = other_user.decorate.name
+        p.no-margin  
+          = chat_room.last_message.body.truncate(10)        

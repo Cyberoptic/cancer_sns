@@ -1,38 +1,6 @@
-.row 
+.row
   .columns.large-3.medium-4.small-12 data-sticky-container="true"
-    .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
-      ul.home-sidebar.no-bullet    
-        = link_to user_path(current_user)
-          li.home-sidebar-link.home-sidebar-user-link
-            = image_tag current_user.photo, class: 'user-image-xs'
-            span.menu-user-profile-name
-              = current_user.decorate.display_name
-            a.float-right data-toggle="sidebar-profile-dropdown" 
-              i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
-            .dropdown-pane.bottom.right.sidebar-dropdown data-dropdown="" data-hover="true" data-hover-pane="true" id="sidebar-profile-dropdown"         
-                = link_to edit_user_registration_path                  
-                  i.fa.fa-pencil aria-hidden="true" 
-                  |  プロフィールを編集する
-
-        = link_to posts_path
-          li.home-sidebar-link
-            = image_tag 'icons/newspaper.png', class: 'home-sidebar-link-icon'
-            | ニュースフィード
-
-        = link_to chat_rooms_path
-          li.home-sidebar-link
-            = image_tag 'icons/mail.png', class: 'home-sidebar-link-icon'
-            = "メッセージ #{'(' + @unread_messages.count.to_s + ')' if @unread_messages.count > 0}"
-
-      h7.faded
-        | ショートカット
-
-      ul.home-sidebar.no-bullet
-        - current_user.groups.each do |group|          
-          = render partial: 'posts/sidebar_group', locals: {group: group, unread_count: group.group_posts.unread_by(current_user).count}
-
-      h7.faded
-        | ニュース
+    = render partial: 'shared/sidebar'
 
   .columns.large-6.medium-8.small-12
     .callout
@@ -60,15 +28,14 @@
   .columns.large-3.show-for-large data-sticky-container="true"
     .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
       .callout
-        h6.bold
-          | #{link_to 'メッセージ', chat_rooms_path} <small>(新着#{@unread_messages.count}件)</small>
-        ul.no-bullet
+        h7.faded
+          | #{link_to '未読メッセージ', chat_rooms_path, class: 'faded'} <small>(新着#{@unread_messages.count}件)</small>        
+        ul.no-bullet.mgtp-10
           - @unread_messages.select('DISTINCT on (user_id) *').limit(10).each do |message|
             - chat_room = message.chat_room          
             = render partial: 'recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room}        
 
-      .callout
-        h6.bold
+        h7.faded
           | 検索
         = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
           .input-group
