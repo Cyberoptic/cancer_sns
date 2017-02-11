@@ -1,38 +1,40 @@
 .row 
-  .columns.large-3.small-12 data-sticky-container="true"
+  .columns.large-3.medium-4.small-12 data-sticky-container="true"
     .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
-      .callout  
-        h6.bold
-          | ニュース
-        p
-          | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      .callout
-        h6.bold
-          | #{link_to 'マイグループ', groups_path} <small>(新着#{@unread_group_posts.count}件)</small>
-        ul.no-bullet
-          - if current_user.groups.empty?
-            p
-              | 現在参加しているグループはありません。
-          - @unread_group_posts.limit(5).each do |post|
-            li
-              .row
-                .columns.small-3
-                  = image_tag post.user_photo
-                .columns.small-9
-                  = truncate(post.content, length: 35)
-                  = link_to '(続きを読む)', post.group, class: 'underlined float-right'                  
-          hr
-          - current_user.groups.each do |group|      
-            li.bold
-              = link_to group.name, group_path(group)
-            p
-              = group.description.truncate(27)
-  .columns.large-6.small-12
+      ul.home-sidebar.no-bullet    
+        = link_to user_path(current_user)
+          li.home-sidebar-link.home-sidebar-user-link
+            = image_tag current_user.photo, class: 'user-image-xs'
+            span.menu-user-profile-name
+              = current_user.decorate.display_name
+            a.float-right data-toggle="sidebar-profile-dropdown" 
+              i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
+            .dropdown-pane.bottom.right.sidebar-dropdown data-dropdown="" data-hover="true" data-hover-pane="true" id="sidebar-profile-dropdown"         
+                = link_to edit_user_registration_path                  
+                  i.fa.fa-pencil aria-hidden="true" 
+                  |  プロフィールを編集する
+
+        = link_to posts_path
+          li.home-sidebar-link
+            = image_tag 'icons/newspaper.png', class: 'home-sidebar-link-icon'
+            | ニュースフィード
+
+        = link_to chat_rooms_path
+          li.home-sidebar-link
+            = image_tag 'icons/mail.png', class: 'home-sidebar-link-icon'
+            = "メッセージ #{'(' + @unread_messages.count.to_s + ')' if @unread_messages.count > 0}"
+
+      h7.faded
+        | ショートカット
+
+      ul.home-sidebar.no-bullet
+        - current_user.groups.each do |group|          
+          = render partial: 'posts/sidebar_group', locals: {group: group, unread_count: group.group_posts.unread_by(current_user).count}
+
+      h7.faded
+        | ニュース
+
+  .columns.large-6.medium-8.small-12
     .callout
       = simple_form_for @post, remote: true do |f|        
         = f.input :content, label: false, placeholder: 'ここに投稿内容を入力', input_html: {rows: 2, class: 'post-textarea' }
@@ -55,7 +57,7 @@
       .sk-cube2.sk-cube
       .sk-cube4.sk-cube
       .sk-cube3.sk-cube
-  .columns.large-3.small-12 data-sticky-container="true"
+  .columns.large-3.show-for-large data-sticky-container="true"
     .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
       .callout
         h6.bold

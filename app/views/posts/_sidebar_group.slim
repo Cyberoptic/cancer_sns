@@ -1,0 +1,4 @@
+= link_to group_path(group)
+  li.home-sidebar-link
+    = image_tag group.photo, class: 'home-sidebar-link-icon'    
+    = "#{group.name} #{'(' + unread_count + ')' if unread_count > 0}"

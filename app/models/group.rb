@@ -5,6 +5,8 @@ class Group < ApplicationRecord
   include Elasticsearch::Model::Callbacks
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
+
+  mount_uploader :photo, GroupPhotoUploader
   
   validates :name, presence: true
   has_many :group_posts, dependent: :destroy
