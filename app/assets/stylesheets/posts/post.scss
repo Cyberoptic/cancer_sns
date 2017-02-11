@@ -89,8 +89,8 @@
   border-radius: 60px;
 }
 
-.emotion-count {
-	margin-left: 5px;
+.emotion-count-link {
+	vertical-align: 4px;
 }
 
 .emotion-count-container {
@@ -115,4 +115,10 @@
   bottom: 19%;
   left: 15%;
   position: absolute;
+}
+
+.emotion-count-container {
+	.post-emotion-svgs:not(:first-child) {
+		margin-left: -8px;
+	}
 }

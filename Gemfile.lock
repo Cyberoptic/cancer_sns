@@ -339,6 +339,10 @@ GEM
     i18n (0.8.0)
     ice_nine (0.11.2)
     inflecto (0.0.2)
+    inline_svg (0.11.1)
+      activesupport (>= 4.0)
+      loofah (>= 2.0)
+      nokogiri (~> 1.6)
     ipaddress (0.8.3)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -598,6 +602,7 @@ DEPENDENCIES
   hashids
   high_voltage (~> 3.0.0)
   inherited_resources!
+  inline_svg
   jbuilder (~> 2.5)
   jquery-rails
   jquery_mobile_rails
