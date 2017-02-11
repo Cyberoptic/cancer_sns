@@ -2,7 +2,11 @@ ja:
   activerecord:
     models: 
       user: ユーザー
+      news_article: ニュース
     attributes:
+      news_article:
+        title: タイトル
+        content: コンテンツ
       user:
         nickname: ニックネーム
         first_name: 名

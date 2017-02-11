@@ -22,6 +22,7 @@ gem 'inline_svg'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'jquery_mobile_rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
@@ -60,7 +61,7 @@ gem 'draper', github: 'drapergem/draper'
 gem 'storext'
 
 # Admin
-gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+gem 'activeadmin', '~> 1.0.0.pre4'
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
 
 # React.js

@@ -75,4 +75,6 @@ Rails.application.routes.draw do
       post :mark_as_read
     end
   end
+
+  resources :news_articles, only: [:index, :show]
 end

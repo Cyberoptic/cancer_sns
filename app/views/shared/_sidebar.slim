@@ -31,3 +31,16 @@
 
   h7.faded
     | ニュース
+
+  ul.home-sidebar.no-bullet
+    - NewsArticle.limit(5).each do |article|
+      = link_to news_article_path(article)
+        li.home-sidebar-link
+          .bold
+            = article.title
+          p.no-margin
+            = article.content.truncate(27)
+          .divider
+    p.float-right
+      small
+        = link_to 'もっと見る', news_articles_path, class: 'underlined faded'
