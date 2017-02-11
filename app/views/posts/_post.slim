@@ -40,32 +40,7 @@
 
       .dropdown-pane.top.dropdown-pane-emotions data-dropdown="" id="emotion-hover-#{post.id}" data-hover="true" data-hover-pane="true" data-hover-delay="600" data-v-offset="15"
         // problem is here
-        / = render partial: '/posts/emotion-hover-content', locals: {post: post} 
-        - if post.is_a? Post
-          = link_to post_likes_path(post), method: :post, remote: true, class: 'post-emotion-svg-link has-tip top', data: {"tooltip": true, "disable-hover": false, "click-open": false}, aria: {"haspopup": "true"}, tabindex: "2", title: "いいね！"
-            = image_tag 'svgs/like', width: "35px", class: 'post-emotion-svgs'
-
-          = link_to post_happies_path(post), method: :post, remote: true , class: 'post-emotion-svg-link has-tip top', data: {"tooltip": true, "disable-hover": false, "click-open": false}, aria: {"haspopup": "true"}, tabindex: "2", title: "嬉しいね！"
-            = image_tag 'svgs/happy', width: "35px", class: 'post-emotion-svgs'
-
-          = link_to post_sads_path(post), method: :post, remote: true, class: 'post-emotion-svg-link has-tip top', data: {"tooltip": true, "disable-hover": false, "click-open": false}, aria: {"haspopup": "true"}, tabindex: "2", title: "悲しいね！"
-            = image_tag 'svgs/sad', width: "35px", class: 'post-emotion-svgs'
-
-          = link_to post_mads_path(post), method: :post, remote: true, class: 'post-emotion-svg-link has-tip top', data: {"tooltip": true, "disable-hover": false, "click-open": false}, aria: {"haspopup": "true"}, tabindex: "2", title: "怒りたいね"
-            = image_tag 'svgs/mad', width: "35px", class: 'post-emotion-svgs'
-
-        - if post.is_a? GroupPost
-          = link_to group_post_likes_path(post), method: :post, remote: true, class: 'post-emotion-svg-link has-tip top', data: {"tooltip": true, "disable-hover": false, "click-open": false}, aria: {"haspopup": "true"}, tabindex: "2", title: "いいね！"
-            = image_tag 'svgs/like', width: "35px", class: 'post-emotion-svgs'
-
-          = link_to group_post_happies_path(post), method: :post, remote: true , class: 'post-emotion-svg-link has-tip top', data: {"tooltip": true, "disable-hover": false, "click-open": false}, aria: {"haspopup": "true"}, tabindex: "2", title: "嬉しいね！"
-            = image_tag 'svgs/happy', width: "35px", class: 'post-emotion-svgs'
-
-          = link_to group_post_sads_path(post), method: :post, remote: true, class: 'post-emotion-svg-link has-tip top', data: {"tooltip": true, "disable-hover": false, "click-open": false}, aria: {"haspopup": "true"}, tabindex: "2", title: "悲しいね！"
-            = image_tag 'svgs/sad', width: "35px", class: 'post-emotion-svgs'
-
-          = link_to group_post_mads_path(post), method: :post, remote: true, class: 'post-emotion-svg-link has-tip top', data: {"tooltip": true, "disable-hover": false, "click-open": false}, aria: {"haspopup": "true"}, tabindex: "2", title: "怒りたいね"
-            = image_tag 'svgs/mad', width: "35px", class: 'post-emotion-svgs'
+        = render partial: '/posts/emotion-hover-content', locals: {post: post} 
 
       span
         a.js-comment-trigger.emotion-link data-post-id="#{post.id}"
@@ -76,15 +51,7 @@
     div id="post-#{post.id}-comments" 
       // problem is here
       div id="js-emotion-count-container-#{post.id}"
-        / = render partial: '/posts/emotion_counts', locals: {post: post}
-        - if post.emotions_count > 0
-          .emotion-count-container 
-            = image_tag 'svgs/like', width: "18px", class: 'post-emotion-svgs' if post.has_likes?
-            = image_tag 'svgs/sad', width: "18px", class: 'post-emotion-svgs' if post.has_sads?
-            = image_tag 'svgs/happy', width: "18px", class: 'post-emotion-svgs' if post.has_happies?
-            = image_tag 'svgs/mad', width: "18px", class: 'post-emotion-svgs' if post.has_mads?
-            span.emotion-count
-              = link_to post.emotions_count, "#", class: 'js-display-emotions', data: { id: post.id }
+        = render partial: '/posts/emotion_counts', locals: {post: post}
        
       - comments = post.comments.paginate(page: params[:page], per_page: 5).includes(:user, post: :user).decorate
       - if comments.current_page < comments.total_pages

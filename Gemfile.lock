@@ -369,7 +369,6 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.4.1)
       launchy (~> 2.2)
-    libv8 (3.16.14.17)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -479,7 +478,6 @@ GEM
       railties (>= 3.2)
       tilt
     redis (3.3.3)
-    ref (2.0.0)
     remotipart (1.3.1)
     request_store (1.3.2)
     responders (2.3.0)
@@ -544,9 +542,6 @@ GEM
       rails (>= 4.0, < 6.0)
       virtus
     temple (0.7.7)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.6)
@@ -631,7 +626,6 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   storext
-  therubyracer
   thor (= 0.19.1)
   tzinfo-data
   uglifier (>= 1.3.0)
