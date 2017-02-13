@@ -1,4 +1,6 @@
 class NewsArticlesController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @news_articles = NewsArticle.all
     @unread_messages = Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])

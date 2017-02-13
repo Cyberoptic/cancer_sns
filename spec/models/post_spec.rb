@@ -20,7 +20,9 @@ RSpec.describe Post, type: :model do
         expect(post.has_likes?).to eq(false)
       end
     end
+  end
 
+  describe "#has_sads?" do
     context "when post has a sad" do
       it "returns true" do
         user = create(:user)
@@ -39,7 +41,9 @@ RSpec.describe Post, type: :model do
         expect(post.has_sads?).to eq(false)
       end
     end
+  end
 
+  describe "#has_happies?" do
     context "when post has a happy" do
       it "returns true" do
         user = create(:user)
@@ -58,7 +62,9 @@ RSpec.describe Post, type: :model do
         expect(post.has_happies?).to eq(false)
       end
     end
+  end
 
+  describe "#has_mads?" do
     context "when post has a mad" do
       it "returns true" do
         user = create(:user)
