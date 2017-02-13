@@ -33,8 +33,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
 
-    if @group.save
-      current_user.group_memberships.create(group_id: @group.id)
+    if @group.save && current_user.group_memberships.create(group_id: @group.id, role: :moderator)
       flash[:success] = "グループが作成されました。"
       redirect_to group_path(@group)
     else
@@ -59,7 +58,7 @@ class GroupsController < ApplicationController
 
       @unread_messages = Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])
       @unread_group_posts =  GroupPost.unread_by(current_user).includes(:user, :group)
-      
+
       render :edit
     end
   end

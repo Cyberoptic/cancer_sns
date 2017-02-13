@@ -28,14 +28,22 @@ RSpec.describe GroupsController, type: :controller do
 
   describe "POST #create" do
     context "when attributes are valid" do
-      it "creates a new group" do
-        # setup
+      it "creates a new group" do        
         user = create(:user)
-        # exercise + verify
+        
         sign_in user
         expect {
           post :create, group: {name: "Group1"}
         }.to change(Group, :count).by(1)
+      end
+
+      it "creates a group_membership for the current user where the role is moderator" do        
+        user = create(:user)
+        
+        sign_in user
+        post :create, group: {name: "Group1"}
+        
+        expect(GroupMembership.last.moderator?).to eq(true)
       end
     end
   end
