@@ -1,6 +1,45 @@
 require 'rails_helper'
 
 RSpec.describe Emotion, type: :model do
+  describe "uniqueness" do
+    context "when there is already an emotion for the post by a given user" do
+      it "is not valid" do
+        user = create(:user)
+        post = create(:post, user: user)
+        create(:emotion, post: post, emotion: "like", user: user)
+
+        emotion = build(:emotion, post: post, emotion: "happy", user: user)
+
+        expect(emotion).to_not be_valid
+      end
+    end
+
+    context "when there is not an emotion for the post by a given user" do
+      it "is valid" do
+        user = create(:user)
+        post = create(:post, user: user)
+
+        emotion = build(:emotion, post: post, emotion: "happy", user: user)
+
+        expect(emotion).to be_valid
+      end
+    end
+
+    context "when there is an emotion for the post_id but a different post_type by a given user" do
+      it "is valid" do
+        user = create(:user)
+        post = create(:post, user: user)
+        group = create(:group)
+        group_post = create(:group_post, group: group, user: user, id: post.id)
+        create(:emotion, post: group_post, emotion: "like", user: user)
+
+        emotion = build(:emotion, post: post, emotion: "happy", user: user)
+
+        expect(emotion).to be_valid
+      end
+    end
+  end
+
   describe "after_create" do
     describe "#increment_counter!" do
       context "when emotion is like" do
