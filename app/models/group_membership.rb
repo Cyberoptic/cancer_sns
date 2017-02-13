@@ -3,6 +3,7 @@ class GroupMembership < ApplicationRecord
   belongs_to :group, counter_cache: true
 
   validates :group_id, uniqueness: {scope: :user_id}
+  validates :user_id, :group_id, presence: true
 
   delegate :photo, to: :user, prefix: true
 

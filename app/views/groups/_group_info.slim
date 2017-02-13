@@ -1,0 +1,41 @@
+.callout
+  .row.expanded
+    .columns.small-4
+      = image_tag @group.photo
+    .columns.small-8
+      a.float-right data-toggle="group-options" 
+        i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
+      .dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" id="group-options" 
+        ul.post-options-menu.no-bullet          
+          a
+            li
+              = link_to '編集', edit_group_path(@group)
+              .divider
+            li
+              = link_to 'メンバー管理', group_group_memberships_path(@group)
+
+      h7.bold
+        = @group.name
+
+      #join-group
+        = render partial: "groups/join", locals: { group: @group }
+      
+  .divider
+  h7.faded
+    | 説明
+  p.no-margin
+    = @group.description      
+  .divider
+
+  p
+    span.faded
+      | メンバー
+    span.float-right        
+      = "#{@group.group_memberships_count}人"
+  .group-membership-list
+    - @group.group_memberships.includes(:user).take(20).each do |group_membership|
+      a href="/users/#{group_membership.user.id}" 
+        .image-wrapper
+          = image_tag group_membership.user_photo, alt: group_membership.user.decorate.name.truncate(2)
+
+  hr /

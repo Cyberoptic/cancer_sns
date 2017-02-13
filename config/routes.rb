@@ -53,10 +53,12 @@ Rails.application.routes.draw do
   end  
 
   resources :groups do
-    resources :group_memberships, only: :create
+    resources :group_memberships, only: [:index, :create]
     resources :group_unmemberships, only: :create
     resources :group_posts, as: :posts, only: [:create]
   end
+
+  resources :group_memberships, only: :update
 
   resources :group_posts, only: [:show, :edit, :update, :destroy] do
     post :comments, to: "group_posts/comments#create"

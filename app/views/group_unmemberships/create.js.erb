@@ -1,1 +1,6 @@
-$('#join-group').html("<%= escape_javascript render partial: 'groups/join', locals: { group: @group }%>")
+<% if params[:user_id] %>
+  console.log("<%= @id %>")
+  $('tr[data-group-membership-id="<%= @id %>"]').remove()
+<% else %>
+  $('#join-group').html("<%= escape_javascript render partial: 'groups/join', locals: { group: @group } %>")
+<% end %>

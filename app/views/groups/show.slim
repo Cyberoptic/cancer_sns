@@ -25,34 +25,5 @@
  
   .columns.large-3.medium-3.small-12 data-sticky-container="true"
     .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
-      .callout
-        .row.expanded
-          .columns.small-4
-            = image_tag @group.photo
-          .columns.small-8        
-            h7.bold
-              = @group.name
-
-            #join-group
-              = render partial: "groups/join", locals: { group: @group }
-        .divider
-        h7.faded
-          | 説明
-        p.no-margin
-          = @group.description      
-        .divider
-
-        p
-          span.faded
-            | メンバー
-          span.float-right        
-            = "#{@group.group_memberships_count}人"
-        .group-membership-list
-          - @group.group_memberships.take(20).each do |group_membership|
-            a href="/users/#{group_membership.user.id}" 
-              .image-wrapper
-                = image_tag group_membership.user_photo, alt: group_membership.user.decorate.name
-
-        hr /
-
+      = render partial: 'groups/group_info'
         

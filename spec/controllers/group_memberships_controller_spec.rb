@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe GroupMembershipsController, type: :controller do
   describe "POST #create" do
-    
     context "when user is signed in" do
       it "doesn't redirect to new_user_session_path" do
         group = create(:group)
@@ -40,4 +39,37 @@ RSpec.describe GroupMembershipsController, type: :controller do
     end
   end
 
+  describe "#PUT update" do
+    context "when user is moderator for the group" do
+      it "updates the group membership" do
+        user = create(:user)
+        another_user = create(:user)
+        group = create(:group, name: "Group")
+        create(:group_membership, user: user, group: group, role: :moderator)
+        group_membership = create(:group_membership, user: another_user, group: group, role: :member)
+
+        sign_in user
+        put :update, params: {id: group_membership.id, group_membership: {role: "moderator"}}, format: :js
+        group_membership.reload
+
+        expect(group_membership.role).to eq("moderator")
+      end
+    end
+
+    context "when user is not a moderator for the group" do
+      it "does not update the group membership" do
+        user = create(:user)
+        another_user = create(:user)
+        group = create(:group, name: "Group")
+        create(:group_membership, user: user, group: group, role: :member)
+        group_membership = create(:group_membership, user: another_user, group: group, role: :member)
+
+        sign_in user
+        put :update, params: {id: group_membership.id, group_membership: {role: "moderator"}}, format: :js
+        group_membership.reload
+
+        expect(group_membership.role).to eq("member")
+      end
+    end
+  end
 end

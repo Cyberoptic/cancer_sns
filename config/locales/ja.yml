@@ -48,9 +48,13 @@ ja:
       child:
         age: 年齢
       group:
-          name: グループ名
-          description: 概要
-          photo: ロゴ
+        name: グループ名
+        description: 概要
+        photo: ロゴ
+      group_membership:
+        roles:
+          member: 一般メンバー
+          moderator: 管理者
     errors:
       models:
         user:
