@@ -8,21 +8,7 @@
       .mgbt-20
       .row
         - @my_groups.each do |group|
-          .columns.small-12.medium-6.end
-            .row.expanded
-              .columns.small-3
-                = image_tag group.photo, class: 'img-circle'
-              .columns.small-9
-                h6.bold
-                  - if current_user.joined?(group)
-                    = link_to group.name, group_path(group)
-                  - else
-                    = group.name
-                p.faded
-                  = pluralize(group.group_memberships_count, "member")
-                p
-                  = group.description
-            .divider
+          = render partial: 'groups/group', locals: {group: group}
       - if @my_groups.empty?
         p
           | 現在所属しているグループはありません。

@@ -16,21 +16,7 @@
               p.text-center
                 | 該当するグループが見つかりませんでした。        
           - @groups.each do |group|
-            .columns.small-12.medium-6.end
-              .row.expanded
-                .columns.small-3
-                  = image_tag group.photo, class: 'img-circle'
-                .columns.small-9
-                  h6.bold
-                    - if current_user.joined?(group)
-                      = link_to group.name, group_path(group)
-                    - else
-                      = group.name
-                  p.faded
-                    | #{group.group_memberships_count}人
-                  p
-                    = group.description
-              .divider
+            = render partial: 'groups/group', locals: {group: group}
 .row
   .columns.small-12.medium-6
     .callout
@@ -40,21 +26,7 @@
 
       .row
         - @groups_ordered_by_group_membership_counts.take(10).each do |group|
-          .columns.small-12.medium-6.end
-            .row.expanded
-              .columns.small-3
-                = image_tag group.photo, class: 'img-circle'
-              .columns.small-9
-                h6.bold
-                  - if current_user.joined?(group)
-                    = link_to group.name, group_path(group)
-                  - else
-                    = group.name
-                p.faded
-                  | #{group.group_memberships_count}人
-                p
-                  = group.description
-            .divider
+          = render partial: 'groups/group', locals: {group: group}
 
   .columns.small-12.medium-6
     .callout
@@ -64,18 +36,4 @@
 
       .row
         - @groups_ordered_by_created_at.take(10).each do |group|
-          .columns.small-12.medium-6.end
-            .row.expanded
-              .columns.small-3
-                = image_tag group.photo, class: 'img-circle'
-              .columns.small-9
-                h6.bold
-                  - if current_user.joined?(group)
-                    = link_to group.name, group_path(group)
-                  - else
-                    = group.name
-                p.faded
-                  | #{group.group_memberships_count}人
-                p
-                  = group.description
-            .divider
+          = render partial: 'groups/group', locals: {group: group}
