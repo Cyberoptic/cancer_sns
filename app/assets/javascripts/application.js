@@ -12,7 +12,7 @@
 //= require_tree .
 
 $(function(){ 
-	$(document).foundation(); 
+  $(document).foundation(); 
   $(".ui-loader").hide();
   
   $('.js-gallery-img').Am2_SimpleSlider();
@@ -35,4 +35,8 @@ $(function(){
     years: "約%d年",
     wordSeparator: ""
   };
+
+  $('select[name="post[visibility]"]').on("change", function(){
+    $('#new-post-dropdown').foundation('close');
+  })
 });

@@ -50,6 +50,7 @@ ja:
       group:
           name: グループ名
           description: 概要
+          photo: ロゴ
     errors:
       models:
         user:

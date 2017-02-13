@@ -1,0 +1,41 @@
+.row
+  .columns.large-3.medium-4.small-12 data-sticky-container="true"
+    = render partial: 'shared/sidebar'
+
+  .columns.large-6.medium-8.small-12
+    .callout
+      h5.bold
+        | ニュース記事一覧
+      hr
+      - @news_articles.each do |news_article|
+        h6.bold
+          = link_to news_article.title, news_article_path(news_article)
+        p
+          = news_article.content.truncate(150)
+          span.float-right.mgtp-10
+            |（#{link_to '続きを読む', news_article_path(news_article), class: 'underlined'}）
+        .divider
+
+      - if @news_articles.empty?
+        p
+          | 現在記事はありません。
+
+
+  .columns.large-3.show-for-large data-sticky-container="true"
+    .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
+      .callout
+        h7.faded
+          | #{link_to '未読メッセージ', chat_rooms_path, class: 'faded'} <small>(新着#{@unread_messages.count}件)</small>        
+        ul.no-bullet.mgtp-10
+          - @unread_messages.select('DISTINCT on (user_id) *').limit(10).each do |message|
+            - chat_room = message.chat_room          
+            = render partial: 'posts/recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room}        
+
+        h7.faded
+          | 検索
+        = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
+          .input-group
+            = f.input :name_search, label: false, placeholder: '名前で検索', input_html: {class: 'input-group-field'}
+            .input-group-button
+              = button_tag class: 'button'            
+                i.fi-magnifying-glass

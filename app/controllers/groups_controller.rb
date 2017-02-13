@@ -25,6 +25,8 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+
+    @unread_messages = Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])
   end
 
   def create

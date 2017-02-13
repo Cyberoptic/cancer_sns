@@ -33,7 +33,8 @@
         ul.no-bullet.mgtp-10
           - @unread_messages.select('DISTINCT on (user_id) *').limit(10).each do |message|
             - chat_room = message.chat_room          
-            = render partial: 'recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room}        
+            = render partial: 'recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room}
+        .divider        
 
         h7.faded
           | 検索
@@ -43,11 +44,4 @@
             .input-group-button
               = button_tag class: 'button'            
                 i.fi-magnifying-glass
-            
-javascript:
-  $(function(){
-    $('select[name="post[visibility]"]').on("change", function(){
-      $('#new-post-dropdown').foundation('close');
-    })
-  })
   
