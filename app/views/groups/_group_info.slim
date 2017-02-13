@@ -3,7 +3,7 @@
     .columns.small-4
       = image_tag @group.photo
     .columns.small-8
-      - if current_user.group_memberships.find_by_group_id(@group.id).moderator?
+      - if current_user.group_memberships.find_by(group_id: @group.id).try(:moderator?)
         a.float-right data-toggle="group-options" 
           i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
         .dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" id="group-options" 
