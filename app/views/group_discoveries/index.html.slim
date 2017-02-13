@@ -1,0 +1,81 @@
+= render partial: 'groups/top_nav', locals: {groups_active: false, discover_active: true}
+
+.row    
+  .columns.small-12
+    .callout
+      = simple_form_for @group_search, url: discover_groups_path, method: :get do |f|
+        .input-group
+          = f.input :keyword, label: false, placeholder: 'キーワード検索', input_html: {class: 'input-group-field'}          
+          .input-group-button
+            = f.submit '検索', class: 'button small'
+
+      .row
+        - unless @groups.nil?
+          - if @groups.empty?
+            .columns.small-12
+              p.text-center
+                | 該当するグループが見つかりませんでした。        
+          - @groups.each do |group|
+            .columns.small-12.medium-6.end
+              .row.expanded
+                .columns.small-3
+                  = image_tag group.photo, class: 'img-circle'
+                .columns.small-9
+                  h6.bold
+                    - if current_user.joined?(group)
+                      = link_to group.name, group_path(group)
+                    - else
+                      = group.name
+                  p.faded
+                    | #{group.group_memberships_count}人
+                  p
+                    = group.description
+              .divider
+.row
+  .columns.small-12.medium-6
+    .callout
+      h6.bold
+        | 人気のグループ
+      .mgbt-20
+
+      .row
+        - @groups_ordered_by_group_membership_counts.take(10).each do |group|
+          .columns.small-12.medium-6.end
+            .row.expanded
+              .columns.small-3
+                = image_tag group.photo, class: 'img-circle'
+              .columns.small-9
+                h6.bold
+                  - if current_user.joined?(group)
+                    = link_to group.name, group_path(group)
+                  - else
+                    = group.name
+                p.faded
+                  | #{group.group_memberships_count}人
+                p
+                  = group.description
+            .divider
+
+  .columns.small-12.medium-6
+    .callout
+      h6.bold
+        | 最新のグループ      
+      .mgbt-20
+
+      .row
+        - @groups_ordered_by_created_at.take(10).each do |group|
+          .columns.small-12.medium-6.end
+            .row.expanded
+              .columns.small-3
+                = image_tag group.photo, class: 'img-circle'
+              .columns.small-9
+                h6.bold
+                  - if current_user.joined?(group)
+                    = link_to group.name, group_path(group)
+                  - else
+                    = group.name
+                p.faded
+                  | #{group.group_memberships_count}人
+                p
+                  = group.description
+            .divider

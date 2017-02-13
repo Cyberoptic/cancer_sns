@@ -3,14 +3,7 @@ class GroupsController < ApplicationController
   before_action :ensure_moderator!, only: [:edit, :update]
 
   def index
-    @my_groups = current_user.groups
-
-    if params[:group_search] && params[:group_search][:keyword]   
-    
-      @groups = Group.search(params[:group_search][:keyword])
-    end
-
-    @group_search = GroupSearch.new(params[:group_search])
+    @my_groups = current_user.groups    
   end
 
   def show

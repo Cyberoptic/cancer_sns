@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   mount ActionCable.server => '/cable'
@@ -57,6 +57,8 @@ Rails.application.routes.draw do
     resources :group_unmemberships, only: :create
     resources :group_posts, as: :posts, only: [:create]
   end
+
+  get '/discover/groups', to: 'group_discoveries#index'
 
   resources :group_memberships, only: :update
 

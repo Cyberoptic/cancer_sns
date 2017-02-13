@@ -1,19 +1,11 @@
-ul.horizontal-ul.no-bullet.group-nav
-  li.active
-    = link_to 'グループ', groups_path
-  li
-    = link_to '発見', '#'
-  li.right
-    = link_to '<i class="fa fa-plus" aria-hidden="true"></i> グループを作成'.html_safe, new_group_path, class: 'button extra-small'
-
-
+= render partial: 'groups/top_nav', locals: {groups_active: true, discover_active: false}
 
 .row    
   .columns.small-12
     .callout
       h7.bold
         | 参加しているグループ        
-      .divider
+      .mgbt-20
       .row
         - @my_groups.each do |group|
           .columns.small-12.medium-6.end

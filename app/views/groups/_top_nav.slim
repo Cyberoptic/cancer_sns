@@ -1,0 +1,7 @@
+ul.horizontal-ul.no-bullet.group-nav
+  li class="#{'active' if groups_active}"
+    = link_to 'グループ', groups_path
+  li class="#{'active' if discover_active}"
+    = link_to '発見', discover_groups_path
+  li.right
+    = link_to '<i class="fa fa-plus" aria-hidden="true"></i> グループを作成'.html_safe, new_group_path, class: 'button extra-small'
