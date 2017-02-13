@@ -3,7 +3,7 @@
   .columns.large-7.large-offset-2.small-12
     = render partial: 'post', locals: {post: @post}
   .columns.large-3.small-12 data-sticky-container="true"
-    .sticky data-sticky="true" data-margin-top="2" data-top-anchor="150" data-btm-anchor="footer"
+    .sticky data-sticky="true" data-margin-top="8.12" data-top-anchor="56" data-btm-anchor="footer"
       .callout
         h6.bold
           | #{link_to 'メッセージ', chat_rooms_path} <small>(新着#{@unread_messages.count}件)</small>
