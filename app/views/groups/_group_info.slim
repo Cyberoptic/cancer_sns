@@ -3,16 +3,17 @@
     .columns.small-4
       = image_tag @group.photo
     .columns.small-8
-      a.float-right data-toggle="group-options" 
-        i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
-      .dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" id="group-options" 
-        ul.post-options-menu.no-bullet          
-          a
-            li
-              = link_to '編集', edit_group_path(@group)
-              .divider
-            li
-              = link_to 'メンバー管理', group_group_memberships_path(@group)
+      - if current_user.group_memberships.find_by_group_id(@group.id).moderator?
+        a.float-right data-toggle="group-options" 
+          i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
+        .dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" id="group-options" 
+          ul.post-options-menu.no-bullet          
+            a
+              li
+                = link_to '編集', edit_group_path(@group)
+                .divider
+              li
+                = link_to 'メンバー管理', group_group_memberships_path(@group)
 
       h7.bold
         = @group.name
