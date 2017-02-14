@@ -1,8 +1,8 @@
 .row
-  .columns.large-3.medium-3.small-12 data-sticky-container="true"
+  .columns.large-3.show-for-large data-sticky-container="true"
     = render partial: 'shared/sidebar'
        
-  .columns.large-6.medium-6.small-12
+  .columns.large-6.small-12
     .callout
       h4
         | #{link_to @group.name, group_path(@group), class: 'underlined'}の参加メンバー<small>（#{@group.group_memberships_count}人）</small>
@@ -34,7 +34,7 @@
 
 
  
-  .columns.large-3.medium-3.small-12 data-sticky-container="true"
+  .columns.large-3.show-for-large data-sticky-container="true"
     .sticky data-sticky="true" data-margin-top="8.12" data-top-anchor="56" data-btm-anchor="footer"
       = render partial: 'groups/group_info'
 

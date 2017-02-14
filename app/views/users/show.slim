@@ -1,5 +1,5 @@
 .row
-  .columns.medium-3.small-12
+  .columns.large-3.medium-4.small-12
     .callout.callout-user-info
       .row
         .columns.small-5
@@ -97,7 +97,7 @@
               td
                 = @user.treatment
     
-  .columns.medium-6.small-12
+  .columns.large-6.medium-8.small-12
     - if @user.posts.any?
       - @user.posts_visible_for(current_user: current_user).each do |post|
         = render partial: 'posts/post', locals: {post: post.decorate}
@@ -105,7 +105,7 @@
       .callout
         h6.text-center このユーザーはまだ投稿していません。
   
-  .columns.medium-3 data-sticky-container="true"
+  .columns.large-3.show-for-large data-sticky-container="true"
     .sticky data-sticky="true" data-margin-top="8.12" data-top-anchor="56" data-btm-anchor="footer"
       .callout
        

@@ -1,0 +1,17 @@
+.sticky data-sticky="true" data-margin-top="8.12" data-top-anchor="56" data-btm-anchor="footer" data-sticky-on="large"
+  .callout
+    h7.faded
+      | #{link_to '未読メッセージ', chat_rooms_path, class: 'faded'} <small>(新着#{@unread_messages.count}件)</small>        
+    ul.no-bullet.mgtp-10
+      - @unread_messages.select('DISTINCT on (user_id) *').limit(10).each do |message|
+        - chat_room = message.chat_room          
+        = render partial: 'posts/recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room}        
+    .divider
+    h7.faded
+      | 検索
+    = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
+      .input-group
+        = f.input :name_search, label: false, placeholder: '名前で検索', input_html: {class: 'input-group-field'}
+        .input-group-button
+          = button_tag class: 'button'            
+            i.fi-magnifying-glass

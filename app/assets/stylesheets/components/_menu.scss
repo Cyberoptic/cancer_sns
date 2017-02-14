@@ -6,22 +6,13 @@
   li {
     a {
       color: $medium-gray;
-      font-size: 0.7rem;
-      font-weight: 600;
+      font-size: 0.7rem;      
     }
   }
 }
 
 .menu-search-li {
   display: inline-block;
-}
-
-.menu-text {
-  padding-top: 0px !important;
-  
-  a {
-    font-weight: 600 !important;
-  }  
 }
 
 .menu-user-profile {

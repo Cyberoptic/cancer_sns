@@ -1,23 +1,5 @@
-.row  
-    
+.row      
   .columns.large-7.large-offset-2.small-12
     = render partial: 'posts/post', locals: {post: @post}
   .columns.large-3.small-12 data-sticky-container="true"
-    .sticky data-sticky="true" data-margin-top="8.12" data-top-anchor="56" data-btm-anchor="footer"
-      .callout
-        h6.bold
-          | #{link_to 'メッセージ', chat_rooms_path} <small>(新着#{@unread_messages.count}件)</small>
-        ul.no-bullet
-          - @unread_messages.select('DISTINCT on (user_id) *').limit(10).each do |message|
-            - chat_room = message.chat_room          
-            = render partial: 'recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room}        
-
-      .callout
-        h6.bold
-          | 検索
-        = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
-          .input-group
-            = f.input :name_search, label: false, placeholder: '名前', input_html: {class: 'input-group-field'}
-            .input-group-button
-              = button_tag class: 'button'            
-                i.fi-magnifying-glass
+    = render partial: 'layouts/right_sidebar'
