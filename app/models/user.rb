@@ -61,9 +61,6 @@ class User < ApplicationRecord
         .uniq
   }
   scope :birthday, -> (birthday){ where(birthday: birthday) }
-  scope :name_search, -> (name_search){
-    where("LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ? or LOWER(nickname) LIKE ?", "#{name_search.downcase}", "#{name_search.downcase}", "#{name_search.downcase}", "#{name_search.downcase}", "#{name_search.downcase}")
-  }
   scope :child_age, -> (child_age){ joins(:children).where("children.age = ?", child_age) }
 
   # Settings
@@ -80,7 +77,13 @@ class User < ApplicationRecord
     problems_visibility String, default: SETTING_OPTIONS.first
     area_visibility String, default: SETTING_OPTIONS.first
     name_visibility String, default: SETTING_OPTIONS.first
-  end  
+  end
+
+  def self.name_search(name_search)    
+    name_search = "#{name_search[0..3].downcase}%"
+
+    where("LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ? or LOWER(nickname) LIKE ?", name_search, name_search, name_search, name_search, name_search)
+  end
 
   def self.find_child_by_age_range(min:, max:)    
     return self.where(nil) unless min.present? || max.present?
