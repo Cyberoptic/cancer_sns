@@ -1,3 +1,13 @@
+.input-group-label {
+  border: none;
+  background: none;
+  width: 38%;
+  padding-right: 10px;
+  padding-left: 0px;
+  margin-right: 5%;
+  white-space: normal;
+}
+
 .input.error {
   label {
     @extend .is-invalid-label;
@@ -36,3 +46,4 @@
   right: 75px;  
   font-family: 'FontAwesome', sans-serif;
 }
+

@@ -10,9 +10,13 @@
 			</span>
 
 			<ul>
-				<li><strong>友達</strong> <%= user.friends.count %>人</li>
-			</ul>
+				<li><strong>友達</strong> <%= user.friends.count %>人</li>				
+			</ul>	
 		</div><!-- user-info -->
+
+		<p>
+			<%= user.introduction.truncate(300) %>
+		</p>
 
 		<div class="user-tags">
 			<% if UserAttributesVisibilityPolicy.new(user: user, current_user: current_user, attribute: :area).visible? %>

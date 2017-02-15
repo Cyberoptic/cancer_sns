@@ -1,7 +1,7 @@
 class UserSearch
 	include ActiveModel::Model
 
-	attr_accessor :nickname, :email, :password, :password_confirmation, :photo, :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, :area, :treatment, :profession, :hospital, :problems, :profile_completed, :is_public, :name_search
+	attr_accessor :nickname, :email, :password, :password_confirmation, :photo, :first_name, :last_name, :first_name_katakana, :last_name_katakana, :birthday, :gender, :email, :partner_age, :cancer_type, :cancer_stage, :treatment, :area, :treatment, :profession, :hospital, :problems, :profile_completed, :is_public, :name_search, :area, :child_age_min, :child_age_max, :partner_relationship, :prefecture
 
 	def initialize(args = nil)
 		return if args.nil?

@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do	
+	describe "#find_child_by_age_range" do
+		it "finds users with children within the age range given" do
+			user_1 = create(:user)
+			create(:child, age: 1, user: user_1)
+			user_2 = create(:user)
+			create(:child, age: 10, user: user_2)
+			user_3 = create(:user)
+			create(:child, age: 15, user: user_3)
+
+			expect(User.find_child_by_age_range(min: 10, max: 15)).to include([user_2, user_3])
+		end
+	end
+
 	describe "hash_id" do
 		context "when user is created" do
 			it "sets a hash_id" do

@@ -3,6 +3,7 @@ class User < ApplicationRecord
   include Filterable
   include Hashable
   include Emotionable
+  include Searchable
   acts_as_reader
   has_friendship
 
@@ -63,6 +64,7 @@ class User < ApplicationRecord
   scope :name_search, -> (name_search){
     where("LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ?", "#{name_search}%", "#{name_search}%", "#{name_search}%", "#{name_search}%")
   }
+  scope :child_age, -> (child_age){ joins(:children).where("children.age = ?", child_age) }
 
   # Settings
   include Storext.model
@@ -116,7 +118,11 @@ class User < ApplicationRecord
     else
       super
     end
-  end  
+  end
+
+  def self.find_child_by_age_range(min:, max:)
+    joins(:children).where("children.age >= ? AND children.age <= ?", min, max)
+  end
 
   def joined?(group)
     self.group_memberships.exists?(group_id: group.id)

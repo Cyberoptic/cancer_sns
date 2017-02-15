@@ -1,15 +1,9 @@
 .user-list {
-	background: $white;	
-	border: 1px solid $light-gray;
-	border-radius: $global-radius;
+	border-bottom: 1px solid $light-gray;	
 	color: $dark-gray;
-	padding: 16px 24px;	
+	padding: 16px 0px;	
 	margin-top: 10px;	
 	transition: box-shadow 0.5s ease;
-
-	&:hover {
-		box-shadow: 1px 3px 8px $medium-gray;
-	}
 
 	.display-name {
 		color: $anchor-color;

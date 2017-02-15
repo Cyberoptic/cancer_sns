@@ -1,8 +1,7 @@
 require 'elasticsearch/model'
 
 class Group < ApplicationRecord
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  include Searchable
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
 
@@ -14,8 +13,4 @@ class Group < ApplicationRecord
 
   scope :order_by_group_membership_counts, ->{ order(group_memberships_count: :desc) }
   scope :order_by_created_at, ->{ order(created_at: :desc) }
-  
-  def self.search(*args)
-    __elasticsearch__.search(*args)
-  end
 end

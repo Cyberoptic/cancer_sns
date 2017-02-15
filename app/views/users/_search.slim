@@ -1,0 +1,48 @@
+.card
+  .card-divider
+    h7.bold
+      | ユーザー情報
+  = simple_form_for @search, url: users_path, method: :get do |f|      
+    .card-section
+      .input-group
+        .input-group-label
+          | 名前
+        = f.input :name_search, label: false, placeholder: "名前", input_html: {class: 'no-margin input-group-field'}
+      .input-group
+        .input-group-label
+          | 都道府県
+        = f.input :prefecture, label: false, collection: Area::PREFECTURES, include_blank: "選択する", input_html: {class: 'no-margin input-group-field'}
+      .input-group
+        .input-group-label
+          | 子ども年齢
+
+        = f.input :child_age_min, label: false, input_html: {class: 'no-margin input-group-field'}
+      
+        p.text-center.no-margin
+          | 〜
+        
+        = f.input :child_age_max, label: false, input_html: {class: 'no-margin input-group-field'}
+      .input-group
+        .input-group-label
+          | パートナーとの関係
+        = f.input :partner_relationship, collection: User::PARTNER_RELATIONSHIPS, include_blank: "選択する", label: false, input_html: {class: 'no-margin input-group-field'}
+
+    .card-divider
+      h7.bold
+        | パートナー情報
+    .card-section
+      .input-group
+        .input-group-label
+          | 年齢
+        = f.input :partner_age, collection: User::AGE, include_blank: "選択する", required: true, label: false, input_html: {class: 'no-margin input-group-field'}
+      .input-group
+        .input-group-label
+          | がん種別
+        = f.input :cancer_type, label: false, collection: Cancer::TYPES, include_blank: "選択する", input_html: {class: 'no-margin input-group-field'}
+      .input-group
+        .input-group-label
+          | がんステージ
+        = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する", label: false, input_html: {class: 'no-margin input-group-field'}
+    .divider
+    .card-section
+      = f.submit '絞り込む', class: 'button expanded'
