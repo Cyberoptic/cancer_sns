@@ -8,11 +8,12 @@
           - chat_room = message.chat_room          
           = render partial: 'posts/recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room}        
       .divider
-    = simple_form_for :user, url: users_path, method: :get do |f|
+    = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
       .input-group
-        = f.input :keyword_search, label: false, placeholder: 'キーワードで検索', input_html: {class: 'input-group-field'}
+        = f.input :name_search, label: false, placeholder: '名前で検索', input_html: {class: 'input-group-field'}
         .input-group-button
           = button_tag class: 'button'            
             i.fi-magnifying-glass
     small.float-right.underlined
       = link_to '詳細検索へ', users_path, class: 'faded'
+    br

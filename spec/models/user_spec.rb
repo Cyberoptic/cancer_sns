@@ -1,17 +1,53 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do	
-	describe "#find_child_by_age_range" do
-		it "finds users with children within the age range given" do
-			user_1 = create(:user)
-			create(:child, age: 1, user: user_1)
-			user_2 = create(:user)
-			create(:child, age: 10, user: user_2)
-			user_3 = create(:user)
-			create(:child, age: 15, user: user_3)
+	describe "#find_child_by_age_range" do		
+		context "when no arguments are given" do
+			it "returns an empty activerecord object" do
+				expect(User.find_child_by_age_range(min: "", max: "")).to eq([])
+			end
+		end
 
-			expect(User.find_child_by_age_range(min: 10, max: 15)).to include(user_2, user_3)
-			expect(User.find_child_by_age_range(min: 10, max: 15)).to_not include(user_1)
+		context "when min and max is given" do
+			it "finds users with children within the age range given" do
+				user_1 = create(:user)
+				create(:child, age: 1, user: user_1)
+				user_2 = create(:user)
+				create(:child, age: 10, user: user_2)
+				user_3 = create(:user)
+				create(:child, age: 15, user: user_3)
+
+				expect(User.find_child_by_age_range(min: 10, max: 15)).to include(user_2, user_3)
+				expect(User.find_child_by_age_range(min: 10, max: 15)).to_not include(user_1)
+			end
+		end
+
+		context "when only min is given" do
+			it "returns all users with atleast min" do
+				user_1 = create(:user)
+				create(:child, age: 1, user: user_1)
+				user_2 = create(:user)
+				create(:child, age: 10, user: user_2)
+				user_3 = create(:user)
+				create(:child, age: 15, user: user_3)
+
+				expect(User.find_child_by_age_range(min: 10, max: "")).to include(user_2, user_3)
+				expect(User.find_child_by_age_range(min: 10, max: "")).to_not include(user_1)
+			end
+		end
+
+		context "when only max is given" do
+			it "returns all users under max" do
+				user_1 = create(:user)
+				create(:child, age: 1, user: user_1)
+				user_2 = create(:user)
+				create(:child, age: 10, user: user_2)
+				user_3 = create(:user)
+				create(:child, age: 15, user: user_3)
+
+				expect(User.find_child_by_age_range(min: "", max: 10)).to include(user_1, user_2)
+				expect(User.find_child_by_age_range(min: "", max: 10)).to_not include(user_3)
+			end
 		end
 	end
 

@@ -16,12 +16,12 @@
         .input-group-label
           | 子ども年齢
 
-        = f.input :child_age_min, label: false, input_html: {class: 'no-margin input-group-field'}
+        = f.input :child_age_min, label: false, collection: (0..65).map{|i| ["#{i}歳", i]}, include_blank: '指定なし', input_html: {class: 'no-margin input-group-field'}
       
         p.text-center.no-margin
           | 〜
         
-        = f.input :child_age_max, label: false, input_html: {class: 'no-margin input-group-field'}
+        = f.input :child_age_max, label: false, collection: (0..65).map{|i| ["#{i}歳", i]}, include_blank: '指定なし', input_html: {class: 'no-margin input-group-field'}
       .input-group
         .input-group-label
           | パートナーとの関係

@@ -3,7 +3,6 @@ class User < ApplicationRecord
   include Filterable
   include Hashable
   include Emotionable
-  include Searchable
   acts_as_reader
   has_friendship
 
@@ -120,7 +119,10 @@ class User < ApplicationRecord
     end
   end
 
-  def self.find_child_by_age_range(min:, max:)
+  def self.find_child_by_age_range(min:, max:)    
+    return self.where(nil) unless min.present? || max.present?
+    min = 0 unless min.present?
+    max = 1000 unless max.present?    
     joins(:children).where("children.age >= ? AND children.age <= ?", min, max)
   end
 

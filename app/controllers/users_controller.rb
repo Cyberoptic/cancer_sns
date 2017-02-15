@@ -2,11 +2,16 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-    if params[:user]
-      @users = User.search(params[:user][:keyword_search])
-    elsif params[:user_search]			
-			@users = User.filter(params[:user_search].slice(:name_search, :prefecture, :partner_relationship, :partner_age, :cancer_type, :cancer_stage))
-      @users.find_child_by_age_range(min: params[:user_search][:child_age_min], max: params[:user_search][:child_age_max])
+    if params[:user_search]    
+			@users = User.find_child_by_age_range(
+                      min: params[:user_search][:child_age_min],
+                      max: params[:user_search][:child_age_max]
+                    )
+                   .filter(params[:user_search].slice(:name_search, :prefecture, 
+                                                      :partner_relationship, :partner_age, :cancer_type, :cancer_stage))                   
+                   .uniq
+                   .decorate                   
+
 		else
 			@users = User.limit(5).decorate			
 		end
