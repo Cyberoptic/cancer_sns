@@ -1,5 +1,5 @@
 = link_to chat_room_path(chat_room)
-  li class=("message-list-item #{is_active ? 'is-active' : ''}") 
+  li class=("message-list-item #{is_active ? 'is-active' : ''}") data-chat-room-id="#{chat_room.id}"
     .row.expanded
       .columns.small-3  
         = image_tag friend.photo, class: 'user-image-small'
@@ -7,5 +7,5 @@
       .columns.small-9
         div class=("message-list-display-name #{chat_room.has_unread_messages_for?(current_user) ? 'is-active' : ''}") 
           = friend.decorate.display_name
-        p class="no-margin #{chat_room.has_unread_messages_for?(current_user) ? 'bold' : 'faded'}"
+        p class="js-last-message no-margin #{chat_room.has_unread_messages_for?(current_user) ? 'bold' : 'faded'}"
           = chat_room.last_message.try(:body).try(:truncate, 25)

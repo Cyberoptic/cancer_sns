@@ -1,0 +1,9 @@
+- if active_room
+  = render partial: '/chat_rooms/message_list', locals: {friend: active_room.other_user_for(current_user), chat_room: active_room, is_active: true}
+
+- chat_rooms.each do |chat_room|
+  = render partial: '/chat_rooms/message_list', locals: {friend: chat_room.other_user_for(current_user), chat_room: chat_room, is_active: false}
+  
+- if chat_rooms.empty? && active_room.nil?
+  p.text-center 該当するユーザーがいません。
+ 

@@ -5,8 +5,8 @@ $(document).on('ready', function () {
 
   if (messages.length > 0) {
 
-    messages_to_bottom = function () {
-      return messages.scrollTop(messages.prop('scrollHeight'));
+    messages_to_bottom = function(){
+      return messages.scrollTop(messages.prop('scrollHeight'));    
     };
 
     messages_to_bottom();
@@ -19,8 +19,13 @@ $(document).on('ready', function () {
       },
       disconnected: function () {
       },
-      received: function (data) {
+      received: function (data) {   
+        console.log(data);     
         messages.append(data['message']);
+
+        // change sidebar snippet
+        $('[data-chat-room-id="' + data['chat_room_id'] + '"]').find(".js-last-message").text(data['message_snippet']);
+
         return messages_to_bottom();
       },
       send_message: function (message, chat_room_id) {
