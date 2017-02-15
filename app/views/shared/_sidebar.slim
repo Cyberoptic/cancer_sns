@@ -26,8 +26,11 @@
     | ショートカット
 
   ul.home-sidebar.no-bullet
-    - current_user.groups.each do |group|          
+    - current_user.groups.limit(8).each do |group|          
       = render partial: 'posts/sidebar_group', locals: {group: group, unread_count: group.group_posts.unread_by(current_user).count}
+    p.float-right
+      small
+        = link_to 'もっと見る', groups_path, class: 'underlined faded'
 
   h7.faded
     | ニュース

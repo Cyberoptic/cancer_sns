@@ -20,7 +20,7 @@ class User < ApplicationRecord
   PARTNER_RELATIONSHIPS = %w(婚姻 恋人 その他)
 
   with_options if: :signed_up? do |user|
-    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :partner_relationship, :cancer_type, :area, presence: true, unless: Proc.new{|u| u.encrypted_password_changed? }
+    user.validates :name, :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :partner_relationship, :cancer_type, :area, presence: true, unless: Proc.new{|u| u.encrypted_password_changed? }
   end
 
   with_options unless: :display_name_to_everyone? do |user|
@@ -44,6 +44,8 @@ class User < ApplicationRecord
   has_many :treatments, through: :user_treatments
   has_many :children, dependent: :destroy   
   has_many :notifications, foreign_key: :recipient_id
+
+  before_save :set_name!
 
   accepts_nested_attributes_for :user_treatments, reject_if: proc { |attributes| attributes['name'].blank? }
   accepts_nested_attributes_for :treatments, reject_if: proc { |attributes| attributes['name'].blank? }
@@ -82,7 +84,7 @@ class User < ApplicationRecord
   def self.name_search(name_search)    
     name_search = "#{name_search[0..3].downcase}%"
 
-    where("LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ? or LOWER(nickname) LIKE ?", name_search, name_search, name_search, name_search, name_search)
+    where("LOWER(name) LIKE ? or LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ? or LOWER(nickname) LIKE ?", name_search, name_search, name_search, name_search, name_search, name_search)
   end
 
   def self.find_child_by_age_range(min:, max:)    
@@ -129,6 +131,10 @@ class User < ApplicationRecord
 
   def signed_up?   
     created_at.present? && profile_completed?
+  end
+
+  def set_name!    
+    self.name = "#{last_name}#{first_name}"
   end
 
 end

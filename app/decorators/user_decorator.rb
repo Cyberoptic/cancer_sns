@@ -9,10 +9,6 @@ class UserDecorator < Draper::Decorator
     object.to_param
   end
 
-  def name
-  	"#{last_name}#{first_name}"
-  end
-
   def treatment
     treatment = ""
     treatment += "#{object.other_treatment}, " if object.other_treatment

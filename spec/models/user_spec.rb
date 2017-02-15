@@ -1,6 +1,80 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do	
+RSpec.describe User, type: :model do
+	describe "after_update" do
+		context "when user is created" do
+			it "updates the name" do
+				user = build(:user, first_name: "John", last_name: "Doe")
+
+				user.save
+				user.reload
+
+				expect(user.name).to eq("DoeJohn")
+			end
+		end
+
+		context "when user is updated" do
+			it "updates the name" do
+				user = create(:user, first_name: "John", last_name: "Doe")
+
+				user.update(first_name: "Mark", last_name: "Zuckerburg")
+				user.reload
+
+				expect(user.name).to eq("ZuckerburgMark")
+			end
+		end
+	end
+
+	describe "#name_search" do
+		it "returns users where the name is equal to argument" do
+			user_1 = create(:user, name: "DoeJohn", first_name: "John", last_name: "Doe")
+			user_2 = create(:user, name: "ConnerMike", first_name: "Mike", last_name: "Conner")
+
+			expect(User.name_search("DoeJ")).to include(user_1)
+			expect(User.name_search("DoeJ")).to_not include(user_2)
+		end
+
+		it "returns users where the first name is equal to argument" do
+			user_1 = create(:user, first_name: "John")
+			user_2 = create(:user, first_name: "Mike")
+
+			expect(User.name_search("John")).to include(user_1)
+			expect(User.name_search("John")).to_not include(user_2)
+		end
+
+		it "returns users where the last name is equal to argument" do
+			user_1 = create(:user, last_name: "Doe")
+			user_2 = create(:user, last_name: "Zuckerburg")
+
+			expect(User.name_search("Zuckerburg")).to include(user_2)
+			expect(User.name_search("Zuckerburg")).to_not include(user_1)
+		end
+
+		it "returns users where the nickname is equal to argument" do
+			user_1 = create(:user, nickname: "Doe")
+			user_2 = create(:user, nickname: "Zuckerburg")
+
+			expect(User.name_search("Zuckerburg")).to include(user_2)
+			expect(User.name_search("Zuckerburg")).to_not include(user_1)
+		end
+
+		it "returns users where the last_name_katakana is equal to argument" do
+			user_1 = create(:user, last_name_katakana: "山本")
+			user_2 = create(:user, last_name_katakana: "田中")
+
+			expect(User.name_search("田中")).to include(user_2)
+			expect(User.name_search("田中")).to_not include(user_1)
+		end
+
+		it "returns users where the first_name_katakana is equal to argument" do
+			user_1 = create(:user, first_name_katakana: "山本")
+			user_2 = create(:user, first_name_katakana: "田中")
+
+			expect(User.name_search("田中")).to include(user_2)
+			expect(User.name_search("田中")).to_not include(user_1)
+		end
+	end
+
 	describe "#find_child_by_age_range" do		
 		context "when no arguments are given" do
 			it "returns an empty activerecord object" do
