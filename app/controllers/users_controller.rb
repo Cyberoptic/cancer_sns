@@ -8,7 +8,8 @@ class UsersController < ApplicationController
                       max: params[:user_search][:child_age_max]
                     )
                    .filter(params[:user_search].slice(:name_search, :prefecture, 
-                                                      :partner_relationship, :partner_age, :cancer_type, :cancer_stage))                   
+                                                      :partner_relationship, :partner_age,
+                                                      :cancer_type, :cancer_stage))                   
                    .uniq
                    .decorate                   
 
