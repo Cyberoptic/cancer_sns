@@ -1,4 +1,4 @@
-.sticky data-sticky="true" data-margin-top="8.5" data-top-anchor="56" data-btm-anchor="footer"data-sticky-on="large"
+.sticky data-sticky="true" data-margin-top="8.5" data-top-anchor="56" data-btm-anchor="footer"data-sticky-on="large" style="width: 100%"
   ul.home-sidebar.no-bullet    
     = link_to user_path(current_user)
       li.home-sidebar-link.home-sidebar-user-link
@@ -28,10 +28,10 @@
   ul.home-sidebar.no-bullet
     - current_user.groups.limit(8).each do |group|          
       = render partial: 'posts/sidebar_group', locals: {group: group, unread_count: group.group_posts.unread_by(current_user).count}
-    p.float-right
-      small
-        = link_to 'もっと見る', groups_path, class: 'underlined faded'
-
+  p.float-right
+    small
+      = link_to 'もっと見る', groups_path, class: 'underlined faded'
+  br
   h7.faded
     | ニュース
 
@@ -44,6 +44,7 @@
           p.no-margin
             = article.content.truncate(27)
           .divider
-    p.float-right
-      small
-        = link_to 'もっと見る', news_articles_path, class: 'underlined faded'
+  p.float-right
+    small
+      = link_to 'もっと見る', news_articles_path, class: 'underlined faded'
+  br
