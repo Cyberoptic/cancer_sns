@@ -10,7 +10,8 @@ RSpec.describe User, type: :model do
 			user_3 = create(:user)
 			create(:child, age: 15, user: user_3)
 
-			expect(User.find_child_by_age_range(min: 10, max: 15)).to include([user_2, user_3])
+			expect(User.find_child_by_age_range(min: 10, max: 15)).to include(user_2, user_3)
+			expect(User.find_child_by_age_range(min: 10, max: 15)).to_not include(user_1)
 		end
 	end
 
