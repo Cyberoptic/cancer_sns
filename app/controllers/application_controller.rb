@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  helper_method :unread_messages
+  def unread_messages
+    Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])  
+  end
+
   def ensure_user_is_public
     return unless user_signed_in?
     return if current_user.profile_completed?

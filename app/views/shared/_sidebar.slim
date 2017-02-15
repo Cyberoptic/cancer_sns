@@ -20,7 +20,7 @@
     = link_to chat_rooms_path
       li.home-sidebar-link
         = image_tag 'icons/mail.png', class: 'home-sidebar-link-icon'
-        = "メッセージ #{'(' + @unread_messages.count.to_s + ')' if @unread_messages.count > 0}"
+        = "メッセージ #{'(' + unread_messages.count.to_s + ')' if unread_messages.count > 0}"
 
   h7.faded
     | ショートカット

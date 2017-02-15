@@ -1,10 +1,10 @@
 .sticky data-sticky="true" data-margin-top="8.5" data-top-anchor="56" data-btm-anchor="footer" data-sticky-on="large"
   .callout
-    - if @unread_messages.count > 0
+    - if unread_messages.count > 0
       h7.faded
-        | #{link_to '未読メッセージ', chat_rooms_path, class: 'faded'} <small>(新着#{@unread_messages.count}件)</small>        
+        | #{link_to '未読メッセージ', chat_rooms_path, class: 'faded'} <small>(新着#{unread_messages.count}件)</small>        
       ul.no-bullet.mgtp-10
-        - @unread_messages.select('DISTINCT on (user_id) *').limit(10).each do |message|
+        - unread_messages.select('DISTINCT on (user_id) *').limit(10).each do |message|
           - chat_room = message.chat_room          
           = render partial: 'posts/recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room}        
       .divider

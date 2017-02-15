@@ -4,9 +4,7 @@ class PostsController < ApplicationController
 
   def index    
     @posts = TimelinePosts.new(user: current_user).posts.paginate(page: params[:page], per_page: 3)
-    @post = Post.new
-    @unread_messages = Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])
-    @unread_group_posts =  GroupPost.unread_by(current_user).includes(:user, :group)
+    @post = Post.new    
     @post_images = @post.post_images.build
     respond_to do |format|
       format.html
@@ -16,8 +14,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id]).decorate
-    @post_images = @post.post_images.all
-    @unread_messages = Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])
+    @post_images = @post.post_images.all    
   end
 
   def new

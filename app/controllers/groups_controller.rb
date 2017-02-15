@@ -11,8 +11,6 @@ class GroupsController < ApplicationController
     @posts = @group.group_posts.includes(:user, :post_images).paginate(page: params[:page], per_page: 5).decorate
     @post = GroupPost.new
     @post_images = @post.post_images.build
-    @unread_messages = Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])
-    @unread_group_posts =  GroupPost.unread_by(current_user).includes(:user, :group)
 
     mark_posts_as_read
   end
@@ -37,8 +35,6 @@ class GroupsController < ApplicationController
 
   def edit
     @group = find_group
-    @unread_messages = Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])
-    @unread_group_posts =  GroupPost.unread_by(current_user).includes(:user, :group)
   end
 
   def update
@@ -48,9 +44,6 @@ class GroupsController < ApplicationController
       redirect_to group_path(@group)
     else
       flash[:alert] = @group.errors.full_messages[0]
-
-      @unread_messages = Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])
-      @unread_group_posts =  GroupPost.unread_by(current_user).includes(:user, :group)
 
       render :edit
     end

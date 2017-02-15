@@ -6,9 +6,6 @@ class GroupMembershipsController < ApplicationController
     @group = find_group
     @group_memberships = @group.group_memberships.order(created_at: :desc).includes(:user)
     @current_user_membership = @group_memberships.find_by_user_id(current_user.id)
-
-    @unread_messages = Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])
-    @unread_group_posts =  GroupPost.unread_by(current_user).includes(:user, :group)
   end
 
   def create

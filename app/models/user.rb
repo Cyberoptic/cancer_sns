@@ -113,10 +113,10 @@ class User < ApplicationRecord
   end
 
   def posts_visible_for(current_user:)     
-    return posts.includes(:post_images) if self == current_user 
-    return posts.includes(:post_images).visible_to_friends + posts.includes(:post_images).visible_to_everyone if self.friends_with?(current_user) 
+    return posts.includes(:post_images, :user, comments: [:user, :post]) if self == current_user 
+    return posts.includes(:post_images, :user, comments: [:user, :post]).visible_to_friends + posts.includes(:post_images, :user, comments: [:user, :post]).visible_to_everyone if self.friends_with?(current_user) 
 
-    posts.includes(:post_images).visible_to_everyone
+    posts.includes(:post_images, :user, comments: [:user, :post]).visible_to_everyone
   end
 
   def treatment_options
