@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   extend FriendlyId
+  include Omniauthable
   include Filterable
   include Hashable
   include Emotionable
@@ -61,7 +62,7 @@ class User < ApplicationRecord
   }
   scope :birthday, -> (birthday){ where(birthday: birthday) }
   scope :name_search, -> (name_search){
-    where("LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ?", "#{name_search}%", "#{name_search}%", "#{name_search}%", "#{name_search}%")
+    where("LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ? or LOWER(nickname) LIKE ?", "#{name_search.downcase}", "#{name_search.downcase}", "#{name_search.downcase}", "#{name_search.downcase}", "#{name_search.downcase}")
   }
   scope :child_age, -> (child_age){ joins(:children).where("children.age = ?", child_age) }
 
@@ -79,45 +80,7 @@ class User < ApplicationRecord
     problems_visibility String, default: SETTING_OPTIONS.first
     area_visibility String, default: SETTING_OPTIONS.first
     name_visibility String, default: SETTING_OPTIONS.first
-  end
-
-  def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session["devise.facebook_data"]        
-        user.provider = data["provider"]
-        user.uid = data["uid"]
-        user.email = data["info"]["email"] if user.email.blank?
-        user.password = Devise.friendly_token[0,20]
-        user.first_name = data["info"]["name"].split.first
-        user.last_name = data["info"]["name"].split.last
-        user.photo = data["info"]["image"]
-      end
-    end
-  end
-
-  def self.from_omniauth(auth)    
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.first_name = auth.info.name.split.first
-      user.last_name = auth.info.name.split.last
-      user.photo = auth.info.image      
-    end
-  end
-
-  # If sign in through Oauth, don't require password
-  def password_required?    
-    super && provider.blank?
-  end
-
-  # Don't require update with password if Oauth
-  def update_with_password(params, *options)
-    if encrypted_password.blank?
-      update_attributes(params, *options)
-    else
-      super
-    end
-  end
+  end  
 
   def self.find_child_by_age_range(min:, max:)    
     return self.where(nil) unless min.present? || max.present?
