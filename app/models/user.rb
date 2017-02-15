@@ -114,7 +114,11 @@ class User < ApplicationRecord
 
   def posts_visible_for(current_user:)     
     return posts.includes(:post_images, :user, comments: [:user, :post]) if self == current_user 
-    return posts.includes(:post_images, :user, comments: [:user, :post]).visible_to_friends + posts.includes(:post_images, :user, comments: [:user, :post]).visible_to_everyone if self.friends_with?(current_user) 
+    return (posts.includes(:post_images, :user, comments: [:user, :post])
+                .visible_to_friends + 
+            posts.includes(:post_images, :user, comments: [:user, :post])
+                .visible_to_everyone).sort_by(&:created_at)
+                                     .reverse if self.friends_with?(current_user) 
 
     posts.includes(:post_images, :user, comments: [:user, :post]).visible_to_everyone
   end
