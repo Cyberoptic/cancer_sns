@@ -7,7 +7,7 @@
       ul#js-message-list.no-bullet.message-list
         = render partial: 'chat_room_list', locals: {chat_rooms: @chat_rooms, active_room: @chat_room}
   .columns.small-12.large-6.medium-7
-    #messages.callout data-chat-room-id="#{@chat_room.id}" 
+    #messages.callout data-chat-room-id="#{@chat_room.id}" data-user-id="#{current_user.id}" data-other-user-id="#{@other_user.id}"
       - if @chat_room.messages.empty?
         h6#start-message.text-center メッセージを開始しましょう。
       - else

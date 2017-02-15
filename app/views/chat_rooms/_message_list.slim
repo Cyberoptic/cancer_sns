@@ -2,10 +2,12 @@
   li class=("message-list-item #{is_active ? 'is-active' : ''}") data-chat-room-id="#{chat_room.id}"
     .row.expanded
       .columns.small-3  
-        = image_tag friend.photo, class: 'user-image-small'
+        = image_tag friend.photo, class: 'user-image-small', alt: friend.name.truncate(3)
     
       .columns.small-9
         div class=("message-list-display-name #{chat_room.has_unread_messages_for?(current_user) ? 'is-active' : ''}") 
           = friend.decorate.display_name
-        p class="js-last-message no-margin #{chat_room.has_unread_messages_for?(current_user) ? 'bold' : 'faded'}"
-          = chat_room.last_message.try(:body).try(:truncate, 25)
+        p class="js-last-message no-margin #{chat_room.has_unread_messages_for?(current_user) ? 'bold' : 'faded'}"          
+          - if last_message = chat_room.last_message
+            - display_name = chat_room.last_message.user == current_user ? "あなた: " : ""
+            = display_name + last_message.try(:body).try(:truncate, 25)

@@ -13,18 +13,36 @@ $(document).on('ready', function () {
 
     App.global_chat = App.cable.subscriptions.create({
       channel: "ChatRoomsChannel",
-      chat_room_id: messages.data('chat-room-id')
+      chat_room_id: messages.data('user-id')
     }, {
       connected: function () {
       },
       disconnected: function () {
       },
       received: function (data) {   
-        console.log(data);     
-        messages.append(data['message']);
+        console.log(data);
 
+        if (messages.data('chat-room-id') === data['chat_room_id']) {
+          messages.append(data['message']);  
+        }
+        
         // change sidebar snippet
-        $('[data-chat-room-id="' + data['chat_room_id'] + '"]').find(".js-last-message").text(data['message_snippet']);
+        var $messageLi = $('li[data-chat-room-id="' + data['chat_room_id'] + '"]')
+        var displayName;
+
+        if (messages.data('user-id') === data['sender_id']){
+          displayName = "あなた: "
+        } else {
+          displayName = ""
+        }
+
+        $messageLi.find(".js-last-message").text(displayName + data['message_snippet']);
+
+        if (messages.data('user-id') !== data['sender_id'] && messages.data('chat-room-id') !== data['chat_room_id']) {
+          $messageLi.find(".message-list-display-name").addClass("is-active");
+          $messageLi.find(".js-last-message").addClass("bold");
+          $messageLi.find(".js-last-message").removeClass("faded");
+        }
 
         return messages_to_bottom();
       },

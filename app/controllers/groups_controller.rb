@@ -64,7 +64,7 @@ class GroupsController < ApplicationController
   end
 
   def mark_posts_as_read
-    @group.group_posts.mark_as_read! :all, for: current_user
+    @group.group_posts.each{|group_post| group_post.mark_as_read! for: current_user}
   end
 
   def group_params
