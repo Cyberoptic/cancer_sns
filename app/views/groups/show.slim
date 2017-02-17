@@ -1,6 +1,9 @@
 .row
   .columns.large-3.show-for-large data-sticky-container="true"
     = render partial: 'shared/sidebar'
+
+  .columns.small-12.hide-for-medium data-sticky-container="true"
+    = render partial: 'groups/group_info'
        
   .columns.large-6.medium-8.small-12
     .callout
@@ -23,7 +26,7 @@
       .sk-cube4.sk-cube
       .sk-cube3.sk-cube
  
-  .columns.large-3.medium-4.small-12 data-sticky-container="true"
+  .columns.large-3.medium-4.show-for-medium data-sticky-container="true"
     .sticky data-sticky-on="medium" data-sticky="true" data-margin-top="8.5" data-top-anchor="56" data-btm-anchor="footer"
       = render partial: 'groups/group_info'
         

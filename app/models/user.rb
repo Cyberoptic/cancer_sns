@@ -54,6 +54,7 @@ class User < ApplicationRecord
   # Scopes for filtering
   scope :profession, -> (profession){ where(profession: profession) }
   scope :partner_age, -> (partner_age){ where(partner_age: partner_age) }
+  scope :partner_relationship, -> (partner_relationship){ where(partner_relationship: partner_relationship) }
   scope :cancer_type, -> (cancer_type){ where(cancer_type: cancer_type) }
   scope :cancer_stage, -> (cancer_stage){ where(cancer_stage: cancer_stage) }
   scope :hospital, -> (hospital){ where(hospital: hospital) }
@@ -62,6 +63,7 @@ class User < ApplicationRecord
         .where("treatments.name LIKE ?", "#{treatment[0..2]}%") 
         .uniq
   }
+  scope :prefecture, -> (prefecture){ where(prefecture: prefecture) }
   scope :birthday, -> (birthday){ where(birthday: birthday) }
   scope :child_age, -> (child_age){ joins(:children).where("children.age = ?", child_age) }
 

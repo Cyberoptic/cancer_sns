@@ -38,7 +38,16 @@
       .input-group
         .input-group-label
           | がん種別
-        = f.input :cancer_type, label: false, collection: Cancer::TYPES, include_blank: "選択する", input_html: {class: 'no-margin input-group-field'}
+        .input.select.required.user_cancer_type
+            select#user_cancer_type.select.no-margin.input-group-field name="user_search[cancer_type]" required="required" 
+              option value=""  選択する
+              - Cancer::TYPES.each do |key, value|
+                optgroup label="#{key}"
+                  - value.each do |type|
+                    - selected = @search.cancer_type == type ? {selected: "selected"} : {}
+                    option value="#{type}" *selected
+                      = type
+      
       .input-group
         .input-group-label
           | がんステージ

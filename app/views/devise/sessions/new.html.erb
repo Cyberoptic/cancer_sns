@@ -3,6 +3,8 @@
 		<div class="callout">
 			<h3 class="text-center bold">ログイン</h3>
 
+			<%= render 'shared/flash_messages' %>
+
 			<hr />
 
 			<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

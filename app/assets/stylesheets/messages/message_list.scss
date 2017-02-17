@@ -1,6 +1,10 @@
 .message-list {
   height: 400px;
   overflow: auto;
+
+  @media screen and (max-width: 39.9375em) {
+    height: 100px;
+  }
 }
 
 .message-list-item {

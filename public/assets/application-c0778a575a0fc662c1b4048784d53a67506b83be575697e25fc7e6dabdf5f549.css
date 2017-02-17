@@ -562,13 +562,13 @@ img {
 textarea {
   height: auto;
   min-height: 50px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /* line 169, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/_global.scss */
 select {
   width: 100%;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /* line 178, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/_global.scss */
@@ -586,7 +586,7 @@ button {
   padding: 0;
   appearance: none;
   border: 0;
-  border-radius: 2px;
+  border-radius: 4px;
   background: transparent;
   line-height: 1;
 }
@@ -2322,7 +2322,7 @@ kbd {
   background-color: #e6e6e6;
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   color: #0a0a0a;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /* line 48, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/typography/_helpers.scss */
@@ -2543,7 +2543,7 @@ p + .stat {
   padding: 0.85em 1em;
   -webkit-appearance: none;
   border: 1px solid transparent;
-  border-radius: 2px;
+  border-radius: 4px;
   transition: background-color 0.25s ease-out, color 0.25s ease-out;
   font-size: 0.9rem;
   line-height: 1;
@@ -2787,7 +2787,7 @@ textarea {
   margin: 0 0 1rem;
   padding: 0.5rem;
   border: 1px solid #e6e6e6;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #fefefe;
   box-shadow: none;
   font-family: inherit;
@@ -2833,7 +2833,7 @@ textarea[readonly] {
 [type='submit'],
 [type='button'] {
   appearance: none;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /* line 154, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/forms/_text.scss */
@@ -2905,11 +2905,11 @@ label.middle {
 }
 /* line 36, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/forms/_input-group.scss */
 .input-group > :first-child {
-  border-radius: 2px 0 0 2px;
+  border-radius: 4px 0 0 4px;
 }
 /* line 41, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/forms/_input-group.scss */
 .input-group > :last-child > * {
-  border-radius: 0 2px 2px 0;
+  border-radius: 0 4px 4px 0;
 }
 
 /* line 47, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/forms/_input-group.scss */
@@ -3007,7 +3007,7 @@ select {
   padding: 0.5rem;
   appearance: none;
   border: 1px solid #e6e6e6;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #fefefe;
   font-family: inherit;
   font-size: 0.875rem;
@@ -3258,11 +3258,11 @@ select[multiple] {
 
 /* line 60, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_accordion.scss */
 .accordion-item:first-child > :first-child {
-  border-radius: 2px 2px 0 0;
+  border-radius: 4px 4px 0 0;
 }
 /* line 64, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_accordion.scss */
 .accordion-item:last-child > :last-child {
-  border-radius: 0 0 2px 2px;
+  border-radius: 0 0 4px 4px;
 }
 
 /* line 143, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_accordion.scss */
@@ -3279,7 +3279,7 @@ select[multiple] {
 /* line 88, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_accordion.scss */
 :last-child:not(.is-active) > .accordion-title {
   border-bottom: 1px solid #e6e6e6;
-  border-radius: 0 0 2px 2px;
+  border-radius: 0 0 4px 4px;
 }
 /* line 93, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_accordion.scss */
 .accordion-title:hover, .accordion-title:focus {
@@ -3605,7 +3605,7 @@ select[multiple] {
   margin: 0 0 1rem 0;
   padding: 1rem;
   border: 1px solid rgba(20, 148, 148, 0.41);
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: white;
   color: #3b3b3b;
 }
@@ -3661,7 +3661,7 @@ select[multiple] {
 .card {
   margin-bottom: 1rem;
   border: 1px solid #e6e6e6;
-  border-radius: 2px;
+  border-radius: 4px;
   background: #fefefe;
   box-shadow: none;
   overflow: hidden;
@@ -3674,7 +3674,7 @@ select[multiple] {
 
 /* line 114, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_card.scss */
 .card-divider {
-  padding: 1rem;
+  padding: 0.6rem;
   background: #e6e6e6;
 }
 /* line 89, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_card.scss */
@@ -3684,7 +3684,7 @@ select[multiple] {
 
 /* line 118, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_card.scss */
 .card-section {
-  padding: 1rem;
+  padding: 0.6rem;
 }
 /* line 104, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_card.scss */
 .card-section > :last-child {
@@ -3806,7 +3806,7 @@ select[multiple] {
   padding: 1rem;
   visibility: hidden;
   border: 1px solid #e6e6e6;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #fefefe;
   font-size: 1rem;
 }
@@ -4176,7 +4176,7 @@ select[multiple] {
 .label {
   display: inline-block;
   padding: 0.33333rem 0.5rem;
-  border-radius: 2px;
+  border-radius: 4px;
   font-size: 0.65rem;
   line-height: 1;
   white-space: nowrap;
@@ -4913,7 +4913,7 @@ select[multiple] {
 /* line 83, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_pagination.scss */
 .pagination li {
   margin-right: 0.0625rem;
-  border-radius: 2px;
+  border-radius: 4px;
   font-size: 0.875rem;
   display: none;
 }
@@ -4932,7 +4932,7 @@ select[multiple] {
 .pagination button {
   display: block;
   padding: 0.1875rem 0.625rem;
-  border-radius: 2px;
+  border-radius: 4px;
   color: #0a0a0a;
 }
 /* line 119, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_pagination.scss */
@@ -4984,7 +4984,7 @@ select[multiple] {
 .progress {
   height: 1rem;
   margin-bottom: 1rem;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #7f7f7f;
 }
 /* line 48, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_progress-bar.scss */
@@ -5015,7 +5015,7 @@ select[multiple] {
   width: 0%;
   height: 100%;
   background-color: #006633;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /* line 61, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_progress-bar.scss */
@@ -5030,7 +5030,7 @@ select[multiple] {
   font-weight: bold;
   color: #fefefe;
   white-space: nowrap;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /* line 107, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_slider.scss */
@@ -5072,7 +5072,7 @@ select[multiple] {
   display: inline-block;
   width: 1.4rem;
   height: 1.4rem;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #006633;
   transition: all 0.2s ease-in-out;
   touch-action: manipulation;
@@ -5191,7 +5191,7 @@ html.is-reveal-open body {
   display: none;
   padding: 1rem;
   border: 1px solid #7f7f7f;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #fefefe;
   position: relative;
   top: 100px;
@@ -5316,7 +5316,7 @@ html.is-reveal-open body {
   display: block;
   width: 4rem;
   height: 2rem;
-  border-radius: 2px;
+  border-radius: 4px;
   background: #7f7f7f;
   transition: all 0.25s ease-out;
   font-weight: inherit;
@@ -5336,7 +5336,7 @@ input + .switch-paddle {
   width: 1.5rem;
   height: 1.5rem;
   transform: translate3d(0, 0, 0);
-  border-radius: 2px;
+  border-radius: 4px;
   background: #fefefe;
   transition: all 0.25s ease-out;
   content: '';
@@ -5450,7 +5450,7 @@ input:checked + label > .switch-inactive {
 table {
   width: 100%;
   margin-bottom: 1rem;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 /* line 107, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/foundation-rails-6.3.0.0/vendor/assets/scss/components/_table.scss */
 thead,
@@ -5670,7 +5670,7 @@ table.hover:not(.unstriped) tr:nth-of-type(even):hover {
   max-width: 100%;
   margin-bottom: 1rem;
   border: solid 4px #fefefe;
-  border-radius: 2px;
+  border-radius: 4px;
   box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.2);
   line-height: 0;
 }
@@ -5743,7 +5743,7 @@ a.thumbnail image {
   z-index: 1200;
   max-width: 10rem;
   padding: 0.75rem;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #0a0a0a;
   font-size: 80%;
   color: #fefefe;
@@ -7737,12 +7737,23 @@ footer p {
   margin: 1rem;
 }
 
-/* line 22, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_form.scss */
+/* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_form.scss */
+.input-group-label {
+  border: none;
+  background: none;
+  width: 38%;
+  padding-right: 10px;
+  padding-left: 0px;
+  margin-right: 5%;
+  white-space: normal;
+}
+
+/* line 32, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_form.scss */
 .relative-form {
   position: relative;
 }
 
-/* line 26, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_form.scss */
+/* line 36, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_form.scss */
 .visibility-dropdown {
   background-color: #fcfcfc;
   height: 34px;
@@ -7750,7 +7761,7 @@ footer p {
   width: 110px;
 }
 
-/* line 33, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_form.scss */
+/* line 43, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_form.scss */
 .visibility-dropdown-posts {
   bottom: 0px;
   position: absolute;
@@ -7802,6 +7813,11 @@ ul .recent-chat-list:last-child {
 }
 
 /* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+:focus {
+  outline: none;
+}
+
+/* line 5, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 body {
   display: flex;
   min-height: 100vh;
@@ -7809,38 +7825,38 @@ body {
   word-break: break-word;
 }
 
-/* line 8, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 12, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .callout, .alert-box .alert {
   border: 1px solid #e6e6e6;
 }
 
-/* line 12, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 16, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .body-content {
   flex: 1;
   margin-top: 50px;
 }
 
-/* line 18, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 22, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .visited a {
   color: #80bba2;
 }
 
-/* line 23, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 27, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .button.warning {
   color: #fefefe !important;
 }
 
-/* line 27, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 31, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .muted {
   color: #7f7f7f;
 }
 
-/* line 31, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 35, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .pagination {
   display: none;
 }
 
-/* line 35, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 39, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .file-upload-label {
   color: #55AD81;
   font-weight: 600;
@@ -7876,43 +7892,33 @@ body {
 .menu li a {
   color: #7f7f7f;
   font-size: 0.7rem;
-  font-weight: 600;
 }
 
-/* line 15, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+/* line 14, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-search-li {
   display: inline-block;
 }
 
-/* line 19, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
-.menu-text {
-  padding-top: 0px !important;
-}
-/* line 22, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
-.menu-text a {
-  font-weight: 600 !important;
-}
-
-/* line 27, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+/* line 18, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-user-profile {
   border-right: 1px solid #e6e6e6;
   padding-right: 10px;
 }
-/* line 30, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+/* line 21, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-user-profile a {
   color: #3b3b3b !important;
 }
 
-/* line 35, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+/* line 26, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-user-profile-name {
   padding-left: 5px;
 }
 
-/* line 39, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+/* line 30, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-home {
   padding-right: 20px;
 }
-/* line 41, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+/* line 32, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-home a {
   color: #3b3b3b !important;
 }
@@ -8238,8 +8244,14 @@ table th {
   height: 400px;
   overflow: auto;
 }
+@media screen and (max-width: 39.9375em) {
+  /* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message_list.scss */
+  .message-list {
+    height: 100px;
+  }
+}
 
-/* line 6, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message_list.scss */
+/* line 10, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message_list.scss */
 .message-list-item {
   transition: background 300ms ease;
   -webkit-transition: background 300ms ease;
@@ -8249,7 +8261,7 @@ table th {
   padding: 10px 0px 5px;
   margin-top: 10px;
 }
-/* line 12, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message_list.scss */
+/* line 16, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message_list.scss */
 .message-list-item:hover {
   transition: background 300ms ease;
   -webkit-transition: background 300ms ease;
@@ -8258,19 +8270,19 @@ table th {
   background: #e6e6e6;
 }
 
-/* line 18, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message_list.scss */
+/* line 22, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message_list.scss */
 .message-list-display-name {
   font-weight: 300 !important;
   text-align: left;
 }
 
-/* line 23, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message_list.scss */
+/* line 27, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message_list.scss */
 .message-list-display-name.is-active {
   color: #3b3b3b;
   font-weight: 600 !important;
 }
 
-/* line 28, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message_list.scss */
+/* line 32, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/messages/message_list.scss */
 .message-list-item.is-active {
   background: #f5f5f5;
 }
@@ -8301,8 +8313,8 @@ table th {
 }
 /* line 13, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/nav/top_bar.scss */
 #top-bar-menu .menu-text a {
-  color: #3b3b3b;
-  font-size: 14px;
+  color: #7f7f7f;
+  font-size: 12px;
   font-weight: 300;
   line-height: 1.5;
 }
@@ -8345,19 +8357,17 @@ table th {
   margin: 0 auto;
 }
 
-/* line 55, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/nav/top_bar.scss */
-.top-bar input {
-  margin-right: 0.1rem;
-}
-
-/* line 60, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/nav/top_bar.scss */
+/* line 54, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/nav/top_bar.scss */
 .menu-search-bar {
   border-radius: 100px;
+  display: block;
   height: 2rem;
+  max-width: none !important;
   padding: 1.1rem;
+  width: 100%;
 }
 
-/* line 68, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/nav/top_bar.scss */
+/* line 65, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/nav/top_bar.scss */
 .notifications-menu a:after {
   display: none !important;
   border: none !important;
@@ -8376,27 +8386,26 @@ table th {
 /* line 11, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .post-container .post-options-menu a {
   color: #3b3b3b;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12px;
 }
-/* line 19, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 18, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .post-container .post-info .user-image {
   float: left;
 }
-/* line 24, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 23, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .post-container .display-name {
   font-weight: 600;
 }
-/* line 28, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 27, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .post-container .post-content {
   margin-top: 20px;
 }
-/* line 32, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 31, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .post-container .timestamp {
   color: #80bba2;
   font-size: 12px;
 }
-/* line 37, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 36, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .post-container .post-reactions {
   border-top: 2px solid #fcfcfc;
   border-bottom: 2px solid #fcfcfc;
@@ -8405,19 +8414,19 @@ table th {
   padding-bottom: 10px;
   margin-top: 20px;
 }
-/* line 46, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 45, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .post-container .post-emotion-count {
   font-size: 10px;
 }
 
-/* line 51, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 50, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .new-post-dropdown-anchor {
   right: 15px;
   top: 15px;
   position: absolute;
 }
 
-/* line 57, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 56, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .post-images-file-field {
   width: 0.1px;
   height: 0.1px;
@@ -8427,61 +8436,61 @@ table th {
   z-index: -1;
 }
 
-/* line 66, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 65, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .post-textarea {
   margin-bottom: 30px;
 }
 
-/* line 70, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 69, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .dropdown-pane-emotions .post-emotion-svg-link:last-child {
   margin-right: 0px;
 }
 
-/* line 74, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 73, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .post-emotion-svg-link {
   margin-right: 10px;
 }
 
-/* line 78, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 77, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .dropdown-pane-emotions {
   width: 205px !important;
   border-radius: 60px;
 }
 
-/* line 83, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 82, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .emotion-count-link {
   vertical-align: 4px;
 }
 
-/* line 87, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 86, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .emotion-count-container {
   border-bottom: 2px solid #fcfcfc;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-/* line 93, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 92, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .emotion-list {
   height: 35px;
   margin-top: 10px;
   position: relative;
 }
 
-/* line 99, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 98, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .emotion-list-emotion {
   bottom: -20%;
   left: 6%;
   position: absolute;
 }
 
-/* line 105, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 104, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .emotion-list-username {
   bottom: 19%;
   left: 15%;
   position: absolute;
 }
 
-/* line 112, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
+/* line 111, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/posts/post.scss */
 .emotion-count-container .post-emotion-svgs:not(:first-child) {
   margin-left: -8px;
 }
@@ -8676,11 +8685,13 @@ table th {
 /* line 12, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/image.scss */
 img.user-image-small {
   float: none;
-  height: 35px;
-  width: 35px;
+  min-height: 35px;
+  min-width: 35px;
+  max-height: 35px;
+  max-width: 35px;
 }
 
-/* line 18, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/image.scss */
+/* line 20, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/image.scss */
 .user-image-xs {
   float: none;
   height: 20px;
@@ -8690,7 +8701,7 @@ img.user-image-small {
 /* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/search_form.scss */
 .search-form {
   background: #fefefe;
-  border-radius: 2px;
+  border-radius: 4px;
   padding: 20px;
 }
 /* line 6, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/search_form.scss */
@@ -8733,8 +8744,8 @@ img.user-image-small {
 }
 /* line 28, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/show/main.scss */
 .user-image-lg img {
-  height: 80px;
-  width: 80px;
+  min-height: 80px;
+  min-width: 80px;
 }
 
 /* line 34, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/show/main.scss */
@@ -8794,75 +8805,69 @@ img.user-image-small {
 
 /* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-list {
-  background: #fefefe;
-  border: 1px solid #e6e6e6;
-  border-radius: 2px;
+  border-bottom: 1px solid #e6e6e6;
   color: #3b3b3b;
-  padding: 16px 24px;
+  padding: 16px 0px;
   margin-top: 10px;
   transition: box-shadow 0.5s ease;
 }
-/* line 10, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
-.user-list:hover {
-  box-shadow: 1px 3px 8px #7f7f7f;
-}
-/* line 14, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
+/* line 8, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-list .display-name {
   color: #475f5f;
   font-size: 20px;
   font-weight: 600;
 }
-/* line 20, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
+/* line 14, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-list .user-tags {
   clear: both;
 }
 
-/* line 25, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
+/* line 19, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-info {
   display: inline-block;
   margin-left: 15px;
 }
-/* line 29, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
+/* line 23, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-info ul {
   margin-left: 0px;
 }
-/* line 33, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
+/* line 27, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-info li {
   display: inline;
   font-size: 12px;
 }
-/* line 36, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
+/* line 30, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-info li:after {
   content: '|';
   padding-left: 5px;
   padding-right: 0px;
 }
-/* line 41, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
+/* line 35, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-info li:last-child:after {
   content: '';
 }
 
-/* line 47, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
+/* line 41, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-image {
   float: left;
 }
-/* line 50, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
+/* line 44, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-image img {
   height: 50px;
   width: 50px;
 }
 
-/* line 58, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
+/* line 52, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-list-suggestions .user-image img {
   height: 40px;
   width: 40px;
 }
-/* line 64, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
+/* line 58, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-list-suggestions .display-name {
   font-size: 16px;
   font-weight: 600;
 }
-/* line 69, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
+/* line 63, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/users/user_list.scss */
 .user-list-suggestions .label {
   font-size: 10px;
   margin-top: 5px;
@@ -8926,7 +8931,7 @@ img.user-image-small {
   background-clip: padding-box;
   border: 1px solid #ccc !important;
   border: 1px solid rgba(0, 0, 0, 0.15) !important;
-  border-radius: 2px;
+  border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175) !important;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175) !important;
 }
