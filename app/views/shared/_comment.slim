@@ -13,7 +13,7 @@ div class=("comment #{'comment-hidden' if !comment.visible || comment.deleted?}"
                 li
                   i class='fa fa-pencil' aria-hidden='true'
                   |  編集
-            = link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> #{comment.visible ? '非表示' : '表示'}</li>".html_safe, comment_visibility_toggles_path(comment), method: :post, remote: true
+            = link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> #{comment.visible ? '非表示' : '表示'}</li>".html_safe, comment_visibility_toggles_path(comment), method: :post, remote: true if comment.user.id == current_user.id
             = link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> 削除</li>".html_safe, comment_path(comment), method: :delete, data: {confirm: "本当に削除してよろしいですか？"}, remote: true
       span.nickname
         = link_to comment.user.display_name, user_path(comment.user) unless comment.deleted?
