@@ -1,5 +1,9 @@
 class UserDecorator < Draper::Decorator
-  delegate_all
+  delegate_all  
+
+  def self.collection_decorator_class
+    PaginatingDecorator
+  end
 
   def display_name    
   	object.nickname.blank? ? name : object.nickname

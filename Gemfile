@@ -44,7 +44,7 @@ gem 'omniauth-facebook'
 gem 'figaro'
 gem "fog"
 gem 'has_friendship'
-gem 'will_paginate'
+gem 'will_paginate', '~> 3.1.0'
 gem "letter_opener", :group => :development
 
 gem 'rails_12factor', group: [:production]

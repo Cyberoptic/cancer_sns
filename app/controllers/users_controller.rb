@@ -11,10 +11,11 @@ class UsersController < ApplicationController
                                                       :partner_relationship, :partner_age,
                                                       :cancer_type, :cancer_stage))                   
                    .uniq
+                   .paginate(page: params[:page], per_page: 5)                 
                    .decorate                   
 
 		else
-			@users = User.limit(5).decorate			
+			@users = User.none.paginate(page: params[:page], per_page: 5).decorate      
 		end
     @search = UserSearch.new(params[:user_search])
 	end
