@@ -88,6 +88,14 @@ class User < ApplicationRecord
     super && provider.blank?
   end
 
+  def age
+    return nil if birthday.nil?
+    today = Date.today
+    age = today.year - birthday.year
+    age -= 1 if birthday.strftime("%m%d").to_i > today.strftime("%m%d").to_i
+    age
+  end
+
   def self.name_search(name_search)    
     name_search = "#{name_search[0..3].downcase}%"
 

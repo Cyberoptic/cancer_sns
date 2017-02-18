@@ -6,10 +6,16 @@
           .user-image-lg
             = image_tag @user.photo, alt: @user.name
         .columns.small-7
-          .name= @user.name
-          - if @user.nickname.present?
-            .nickname= @user.nickname
-      /! row
+          - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :name).visible?
+            .name
+              = @user.name
+            - if @user.nickname.present?
+              .nickname
+                = @user.nickname
+          - else
+            .name
+              = @user.nickname          
+      
       .user-tags        
         - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :area).visible?
           span.label.secondary.label-user-attributes
@@ -21,6 +27,20 @@
         span.label.secondary.label-user-attributes
           = @user.gender_icon
       hr/
+
+      - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :birthday).visible? && @user.age
+        h6
+          small
+            | <span class="bold">年齢</span> #{@user.age}歳
+
+        - if @user.children.any?
+          h6.bold
+            small 子ども
+
+          - @user.children.each do |child|
+            div
+              | #{child.age}歳、#{child.gender}
+        hr
 
       div
         - if @user.introduction && @user.introduction.length > 150

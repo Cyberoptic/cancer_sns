@@ -7,3 +7,46 @@ hr
 h6.faded
   | プロフィール
 = link_to user_url(@other_user), user_url(@other_user), class: 'green'
+
+hr
+.user-tags        
+  - if UserAttributesVisibilityPolicy.new(user: @other_user, current_user: current_user, attribute: :area).visible?
+    span.label.secondary.label-user-attributes
+      i.fa.fa-map-marker aria-hidden="true" 
+      = " #{@other_user.area}"
+  - if UserAttributesVisibilityPolicy.new(user: @other_user, current_user: current_user, attribute: :profession).visible?
+    span.label.secondary.label-user-attributes
+      = @other_user.profession
+  span.label.secondary.label-user-attributes
+    = @other_user.gender_icon
+hr
+
+div
+  - if @other_user.introduction && @other_user.introduction.length > 75
+    h6.bold
+      <small>紹介文</small>
+    = truncate(@other_user.introduction, length: 75)
+    = link_to '...（続きを読む）', '', class: "js-display-intro-#{@other_user.id}"
+    javascript:
+      $('.js-display-intro-#{@other_user.id}').on('click', function(e) {
+        e.preventDefault()
+        $(this).parent().html('#{escape_javascript @other_user.introduction}')
+      })
+  - else
+    = @other_user.introduction
+hr/
+- if UserAttributesVisibilityPolicy.new(user: @other_user, current_user: current_user, attribute: :problems).visible?
+  div
+    - if @other_user.problems && @other_user.problems.length > 75
+      h6.bold
+        <small>一番の悩み</small>
+      = truncate(@other_user.problems, length: 75)
+      = link_to '...（続きを読む）', '', class: "js-display-problems-#{@other_user.id}"
+      javascript:
+        $('.js-display-problems-#{@other_user.id}').on('click', function(e) {
+          e.preventDefault()
+          $(this).parent().html('#{escape_javascript @other_user.problems}')
+        })
+    - else
+      = @other_user.problems
+  hr/

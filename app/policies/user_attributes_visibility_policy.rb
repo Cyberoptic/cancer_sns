@@ -14,10 +14,10 @@ class UserAttributesVisibilityPolicy
   private
 
   def visible_to_everyone?
-    @user["#{@attribute}_visibility"] == User::SETTING_OPTIONS[0]
+    @user.send("#{@attribute}_visibility") == User::SETTING_OPTIONS[0]
   end
 
   def visible_to_friends?
-    @user["#{@attribute}_visibility"] == User::SETTING_OPTIONS[1]
+    @user.send("#{@attribute}_visibility") == User::SETTING_OPTIONS[1]
   end
 end
