@@ -16,9 +16,11 @@ div data-sticky-container="" style="z-index: 1"
           - if user_signed_in?
             .top-bar-left.top-bar-search.show-for-large
               ul.menu.medium-horizontal.vertical
-                = simple_form_for UserSearch.new, url: users_path, method: :get
+                = simple_form_for UserSearch.new, url: users_path, method: :get, html: {style: 'display: inline-block'}
                   li.menu-search-li.float-center style="width: 100%"
-                    input.menu-search-bar type="search" name="user_search[name_search]" placeholder="名前で検索"
+                    input.menu-search-bar type="search" name="user_search[name_search]" placeholder="名前で検索"                
+                li.menu-text style="display: inline-block"
+                  = link_to '詳細検索へ', users_path, class: 'faded underlined'
                   
           .top-bar-right.show-for-large
             ul.menu.medium-horizontal.vertical
@@ -62,7 +64,7 @@ div data-sticky-container="" style="z-index: 1"
                           = link_to 'マイグループ', groups_path
                         li.nav-menu-spacer                      
                         li.nav-menu-dropdown-text
-                          = link_to '設定', edit_user_registration_path
+                          = link_to 'プロフィール編集', edit_user_registration_path
                         li.nav-menu-dropdown-text
                           = link_to 'ログアウト', destroy_user_session_path, method: :delete
                 #pending-friend-requests.dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" 
@@ -98,7 +100,7 @@ div data-sticky-container="" style="z-index: 1"
                   = link_to 'マイグループ', groups_path
                 li.nav-menu-spacer
                 li.menu-text
-                  = link_to '設定', edit_user_registration_path
+                  = link_to 'プロフィール編集', edit_user_registration_path
                 li.menu-text
                   = link_to 'ログアウト', destroy_user_session_path, method: :delete
               - else
