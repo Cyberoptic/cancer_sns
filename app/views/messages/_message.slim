@@ -1,17 +1,25 @@
-.message-container
-  .user-image-small
-    = link_to user_path(message.user) do
-      = image_tag message.user_photo, alt: message.user.decorate.name.truncate(27)
-  .message-body-container
-    .message-user-info
-      .user-info
-        .display-name
-          = link_to message.user.decorate.name, user_path(message.user)
-    .card style=("margin-bottom: 0px;") 
-      .card-section
-        .message-body
-          p
-            = message.body
-p.float-right
-  small= message.timestamp
- 
+- if message.user == current_user
+  .message-container
+    .message-body-container.message-body-container-right
+      .card.card-green style=("margin-bottom: 0px;") 
+        .card-section
+          .message-body
+            p
+              = message.body
+  p.float-right
+    small= message.timestamp
+
+- else
+  .message-container
+    .user-image-small
+      = link_to user_path(message.user) do
+        = image_tag message.user_photo, alt: message.user.decorate.name.truncate(27), class: 'img-circle', style: 'margin-bottom: 30px'
+    .message-body-container.message-body-container-left
+      .card style=("margin-bottom: 0px;") 
+        .card-section
+          .message-body
+            p
+              = message.body
+      p.float-right
+        small= message.timestamp
+       

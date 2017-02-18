@@ -83,6 +83,11 @@ class User < ApplicationRecord
     name_visibility String, default: SETTING_OPTIONS.first
   end
 
+  # If sign in through Oauth, don't require password
+  def password_required?    
+    super && provider.blank?
+  end
+
   def self.name_search(name_search)    
     name_search = "#{name_search[0..3].downcase}%"
 

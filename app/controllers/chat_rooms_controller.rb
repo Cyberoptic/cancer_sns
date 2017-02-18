@@ -7,7 +7,7 @@ class ChatRoomsController < ApplicationController
     @chat_rooms = current_user.chat_rooms.includes(:member, :user, :messages).select{|chat_room| chat_room != @chat_room}
     @message_search = MessageSearch.new(params[:message_search])
     @message = Message.new
-    @other_user = @chat_room.other_user_for(current_user).decorate      
+    @other_user = @chat_room.other_user_for(current_user).decorate if @chat_room.present?
 
     mark_messages_as_read
   end
@@ -42,7 +42,7 @@ class ChatRoomsController < ApplicationController
   private
 
   def mark_messages_as_read    
-    return if @chat_room.nil? || @chat_room.messages.empty?
+    return if !@chat_room.present? || @chat_room.messages.empty?
     @chat_room.messages.each{|message| message.mark_as_read! for: current_user}
   end
 end

@@ -20,7 +20,7 @@ $(document).on('ready', function () {
       disconnected: function () {
       },
       received: function (data) {   
-        console.log(data);
+        
 
         if (messages.data('chat-room-id') === data['chat_room_id']) {
           messages.append(data['message']);  
@@ -57,6 +57,8 @@ $(document).on('ready', function () {
     form.submit(function (e) {
       var textarea;
       textarea = $('#message_body');
+      $('#start-message').remove();
+      
       if ($.trim(textarea.val()).length > 1) {
         App.global_chat.send_message(textarea.val(), messages.data('chat-room-id'));
         textarea.val('');

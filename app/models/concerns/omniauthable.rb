@@ -3,7 +3,7 @@ module Omniauthable
 
   included do
     has_many :emotions
-  end
+  end  
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -27,12 +27,7 @@ module Omniauthable
       user.last_name = auth.info.name.split.last
       user.photo = auth.info.image      
     end
-  end
-
-  # If sign in through Oauth, don't require password
-  def password_required?    
-    super && provider.blank?
-  end
+  end  
 
   # Don't require update with password if Oauth
   def update_with_password(params, *options)

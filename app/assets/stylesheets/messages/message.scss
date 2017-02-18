@@ -15,13 +15,29 @@
 
 .message-body-container {
   margin-left: 10%;
-  width: 85%;
+  width: 60%;
 
   @media screen and (max-width: 39.9375em) {
     margin-left: 5%;
     width: 80%;
   }
 }
+
+.message-body-container-left {
+  margin-left: 5%;
+  margin-right: 35%;
+  width: 60%;
+
+  @media screen and (min-width: 40em) and (max-width: 63.9375em) {
+    margin-left: 10%; 
+  }
+
+  @media screen and (max-width: 39.9375em) {
+    margin-left: 5%;
+    width: 80%;
+  }
+}
+
 
 .message-user-info {
   .user-info {
