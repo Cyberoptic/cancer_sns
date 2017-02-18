@@ -21,7 +21,7 @@
             td
               = image_tag group_membership.user.photo, class: 'user-image-xs'
               span.mglt-10
-                = link_to group_membership.user.decorate.name, user_path(group_membership.user)
+                = link_to group_membership.user.decorate.display_name, user_path(group_membership.user)
                 = " （管理者）" if group_membership.moderator?
             td
               = display_date(group_membership.user.created_at)            

@@ -7,6 +7,6 @@
         span.float-right.faded.timestamp
           =  chat_room.last_active_at
         span.faded
-          = other_user.decorate.name
+          = other_user.decorate.display_name
         p.no-margin  
           = chat_room.last_message.body.truncate(10)        

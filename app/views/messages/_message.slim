@@ -13,7 +13,7 @@
   .message-container
     .user-image-small
       = link_to user_path(message.user) do
-        = image_tag message.user_photo, alt: message.user.decorate.name.truncate(27), class: 'img-circle', style: 'margin-bottom: 30px'
+        = image_tag message.user_photo, alt: message.user.decorate.display_name.truncate(27), class: 'img-circle', style: 'margin-bottom: 30px'
     .message-body-container.message-body-container-left
       .card style=("margin-bottom: 0px;") 
         .card-section

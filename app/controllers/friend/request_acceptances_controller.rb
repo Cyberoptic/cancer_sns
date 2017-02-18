@@ -16,7 +16,7 @@ class Friend::RequestAcceptancesController < ApplicationController
   def ensure_existing_friendship!
     @user = find_user    
     return if HasFriendship::Friendship.find_by(friend_id: @user.id, friendable_id: current_user.id)
-    flash[:alert] = "ユーザーと友達ではありません。"
+    flash[:alert] = "エラーが起きました。"
     redirect_to root_path
   end
 

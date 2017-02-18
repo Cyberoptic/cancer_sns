@@ -10,7 +10,7 @@
 
 				<div class="columns medium-7 small-12">
 					
-					<div class="name"><%= @user.name %></div>
+					<div class="name"><%= @user.decorate.display_name %></div>
 					
 					<% if @user.nickname.present? %>
 						<div class="nickname"><%= @user.nickname %></div>

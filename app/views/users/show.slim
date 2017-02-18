@@ -4,7 +4,7 @@
       .row
         .columns.small-5
           .user-image-lg
-            = image_tag @user.photo, alt: @user.name
+            = image_tag @user.photo, alt: @user.decorate.display_name
         .columns.small-7
           - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :name).visible?
             .name
@@ -38,7 +38,7 @@
             small 子ども
 
           - @user.children.each do |child|
-            div
+            div.faded
               | #{child.age}歳、#{child.gender}
         hr
 

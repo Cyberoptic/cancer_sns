@@ -1,5 +1,5 @@
 json.array! @notifications do |notification|
-  json.actor notification.actor.decorate.name
+  json.actor notification.actor.decorate.display_name
   json.actor_photo_url notification.actor.photo.url
   json.action notification.action
   json.read_at notification.read_at

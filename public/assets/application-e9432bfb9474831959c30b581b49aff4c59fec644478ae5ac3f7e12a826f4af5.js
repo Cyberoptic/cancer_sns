@@ -37778,22 +37778,45 @@ $(document).on('ready', function () {
 
   if (messages.length > 0) {
 
-    messages_to_bottom = function () {
-      return messages.scrollTop(messages.prop('scrollHeight'));
+    messages_to_bottom = function(){
+      return messages.scrollTop(messages.prop('scrollHeight'));    
     };
 
     messages_to_bottom();
 
     App.global_chat = App.cable.subscriptions.create({
       channel: "ChatRoomsChannel",
-      chat_room_id: messages.data('chat-room-id')
+      chat_room_id: messages.data('user-id')
     }, {
       connected: function () {
       },
       disconnected: function () {
       },
-      received: function (data) {
-        messages.append(data['message']);
+      received: function (data) {   
+        
+
+        if (messages.data('chat-room-id') === data['chat_room_id']) {
+          messages.append(data['message']);  
+        }
+        
+        // change sidebar snippet
+        var $messageLi = $('li[data-chat-room-id="' + data['chat_room_id'] + '"]')
+        var displayName;
+
+        if (messages.data('user-id') === data['sender_id']){
+          displayName = "あなた: "
+        } else {
+          displayName = ""
+        }
+
+        $messageLi.find(".js-last-message").text(displayName + data['message_snippet']);
+
+        if (messages.data('user-id') !== data['sender_id'] && messages.data('chat-room-id') !== data['chat_room_id']) {
+          $messageLi.find(".message-list-display-name").addClass("is-active");
+          $messageLi.find(".js-last-message").addClass("bold");
+          $messageLi.find(".js-last-message").removeClass("faded");
+        }
+
         return messages_to_bottom();
       },
       send_message: function (message, chat_room_id) {
@@ -37807,6 +37830,8 @@ $(document).on('ready', function () {
     form.submit(function (e) {
       var textarea;
       textarea = $('#message_body');
+      $('#start-message').remove();
+      
       if ($.trim(textarea.val()).length > 1) {
         App.global_chat.send_message(textarea.val(), messages.data('chat-room-id'));
         textarea.val('');
@@ -59579,7 +59604,7 @@ var PendingFriendRequests = React.createClass({
 						React.createElement(
 							'div',
 							{ className: 'display-name' },
-							request.friendable_last_name + ' ' + request.friendable_first_name
+							'' + request.friendable_display_name
 						),
 						React.createElement(
 							'div',
@@ -70128,7 +70153,7 @@ $(function() {
     Notifications.prototype.handleSuccess = function(data) {
       var $bell, items, unread_count;
       items = $.map(data, function(notification) {
-        return "<li data-read-at='" + notification.read_at + "'><a href='" + notification.url + "' class='notification-link'><img src=" + notification.actor_photo_url + " class='notification-prof'> " + notification.actor + "が" + notification.notifiable.type + "に" + notification.action + "しました。 <br><time class='timeago' datetime='" + notification.created_at + "'>" + notification.created_at + "</time></a></li>";
+        return "<li data-read-at='" + notification.read_at + "'><a href='" + notification.url + "' class='notification-link'><img src=" + notification.actor_photo_url + " class='notification-prof notification-img'> " + notification.actor + "が" + notification.notifiable.type + "に" + notification.action + "しました。 <br><time class='timeago' datetime='" + notification.created_at + "'>" + notification.created_at + "</time></a></li>";
       });
       $("[data-behavior='notification-items']").append(items);
       unread_count = $('*[data-read-at="null"]').length;
@@ -70430,7 +70455,7 @@ $( document ).ready(function() {
 
 
 $(function(){ 
-	$(document).foundation(); 
+  $(document).foundation(); 
   $(".ui-loader").hide();
   
   $('.js-gallery-img').Am2_SimpleSlider();
@@ -70453,4 +70478,8 @@ $(function(){
     years: "約%d年",
     wordSeparator: ""
   };
+
+  $('select[name="post[visibility]"]').on("change", function(){
+    $('#new-post-dropdown').foundation('close');
+  })
 });

@@ -29,7 +29,7 @@ div data-sticky-container="" style="z-index: 1"
                   = link_to user_path(current_user)
                     = image_tag current_user.photo, class: 'nav-prof-img'
                     span.menu-user-profile-name
-                      = current_user.first_name
+                      = current_user.decorate.display_name
                 li.menu-home
                   = link_to 'ホーム', root_path
                 li
@@ -82,7 +82,7 @@ div data-sticky-container="" style="z-index: 1"
                 li.menu-text
                   = simple_form_for UserSearch.new, url: users_path, method: :get
                     li.menu-search-li.float-center style="width: 100%"
-                      input.menu-search-bar type="search" name="user_search[name_search]" placeholder="名前で検索"
+                      input.menu-search-bar type="search" name="user_search[name_search]" placeholder="名前で検索"                
                 li.menu-text
                   = link_to user_path(current_user)
                     = image_tag current_user.photo, class: 'nav-prof-img'
@@ -98,6 +98,8 @@ div data-sticky-container="" style="z-index: 1"
                   = link_to 'グループの作成', new_group_path
                 li.menu-text
                   = link_to 'マイグループ', groups_path
+                li.menu-text
+                  = link_to '詳細検索', users_path
                 li.nav-menu-spacer
                 li.menu-text
                   = link_to 'プロフィール編集', edit_user_registration_path

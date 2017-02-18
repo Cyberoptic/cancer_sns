@@ -37,6 +37,6 @@
     - @group.group_memberships.includes(:user).take(20).each do |group_membership|
       a href="/users/#{group_membership.user.id}" 
         .image-wrapper
-          = image_tag group_membership.user_photo, alt: group_membership.user.decorate.name.truncate(2)
+          = image_tag group_membership.user_photo, alt: group_membership.user.decorate.display_name.truncate(2)
 
   hr /

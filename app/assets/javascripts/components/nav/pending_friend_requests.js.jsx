@@ -71,7 +71,7 @@ var PendingFriendRequests = React.createClass({
 						</div>
 						<div className="request-content">
 							<div className="display-name">
-								{`${request.friendable_last_name} ${request.friendable_first_name}`}
+								{`${request.friendable_display_name}`}
 							</div>
 							<div className="timestamp">
 								{request.created_at}

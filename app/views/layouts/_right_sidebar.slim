@@ -8,6 +8,24 @@
           - chat_room = message.chat_room          
           = render partial: 'posts/recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room}        
       .divider
+    - if current_user.pending_requests.count > 0
+      h7.faded
+        | 友達申請
+      
+      ul.no-bullet.mgtp-10
+        - current_user.pending_requests.each do |request|
+          li.request-container
+            = link_to user_path(request.friendable)
+              = image_tag request.friendable.photo, class: 'user-image-small'
+            .request-content              
+              = link_to request.friendable.decorate.display_name, user_path(request.friendable), class: 'display-name'
+              .timestamp
+                | #{time_ago_in_words(request.created_at)}前
+
+                   
+            = link_to "<i class='fi-check'></i> 許可".html_safe, user_request_acceptances_path(request.friendable.id), class: 'button tiny mgrt-5'
+            = link_to '<i class="fi-x-circle"></i> 削除'.html_safe, user_request_declinals_path(request.friendable.id), class: 'button tiny gray'            
+
     = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
       .input-group
         = f.input :name_search, label: false, placeholder: '名前で検索', input_html: {class: 'input-group-field'}
