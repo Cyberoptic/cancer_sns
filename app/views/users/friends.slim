@@ -1,0 +1,30 @@
+.row
+  .columns.small-12.medium-10.medium-offset-1
+    .callout
+      p
+        small
+          = link_to '< プロフィールを表示', user_path(@user)
+      h5.bold        
+        = link_to @user.display_name, user_path(@user)
+        | の友達
+        span.friend-count
+          = @user.friends.count
+          | 人
+      p.faded.text-center.no-margin
+        | #{@friends.count}件/#{@friends.total_entries}件
+      h6.text-center
+        = will_paginate @friends, class: 'user_pagination', previous_label: '&lt 前', next_label: '次 &gt'
+      br
+      .row
+        - @friends.each do |user|
+          .columns.small-12.medium-6.end            
+            .row.expanded
+              .columns.small-3
+                = link_to user_path(user)
+                  = image_tag user.photo, class: 'user-image-md'
+              .columns.small-9
+                h6.bold.mgtp-20.no-margin-bottom
+                  = link_to user.decorate.display_name, user_path(user)
+                p.faded
+                  | 友達#{user.friends.count}人
+            br

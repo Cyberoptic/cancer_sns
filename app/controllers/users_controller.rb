@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def friends
   	@user = User.find(params[:user_id]).decorate
-  	@friends = @user.friends.decorate
+  	@friends = @user.friends.paginate(page: params[:page], per_page: 20).decorate
   end
     
 end
