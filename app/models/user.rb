@@ -52,20 +52,47 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :children, reject_if: proc { |attributes| attributes['age'].blank? || attributes['gender'].blank? }, allow_destroy: true
 
   # Scopes for filtering
-  scope :profession, -> (profession){ where(profession: profession) }
-  scope :partner_age, -> (partner_age){ where(partner_age: partner_age) }
-  scope :partner_relationship, -> (partner_relationship){ where(partner_relationship: partner_relationship) }
-  scope :cancer_type, -> (cancer_type){ where(cancer_type: cancer_type) }
-  scope :cancer_stage, -> (cancer_stage){ where(cancer_stage: cancer_stage) }
-  scope :hospital, -> (hospital){ where(hospital: hospital) }
-  scope :treatment, -> (treatment){ 
-    self.joins(:treatments)
-        .where("treatments.name LIKE ?", "#{treatment[0..2]}%") 
-        .uniq
+  scope :profession, -> (profession){ 
+    attribute_is_public("profession_visibility").where(profession: profession) 
   }
-  scope :prefecture, -> (prefecture){ where(prefecture: prefecture) }
-  scope :birthday, -> (birthday){ where(birthday: birthday) }
-  scope :child_age, -> (child_age){ joins(:children).where("children.age = ?", child_age) }
+  scope :partner_age, -> (partner_age){ 
+    attribute_is_public("partner_age_visibility").where(partner_age: partner_age) 
+  }
+  scope :partner_relationship, -> (partner_relationship){ 
+    attribute_is_public("partner_relationship_visibility").where(partner_relationship: partner_relationship) 
+  }
+  scope :cancer_type, -> (cancer_type){ 
+    attribute_is_public("cancer_type_visibility").where(cancer_type: cancer_type) 
+  }
+  scope :cancer_stage, -> (cancer_stage){ 
+    attribute_is_public("cancer_stage_visibility").where(cancer_stage: cancer_stage) 
+  }
+  scope :hospital, -> (hospital){ 
+    attribute_is_public("hospital_visibility").where(hospital: hospital) 
+  }
+  scope :treatment, -> (treatment){
+    attribute_is_public("treatment_visibility")
+    .joins(:treatments)
+    .where("treatments.name LIKE ?", "#{treatment[0..2]}%") 
+    .uniq
+  }
+  scope :prefecture, -> (prefecture){ 
+    attribute_is_public("area_visibility").where(prefecture: prefecture) 
+  }
+  scope :birthday, -> (birthday){ 
+    attribute_is_public("birthday_visibility").where(birthday: birthday) 
+  }
+  scope :child_age, -> (child_age){ 
+    attribute_is_public("children_visibility").joins(:children).where("children.age = ?", child_age) 
+  }
+
+  scope :attribute_is_public, ->(attribute) do
+    where(
+      "users.settings->>:field = :value",
+      field: attribute,
+      value: User::SETTING_OPTIONS.first
+    )
+  end
 
   # Settings
   include Storext.model
@@ -81,6 +108,7 @@ class User < ApplicationRecord
     problems_visibility String, default: SETTING_OPTIONS.first
     area_visibility String, default: SETTING_OPTIONS.first
     name_visibility String, default: SETTING_OPTIONS.first
+    children_visibility String, default: SETTING_OPTIONS.first
   end
 
   # If sign in through Oauth, don't require password
@@ -103,8 +131,8 @@ class User < ApplicationRecord
 
   def self.name_search(name_search)    
     name_search = "#{name_search[0..3].downcase}%"
-
-    where("LOWER(name) LIKE ? or LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ? or LOWER(nickname) LIKE ?", name_search, name_search, name_search, name_search, name_search, name_search)
+    
+    attribute_is_public("name_visibility").where("LOWER(name) LIKE ? or LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ? or LOWER(nickname) LIKE ?", name_search, name_search, name_search, name_search, name_search, name_search)
   end
 
   def self.find_child_by_age_range(min:, max:)    

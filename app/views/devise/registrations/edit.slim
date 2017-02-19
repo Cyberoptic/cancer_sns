@@ -82,6 +82,8 @@
               = render 'child_fields', f: children
             .links
               = link_to_add_association '<i class="fa fa-plus-circle" aria-hidden="true"></i> 子どもを追加する'.html_safe, f, :children, class: 'button small'
+              
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :children_visibility}
 
       tr.partner-info-tr
         th

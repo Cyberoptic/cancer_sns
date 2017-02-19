@@ -1,6 +1,30 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe User, type: :model do	
+	describe "#attribute_is_public" do
+		context "when argument is name_visiblity" do
+			it "returns a collection of users where the name visibility is public" do
+				user_1 = create(:user, settings: {name_visibility: User::SETTING_OPTIONS.first})
+				user_2 = create(:user, settings: {name_visibility: User::SETTING_OPTIONS.first})
+				user_3 = create(:user, nickname: "Nickname", settings: {name_visibility: User::SETTING_OPTIONS.last})
+
+				expect(User.attribute_is_public("name_visibility")).to include(user_1, user_2)
+				expect(User.attribute_is_public("name_visibility")).to_not include(user_3)
+			end
+		end
+
+		context "when argument is profession_visiblity" do
+			it "returns a collection of users where the name visibility is public" do
+				user_1 = create(:user, settings: {profession_visibility: User::SETTING_OPTIONS.first})
+				user_2 = create(:user, settings: {profession_visibility: User::SETTING_OPTIONS.first})
+				user_3 = create(:user, settings: {profession_visibility: User::SETTING_OPTIONS.last})
+
+				expect(User.attribute_is_public("profession_visibility")).to include(user_1, user_2)
+				expect(User.attribute_is_public("profession_visibility")).to_not include(user_3)
+			end
+		end
+	end
+
 	describe "after_update" do
 		context "when user is created" do
 			it "updates the name" do
