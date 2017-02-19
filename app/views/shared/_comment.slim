@@ -1,5 +1,5 @@
-div class=("comment #{'comment-hidden' if !comment.visible || comment.deleted?}") data-comment-id="#{comment.id}" 
-  - if comment.visible || comment.user == current_user || comment.post_user == current_user
+div class=("comment #{'comment-hidden' if !comment.visible || comment.deleted?} #{'is-hidden' unless CommentVisibilityPolicy.new(current_user: current_user, comment: comment).visible?}") data-comment-id="#{comment.id}" 
+  - if CommentVisibilityPolicy.new(current_user: current_user, comment: comment).visible?
     .user-image
       = image_tag comment.user_photo, alt: comment.user.display_name
     .comment-content

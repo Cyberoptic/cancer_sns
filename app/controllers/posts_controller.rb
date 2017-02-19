@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index    
-    @posts = TimelinePosts.new(user: current_user).posts.paginate(page: params[:page], per_page: 3)
+    # @posts = TimelinePosts.new(user: current_user).posts.paginate(page: params[:page], per_page: 3)
+    @posts = Post.visible_for(current_user).paginate(page: params[:page], per_page: 3)
     @post = Post.new    
     @post_images = @post.post_images.build
     respond_to do |format|
