@@ -22,7 +22,7 @@ class Post < ApplicationRecord
   def self.visible_for(user)
     (
       visible_to_everyone.or(posts_by_friends_for(user)).or(where(user_id: user.id))
-    ).uniq.includes(:user, :post_images).order(created_at: :desc)
+    ).uniq.includes(:user, :post_images)
   end
 
   def has_likes?

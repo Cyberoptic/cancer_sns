@@ -51,16 +51,18 @@
     div id="post-#{post.id}-comments" 
       // problem is here
       div id="js-emotion-count-container-#{post.id}"
-        = render partial: '/posts/emotion_counts', locals: {post: post}
-       
+        = render partial: '/posts/emotion_counts', locals: {post: post}      
+
       - comments = post.comments.paginate(page: params[:page], per_page: 5).includes(:user).decorate
-      - if comments.current_page < comments.total_pages
-        a.more_comments_button data-page="#{comments.next_page}" id="#{post.id}" 
-          small さらに読み込む
-      #comments
-        = render partial: 'shared/comment', collection: comments
       #comments-pagination
         = will_paginate comments
+      - if comments.current_page < comments.total_pages
+        a.more_comments_button.js-more_comments_button data-page="#{comments.next_page}" id="#{post.id}" 
+          small さらに読み込む
+      #comments
+        - comments.reverse.each do |comment|
+          = render partial: 'shared/comment', locals: {comment: comment}
+      
     = simple_form_for Comment.new, url: send("#{post.class.name.underscore}_comments_path", post.id), method: :post, remote: true, html: {class: 'relative-form'} do |f|
       = f.input :text, label: false, placeholder: "コメント", input_html: {class: 'comment_input', id: "js-comment-textarea-#{post.id}"}
       .button-container
