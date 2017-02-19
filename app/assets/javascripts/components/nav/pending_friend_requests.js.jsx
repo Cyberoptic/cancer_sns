@@ -88,7 +88,7 @@ var PendingFriendRequests = React.createClass({
 		});
 
 		if (requests.length === 0) {
-			requests = <p className="text-center" style={{"marginBottom": "0px"}}>現在友達申請はありません。</p>
+			requests = <p className="text-center no-margin">現在友達申請はありません。</p>
 		}
 
 		return requests;

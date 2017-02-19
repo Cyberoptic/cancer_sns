@@ -15,6 +15,9 @@
         h6.text-center      
           = will_paginate @pending_requests, class: 'user_pagination', previous_label: '&lt 前', next_label: '次 &gt'
         ul.no-bullet.mgtp-10
+          - if @pending_requests.empty?
+            p.text-center
+              | 現在友達申請はありません。
           - @pending_requests.each do |request|
             li.request-container
               = link_to user_path(request.friendable)
@@ -35,11 +38,14 @@
         h6.text-center      
           = will_paginate @sent_requests, class: 'user_pagination', previous_label: '&lt 前', next_label: '次 &gt'
         ul.no-bullet.mgtp-10
+          - if @sent_requests.empty?
+            p.text-center
+              | 現在申請はありません。
           - @sent_requests.each do |request|
             li.request-container
-              = link_to user_path(request.friendable)
-                = image_tag request.friendable.photo, class: 'user-image-small'
+              = link_to user_path(request.friend)
+                = image_tag request.friend.photo, class: 'user-image-small'
               .request-content              
-                = link_to request.friendable.decorate.display_name, user_path(request.friendable), class: 'display-name'
+                = link_to request.friend.decorate.display_name, user_path(request.friend), class: 'display-name'
                 .timestamp
                   | #{time_ago_in_words(request.created_at)}前
