@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :unread_messages
   def unread_messages
-    Message.unread_by(current_user).includes(chat_room: [:user, :member, :messages])  
+    current_user.unread_messages  
   end
 
   def ensure_user_is_public

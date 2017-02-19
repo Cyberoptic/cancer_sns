@@ -88,6 +88,11 @@ class User < ApplicationRecord
     super && provider.blank?
   end
 
+  def unread_messages
+    Message.where(id: chat_rooms.flat_map{|chat_room| chat_room.messages.pluck(:id)})
+           .unread_by(self)
+  end
+
   def age
     return nil if birthday.nil?
     today = Date.today

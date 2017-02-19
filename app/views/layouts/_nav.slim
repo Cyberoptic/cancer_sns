@@ -37,7 +37,7 @@ div data-sticky-container="" style="z-index: 1"
                     i.fi-torsos-all
                     span#js-pending-requests-count
                       = "(" + current_user.pending_requests.count.to_s + ")" if current_user.pending_requests.count > 0
-                li= link_to "<i class='fi-comments'></i> (#{Message.unread_by(current_user).count})".html_safe, chat_rooms_path
+                li= link_to "<i class='fi-comments'></i> (#{unread_messages.count})".html_safe, chat_rooms_path
 
                 li data-behavior="notifications"
                   ul.dropdown.menu.notifications-menu data-dropdown-menu="" data-close-on-click-inside="false" data-disable-hover="true" data-click-open="true"
@@ -92,7 +92,7 @@ div data-sticky-container="" style="z-index: 1"
                 li.menu-text
                   = link_to '友達申請', requests_path
                 li.menu-text
-                  = link_to "メッセージ（#{Message.unread_by(current_user).count}）", chat_rooms_path
+                  = link_to "メッセージ（#{unread_messages.count}）", chat_rooms_path
                 li.menu-text
                   = link_to 'グループの作成', new_group_path
                 li.menu-text
