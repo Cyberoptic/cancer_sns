@@ -3,6 +3,8 @@
     
 		<h3>確認用メールの再発</h3>
 
+		<%= render 'shared/flash_messages' %>
+
 		<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
 		  <%= f.error_notification %>
 		  <%= f.full_error :confirmation_token %>

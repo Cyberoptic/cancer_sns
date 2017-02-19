@@ -1,0 +1,17 @@
+- flash.each do |message_type, message|
+  - if message_type == "notice"
+    .callout.primary data-closable=""
+      = notice
+      button.close-button aria-label=("Dismiss alert") data-close="" type="button" 
+        span aria-hidden="true"  ×
+  - elsif message_type == "alert"
+    .callout.alert data-closable=""
+      = alert
+      button.close-button aria-label=("Dismiss alert") data-close="" type="button" 
+        span aria-hidden="true"  ×
+  - else
+    div class=("callout #{message_type}") data-closable=""
+      = message
+      button.close-button aria-label=("Dismiss alert") data-close="" type="button" 
+        span aria-hidden="true"  ×
+ 
