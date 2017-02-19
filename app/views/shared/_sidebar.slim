@@ -4,7 +4,7 @@
       li.home-sidebar-link.home-sidebar-user-link
         = image_tag current_user.photo, class: 'user-image-xs'
         span.menu-user-profile-name
-          = current_user.decorate.display_name
+          | #{current_user.decorate.display_name} （#{current_user.age}歳）
         a.float-right data-toggle="sidebar-profile-dropdown" 
           i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
         .dropdown-pane.bottom.right.sidebar-dropdown data-dropdown="" data-hover="true" data-hover-pane="true" id="sidebar-profile-dropdown"         
