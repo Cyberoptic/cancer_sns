@@ -4,28 +4,40 @@
       = image_tag @group.photo
     .columns.small-8
       - if current_user.group_memberships.find_by(group_id: @group.id).try(:moderator?)
-        a.float-right data-toggle="group-options" 
-          i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
-        .dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" id="group-options" 
-          ul.post-options-menu.no-bullet          
-            a
-              li
-                = link_to '編集', edit_group_path(@group)
-                .divider
-              li
+        ul.float-right.dropdown.menu data-dropdown-menu="" 
+          li
+            a href="#" 
+
+            ul.menu
+              li.menu-text
+                = link_to '編集', edit_group_path(@group)                
+              li.menu-text
                 = link_to 'メンバー管理', group_group_memberships_path(@group)
 
       h7.bold
         = @group.name
 
-      #join-group
-        = render partial: "groups/join", locals: { group: @group }
+      - if current_user.joined?(@group)
+        = link_to "参加済み", group_group_unmemberships_path(@group.id), method: :post, class: 'button gray tiny float-right mgtp-30', disabled: true, style: 'margin-bottom: 0px'
+      - else
+        = link_to "参加する", group_group_memberships_path(@group.id), method: :post, class: 'button tiny float-right mgtp-30', style: 'margin-bottom: 0px'
+        
       
   .divider
   h7.faded
     | 説明
-  p.no-margin
-    = @group.description      
+  div style="max-height: 200px; overflow: auto"
+    - if @group.description && @group.description.length > 150    
+      = truncate(@group.description, length: 150)
+      = link_to '...（続きを読む）', '', class: "js-display-intro-#{@group.id}"
+      javascript:
+        $('.js-display-intro-#{@group.id}').on('click', function(e) {
+          e.preventDefault()
+          $(this).parent().html('#{escape_javascript @group.description}')
+        })
+    - else
+      = @group.description
+     
   .divider
 
   p

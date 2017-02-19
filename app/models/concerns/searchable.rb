@@ -6,7 +6,9 @@ module Searchable
     include Elasticsearch::Model::Callbacks
   end
 
-  def self.search(*args)
-    __elasticsearch__.search(*args)
+  module ClassMethods
+    def search(*args)
+      __elasticsearch__.search(*args)
+    end
   end
 end

@@ -1,15 +1,19 @@
 .columns.small-12.medium-6.end
   .row.expanded
     .columns.small-3
-      = image_tag group.photo, class: 'img-circle'
+      = image_tag group.photo.url, class: 'img-circle'
     .columns.small-9
-      h6.bold
-        - if current_user.joined?(group)
-          = link_to group.name, group_path(group)
-        - else
-          = group.name
-      p.faded
-        | #{group.group_memberships_count}人
-      p
-        = group.description
+      .group-info-container
+        h6.bold
+          = link_to group.name.truncate(20), group_path(group)          
+        p.faded
+          | #{group.group_memberships_count}人
+        p
+          = group.description.truncate(20)
+      .group-actions-container
+        #join-group
+          - if current_user.joined?(group)
+            = link_to "参加済み", group_group_unmemberships_path(group.id), method: :post, class: 'button gray tiny float-right', disabled: true
+          - else
+            = link_to "参加する", group_group_memberships_path(group.id), method: :post, class: 'button tiny float-right'
   .divider

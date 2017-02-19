@@ -8,6 +8,7 @@ class GroupUnmembershipsController < ApplicationController
 
     respond_to do |format|
       format.js {}
+      format.html { redirect_to group_path(@group) }
     end   
   end
 

@@ -48,3 +48,18 @@
     small
       = link_to 'もっと見る', news_articles_path, class: 'underlined faded'
   br
+
+  br
+  h7.faded
+    | 発見
+
+  ul.home-sidebar.no-bullet
+    = link_to groups_path
+      li.home-sidebar-link
+        = image_tag 'icons/group.png', class: 'home-sidebar-link-icon'
+        | グループ
+  
+    = link_to user_friends_path(current_user)
+      li.home-sidebar-link
+        = image_tag 'icons/users.png', class: 'home-sidebar-link-icon'
+        | 友達リスト
