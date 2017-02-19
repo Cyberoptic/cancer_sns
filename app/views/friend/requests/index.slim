@@ -1,0 +1,45 @@
+.row
+  .columns.small-12.medium-10.medium-offset-1
+    ul#friend-request-tabs.tabs data-tabs="" 
+      li.tabs-title.is-active
+        a aria-selected="true" href="#pending_requests" 友達申請
+      li.tabs-title
+        a href="#sent_requests" 申請済み
+ 
+    .tabs-content data-tabs-content="friend-request-tabs" 
+      #pending_requests.tabs-panel.is-active
+        h6.bold
+          | 友達申請に返答
+        p.faded.text-center.no-margin
+          | #{@pending_requests.count}件/#{@pending_requests.total_entries}件
+        h6.text-center      
+          = will_paginate @pending_requests, class: 'user_pagination', previous_label: '&lt 前', next_label: '次 &gt'
+        ul.no-bullet.mgtp-10
+          - @pending_requests.each do |request|
+            li.request-container
+              = link_to user_path(request.friendable)
+                = image_tag request.friendable.photo, class: 'user-image-small'
+              .request-content              
+                = link_to request.friendable.decorate.display_name, user_path(request.friendable), class: 'display-name'
+                .timestamp
+                  | #{time_ago_in_words(request.created_at)}前
+
+                     
+              = link_to "<i class='fi-check'></i> 許可".html_safe, user_request_acceptances_path(request.friendable.id), class: 'button small mgrt-5'
+              = link_to '<i class="fi-x-circle"></i> 削除'.html_safe, user_request_declinals_path(request.friendable.id), class: 'button small gray'
+      #sent_requests.tabs-panel
+        h6.bold
+          | 申請済み
+        p.faded.text-center.no-margin
+          | #{@sent_requests.count}件/#{@sent_requests.total_entries}件
+        h6.text-center      
+          = will_paginate @sent_requests, class: 'user_pagination', previous_label: '&lt 前', next_label: '次 &gt'
+        ul.no-bullet.mgtp-10
+          - @sent_requests.each do |request|
+            li.request-container
+              = link_to user_path(request.friendable)
+                = image_tag request.friendable.photo, class: 'user-image-small'
+              .request-content              
+                = link_to request.friendable.decorate.display_name, user_path(request.friendable), class: 'display-name'
+                .timestamp
+                  | #{time_ago_in_words(request.created_at)}前

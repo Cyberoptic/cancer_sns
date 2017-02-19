@@ -117,6 +117,10 @@ class User < ApplicationRecord
     HasFriendship::Friendship.where(friend_id: self.id, status: :pending).order(created_at: :desc)
   end
 
+  def sent_requests
+    HasFriendship::Friendship.where(friendable_id: self.id, status: :pending).order(created_at: :desc)
+  end
+
   def accept_request(friend)
     super
     return if ChatRoom.exists_for?(user: self, member: friend)

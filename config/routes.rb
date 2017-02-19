@@ -50,7 +50,11 @@ Rails.application.routes.draw do
       resources :unfriendings, only: :create
       resources :requests, only: [:create, :destroy]
     end
-  end  
+  end
+
+  scope module: 'friend' do
+    resources :requests, only: :index
+  end
 
   resources :groups do
     resources :group_memberships, only: [:index, :create]

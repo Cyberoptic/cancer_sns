@@ -1,6 +1,11 @@
 class Friend::RequestsController < ApplicationController
 	before_action :authenticate_user!
-  before_action :check_existing_friendship!
+  before_action :check_existing_friendship!, only: :create
+
+  def index
+    @pending_requests = current_user.pending_requests.paginate(page: params[:page], per_page: 20)
+    @sent_requests = current_user.sent_requests.paginate(page: params[:page], per_page: 20)
+  end
   
   def create
     @user = User.find(params[:user_id])
