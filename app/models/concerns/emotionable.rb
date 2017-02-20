@@ -97,6 +97,6 @@ module Emotionable
 
   def decrement_post_emotions_count_for!(post:, emotion:)
     post["#{emotion.pluralize}_count"] -= 1
-    post.save!
+    post.save(touch: false)
   end
 end

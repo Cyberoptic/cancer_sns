@@ -2,7 +2,7 @@ class Emotion < ApplicationRecord
   include ActiveModel::Dirty  
 
   belongs_to :user
-  belongs_to :post, polymorphic: true, foreign_key: "post_id", counter_cache: true
+  belongs_to :post, polymorphic: true, foreign_key: "post_id"
 
   validates :user_id, uniqueness: {scope: [:post]}
   validates :user_id, :post_id, :emotion, presence: true
@@ -18,6 +18,7 @@ class Emotion < ApplicationRecord
 
   after_create :create_notification
   after_create :increment_counter!
+  after_create :increment_counter_cache!
   after_update :increment_counter!  
   after_destroy :decrement_counter!
 
@@ -25,12 +26,18 @@ class Emotion < ApplicationRecord
 
   def decrement_counter!
     post["#{emotion.pluralize}_count"] -= 1
-    post.save
+    post.emotions_count -= 1
+    post.save(touch: false)
   end
 
   def increment_counter!    
     post["#{emotion.pluralize}_count"] += 1
-    post.save
+    post.save(touch: false)
+  end
+
+  def increment_counter_cache!
+    post.emotions_count += 1
+    post.save(touch: false)
   end
 
   def create_notification
