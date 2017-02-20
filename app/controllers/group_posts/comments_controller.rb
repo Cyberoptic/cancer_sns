@@ -3,7 +3,11 @@ class GroupPosts::CommentsController < ApplicationController
     @post = GroupPost.find(params[:group_post_id]) 
     @comment = @post.comments.create(comment_params)
     respond_to do |format|
-      format.js
+      if @comment.save
+        format.js {}
+      else
+        format.js { render js: :no_head }
+      end
     end
   end
 
