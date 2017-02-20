@@ -1,4 +1,4 @@
-$('#post-<%= @post.id %>-comments').html("<%= escape_javascript render partial: '/shared/comment', collection: @post.comments.includes(:user).decorate %>");
+$('#post-<%= @post.id %>-comments').append("<%= escape_javascript render partial: '/shared/comment', locals: {comment: @comment.decorate} %>");
 $('.comment_input').val('');
 
 $('#post-<%= @post.id %>-comments').foundation(); 
