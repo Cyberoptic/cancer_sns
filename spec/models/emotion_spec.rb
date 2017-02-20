@@ -51,17 +51,6 @@ RSpec.describe Emotion, type: :model do
             create(:emotion, post: post, emotion: "like")
           }.to change(post, :likes_count).by(1)
         end
-
-        it "doesn't update the updated_at column of the post" do
-          user = create(:user)
-          time = DateTime.now
-          post = create(:post, user: user, updated_at: time)
-
-          create(:emotion, post: post, emotion: "like")
-          post.reload
-          
-          expect(post.updated_at).to eq(time)
-        end
       end
 
       context "when emotion is mad" do
