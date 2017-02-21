@@ -48,8 +48,7 @@
           span.reaction-label
             |  コメント      
 
-    div id="post-#{post.id}-comments" 
-      // problem is here
+    div id="post-#{post.id}-comments"       
       div id="js-emotion-count-container-#{post.id}"
         = render partial: '/posts/emotion_counts', locals: {post: post}      
 
@@ -66,6 +65,10 @@
     - if post.is_a?(Post) || (post.is_a?(GroupPost) && current_user.joined?(@group))
       = simple_form_for Comment.new, url: send("#{post.class.name.underscore}_comments_path", post.id), method: :post, remote: true, html: {class: 'relative-form'} do |f|
         = f.input :text, label: false, placeholder: "コメント", input_html: {class: 'comment_input', id: "js-comment-textarea-#{post.id}"}
-        .button-container
+        = f.input :photo, label: false, input_html: {style: 'display: none;', class: 'comment_photo'}
+
+        .button-container            
+          label.button.small.no-margin.comment-photo--icon for="comment_photo"
+            i.fa.fa-camera
           = f.submit '投稿', class: 'button small button-right-comment-form'
    

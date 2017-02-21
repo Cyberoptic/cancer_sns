@@ -59635,7 +59635,7 @@ var PendingFriendRequests = React.createClass({
 		if (requests.length === 0) {
 			requests = React.createElement(
 				'p',
-				{ className: 'text-center', style: { "marginBottom": "0px" } },
+				{ className: 'text-center no-margin' },
 				'現在友達申請はありません。'
 			);
 		}
@@ -70106,7 +70106,7 @@ $(function () {
   app.onload();
 });
 $(function() {
-  $(".more_comments_button").on("click", function(){
+  $(".js-more_comments_button").on("click", function(){
   	var page = $(this).attr('data-page');
   	$.getScript("/posts/"+ this.id +"/more_comments?page="+page);
   });
@@ -70482,4 +70482,8 @@ $(function(){
   $('select[name="post[visibility]"]').on("change", function(){
     $('#new-post-dropdown').foundation('close');
   })
+
+  $("#post_images_upload").on('change', function(){
+    $("#js-file-count").text($(this)[0].files.length);
+  });
 });

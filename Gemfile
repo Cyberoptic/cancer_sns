@@ -31,7 +31,7 @@ gem 'redis', '~> 3.0'
 
 gem "slim-rails"
 
-gem "remotipart"
+gem 'remotipart', '~> 1.2'
 
 # User authentication
 gem 'devise'

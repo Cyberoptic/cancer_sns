@@ -1,7 +1,14 @@
 class Comment < ApplicationRecord
+  mount_uploader :photo, CommentPhotoUploader
+
 	default_scope { order(created_at: :desc) }
 
-	validates :text, :user_id, :post_id, presence: true
+	validates :user_id, :post_id, presence: true
+
+  with_options if: :photo_is_empty? do |user|
+    user.validates :text, presence: true
+  end
+  
 	belongs_to :user
 	belongs_to :post, polymorphic: true, touch: true
 
@@ -27,6 +34,10 @@ class Comment < ApplicationRecord
 
 
   private
+
+  def photo_is_empty?    
+    photo.url.nil?
+  end
 
   def create_notifications
     post.comments.each do |comment|

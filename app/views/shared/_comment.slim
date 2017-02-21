@@ -18,10 +18,12 @@ div class=("comment #{'comment-hidden' if !comment.visible || comment.deleted?} 
       span.nickname
         = link_to comment.user.display_name, user_path(comment.user) unless comment.deleted?
         = "（非表示）" unless comment.visible
+      div
+        = image_tag comment.photo, class: 'comment-photo' if comment.photo && !comment.deleted?
       span.comment-text id="js-comment-content-#{comment.id}"
         - if comment.deleted?
           p コメント主によって削除されました
-        - else
+        - else          
           = simple_format comment.text
       span.timestamp
         = time_ago_in_words(comment.created_at)

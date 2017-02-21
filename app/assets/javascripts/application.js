@@ -40,7 +40,7 @@ $(function(){
     $('#new-post-dropdown').foundation('close');
   })
 
-  $("input:file").on('change', function(){
+  $("#post_images_upload").on('change', function(){
     $("#js-file-count").text($(this)[0].files.length);
   });
 });

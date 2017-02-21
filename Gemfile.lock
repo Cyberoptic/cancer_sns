@@ -608,7 +608,7 @@ DEPENDENCIES
   rails_email_validator
   react-rails
   redis (~> 3.0)
-  remotipart
+  remotipart (~> 1.2)
   rollbar
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)

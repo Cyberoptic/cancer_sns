@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170215093000) do
+ActiveRecord::Schema.define(version: 20170221054150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170215093000) do
     t.boolean  "visible",    default: true, null: false
     t.datetime "deleted_at"
     t.string   "post_type"
+    t.string   "photo"
     t.index ["deleted_at"], name: "index_comments_on_deleted_at", using: :btree
     t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
     t.index ["user_id", "post_id"], name: "index_comments_on_user_id_and_post_id", using: :btree
@@ -141,6 +142,24 @@ ActiveRecord::Schema.define(version: 20170215093000) do
     t.index ["slug"], name: "index_groups_on_slug", unique: true, using: :btree
   end
 
+  create_table "happies", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_happies_on_post_id", using: :btree
+    t.index ["user_id"], name: "index_happies_on_user_id", using: :btree
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id", using: :btree
+    t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text     "body"
     t.integer  "user_id"
@@ -201,6 +220,15 @@ ActiveRecord::Schema.define(version: 20170215093000) do
     t.integer  "reader_id"
     t.datetime "timestamp"
     t.index ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true, using: :btree
+  end
+
+  create_table "sads", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_sads_on_post_id", using: :btree
+    t.index ["user_id"], name: "index_sads_on_user_id", using: :btree
   end
 
   create_table "treatments", force: :cascade do |t|

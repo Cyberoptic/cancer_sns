@@ -7655,6 +7655,34 @@ a {
   color: #fefefe !important;
 }
 
+/* line 45, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_button.sass */
+.comment-photo--icon {
+  position: absolute;
+  right: 60px;
+  bottom: 0px;
+  border: none;
+  background: white;
+  color: #7f7f7f;
+}
+/* line 53, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_button.sass */
+.comment-photo--icon:hover {
+  background: white;
+  color: #3b3b3b;
+}
+
+/* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_color.sass */
+.medium-gray {
+  color: #7f7f7f;
+}
+
+/* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_comment.sass */
+.comment-photo {
+  max-width: 60%;
+  display: block;
+  margin: 30px 0px;
+  max-height: 220px;
+}
+
 /* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_container.scss */
 .container {
   min-height: 100vh;
@@ -7823,12 +7851,25 @@ ul .recent-chat-list:last-child {
   display: inline;
 }
 
-/* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+@media screen and (max-width: 39.9375em) {
+  /* line 3, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+  .no-js .top-bar {
+    display: none;
+  }
+}
+@media print, screen and (min-width: 40em) {
+  /* line 9, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+  .no-js .title-bar {
+    display: none;
+  }
+}
+
+/* line 15, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 :focus {
   outline: none;
 }
 
-/* line 5, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 19, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 body {
   display: flex;
   min-height: 100vh;
@@ -7836,33 +7877,33 @@ body {
   word-break: break-word;
 }
 
-/* line 12, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 26, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .callout, .alert-box .alert {
   border: 1px solid #e6e6e6;
 }
 
-/* line 16, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 30, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .body-content {
   flex: 1;
   margin-top: 50px;
 }
 
-/* line 22, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 36, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .visited a {
   color: #80bba2;
 }
 
-/* line 27, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 41, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .button.warning {
   color: #fefefe !important;
 }
 
-/* line 31, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 45, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .muted {
   color: #7f7f7f;
 }
 
-/* line 35, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
+/* line 49, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_main.scss */
 .file-upload-label {
   color: #55AD81;
   font-weight: 600;
@@ -8175,6 +8216,11 @@ table th {
 /* line 36, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_typography.sass */
 .timestamp {
   font-size: 0.7rem;
+}
+
+/* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/states/_comment.sass */
+.is-hidden {
+  display: none;
 }
 
 /* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/cards/card.scss */
