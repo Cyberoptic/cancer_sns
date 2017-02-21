@@ -43,4 +43,10 @@ $(function(){
   $("#post_images_upload").on('change', function(){
     $("#js-file-count").text($(this)[0].files.length);
   });
+
+  $("#comment_photo").on('change', function(){
+    if($(this)[0].files.length > 0) {
+      $(this).parent().parent().find("label i").addClass("is-active")
+    }
+  });
 });

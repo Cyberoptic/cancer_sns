@@ -66,7 +66,7 @@
       = simple_form_for Comment.new, url: send("#{post.class.name.underscore}_comments_path", post.id), method: :post, remote: true, html: {class: 'relative-form'} do |f|
         = f.input :text, label: false, placeholder: "コメント", input_html: {class: 'comment_input', id: "js-comment-textarea-#{post.id}"}
         = f.input :photo, label: false, input_html: {style: 'display: none;', class: 'comment_photo'}
-
+        
         .button-container            
           label.button.small.no-margin.comment-photo--icon for="comment_photo"
             i.fa.fa-camera
