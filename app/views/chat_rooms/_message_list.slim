@@ -2,7 +2,7 @@
   li class=("message-list-item #{is_active ? 'is-active' : ''}") data-chat-room-id="#{chat_room.id}"
     .row.expanded
       .columns.small-3  
-        = image_tag friend.photo, class: 'user-image-small', alt: friend.decorate.display_name.truncate(3)
+        = image_tag friend.photo, class: 'user-image-small img-circle', alt: friend.decorate.display_name.truncate(3)
     
       .columns.small-9
         div class=("message-list-display-name #{chat_room.has_unread_messages_for?(current_user) ? 'is-active' : ''}") 
