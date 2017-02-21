@@ -14,7 +14,7 @@
             = p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]", class: 'post-images-file-field', id: 'post_images_upload' }
           label.file-upload-label for="post_images_upload" 
             i.fi-paperclip
-            |  画像を選択する
+            |  画像を選択する（<span id="js-file-count">0</span>）
           = f.submit "投稿", class: 'button small button-right'
     - else
       .callout.show-for-large style="position: relative"
