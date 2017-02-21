@@ -62,9 +62,10 @@
       #comments
         - comments.reverse.each do |comment|
           = render partial: 'shared/comment', locals: {comment: comment}
-      
-    = simple_form_for Comment.new, url: send("#{post.class.name.underscore}_comments_path", post.id), method: :post, remote: true, html: {class: 'relative-form'} do |f|
-      = f.input :text, label: false, placeholder: "コメント", input_html: {class: 'comment_input', id: "js-comment-textarea-#{post.id}"}
-      .button-container
-        = f.submit '投稿', class: 'button small button-right-comment-form'
- 
+          
+    - if post.is_a?(Post) || (post.is_a?(GroupPost) && current_user.joined?(@group))
+      = simple_form_for Comment.new, url: send("#{post.class.name.underscore}_comments_path", post.id), method: :post, remote: true, html: {class: 'relative-form'} do |f|
+        = f.input :text, label: false, placeholder: "コメント", input_html: {class: 'comment_input', id: "js-comment-textarea-#{post.id}"}
+        .button-container
+          = f.submit '投稿', class: 'button small button-right-comment-form'
+   
