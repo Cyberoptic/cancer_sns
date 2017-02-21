@@ -18,7 +18,7 @@
         = @group.name
 
       - if current_user.joined?(@group)
-        = link_to "参加済み", group_group_unmemberships_path(@group.id), method: :post, class: 'button gray tiny float-right mgtp-30', disabled: true, style: 'margin-bottom: 0px'
+        = link_to "退会する", group_group_unmemberships_path(@group.id), method: :post, class: 'button gray tiny float-right mgtp-30', disabled: true, style: 'margin-bottom: 0px', data: {confirm: '本当に退会してよろしいでしょうか？'}
       - else
         = link_to '<i class="fa fa-plus-circle" aria-hidden="true"></i> 参加する'.html_safe, group_group_memberships_path(@group.id), method: :post, class: 'button tiny float-right mgtp-30', style: 'margin-bottom: 0px'
         
