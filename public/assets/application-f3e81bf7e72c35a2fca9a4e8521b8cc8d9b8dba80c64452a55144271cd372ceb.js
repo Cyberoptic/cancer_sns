@@ -37793,7 +37793,7 @@ $(document).on('ready', function () {
       disconnected: function () {
       },
       received: function (data) {   
-        console.log(data);
+        
 
         if (messages.data('chat-room-id') === data['chat_room_id']) {
           messages.append(data['message']);  
@@ -37830,6 +37830,8 @@ $(document).on('ready', function () {
     form.submit(function (e) {
       var textarea;
       textarea = $('#message_body');
+      $('#start-message').remove();
+      
       if ($.trim(textarea.val()).length > 1) {
         App.global_chat.send_message(textarea.val(), messages.data('chat-room-id'));
         textarea.val('');
@@ -59602,7 +59604,7 @@ var PendingFriendRequests = React.createClass({
 						React.createElement(
 							'div',
 							{ className: 'display-name' },
-							request.friendable_last_name + ' ' + request.friendable_first_name
+							'' + request.friendable_display_name
 						),
 						React.createElement(
 							'div',
@@ -59633,7 +59635,7 @@ var PendingFriendRequests = React.createClass({
 		if (requests.length === 0) {
 			requests = React.createElement(
 				'p',
-				{ className: 'text-center', style: { "marginBottom": "0px" } },
+				{ className: 'text-center no-margin' },
 				'現在友達申請はありません。'
 			);
 		}
@@ -70104,7 +70106,7 @@ $(function () {
   app.onload();
 });
 $(function() {
-  $(".more_comments_button").on("click", function(){
+  $(".js-more_comments_button").on("click", function(){
   	var page = $(this).attr('data-page');
   	$.getScript("/posts/"+ this.id +"/more_comments?page="+page);
   });
@@ -70151,7 +70153,7 @@ $(function() {
     Notifications.prototype.handleSuccess = function(data) {
       var $bell, items, unread_count;
       items = $.map(data, function(notification) {
-        return "<li data-read-at='" + notification.read_at + "'><a href='" + notification.url + "' class='notification-link'><img src=" + notification.actor_photo_url + " class='notification-prof'> " + notification.actor + "が" + notification.notifiable.type + "に" + notification.action + "しました。 <br><time class='timeago' datetime='" + notification.created_at + "'>" + notification.created_at + "</time></a></li>";
+        return "<li data-read-at='" + notification.read_at + "'><a href='" + notification.url + "' class='notification-link'><img src=" + notification.actor_photo_url + " class='notification-prof notification-img'> " + notification.actor + "が" + notification.notifiable.type + "に" + notification.action + "しました。 <br><time class='timeago' datetime='" + notification.created_at + "'>" + notification.created_at + "</time></a></li>";
       });
       $("[data-behavior='notification-items']").append(items);
       unread_count = $('*[data-read-at="null"]').length;
@@ -70480,4 +70482,8 @@ $(function(){
   $('select[name="post[visibility]"]').on("change", function(){
     $('#new-post-dropdown').foundation('close');
   })
+
+  $("input:file").on('change', function(){
+    $("#js-file-count").text($(this)[0].files.length);
+  });
 });

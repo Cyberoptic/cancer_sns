@@ -39,4 +39,8 @@ $(function(){
   $('select[name="post[visibility]"]').on("change", function(){
     $('#new-post-dropdown').foundation('close');
   })
+
+  $("input:file").on('change', function(){
+    $("#js-file-count").text($(this)[0].files.length);
+  });
 });
