@@ -11,6 +11,8 @@
         small.faded
           | Cancer Patients運営部 | #{display_datetime(@news_article.created_at)}
 
+      = image_tag @news_article.photo
+
       p
         = simple_format @news_article.content
 

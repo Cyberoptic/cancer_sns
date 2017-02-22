@@ -7,6 +7,7 @@ ja:
       news_article:
         title: タイトル
         content: コンテンツ
+        photo: 写真
       user:
         nickname: ニックネーム
         first_name: 名
