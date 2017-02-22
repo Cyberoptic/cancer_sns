@@ -12,7 +12,7 @@
       - if @chat_room.messages.empty?
         h6#start-message.text-center メッセージを開始しましょう。
       - else
-        = render @chat_room.messages
+        = render @chat_room.messages.includes(chat_room: [:user, :member])
     = form_for @message, url: '' do |f|
       = f.text_area :body, class: 'message-form', autofocus: true, placeholder: 'メッセージ'
       = f.submit '送信', class: 'button float-right'

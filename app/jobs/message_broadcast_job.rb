@@ -7,7 +7,8 @@ class MessageBroadcastJob < ApplicationJob
                                     chat_room_id: message.chat_room.id,
                                     sender_id: message.user.id,
                                     message_snippet: message.body.truncate(25),
-                                    message: render_message(message, message.chat_room.user)
+                                    message: render_message(message, message.chat_room.user),
+                                    message_id: message.id
                                   }
 
     ActionCable.server.broadcast "chat_rooms_#{message.chat_room.member.id}_channel",
@@ -15,7 +16,8 @@ class MessageBroadcastJob < ApplicationJob
                                     chat_room_id: message.chat_room.id,
                                     sender_id: message.user.id,
                                     message_snippet: message.body.truncate(25),
-                                    message: render_message(message, message.chat_room.member)
+                                    message: render_message(message, message.chat_room.member),
+                                    message_id: message.id
                                   }
   end
 

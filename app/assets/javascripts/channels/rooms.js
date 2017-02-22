@@ -19,11 +19,21 @@ $(document).on('ready', function () {
       },
       disconnected: function () {
       },
-      received: function (data) {   
-        
+      received: function (data) {    
+        // update read status
+        if (data['read_status_broadcast'] === true) {
+          return $(".js-read-status[data-message-id=" + data['message_id'] + "]").text("既読");
+        }
 
-        if (messages.data('chat-room-id') === data['chat_room_id']) {
-          messages.append(data['message']);  
+        if (messages.data('chat-room-id') === data['chat_room_id']) {          
+          messages.append(data['message']);
+
+          if (data['read_status_broadcast'] === undefined) {            
+            this.perform('send_read_status', {
+              message_id: data['message_id'],
+              user_id: messages.data('user-id')
+            });
+          }
         }
         
         // change sidebar snippet

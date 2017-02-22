@@ -11,8 +11,14 @@ class Message < ApplicationRecord
   delegate :photo, to: :user, prefix: true
 
   def timestamp
-    created_at.strftime('%-m/%d %H:%M:%S')
+    created_at.strftime('%-m/%d %H:%M')
   end
+
+  def set_read_for(user_id:)
+    user = User.find(user_id)
+    self.mark_as_read! for: user
+    ReadStatusBroadcastJob.perform_later(message: self, user: chat_room.other_user_for(user))
+  end  
 
   private
 

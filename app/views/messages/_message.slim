@@ -7,7 +7,8 @@
             p
               = message.body
   p.float-right
-    small= message.timestamp
+    small
+      | <span class="js-read-status" data-message-id="#{message.id}">#{message.unread?(message.chat_room.other_user_for(message.user)) ? "未読" : "既読"}</span> #{message.timestamp}
 
 - else
   .message-container
@@ -21,5 +22,6 @@
             p
               = message.body
       p.float-right
-        small= message.timestamp
+        small
+          | #{message.timestamp}
        
