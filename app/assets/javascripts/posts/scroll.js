@@ -24,7 +24,7 @@ $(document).ready(function() {
       var totalPages = parseInt($(this).attr('data-total-pages'));
       var chatRoomId = parseInt($(this).attr('data-chat-room-id'));      
 
-      if ((page < totalPages) && $('#messages').scrollTop() == 0) {                        
+      if ((page <= totalPages) && $('#messages').scrollTop() == 0) {                        
         $.getScript("/chat_rooms/"+ chatRoomId +"/load_more?page="+page);         
       }
     });
