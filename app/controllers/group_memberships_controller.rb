@@ -25,8 +25,9 @@ class GroupMembershipsController < ApplicationController
     @group_membership = find_group_membership
 
     @group_membership.update(group_membership_params)
-
     @group = @group_membership.group
+
+    create_notification    
 
     respond_to do |format|
       format.js { render layout: false, content_type: 'text/javascript' }
@@ -48,6 +49,11 @@ class GroupMembershipsController < ApplicationController
 
 
   private
+
+  def create_notification
+    return unless group_membership_params[:status] == "accepted"
+    Notification.create({recipient: @group_membership.user, actor: current_user, action: "#{@group.name}の参加を許可", notifiable: @group})
+  end
 
   def find_group
     @group ||= Group.find(params[:group_id])
