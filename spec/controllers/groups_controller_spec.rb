@@ -14,15 +14,30 @@ RSpec.describe GroupsController, type: :controller do
   end
 
   describe "GET #show" do
-    it "renders a specific group's page(show template)" do
-      # setup
-      user = create(:user)
-      group = create(:group)
-      # exercise
-      sign_in user
-      get :show, id: group.id
-      # verify
-      expect(response).to render_template(:show)
+    context "when group is public" do
+      it "renders a specific group's page(show template)" do
+        # setup
+        user = create(:user)
+        group = create(:group, is_public: true)
+        # exercise
+        sign_in user
+        get :show, id: group.id
+        # verify
+        expect(response).to render_template(:show)
+      end
+    end
+
+    context "when group is not public" do
+      it "redirects the user" do
+        # setup
+        user = create(:user)
+        group = create(:group, is_public: false)
+        # exercise
+        sign_in user
+        get :show, id: group.id
+        # verify
+        expect(response).to redirect_to groups_path
+      end
     end
   end
 

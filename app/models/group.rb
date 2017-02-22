@@ -13,4 +13,5 @@ class Group < ApplicationRecord
 
   scope :order_by_group_membership_counts, ->{ order(group_memberships_count: :desc) }
   scope :order_by_created_at, ->{ order(created_at: :desc) }
+  scope :is_public, -> {where(is_public: true)}
 end

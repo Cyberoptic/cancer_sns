@@ -51,6 +51,7 @@ ja:
         name: グループ名
         description: 概要
         photo: ロゴ
+        is_public: 公開
       group_membership:
         roles:
           member: 一般メンバー

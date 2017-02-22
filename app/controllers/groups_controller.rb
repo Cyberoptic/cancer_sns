@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_access!
   before_action :ensure_moderator!, only: [:edit, :update]
 
   def index
@@ -55,6 +56,14 @@ class GroupsController < ApplicationController
     @group ||= Group.find(params[:id])
   end
 
+  def ensure_access!
+    @group = find_group
+    return if @group.is_public
+    return if current_user.group_memberships.find_by(group: @group)
+    flash[:alert] = "このグループは非公開です。"
+    redirect_to groups_path
+  end
+
   def ensure_moderator!
     @group = find_group
     group_membership = current_user.group_memberships.find_by(group: @group)
@@ -68,6 +77,6 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name, :description, :photo)
+    params.require(:group).permit(:name, :description, :photo, :is_public)
   end
 end
