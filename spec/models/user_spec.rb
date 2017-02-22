@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
 				group = create(:group)
 				create(:group_membership, user: user, group: group, status: :pending)
 
-				expect(user.joined?(group)).to eq(true)
+				expect(user.joined?(group)).to eq(false)
 			end
 		end
 	end
