@@ -24,7 +24,7 @@ class ChatRoom < ApplicationRecord
 
   def last_message
     return nil if messages.empty?
-    messages.last
+    messages.where(photo: nil).last
   end
 
   def last_active_at

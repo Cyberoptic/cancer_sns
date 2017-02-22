@@ -18,10 +18,9 @@
         #messages-pagination
           = will_paginate @messages
 
-        = render @messages
-    = form_for @message, url: '' do |f|
-      = f.text_area :body, class: 'message-form', autofocus: true, placeholder: 'メッセージ'
-      = f.submit '送信', class: 'button float-right'
+        = render @messages.reverse
+
+    = render 'form'
 
   .columns.large-3.show-for-large
     .callout

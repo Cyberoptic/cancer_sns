@@ -49,4 +49,17 @@ $(function(){
       $(this).parent().parent().find("label i").addClass("is-active")
     }
   });
+
+  $(".dropzone").dropzone({ 
+    url: "/chat_rooms/" + $('.dropzone').data('chat-room-id') + "/messages",
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    init: function() {
+      return this.on('success', function(file, json) {
+        this.removeFile(file);
+      });
+    },
+    dictDefaultMessage: '<i class="fa fa-file-o fa-2x"></i><br>\n<br>\nファイルをここにドロップするかここをクリックして下さい'
+    });
 });

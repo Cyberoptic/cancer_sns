@@ -1,10 +1,17 @@
-class Message < ApplicationRecord
+class Message < ApplicationRecord  
   acts_as_readable on: :created_at
 
   belongs_to :user
   belongs_to :chat_room, touch: true
 
-  validates :body, presence: true
+  mount_uploader :photo, MessagePhotoUploader
+
+  validates :user, :chat_room, presence: true
+  
+  with_options if: :photo_is_empty? do |user|
+    user.validates :body, presence: true
+  end
+
   after_create_commit { MessageBroadcastJob.perform_later(self) }
   after_create :set_read_for_current_user!
 
@@ -21,6 +28,10 @@ class Message < ApplicationRecord
   end  
 
   private
+
+  def photo_is_empty?    
+    photo.url.nil?
+  end
 
   def set_read_for_current_user!
     self.mark_as_read! for: user

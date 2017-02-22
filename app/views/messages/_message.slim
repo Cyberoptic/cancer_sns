@@ -1,11 +1,14 @@
 - if message.user == current_user
   .message-container
     .message-body-container.message-body-container-right
-      .card.card-green style=("margin-bottom: 0px;") 
-        .card-section
-          .message-body
-            p
-              = message.body
+      - if message.photo.url
+        = image_tag message.photo.url, class: 'img-responsive float-right'
+      - else
+        .card.card-green style=("margin-bottom: 0px;") 
+          .card-section
+            .message-body            
+              p
+                = message.body
   p.float-right
     small
       | <span class="js-read-status" data-message-id="#{message.id}">#{message.unread?(message.chat_room.other_user_for(message.user)) ? "未読" : "既読"}</span> #{message.timestamp}
@@ -13,14 +16,17 @@
 - else
   .message-container
     .user-image-small
-      = link_to user_path(message.user) do
+      = link_to user_path(message.user)
         = image_tag message.user_photo, alt: message.user.decorate.display_name.truncate(27), class: 'img-circle', style: 'margin-bottom: 30px'
     .message-body-container.message-body-container-left
-      .card style=("margin-bottom: 0px;") 
-        .card-section
-          .message-body
-            p
-              = message.body
+      - if message.photo.url
+        = image_tag message.photo.url, class: 'img-responsive float-left'
+      - else
+        .card style=("margin-bottom: 0px;") 
+          .card-section
+            .message-body
+              p
+                = message.body
       p.float-right
         small
           | #{message.timestamp}

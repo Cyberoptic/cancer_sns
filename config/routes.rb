@@ -25,13 +25,14 @@ Rails.application.routes.draw do
     member do
       get 'more_comments'
     end
-  end
+  end  
 
   resources :comments, only: [:update, :destroy] do
     post :visibility_toggles, to: "comments/visibility_toggles#create" 
   end
 
   resources :chat_rooms, only: [:show, :index] do
+    resources :messages, only: :create
     member do
       get 'load_more'
     end

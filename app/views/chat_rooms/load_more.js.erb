@@ -4,7 +4,7 @@ $(function(){
   var new_page = parseInt($messages.attr('data-page')) + 1; 
   $messages.attr('data-page', new_page);  
   var firstMsg = $('#messages .message-container:first');
-  firstMsg.before("<%= j render partial: 'messages/message', collection: @messages %>");
+  firstMsg.before("<%= j render partial: 'messages/message', collection: @messages.reverse %>");
 
   $messages.scrollTop(firstMsg.offset().top)
 });

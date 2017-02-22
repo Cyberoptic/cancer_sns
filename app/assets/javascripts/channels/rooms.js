@@ -54,7 +54,13 @@ $(document).on('ready', function () {
           $messageLi.find(".js-last-message").removeClass("faded");
         }
 
-        return messages_to_bottom();
+        if (data['is_photo'] === true) {
+          setTimeout(function(){ 
+            return messages_to_bottom();  
+          }, 1000); 
+        } else {
+          return messages_to_bottom();  
+        }
       },
       send_message: function (message, chat_room_id) {
         return this.perform('send_message', {

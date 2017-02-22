@@ -19,11 +19,12 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   if ($('#messages-pagination .pagination').length) {
-    $('#messages').scroll(function() {
+    $('#messages').scroll(function() {      
       var page = $(this).attr('data-page');
-      var totalPages = $(this).attr('data-total-pages');
-      var chatRoomId = $(this).attr('data-chat-room-id');
-      if ((page < totalPages) && $('#messages').scrollTop() == 0) {                
+      var totalPages = parseInt($(this).attr('data-total-pages'));
+      var chatRoomId = parseInt($(this).attr('data-chat-room-id'));      
+
+      if ((page < totalPages) && $('#messages').scrollTop() == 0) {                        
         $.getScript("/chat_rooms/"+ chatRoomId +"/load_more?page="+page);         
       }
     });
