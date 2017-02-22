@@ -15,7 +15,7 @@
     = link_to posts_path
       li.home-sidebar-link
         = image_tag 'icons/newspaper.png', class: 'home-sidebar-link-icon'
-        | ニュースフィード
+        | トップ
 
     = link_to chat_rooms_path
       li.home-sidebar-link
@@ -36,14 +36,11 @@
     | ニュース
 
   ul.home-sidebar.no-bullet
-    - NewsArticle.limit(5).each do |article|
+    - NewsArticle.limit(3).each do |article|
       = link_to news_article_path(article)
         li.home-sidebar-link
-          .bold
-            = article.title
-          p.no-margin
-            = article.content.truncate(27)
-          .divider
+          = article.title          
+        .divider
   p.float-right
     small
       = link_to 'もっと見る', news_articles_path, class: 'underlined faded'
