@@ -17,14 +17,14 @@ div class=("comment #{'comment-hidden' if !comment.visible || comment.deleted?} 
             = link_to "<li><i class='fa fa-trash' aria-hidden='true'></i> 削除</li>".html_safe, comment_path(comment), method: :delete, data: {confirm: "本当に削除してよろしいですか？"}, remote: true
       span.nickname
         = link_to comment.user.display_name, user_path(comment.user) unless comment.deleted?
-        = "（非表示）" unless comment.visible
-      div
-        = image_tag comment.photo, class: 'comment-photo' if comment.photo && !comment.deleted?
+        = "（非表示）" unless comment.visible      
       span.comment-text id="js-comment-content-#{comment.id}"
         - if comment.deleted?
           p コメント主によって削除されました
         - else          
           = simple_format comment.text
+      div
+        = image_tag comment.photo, class: 'comment-photo' if comment.photo && !comment.deleted?
       span.timestamp
         = time_ago_in_words(comment.created_at)
         | 前

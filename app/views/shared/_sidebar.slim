@@ -23,7 +23,7 @@
         = "メッセージ #{'(' + unread_messages.count.to_s + ')' if unread_messages.count > 0}"
 
   h7.faded
-    | ショートカット
+    | グループ
 
   ul.home-sidebar.no-bullet
     - current_user.groups.limit(8).each do |group|          
