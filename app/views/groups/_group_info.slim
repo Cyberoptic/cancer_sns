@@ -55,7 +55,7 @@
       = "#{@group.accepted_group_memberships.count}人"
   .group-membership-list
     - @group.accepted_group_memberships.includes(:user).take(20).each do |group_membership|
-      a href="/users/#{group_membership.user.id}" 
+      = link_to user_path(group_membership.user)      
         .image-wrapper
           = image_tag group_membership.user_photo, alt: group_membership.user.decorate.display_name.truncate(2)
 
