@@ -23,8 +23,8 @@
                 | #{time_ago_in_words(request.created_at)}前
 
                    
-            = link_to "<i class='fi-check'></i> 許可".html_safe, user_request_acceptances_path(request.friendable.id), class: 'button tiny mgrt-5'
-            = link_to '<i class="fi-x-circle"></i> 削除'.html_safe, user_request_declinals_path(request.friendable.id), class: 'button tiny gray'            
+            = link_to "<i class='fi-check'></i>".html_safe, user_request_acceptances_path(request.friendable.id), class: 'button tiny mgrt-5', style: 'height: 100%'
+            = link_to '<i class="fi-x-circle"></i>'.html_safe, user_request_declinals_path(request.friendable.id), class: 'button tiny gray', style: 'height: 100%'            
 
     = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
       .input-group
