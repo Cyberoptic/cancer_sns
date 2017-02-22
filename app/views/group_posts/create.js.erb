@@ -1,4 +1,5 @@
-$('#group_post_content').val('');
+$('#new_post').trigger('reset');
+$('#js-file-count').text("0")
 
 $("<%= escape_javascript render partial: 'posts/post', locals: { post: @post.decorate }%>").prependTo('#posts').hide().fadeIn('slow');
 
