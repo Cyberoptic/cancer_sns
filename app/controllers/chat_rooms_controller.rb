@@ -5,6 +5,9 @@ class ChatRoomsController < ApplicationController
   def index
     @chat_room = current_user.chat_rooms.includes(messages: [:user, :chat_room]).most_recent 
     @chat_rooms = current_user.chat_rooms.includes(:member, :user, :messages).select{|chat_room| chat_room != @chat_room}
+
+    @messages = @chat_room.messages.includes(chat_room: [:user, :member]).paginate(page: params[:page], per_page: 20) 
+
     @message_search = MessageSearch.new(params[:message_search])
     @message = Message.new
     @other_user = @chat_room.other_user_for(current_user).decorate if @chat_room.present?
@@ -14,7 +17,10 @@ class ChatRoomsController < ApplicationController
 
   def show
     @chat_room = ChatRoom.includes(messages: [:user, :chat_room]).find(params[:id])
-    @chat_rooms = current_user.chat_rooms.includes(:member, :user, :messages).select{|chat_room| chat_room != @chat_room}    
+    @chat_rooms = current_user.chat_rooms.includes(:member, :user, :messages).select{|chat_room| chat_room != @chat_room}   
+
+    @messages = @chat_room.messages.includes(chat_room: [:user, :member]).paginate(page: params[:page], per_page: 10) 
+
     @message = Message.new    
     @message_search = MessageSearch.new(params[:message_search])
     @other_user = @chat_room.other_user_for(current_user).decorate      
@@ -36,6 +42,14 @@ class ChatRoomsController < ApplicationController
     else
       flash[:alert] = @chat_room.errors.full_messages[0]
       redirect_to :back
+    end
+  end
+
+  def load_more    
+    @chat_room = ChatRoom.find(params[:id])
+    @messages = @chat_room.messages.paginate(page: params[:page], per_page: 20).includes(chat_room: [:user, :member])
+    respond_to do |format|      
+      format.js { render layout: false }
     end
   end
 

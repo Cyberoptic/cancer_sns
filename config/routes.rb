@@ -31,7 +31,11 @@ Rails.application.routes.draw do
     post :visibility_toggles, to: "comments/visibility_toggles#create" 
   end
 
-  resources :chat_rooms, only: [:show, :index]
+  resources :chat_rooms, only: [:show, :index] do
+    member do
+      get 'load_more'
+    end
+  end
   resources :chat_room_searches, only: :create
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "registrations" }

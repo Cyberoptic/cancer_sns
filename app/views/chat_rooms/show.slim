@@ -8,11 +8,17 @@
       ul#js-message-list.no-bullet.message-list
         = render partial: 'chat_room_list', locals: {chat_rooms: @chat_rooms, active_room: @chat_room}
   .columns.small-12.large-6.medium-7
-    #messages.callout data-chat-room-id="#{@chat_room.id}" data-user-id="#{current_user.id}" data-other-user-id="#{@other_user.id}"
-      - if @chat_room.messages.empty?
+    #messages.callout data-chat-room-id="#{@chat_room.id}" data-user-id="#{current_user.id}" data-other-user-id="#{@other_user.id}" data-page="#{@messages.next_page}" data-total-pages="#{@messages.total_pages}"
+
+      - if @messages.empty?
+
         h6#start-message.text-center メッセージを開始しましょう。
+
       - else
-        = render @chat_room.messages.includes(chat_room: [:user, :member])
+        #messages-pagination
+          = will_paginate @messages
+
+        = render @messages
     = form_for @message, url: '' do |f|
       = f.text_area :body, class: 'message-form', autofocus: true, placeholder: 'メッセージ'
       = f.submit '送信', class: 'button float-right'
