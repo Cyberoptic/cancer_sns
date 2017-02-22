@@ -54,10 +54,10 @@ $(document).on('ready', function () {
           $messageLi.find(".js-last-message").removeClass("faded");
         }
 
-        if (data['is_photo'] === true) {
-          setTimeout(function(){ 
+        if (data['is_photo']) {
+          $("#message-photo-" + data['message_id']).on("load", function(){
             return messages_to_bottom();  
-          }, 1000); 
+          })
         } else {
           return messages_to_bottom();  
         }

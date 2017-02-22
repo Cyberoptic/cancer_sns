@@ -3,7 +3,7 @@ class MessageDecorator < Draper::Decorator
   delegate_all
 
   def body
-    if object.photo
+    if object.photo && object.body.empty?
       "【画像】"
     else
       object.body
