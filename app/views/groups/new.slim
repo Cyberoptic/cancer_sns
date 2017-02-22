@@ -10,6 +10,7 @@
         = f.input :name
         = f.input :description
         = f.input :photo
+        = f.input :access_type, collection: Group.access_types.keys.map{|k| [I18n.t(:"activerecord.attributes.group.access_types.#{k}"), k]}, include_blank: false
         = f.input :is_public
         = f.submit "グループを作成する", class: 'button small button-right'
 

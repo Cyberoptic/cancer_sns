@@ -1,6 +1,37 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do	
+RSpec.describe User, type: :model do
+	describe "#joined?" do
+		context "when the user has joined the group" do
+			it "returns true" do
+				user = create(:user)
+				group = create(:group)
+				create(:group_membership, user: user, group: group, status: :accepted)
+
+				expect(user.joined?(group)).to eq(true)
+			end
+		end
+
+		context "when the user has not joined the group" do
+			it "returns false" do
+				user = create(:user)
+				group = create(:group)				
+
+				expect(user.joined?(group)).to eq(false)
+			end
+		end
+
+		context "when the user has a pending group membership" do
+			it "returns false" do
+				user = create(:user)
+				group = create(:group)
+				create(:group_membership, user: user, group: group, status: :pending)
+
+				expect(user.joined?(group)).to eq(true)
+			end
+		end
+	end
+
 	describe "#attribute_is_public" do
 		context "when argument is name_visiblity" do
 			it "returns a collection of users where the name visibility is public" do

@@ -52,6 +52,10 @@ ja:
         description: 概要
         photo: ロゴ
         is_public: 公開
+        access_type: 参加方式
+        access_types:
+          accessible_to_everyone: 誰でも参加可能
+          needs_owner_permission: オーナーの承認必要
       group_membership:
         roles:
           member: 一般メンバー

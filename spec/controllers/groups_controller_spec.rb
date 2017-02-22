@@ -28,16 +28,47 @@ RSpec.describe GroupsController, type: :controller do
     end
 
     context "when group is not public" do
-      it "redirects the user" do
-        # setup
-        user = create(:user)
-        group = create(:group, is_public: false)
-        # exercise
-        sign_in user
-        get :show, id: group.id
-        # verify
-        expect(response).to redirect_to groups_path
+      context "when user is not a member of the group" do
+        it "redirects the user" do
+          # setup
+          user = create(:user)
+          group = create(:group, is_public: false)
+          # exercise
+          sign_in user
+          get :show, id: group.id
+          # verify
+          expect(response).to redirect_to groups_path
+        end
       end
+
+      context "when user's membership is pending" do
+        it "redirects the user" do
+          # setup
+          user = create(:user)
+          group = create(:group, is_public: false)
+          create(:group_membership, group: group, user: user, status: :pending)
+          # exercise
+          sign_in user
+          get :show, id: group.id
+          # verify
+          expect(response).to redirect_to groups_path
+        end
+      end
+
+      context "when user is a membership" do
+        it "redirects the user" do
+          # setup
+          user = create(:user)
+          group = create(:group, is_public: false)
+          create(:group_membership, group: group, user: user, status: :accepted)
+          # exercise
+          sign_in user
+          get :show, id: group.id
+          # verify
+          expect(response).to render_template(:show)
+        end
+      end
+
     end
   end
 
@@ -59,6 +90,15 @@ RSpec.describe GroupsController, type: :controller do
         post :create, group: {name: "Group1"}
         
         expect(GroupMembership.last.moderator?).to eq(true)
+      end
+
+      it "creates a group where the current_user is the owner" do
+        user = create(:user)
+        
+        sign_in user
+        post :create, group: {name: "Group1"}
+        
+        expect(Group.last.owner).to eq(user)
       end
     end
   end

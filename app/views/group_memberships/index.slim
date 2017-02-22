@@ -27,7 +27,7 @@
               = display_date(group_membership.user.created_at)            
             - if @current_user_membership.moderator?
               td
-                = link_to '外す', group_group_unmemberships_path(group_id: @group.id, user_id: group_membership.user.id), method: :post, remote: true, data: {confirm_with: "本当にグループから外してよろしいでしょうか？"}, class: 'button small gray no-margin expanded'
+                = link_to '外す', group_group_unmemberships_path(group_id: @group.id, user_id: group_membership.user.id), method: :post, remote: true, data: {confirm: "本当にグループから外してよろしいでしょうか？"}, class: 'button small gray no-margin expanded'
               td
                 = simple_form_for group_membership, url: group_membership_path(group_membership), method: :put, remote: true, html: {class: 'edit-group-membership-roles'} do |f|
                   = f.input :role, collection: GroupMembership.roles.keys.map{|k| [I18n.t(:"activerecord.attributes.group_membership.roles.#{k}"), k]}, label: false, input_html: {class: 'no-margin'}

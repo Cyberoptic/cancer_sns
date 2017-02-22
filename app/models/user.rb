@@ -37,8 +37,10 @@ class User < ApplicationRecord
   has_many :post_images, dependent: :destroy  
   has_many :chat_rooms, dependent: :destroy
   has_many :messages, dependent: :destroy
-  has_many :groups, through: :group_memberships
-  has_many :group_memberships, dependent: :destroy
+  has_many :groups_owned, class_name: 'Group', foreign_key: :owner_id
+  has_many :groups_managing, -> { where(group_memberships: { role: :moderator }) }, through: :group_memberships, source: :group
+  has_many :groups, -> { where(group_memberships: { status: 'accepted' }) }, through: :group_memberships
+  has_many :group_memberships, dependent: :destroy  
   has_many :group_posts, dependent: :destroy
   has_many :user_treatments, dependent: :destroy
   has_many :treatments, through: :user_treatments
@@ -143,7 +145,7 @@ class User < ApplicationRecord
   end
 
   def joined?(group)
-    self.group_memberships.exists?(group_id: group.id)
+    self.group_memberships.exists?(group_id: group.id, status: :accepted)
   end
 
   def pending_requests

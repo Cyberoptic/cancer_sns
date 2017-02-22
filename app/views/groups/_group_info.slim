@@ -3,7 +3,7 @@
     .columns.small-4
       = image_tag @group.photo
     .columns.small-8
-      - if current_user.group_memberships.find_by(group_id: @group.id).try(:moderator?)
+      - if @current_user_group_membership.try(:moderator?)
         ul.float-right.dropdown.menu data-dropdown-menu="" 
           li
             a href="#" 
@@ -40,13 +40,21 @@
      
   .divider
 
+  - if @current_user_group_membership.try(:moderator?) && @group.pending_group_memberships.count > 0
+    p
+      span.faded
+        | 参加リクエスト
+      span.float-right#pending-group-memberships-count
+        = "#{@group.pending_group_memberships.count}人"
+    ul.no-bullet.mgtp-10#pending-group-memberships
+      = render partial: 'groups/pending_group_memberships', collection: @group.pending_group_memberships.includes(:user).take(5), as: :group_membership
   p
     span.faded
       | メンバー
     span.float-right        
-      = "#{@group.group_memberships_count}人"
+      = "#{@group.accepted_group_memberships.count}人"
   .group-membership-list
-    - @group.group_memberships.includes(:user).take(20).each do |group_membership|
+    - @group.accepted_group_memberships.includes(:user).take(20).each do |group_membership|
       a href="/users/#{group_membership.user.id}" 
         .image-wrapper
           = image_tag group_membership.user_photo, alt: group_membership.user.decorate.display_name.truncate(2)

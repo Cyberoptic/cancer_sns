@@ -1,0 +1,10 @@
+li.request-container id="group-membership-#{group_membership.id}"
+  = link_to user_path(group_membership.user)
+    = image_tag group_membership.user_photo, class: 'user-image-small'
+  .request-content              
+    = link_to group_membership.user.decorate.display_name, user_path(group_membership.user), class: 'display-name'
+    .timestamp
+      | #{time_ago_in_words(group_membership.created_at)}前
+  
+  = link_to "<i class='fi-check'></i>".html_safe, group_membership_path(id: group_membership.id, group_membership: {status: :accepted}), method: :put, remote: true, class: 'button tiny mgrt-5', style: 'height: 100%'
+  = link_to '<i class="fi-x-circle"></i>'.html_safe, group_membership_path(group_membership.id), method: :delete, remote: true, class: 'button tiny gray', style: 'height: 100%' 

@@ -1,0 +1,3 @@
+$('ul#pending-group-memberships').empty();
+$('ul#pending-group-memberships').append("<%= escape_javascript render partial: 'groups/pending_group_memberships', collection: @group.pending_group_memberships.includes(:user).take(5), as: :group_membership %>")
+$("span#pending-group-memberships-count").text("<%= @group.pending_group_memberships.count %>人");

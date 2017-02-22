@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222162243) do
+ActiveRecord::Schema.define(version: 20170222165452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20170222162243) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "role",       default: 0
+    t.integer  "status",     default: 0, null: false
     t.index ["group_id"], name: "index_group_memberships_on_group_id", using: :btree
     t.index ["user_id"], name: "index_group_memberships_on_user_id", using: :btree
   end
@@ -140,6 +141,8 @@ ActiveRecord::Schema.define(version: 20170222162243) do
     t.string   "slug"
     t.string   "photo"
     t.boolean  "is_public",               default: true, null: false
+    t.integer  "access_type",             default: 0,    null: false
+    t.integer  "owner_id"
     t.index ["slug"], name: "index_groups_on_slug", unique: true, using: :btree
   end
 

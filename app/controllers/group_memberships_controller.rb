@@ -1,6 +1,7 @@
 class GroupMembershipsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_moderator!, only: :update
+  before_action :check_existing_membership, only: :create
 
   def index
     @group = find_group
@@ -10,7 +11,9 @@ class GroupMembershipsController < ApplicationController
 
   def create
     @group = find_group
-    current_user.group_memberships.create(group_id: params[:group_id])
+    status = @group.accessible_to_everyone? ? "accepted" : "pending"
+
+    current_user.group_memberships.create(group_id: params[:group_id], status: status)
     
     respond_to do |format|
       format.js {}
@@ -23,10 +26,26 @@ class GroupMembershipsController < ApplicationController
 
     @group_membership.update(group_membership_params)
 
+    @group = @group_membership.group
+
     respond_to do |format|
-      format.js {}
+      format.js { render layout: false, content_type: 'text/javascript' }
     end
   end
+
+  def destroy
+    @group_membership = find_group_membership
+    @id = @group_membership.id
+
+    @group = @group_membership.group
+
+    @group_membership.destroy
+
+    respond_to do |format|
+      format.js { render layout: false, content_type: 'text/javascript' }
+    end
+  end
+
 
   private
 
@@ -36,6 +55,10 @@ class GroupMembershipsController < ApplicationController
 
   def find_group_membership
     @group_membership ||= GroupMembership.find(params[:id])
+  end
+
+  def check_existing_membership
+    return unless current_user.group_memberships.exists?(group_id: params[:group_id])    
   end
 
   def ensure_moderator!
@@ -48,6 +71,6 @@ class GroupMembershipsController < ApplicationController
   end
 
   def group_membership_params
-    params.require(:group_membership).permit(:role)
+    params.require(:group_membership).permit(:role, :status)
   end
 end

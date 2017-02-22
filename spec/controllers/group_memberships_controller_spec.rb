@@ -34,7 +34,30 @@ RSpec.describe GroupMembershipsController, type: :controller do
         expect {
           post :create, params: { group_id: group.id }, format: :js
         }.to change(GroupMembership, :count).by(1)
-        
+      end
+    end
+
+    context "when the group is accessible by everyone" do
+      it "creates a accepted membership" do
+        group = create(:group, access_type: :accessible_to_everyone)
+        user = create(:user)
+
+        sign_in user
+        post :create, params: {group_id: group.id}, format: :js
+
+        expect(GroupMembership.last.status).to eq("accepted")
+      end
+    end
+
+    context "when the group needs owner permission" do
+      it "creates a pending group membership" do
+        group = create(:group, access_type: :needs_owner_permission)
+        user = create(:user)
+
+        sign_in user
+        post :create, params: {group_id: group.id}, format: :js
+
+        expect(GroupMembership.last.status).to eq("pending")
       end
     end
   end

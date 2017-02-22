@@ -1,10 +1,11 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_access!
+  before_action :ensure_access!, only: [:show]
   before_action :ensure_moderator!, only: [:edit, :update]
 
   def index
-    @my_groups = current_user.groups    
+    @groups = current_user.groups    
+    @my_groups = current_user.groups_managing
   end
 
   def show
@@ -12,6 +13,8 @@ class GroupsController < ApplicationController
     @posts = @group.group_posts.includes(:user, :post_images).paginate(page: params[:page], per_page: 5).decorate
     @post = GroupPost.new
     @post_images = @post.post_images.build
+
+    @current_user_group_membership = current_user.group_memberships.find_by(group_id: @group.id)
 
     mark_posts_as_read
   end
@@ -23,7 +26,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
+    @group = Group.new(group_params.merge(owner_id: current_user.id))
 
     if @group.save && current_user.group_memberships.create(group_id: @group.id, role: :moderator)
       flash[:success] = "グループが作成されました。"
@@ -59,7 +62,7 @@ class GroupsController < ApplicationController
   def ensure_access!
     @group = find_group
     return if @group.is_public
-    return if current_user.group_memberships.find_by(group: @group)
+    return if current_user.group_memberships.find_by(group: @group, status: :accepted)
     flash[:alert] = "このグループは非公開です。"
     redirect_to groups_path
   end
@@ -77,6 +80,6 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name, :description, :photo, :is_public)
+    params.require(:group).permit(:name, :description, :photo, :is_public, :access_type)
   end
 end

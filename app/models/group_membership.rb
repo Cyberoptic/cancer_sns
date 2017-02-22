@@ -8,4 +8,8 @@ class GroupMembership < ApplicationRecord
   delegate :photo, to: :user, prefix: true
 
   enum role: {member: 0, moderator: 1}
+  enum status: [:accepted, :pending]
+
+  scope :accepted, ->{where(status: :accepted)}
+  scope :pending, ->{where(status: :pending)}
 end
