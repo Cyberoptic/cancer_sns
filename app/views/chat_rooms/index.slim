@@ -16,7 +16,7 @@
 
         = render @messages.reverse
         
-        = render 'form'
+    = render 'form' if @chat_room.present?
 
   .columns.large-3.show-for-large
     - if @other_user.present?
