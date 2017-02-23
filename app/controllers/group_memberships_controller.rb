@@ -13,11 +13,19 @@ class GroupMembershipsController < ApplicationController
     @group = find_group
     status = @group.accessible_to_everyone? ? "accepted" : "pending"
 
-    current_user.group_memberships.create(group_id: params[:group_id], status: status)
-    
+    group_membership = current_user.group_memberships.create(group_id: params[:group_id], status: status)    
+
     respond_to do |format|
-      format.js {}
-      format.html { redirect_to group_path(@group) }
+      if group_membership.accepted?
+        flash[:success] = "#{@group.name}に参加しました。"
+        format.js {}
+        format.html { redirect_to group_path(@group) }
+      else
+        flash[:alert] = @group.errors.full_messages[0]
+        format.js {}
+        format.html { redirect_to groups_path }
+      end
+        
     end
   end
 

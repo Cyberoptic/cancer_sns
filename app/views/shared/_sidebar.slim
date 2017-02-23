@@ -22,18 +22,18 @@
         = image_tag 'icons/mail.png', class: 'home-sidebar-link-icon'
         = "メッセージ #{'(' + unread_messages.count.to_s + ')' if unread_messages.count > 0}"
 
-  h7.faded
-    | グループ
+  h7
+    = link_to 'グループ', groups_path, class: 'faded'
 
   ul.home-sidebar.no-bullet
-    - current_user.groups.limit(8).each do |group|          
+    - current_user.groups.limit(5).each do |group|          
       = render partial: 'posts/sidebar_group', locals: {group: group, unread_count: group.group_posts.unread_by(current_user).count}
   p.float-right
     small
       = link_to 'もっと見る', groups_path, class: 'underlined faded'
   br
-  h7.faded
-    | ニュース
+  h7
+    = link_to 'ニュース', news_articles_path, class: 'faded'
 
   ul.home-sidebar.no-bullet
     - NewsArticle.limit(3).each do |article|

@@ -14,7 +14,7 @@
       = image_tag @news_article.photo
 
       p
-        = simple_format @news_article.content
+        = auto_link(simple_format(@news_article.content), html: {target: '_blank'})      
 
   .columns.large-3.show-for-large data-sticky-container="true"
     = render partial: 'layouts/right_sidebar'
