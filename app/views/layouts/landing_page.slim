@@ -25,6 +25,7 @@ html lang="en"
     = render 'layouts/nav'
     .orbit data-orbit="" role="region"
       ul.orbit-container
+        = render 'shared/flash_messages'
         button.orbit-previous
           span.show-for-sr> Previous Slide
           | ◀︎
@@ -38,8 +39,7 @@ html lang="en"
     .body-content
       .row
         .columns.small-12
-          .container
-            = render 'shared/flash_messages'
+          .container            
             = yield
     #modal
     = render 'layouts/footer'

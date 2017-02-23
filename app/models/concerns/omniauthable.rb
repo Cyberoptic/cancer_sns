@@ -1,9 +1,5 @@
 module Omniauthable
-  extend ActiveSupport::Concern
-
-  included do
-    has_many :emotions
-  end  
+  extend ActiveSupport::Concern 
 
   module ClassMethods
     def new_with_session(params, session)
@@ -29,14 +25,5 @@ module Omniauthable
         user.photo = auth.info.image      
       end
     end
-  end
-
-    # Don't require update with password if Oauth
-    def update_with_password(params, *options)
-      if encrypted_password.blank?
-        update_attributes(params, *options)
-      else
-        super
-      end
-    end
+  end    
 end

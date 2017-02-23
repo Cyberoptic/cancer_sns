@@ -33,6 +33,7 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader  
   
   has_many :comments
+  has_many :emotions
   has_many :posts, dependent: :destroy
   has_many :post_images, dependent: :destroy  
   has_many :chat_rooms, dependent: :destroy
@@ -116,6 +117,15 @@ class User < ApplicationRecord
   # If sign in through Oauth, don't require password
   def password_required?    
     super && provider.blank?
+  end
+
+  # Don't require update with password if Oauth
+  def update_with_password(params, *options)
+    if encrypted_password.blank?
+      update_attributes(params, *options)
+    else
+      super
+    end
   end
 
   def unread_messages
