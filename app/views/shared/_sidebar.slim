@@ -39,7 +39,10 @@
     - NewsArticle.limit(3).each do |article|
       = link_to news_article_path(article)
         li.home-sidebar-link
-          = article.title          
+          = article.title
+          br
+          small.float-right
+            = display_date(article.created_at)
         .divider
   p.float-right
     small

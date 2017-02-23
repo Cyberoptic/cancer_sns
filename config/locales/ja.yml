@@ -28,8 +28,8 @@ ja:
         introduction: 自己紹介   
         partner_age: パートナー年齢 
         partner_relationship: パートナーとの関係
-        cancer_type: 癌種別
-        cancer_stage: 癌ステージ
+        cancer_type: がん種別
+        cancer_stage: がんステージ
         treatment: 治療内容
         treatment_content: 治療内容（詳細）
         other_treatment: 治療内容自由記述
@@ -42,8 +42,8 @@ ja:
         profession_visibility: 職業公開設定
         partner_age_visibility: パートナー年齢公開設定
         partner_relationship_visibility: パートナー関係公開設定
-        cancer_type_visibility: 癌種別公開設定
-        cancer_stage_visibility: 癌ステージ公開設定
+        cancer_type_visibility: がん種別公開設定
+        cancer_stage_visibility: がんステージ公開設定
         hospital_visibility: 病院公開設定
         treatment_visibility: 治療内容公開設定
         birthday_visibility: 誕生日公開設定

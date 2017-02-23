@@ -12,3 +12,4 @@ TREATMENTS.each do |treatment|
 end if Treatment.count == 0
  
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+

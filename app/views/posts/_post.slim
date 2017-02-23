@@ -27,7 +27,7 @@
           | 前
     .post-content
       div id="js-post-content-#{post.id}" 
-        = simple_format post.content
+        = auto_link(simple_format post.content, html: {target: '_blank'})
     ul.product-gallery
       - post.post_images.each do |image|
         li.product-gallery-list.js-gallery-img
