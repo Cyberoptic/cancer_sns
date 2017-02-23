@@ -60,6 +60,8 @@
               $(this).parent().html('#{escape_javascript @user.introduction}')
             })
         - else
+          h6.bold
+            <small>紹介文</small>
           = @user.introduction
       hr/
       - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :problems).visible?
@@ -75,6 +77,8 @@
                 $(this).parent().html('#{escape_javascript @user.problems}')
               })
           - else
+            h6.bold
+              <small>一番の悩み</small>
             = @user.problems
         hr/
       - if @user != current_user

@@ -75,6 +75,14 @@
             | 自己紹介
         td
           = f.input :introduction, input_html: {rows: 5}, label: false
+          
+      tr
+        th
+          = f.label :problems
+        td
+          = f.input :problems, input_html: {rows: 5}, label: false
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :problems_visibility}
       tr
         th
           label
@@ -87,6 +95,7 @@
               = link_to_add_association '<i class="fa fa-plus-circle" aria-hidden="true"></i> 子どもを追加する'.html_safe, f, :children, class: 'button small'
               
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :children_visibility}
+
 
       tr.partner-info-tr
         th
@@ -164,14 +173,7 @@
 
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :cancer_stage_visibility}
 
-      
-      tr.partner-info-tr
-        th
-          = f.label :problems
-        td
-          = f.input :problems, input_html: {rows: 5}, label: false
-
-          = render partial: 'visibility_options', locals: {resource: resource, visibility: :problems_visibility}
+          
       tr
         th
           = f.label :password, label: '新しいパスワード（変更されたい場合）'

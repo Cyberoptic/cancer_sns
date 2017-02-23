@@ -22,7 +22,7 @@ $comment-font-size: 13px;
 	}
 
 	.comment-content {
-		flex: 1;
+		flex: 1;		
 	}
 
 	.comment-text {
@@ -30,6 +30,11 @@ $comment-font-size: 13px;
 
 		p {
 			margin-bottom: 0px;
+		}
+
+		a {
+			text-decoration: underline;
+    	color: $secondary-color;
 		}
 	}
 

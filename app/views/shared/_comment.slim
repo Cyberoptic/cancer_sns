@@ -22,7 +22,7 @@ div class=("comment #{'comment-hidden' if !comment.visible || comment.deleted?} 
         - if comment.deleted?
           p コメント主によって削除されました
         - else          
-          = auto_link(simple_format comment.text, html: {target: '_blank'})
+          = auto_link(simple_format(comment.text), html: {target: '_blank'})
       div
         = image_tag comment.photo, class: 'comment-photo' if comment.photo && !comment.deleted?
       span.timestamp

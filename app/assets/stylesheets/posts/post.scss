@@ -26,6 +26,11 @@
 
 	.post-content {
 		margin-top: 20px;
+
+		a {
+			text-decoration: underline;
+    	color: $secondary-color;
+		}
 	}
 
 	.timestamp {
