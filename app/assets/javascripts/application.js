@@ -44,12 +44,6 @@ $(function(){
     $("#js-file-count").text($(this)[0].files.length);
   });
 
-  $("#comment_photo").on('change', function(){
-    if($(this)[0].files.length > 0) {
-      $(this).parent().parent().find("label i").addClass("is-active")
-    }
-  });
-
   $(".dropzone").dropzone({ 
     url: "/chat_rooms/" + $('.dropzone').data('chat-room-id') + "/messages",
     headers: {
@@ -63,3 +57,10 @@ $(function(){
     dictDefaultMessage: '<i class="fa fa-file-o fa-2x"></i><br>\n<br>\nファイルをここにドロップするかここをクリックして下さい'
     });
 });
+
+
+function selectPhoto(e) {  
+  if($(e)[0].files.length > 0) {
+    $(e).parent().parent().find("label i").addClass("is-active")
+  }
+}

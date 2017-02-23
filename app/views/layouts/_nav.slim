@@ -71,9 +71,9 @@ div data-sticky-container="" style="z-index: 1"
                     = react_component 'PendingFriendRequests', userId: current_user.id if user_signed_in?
               - else
                 li.menu-text
-                  = link_to '無料会員登録', page_path("prelaunch")
+                  = link_to '無料会員登録', users_sign_up_top_path
                 li.menu-text
-                  = link_to 'ログイン', page_path("prelaunch"), class: 'button secondary'
+                  = link_to 'ログイン', new_user_session_path, class: 'button secondary'
 
           .hide-for-large
             ul.menu.large-horizontal.vertical
@@ -106,6 +106,6 @@ div data-sticky-container="" style="z-index: 1"
                   = link_to 'ログアウト', destroy_user_session_path, method: :delete
               - else
                 li.menu-text
-                  = link_to '無料会員登録', page_path("prelaunch")
+                  = link_to '無料会員登録', users_sign_up_top_path
                 li.menu-text
-                  = link_to 'ログイン', page_path("prelaunch")
+                  = link_to 'ログイン', new_user_session_path

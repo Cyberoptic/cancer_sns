@@ -65,10 +65,10 @@
     - if post.is_a?(Post) || (post.is_a?(GroupPost) && current_user.joined?(@group))
       = simple_form_for Comment.new, url: send("#{post.class.name.underscore}_comments_path", post.id), method: :post, remote: true, html: {class: 'relative-form', id: "js-comment-form-#{post.id}"} do |f|
         = f.input :text, label: false, placeholder: "コメント", input_html: {class: 'comment_input', id: "js-comment-textarea-#{post.id}"}
-        = f.input :photo, label: false, input_html: {style: 'display: none;', class: 'comment_photo'}
+        = f.input :photo, label: false, input_html: {style: 'display: none;', class: 'comment_photo', id: "comment_photo_#{post.id}", onchange: "selectPhoto(this)"}
         
         .button-container            
-          label.button.small.no-margin.comment-photo--icon for="comment_photo"
+          label.button.small.no-margin.comment-photo--icon for="comment_photo_#{post.id}"
             i.fa.fa-camera
           = f.submit '投稿', class: 'button small button-right-comment-form'
    

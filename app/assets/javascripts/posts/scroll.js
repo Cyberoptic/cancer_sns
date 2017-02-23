@@ -5,6 +5,7 @@ $(document).ready(function() {
       if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
         $.getScript(url, function(){
           app.rebind();
+          // Foundation.reInit($('#posts'));
           $('#posts').foundation(); 
           $('.sticky').foundation('_calc', true);          
         })

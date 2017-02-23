@@ -69999,6 +69999,7 @@ var app = {
     this.onEditPostVisibilityClick();
     this.onEditCommentClick();
     this.onCommentTriggerClick();
+    $('.js-gallery-img').Am2_SimpleSlider();
   },
 
   preventDefaultOnContextMenu: function () {
@@ -71937,7 +71938,7 @@ $(function() {
     Notifications.prototype.handleSuccess = function(data) {
       var $bell, items, unread_count;
       items = $.map(data, function(notification) {
-        return "<li data-read-at='" + notification.read_at + "'><a href='" + notification.url + "' class='notification-link'><img src=" + notification.actor_photo_url + " class='notification-prof notification-img'> " + notification.actor + "が" + notification.notifiable.type + "に" + notification.action + "しました。 <br><time class='timeago' datetime='" + notification.created_at + "'>" + notification.created_at + "</time></a></li>";
+        return "<li data-read-at='" + notification.read_at + "'><a href='" + notification.url + "' class='notification-link'><img src=" + notification.actor_photo_url + " class='notification-prof notification-img'> " + notification.actor + "が" + notification.notifiable.type + notification.action + "しました。 <br><time class='timeago' datetime='" + notification.created_at + "'>" + notification.created_at + "</time></a></li>";
       });
       $("[data-behavior='notification-items']").append(items);
       unread_count = $('*[data-read-at="null"]').length;
@@ -71965,6 +71966,7 @@ $(document).ready(function() {
       if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
         $.getScript(url, function(){
           app.rebind();
+          // Foundation.reInit($('#posts'));
           $('#posts').foundation(); 
           $('.sticky').foundation('_calc', true);          
         })
@@ -71984,7 +71986,7 @@ $(document).ready(function() {
       var totalPages = parseInt($(this).attr('data-total-pages'));
       var chatRoomId = parseInt($(this).attr('data-chat-room-id'));      
 
-      if ((page < totalPages) && $('#messages').scrollTop() == 0) {                        
+      if ((page <= totalPages) && $('#messages').scrollTop() == 0) {                        
         $.getScript("/chat_rooms/"+ chatRoomId +"/load_more?page="+page);         
       }
     });
@@ -72285,12 +72287,6 @@ $(function(){
     $("#js-file-count").text($(this)[0].files.length);
   });
 
-  $("#comment_photo").on('change', function(){
-    if($(this)[0].files.length > 0) {
-      $(this).parent().parent().find("label i").addClass("is-active")
-    }
-  });
-
   $(".dropzone").dropzone({ 
     url: "/chat_rooms/" + $('.dropzone').data('chat-room-id') + "/messages",
     headers: {
@@ -72304,3 +72300,11 @@ $(function(){
     dictDefaultMessage: '<i class="fa fa-file-o fa-2x"></i><br>\n<br>\nファイルをここにドロップするかここをクリックして下さい'
     });
 });
+
+
+function selectPhoto(e) {  
+  if($(e)[0].files.length > 0) {
+    $(e).parent().parent().find("label i").addClass("is-active")
+  }
+}
+;
