@@ -4,16 +4,20 @@
       = image_tag @group.photo
     .columns.small-8
       - if @current_user_group_membership.try(:moderator?)
-        ul.float-right.dropdown.menu data-dropdown-menu="" 
-          li
-            a href="#" 
-
-            ul.menu
-              li.menu-text
-                = link_to '編集', edit_group_path(@group)                
-              li.menu-text
-                = link_to 'メンバー管理', group_group_memberships_path(@group)
-
+        a.float-right data-toggle="group-options" 
+          i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
+        .dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" id="group-options" 
+          ul.post-options-menu.no-bullet          
+            = link_to edit_group_path(@group)
+              li
+                i.fa.fa-pencil aria-hidden="true" 
+                |  編集
+            .divider
+            = link_to group_group_memberships_path(@group)
+                li
+                  i.fa.fa-users aria-hidden="true" 
+                  |  メンバー管理
+        
       h7.bold
         = @group.name
 

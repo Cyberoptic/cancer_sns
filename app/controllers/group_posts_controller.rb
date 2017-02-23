@@ -20,7 +20,8 @@ class GroupPostsController < ApplicationController
         end
         format.js {}
       else
-        format.js { render js: :no_head }
+        flash[:alert] = @post.errors.full_messages[0]
+        format.js { render 'posts/error' }
       end
     end
   end
