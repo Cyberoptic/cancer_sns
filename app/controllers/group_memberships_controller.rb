@@ -5,7 +5,7 @@ class GroupMembershipsController < ApplicationController
 
   def index
     @group = find_group
-    @group_memberships = @group.group_memberships.order(created_at: :desc).includes(:user)
+    @group_memberships = @group.accepted_group_memberships.order(created_at: :desc).includes(:user).paginate(page: params[:page], per_page: 50)
     @current_user_membership = @group_memberships.find_by_user_id(current_user.id)
   end
 

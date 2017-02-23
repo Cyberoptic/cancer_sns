@@ -58,11 +58,12 @@
       = render partial: 'groups/pending_group_memberships', collection: @group.pending_group_memberships.includes(:user).take(5), as: :group_membership
   p
     span.faded
-      | メンバー
-    span.float-right        
-      = "#{@group.accepted_group_memberships.count}人"
+      | メンバー（#{@group.accepted_group_memberships.count}人）
+    span.float-right
+      = link_to '全員見る', group_group_memberships_path(@group), class: 'faded underlined'
+
   .group-membership-list
-    - @group.accepted_group_memberships.includes(:user).take(20).each do |group_membership|
+    - @group.accepted_group_memberships.includes(:user).take(24).each do |group_membership|
       = link_to user_path(group_membership.user)      
         .image-wrapper
           = image_tag group_membership.user_photo, alt: group_membership.user.decorate.display_name.truncate(2)
