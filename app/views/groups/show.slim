@@ -6,6 +6,9 @@
     = render partial: 'groups/group_info'
        
   .columns.large-6.medium-8.small-12
+    = render 'shared/flash_messages'
+    .mgbt-20
+
     - if current_user.joined?(@group)
       .callout
         = simple_form_for @post, url: group_posts_path(@group), method: :post, remote: true, authenticity_token: true, multipart: true do |f|      
@@ -16,13 +19,17 @@
             i.fa.fa-camera.medium-gray
             |  画像を選択する（<span id="js-file-count">0</span>）
           = f.submit "投稿", class: 'button small button-right'
+    - elsif current_user.has_pending_membership_for(@group)
+      .callout
+        p.text-center
+          | グループ参加の許可待ちです。
     - else
       .callout.show-for-large style="position: relative"
         p
           | このグループに参加して、投稿やコメントしましょう。
           = link_to '<i class="fa fa-plus-circle" aria-hidden="true"></i> 参加する'.html_safe, group_group_memberships_path(@group.id), method: :post, class: 'button small', style: 'position: absolute; right: 10px; bottom: 9px; margin-bottom: 0px;'
       .callout.hide-for-large
-        p
+        p.text-center
           | このグループに参加して、投稿やコメントしましょう。
         = link_to '<i class="fa fa-plus-circle" aria-hidden="true"></i> 参加する'.html_safe, group_group_memberships_path(@group.id), method: :post, class: 'button small expanded'
 

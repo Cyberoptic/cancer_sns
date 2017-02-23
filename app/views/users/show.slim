@@ -23,6 +23,10 @@
           span.label.secondary.label-user-attributes
             i.fa.fa-map-marker aria-hidden="true" 
             = " #{@user.area}"
+        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :prefecture).visible?
+          span.label.secondary.label-user-attributes
+            i.fa.fa-map-marker aria-hidden="true" 
+            = " #{@user.prefecture}"
         - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :profession).visible?
           span.label.secondary.label-user-attributes
             = @user.profession

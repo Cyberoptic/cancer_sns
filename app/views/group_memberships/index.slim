@@ -25,7 +25,7 @@
                 = " （管理者）" if group_membership.moderator?
             td
               = display_date(group_membership.user.created_at)            
-            - if @current_user_membership.moderator?
+            - if @current_user_membership.moderator? || @group.owner == current_user
               td
                 = link_to '外す', group_group_unmemberships_path(group_id: @group.id, user_id: group_membership.user.id), method: :post, remote: true, data: {confirm: "本当にグループから外してよろしいでしょうか？"}, class: 'button small gray no-margin expanded'
               td

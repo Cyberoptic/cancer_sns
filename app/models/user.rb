@@ -166,6 +166,12 @@ class User < ApplicationRecord
     self.group_memberships.exists?(group_id: group.id, status: :accepted)
   end
 
+  def has_pending_membership_for(group)
+    membership = self.group_memberships.find_by(group: group)
+    return unless membership.present?
+    membership.pending?
+  end
+
   def pending_requests
     HasFriendship::Friendship.where(friend_id: self.id, status: :pending).order(created_at: :desc)
   end

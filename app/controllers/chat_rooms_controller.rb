@@ -6,7 +6,9 @@ class ChatRoomsController < ApplicationController
     @chat_room = current_user.chat_rooms.includes(messages: [:user, :chat_room]).most_recent 
     @chat_rooms = current_user.chat_rooms.includes(:member, :user, :messages).select{|chat_room| chat_room != @chat_room}
 
-    @messages = @chat_room.messages.reorder(created_at: :desc).includes(chat_room: [:user, :member]).paginate(page: params[:page], per_page: 10)
+    if @chat_room.present?
+      @messages = @chat_room.messages.reorder(created_at: :desc).includes(chat_room: [:user, :member]).paginate(page: params[:page], per_page: 10)
+    end
 
     @message_search = MessageSearch.new(params[:message_search])
     @message = Message.new

@@ -7,7 +7,7 @@
       ul#js-message-list.no-bullet.message-list
         = render partial: 'chat_room_list', locals: {chat_rooms: @chat_rooms, active_room: @chat_room}
   .columns.small-12.large-6.medium-7
-    #messages.callout data-chat-room-id="#{@chat_room.try(:id)}" data-user-id="#{current_user.id}" data-other-user-id="#{@other_user.try(:id)}" data-page="#{@messages.next_page}" data-total-pages="#{@messages.total_pages}"
+    #messages.callout data-chat-room-id="#{@chat_room.try(:id)}" data-user-id="#{current_user.id}" data-other-user-id="#{@other_user.try(:id)}" data-page="#{@messages.try(:next_page)}" data-total-pages="#{@messages.try(:total_pages)}"
       - if !@chat_room.present? || @messages.empty?
         h6#start-message.text-center メッセージを開始しましょう。
       - else
@@ -16,7 +16,7 @@
 
         = render @messages.reverse
         
-    = render 'form'
+        = render 'form'
 
   .columns.large-3.show-for-large
     - if @other_user.present?
