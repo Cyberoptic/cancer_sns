@@ -19,22 +19,22 @@
               = @user.nickname          
       
       .user-tags        
-        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :area).visible?
+        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :area).visible? && @user.area.present?
           span.label.secondary.label-user-attributes
             i.fa.fa-map-marker aria-hidden="true" 
             = " #{@user.area}"
-        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :prefecture).visible?
+        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :prefecture).visible? && @user.prefecture.present?
           span.label.secondary.label-user-attributes
             i.fa.fa-map-marker aria-hidden="true" 
             = " #{@user.prefecture}"
-        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :profession).visible?
+        - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :profession).visible? && @user.profession.present?
           span.label.secondary.label-user-attributes
             = @user.profession
         span.label.secondary.label-user-attributes
           = @user.gender_icon
       hr/
 
-      - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :birthday).visible? && @user.age
+      - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :birthday).visible? && @user.age.present?
         h6
           small
             | <span class="bold">年齢</span> #{@user.age}歳
