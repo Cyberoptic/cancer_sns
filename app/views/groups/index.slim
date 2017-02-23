@@ -11,7 +11,7 @@
           = render partial: 'groups/group', locals: {group: group}
       - if @my_groups.empty?
         p
-          | あなたが管理してるグループはまだありません。#{link_to '<i class="fa fa-plus" aria-hidden="true"></i> グループを作成'.html_safe, new_group_path, class: 'button tiny no-margin'}
+          | 現在管理してるグループはありません。#{link_to '<i class="fa fa-plus" aria-hidden="true"></i> グループを作成'.html_safe, new_group_path, class: 'button tiny no-margin'}
           
     .callout
       h7.bold
