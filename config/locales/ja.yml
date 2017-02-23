@@ -28,7 +28,7 @@ ja:
         introduction: 自己紹介   
         partner_age: パートナー年齢 
         partner_relationship: パートナーとの関係
-        cancer_type: がん種別
+        cancer_type: 状態
         cancer_stage: がんステージ
         treatment: 治療内容
         treatment_content: 治療内容（詳細）

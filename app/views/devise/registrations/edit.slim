@@ -97,14 +97,6 @@
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :partner_age_visibility}
       tr.partner-info-tr
         th
-          = f.label :partner_relationship, required: true
-        td
-          = f.input :partner_relationship, collection: User::PARTNER_RELATIONSHIPS, include_blank: "選択する", required: true, label: false
-
-          = render partial: 'visibility_options', locals: {resource: resource, visibility: :partner_relationship_visibility}
-
-      tr.partner-info-tr
-        th
           = f.label :cancer_type, required: true
         td
           .input.select.required.user_cancer_type
@@ -117,16 +109,7 @@
                     option value="#{type}" *selected
                       = type
  
-          = render partial: 'visibility_options', locals: {resource: resource, visibility: :cancer_type_visibility}                   
-
-      tr.partner-info-tr
-        th
-          = f.label :cancer_stage
-        td
-          = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する", label: false
-
-          = render partial: 'visibility_options', locals: {resource: resource, visibility: :cancer_stage_visibility}
-
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :cancer_type_visibility}   
       tr.partner-info-tr
         th
           label
@@ -154,7 +137,26 @@
         td
           = f.input :hospital, label: false
 
-          = render partial: 'visibility_options', locals: {resource: resource, visibility: :hospital_visibility}
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :hospital_visibility}                
+
+      tr.partner-info-tr
+        th
+          = f.label :partner_relationship, required: true
+        td
+          = f.input :partner_relationship, collection: User::PARTNER_RELATIONSHIPS, include_blank: "選択する", required: true, label: false
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :partner_relationship_visibility}
+
+      
+      tr.partner-info-tr
+        th
+          = f.label :cancer_stage
+        td
+          = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する", label: false
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :cancer_stage_visibility}
+
+      
       tr.partner-info-tr
         th
           = f.label :problems

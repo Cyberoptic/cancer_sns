@@ -50,7 +50,7 @@
       
       .input-group
         .input-group-label
-          | がんステージ
+          | 状態
         = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する", label: false, input_html: {class: 'no-margin input-group-field'}
     .divider
     .card-section
