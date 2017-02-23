@@ -17,5 +17,8 @@ json.array! @notifications do |notification|
   json.notifiable do
     json.type type
   end
-  json.url "/" + notification.notifiable.class.to_s.underscore.downcase + "s/" + (notification.notifiable_id).to_s
+
+  notifiable_id = notification.notifiable.try(:slug) ? notification.notifiable.slug : notification.notifiable.id
+
+  json.url "/" + notification.notifiable.class.to_s.underscore.downcase + "s/" + (notifiable_id).to_s
 end
