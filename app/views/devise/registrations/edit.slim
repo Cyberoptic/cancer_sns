@@ -47,13 +47,14 @@
           = f.label :area, required: true
         td          
           = f.input :area, collection: Area::LIST, include_blank: "選択する", required: true, label: false
-          = render partial: 'visibility_options', locals: {resource: resource, visibility: :area_visibility}
 
       tr
         th
           = f.label :prefecture
         td
           = f.input :prefecture, collection: Area::PREFECTURES, include_blank: "選択する", label: false
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :area_visibility}
       tr
         th
           = f.label :profession

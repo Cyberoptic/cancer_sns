@@ -19,7 +19,7 @@ class User < ApplicationRecord
   PARTNER_RELATIONSHIPS = %w(婚姻 恋人 その他)
 
   with_options if: :signed_up? do |user|
-    user.validates :name, :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :partner_relationship, :cancer_type, :area, presence: true, unless: Proc.new{|u| u.encrypted_password_changed? }
+    user.validates :first_name, :last_name, :first_name_katakana, :last_name_katakana, :gender, :email, :partner_age, :partner_relationship, :cancer_type, :area, presence: true, unless: Proc.new{|u| u.encrypted_password_changed? }
   end
 
   with_options unless: :display_name_to_everyone? do |user|
@@ -79,7 +79,7 @@ class User < ApplicationRecord
     .uniq
   }
   scope :prefecture, -> (prefecture){ 
-    attribute_is_public("area_visibility").where(prefecture: prefecture) 
+    attribute_is_public("prefecture_visibility").where(prefecture: prefecture) 
   }
   scope :birthday, -> (birthday){ 
     attribute_is_public("birthday_visibility").where(birthday: birthday) 
@@ -109,6 +109,7 @@ class User < ApplicationRecord
     birthday_visibility String, default: SETTING_OPTIONS.first
     problems_visibility String, default: SETTING_OPTIONS.first
     area_visibility String, default: SETTING_OPTIONS.first
+    prefecture_visibility String, default: SETTING_OPTIONS.first
     name_visibility String, default: SETTING_OPTIONS.first
     children_visibility String, default: SETTING_OPTIONS.first
   end

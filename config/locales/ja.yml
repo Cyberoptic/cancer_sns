@@ -9,6 +9,7 @@ ja:
         content: コンテンツ
         photo: 写真
       user:
+        name: 名前
         nickname: ニックネーム
         first_name: 名
         last_name: 姓
