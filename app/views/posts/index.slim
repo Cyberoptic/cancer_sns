@@ -3,6 +3,9 @@
     = render partial: 'shared/sidebar'
 
   .columns.large-6.medium-12.small-12
+    #js-flash-messages
+      = render 'shared/flash_messages'
+
     .callout
       = simple_form_for @post, remote: true do |f|        
         = f.input :content, label: false, placeholder: 'ここに投稿内容を入力', input_html: {rows: 2, class: 'post-textarea' }

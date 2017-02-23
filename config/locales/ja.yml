@@ -8,6 +8,10 @@ ja:
         title: タイトル
         content: コンテンツ
         photo: 写真
+      post:
+        content: 内容
+        user: ユーザー
+        post_images: 画像
       user:
         name: 名前
         nickname: ニックネーム

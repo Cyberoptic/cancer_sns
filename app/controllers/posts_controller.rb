@@ -29,12 +29,13 @@ class PostsController < ApplicationController
       if @post.save
         if params[:post_images]
           params[:post_images]['photo'].each do |a|
-            @post_image = @post.post_images.create!(photo: a, user_id: current_user.id)
+            @post_image = @post.post_images.create(photo: a, user_id: current_user.id)
           end
         end
         format.js {}
       else
-        format.js { render json: :no_head }
+        flash[:alert] = @post.errors.full_messages[0]
+        format.js { render 'posts/error' }
       end
     end
   end
