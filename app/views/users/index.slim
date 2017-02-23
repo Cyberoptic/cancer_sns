@@ -4,7 +4,7 @@
 
   .columns.large-9.medium-8
     p.faded.text-center.no-margin
-      | #{@users.count}件/#{@users.total_entries}件の検索結果
+      | #{@users.count}件/#{@users.total_entries == 0 ? User.count : @users.total_entries}件の検索結果
     h6.text-center      
       = will_paginate @users, class: 'user_pagination', previous_label: '&lt 前', next_label: '次 &gt'
     - if @users.any?
