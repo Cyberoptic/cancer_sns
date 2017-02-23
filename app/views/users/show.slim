@@ -94,34 +94,56 @@
       .card-divider
         h6.user-header.text-center パートナー（患者）に関する情報
       div
-        table.table.table-fixed          
+        table.table.table-fixed
+          tr
+            th width="100" 性別
+            td
+              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :partner_gender).visible? && @user.partner_gender.present?
+                = @user.partner_gender
+              - else
+                | 非公開        
           tr
             th width="100" 年齢
             td
-              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :partner_age).visible?
+              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :partner_age).visible? && @user.partner_age.present?
                 = @user.partner_age
               - else
-                | 非公開
-          - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_stage).visible?
-            tr
-              th 状態 
-              td
+                | 非公開          
+          tr
+            th 状態 
+            td
+              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_stage).visible? && @user.cancer_stage.present?
                 = @user.cancer_stage
-          - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_type).visible?
-            tr
-              th がん種目 
-              td
+              - else
+                | 非公開           
+          tr
+            th がん種別
+            td
+              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_type).visible? && @user.cancer_type.present?
                 = @user.cancer_type
-          - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :hospital).visible?
-            tr
-              th 病院名 
-              td style="word-wrap: break-word"
+              - else
+                | 非公開          
+          tr
+            th 病院名 
+            td style="word-wrap: break-word"
+              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :hospital).visible? && @user.hospital.present?
                 = @user.hospital
-          - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :treatment).visible?
-            tr
-              th 治療内容 
-              td
+              - else
+                | 非公開          
+          tr
+            th 治療内容 
+            td style="word-wrap: break-word"
+              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :treatment).visible?
                 = @user.treatment
+              - else
+                | 非公開          
+          tr
+            th 治療内容<br>（詳細） 
+            td style="word-wrap: break-word"
+              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :treatment).visible? && @user.treatment_content.present?
+                = @user.treatment_content
+              - else
+                | 非公開
     
   .columns.large-6.medium-8.small-12
     - if @user.posts.any?

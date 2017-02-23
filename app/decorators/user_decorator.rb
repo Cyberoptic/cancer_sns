@@ -14,9 +14,13 @@ class UserDecorator < Draper::Decorator
   end
 
   def treatment
-    treatment = ""
-    treatment += "#{object.other_treatment}, " if object.other_treatment
-    treatment += object.treatments.map{|treatment| treatment.name}.join(", ")
+    treatment = ""    
+    treatment += object.treatments.map do |treatment|
+      next if treatment.name == "その他被保険療法"
+      treatment.name
+    end.join("<br/>")
+    treatment += "その他被保険療法（#{object.other_treatment}）" if object.other_treatment.present?
+    treatment.html_safe
   end
 
   def introduction

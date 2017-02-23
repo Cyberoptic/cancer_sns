@@ -13,6 +13,7 @@ class User < ApplicationRecord
   :omniauthable, :registerable, :confirmable, :secure_validatable, :omniauth_providers => [:facebook]  
   
   enum gender: {男性: 0, 女性: 1, その他: 2}
+  enum partner_gender: {男性: 0, 女性: 1, その他: 2}, _prefix: :partner
 
   AGE = %w(13歳～19歳 20歳～29歳 30歳～34歳 35歳～39歳 40歳～49歳 50歳～64歳 65歳以上)
   SETTING_OPTIONS = %w(公開 友達にのみ公開 非公開)
@@ -101,6 +102,7 @@ class User < ApplicationRecord
   store_attributes :settings do
     profession_visibility String, default: SETTING_OPTIONS.first
     partner_age_visibility String, default: SETTING_OPTIONS.first
+    partner_gender_visibility String, default: SETTING_OPTIONS.first
     partner_relationship_visibility String, default: SETTING_OPTIONS.first
     cancer_type_visibility String, default: SETTING_OPTIONS.first
     cancer_stage_visibility String, default: SETTING_OPTIONS.first

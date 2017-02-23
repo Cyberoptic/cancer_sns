@@ -90,6 +90,14 @@
 
       tr.partner-info-tr
         th
+          = f.label :partner_gender, required: true
+        td
+          = f.input :partner_gender, collection: User.partner_genders.keys, include_blank: "選択する", required: true, label: false
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :partner_gender_visibility}
+
+      tr.partner-info-tr
+        th
           = f.label :partner_age, required: true
         td
           = f.input :partner_age, collection: User::AGE, include_blank: "選択する", required: true, label: false

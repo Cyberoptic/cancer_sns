@@ -26,10 +26,11 @@ ja:
         birthday: 誕生日
         gender: 性別     
         introduction: 自己紹介   
+        partner_gender: パートナー性別
         partner_age: パートナー年齢 
         partner_relationship: パートナーとの関係
-        cancer_type: 状態
-        cancer_stage: がんステージ
+        cancer_type: がん種別
+        cancer_stage: 状態
         treatment: 治療内容
         treatment_content: 治療内容（詳細）
         other_treatment: 治療内容自由記述
