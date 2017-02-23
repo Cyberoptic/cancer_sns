@@ -12,7 +12,7 @@ class GroupPostsController < ApplicationController
     @post = current_user.group_posts.new(group_post_params.merge(group_id: @group.id))
 
     respond_to do |format|      
-      if @post.save!
+      if @post.save
         if params[:post_images]
           params[:post_images]['photo'].each do |a|
             @post_image = @post.post_images.create!(photo: a, user_id: current_user.id)

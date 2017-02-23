@@ -1,14 +1,42 @@
 require 'rails_helper'
 
 RSpec.describe ChatRoomsController, type: :controller do
-  it 'renders index page' do
-    user = create(:user)
-    chat_room = create(:chat_room, user: user, member: create(:user))
+  describe "GET #index" do
+    context "when there is a chat room present with messages" do
+      it 'renders index page' do
+        user = create(:user)
+        chat_room = create(:chat_room, user: user, member: create(:user))
+        create(:message, chat_room: chat_room, user: user)
 
-    sign_in user
-    get :index
+        sign_in user
+        get :index
 
-    expect(response).to render_template(:index)
+        expect(response).to render_template(:index)
+      end
+    end
+
+    context "when there is a chat room present with no messages" do
+      it 'renders index page' do
+        user = create(:user)
+        chat_room = create(:chat_room, user: user, member: create(:user))
+
+        sign_in user
+        get :index
+
+        expect(response).to render_template(:index)
+      end
+    end
+
+    context "when there is no chat room present" do
+      it 'does not render the index page' do
+        user = create(:user)
+
+        sign_in user
+        get :index
+
+        expect(response).to render_template(:index)
+      end
+    end
   end
 
   describe 'GET #show' do
