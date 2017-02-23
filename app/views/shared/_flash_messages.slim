@@ -1,16 +1,16 @@
 - flash.each do |message_type, message|
   - if message_type == "notice"
-    .callout.primary.no-margin-bottom data-closable=""
+    .callout.primary.no-margin-bottom data-closable="" style="z-index: 1"
       = notice
       button.close-button aria-label=("Dismiss alert") data-close="" type="button" 
         span aria-hidden="true"  ×
   - elsif message_type == "alert"
-    .callout.alert.no-margin-bottom data-closable=""
+    .callout.alert.no-margin-bottom data-closable="" style="z-index: 1"
       = alert
       button.close-button aria-label=("Dismiss alert") data-close="" type="button" 
         span aria-hidden="true"  ×
   - else
-    div class=("callout #{message_type} no-margin-bottom") data-closable=""
+    div class=("callout #{message_type} no-margin-bottom") data-closable="" style="z-index: 1"
       = message
       button.close-button aria-label=("Dismiss alert") data-close="" type="button" 
         span aria-hidden="true"  ×

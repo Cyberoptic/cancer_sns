@@ -137,20 +137,6 @@ class User < ApplicationRecord
     end
   end
 
-  # If sign in through Oauth, don't require password
-  def password_required?    
-    super && provider.blank?
-  end
-
-  # Don't require update with password if Oauth
-  def update_with_password(params, *options)
-    if encrypted_password.blank?
-      update_attributes(params, *options)
-    else
-      super
-    end
-  end
-
   def unread_messages
     Message.where(id: chat_rooms.flat_map{|chat_room| chat_room.messages.pluck(:id)})
            .unread_by(self)
