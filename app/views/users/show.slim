@@ -112,28 +112,23 @@
               - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :partner_age).visible? && @user.partner_age.present?
                 = @user.partner_age
               - else
-                | 非公開          
-          tr
-            th 状態 
-            td
-              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_stage).visible? && @user.cancer_stage.present?
-                = @user.cancer_stage
-              - else
-                | 非公開           
+                | 非公開 
           tr
             th がん種別
             td
               - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_type).visible? && @user.cancer_type.present?
                 = @user.cancer_type
               - else
-                | 非公開          
+                | 非公開 
+
           tr
-            th 病院名 
-            td style="word-wrap: break-word"
-              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :hospital).visible? && @user.hospital.present?
-                = @user.hospital
+            th 状態 
+            td
+              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :cancer_stage).visible? && @user.cancer_stage.present?
+                = @user.cancer_stage
               - else
-                | 非公開          
+                | 非公開  
+
           tr
             th 治療内容 
             td style="word-wrap: break-word"
@@ -147,7 +142,15 @@
               - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :treatment).visible? && @user.treatment_content.present?
                 = @user.treatment_content
               - else
-                | 非公開
+                | 非公開         
+                   
+          tr
+            th 病院名 
+            td style="word-wrap: break-word"
+              - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :hospital).visible? && @user.hospital.present?
+                = @user.hospital
+              - else
+                | 非公開                    
     
   .columns.large-6.medium-8.small-12
     - if @user.posts.any?
