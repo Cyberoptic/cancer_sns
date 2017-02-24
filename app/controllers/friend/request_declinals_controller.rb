@@ -5,7 +5,7 @@ class Friend::RequestDeclinalsController < ApplicationController
 	def create    
     current_user.decline_request(@user)
     respond_to do |format|
-      format.html {}
+      format.html { redirect_to :back }
       format.js {}
       format.json { render json: 200 }
     end    
