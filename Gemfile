@@ -22,7 +22,6 @@ gem 'inline_svg'
 gem 'rails_autolink'
 gem 'slack-api'
 gem "select2-rails"
-gem 'select2-foundation'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -3,8 +3,7 @@
 //= require jquery.remotipart
 //= require prevent_mobile_init
 //= require jquery.mobile
-//= require select2
-//= require select2_locale_ja
+//= require select2-full
 //= require foundation
 //= require cable
 //= require react
@@ -70,6 +69,16 @@ $(function(){
     });
   });
 });
+
+// 元はformatNoMatchesだったもの
+$.fn.select2.defaults.defaults.language.noResults = function() {
+    return '一致するものがありません';
+};
+
+// 元はformatSeachingだったもの
+$.fn.select2.defaults.defaults.language.searching = function() {
+    return '検索中...';
+};
 
 
 function selectPhoto(e) {  
