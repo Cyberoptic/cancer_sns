@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
 	def index
     if params[:user_search]    
-			@users = User.find_child_by_age_range(
+			@users = User.profile_completed
+                   .find_child_by_age_range(
                       min: params[:user_search][:child_age_min],
                       max: params[:user_search][:child_age_max]
                     )

@@ -65,6 +65,7 @@ Rails.application.routes.draw do
     resources :group_memberships, only: [:index, :create]
     resources :group_unmemberships, only: :create
     resources :group_posts, as: :posts, only: [:create]
+    resources :group_invitations, only: [:index, :new, :create, :destroy]
   end
 
   get '/discover/groups', to: 'group_discoveries#index'

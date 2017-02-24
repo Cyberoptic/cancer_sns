@@ -55,6 +55,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :treatments, reject_if: proc { |attributes| attributes['name'].blank? }
   accepts_nested_attributes_for :children, reject_if: proc { |attributes| attributes['age'].blank? || attributes['gender'].blank? }, allow_destroy: true
 
+
+  scope :profile_completed, ->{ where(profile_completed: true) }
   # Scopes for filtering
   scope :profession, -> (profession){ 
     attribute_is_public("profession_visibility").where(profession: profession) 
