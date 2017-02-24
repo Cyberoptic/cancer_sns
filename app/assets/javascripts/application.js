@@ -3,6 +3,7 @@
 //= require jquery.remotipart
 //= require prevent_mobile_init
 //= require jquery.mobile
+//= require select2-full
 //= require foundation
 //= require cable
 //= require react
@@ -44,6 +45,10 @@ $(function(){
     $("#js-file-count").text($(this)[0].files.length);
   });
 
+  $( ".select2" ).select2({
+    placeholder: 'タグを選択（任意）'
+  });
+
   $(".dropzone").dropzone({ 
     url: "/chat_rooms/" + $('.dropzone').data('chat-room-id') + "/messages",
     headers: {
@@ -55,8 +60,25 @@ $(function(){
       });
     },
     dictDefaultMessage: '<i class="fa fa-file-o fa-2x"></i><br>\n<br>\nファイルをここにドロップするかここをクリックして下さい'
+    }
+  );
+
+  $(window).resize(function () {
+    $( ".select2" ).select2({
+      placeholder: 'タグを選択（任意）'
     });
+  });
 });
+
+// 元はformatNoMatchesだったもの
+$.fn.select2.defaults.defaults.language.noResults = function() {
+    return '一致するものがありません';
+};
+
+// 元はformatSeachingだったもの
+$.fn.select2.defaults.defaults.language.searching = function() {
+    return '検索中...';
+};
 
 
 function selectPhoto(e) {  

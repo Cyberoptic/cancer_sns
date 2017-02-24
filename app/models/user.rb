@@ -46,7 +46,7 @@ class User < ApplicationRecord
   has_many :user_treatments, dependent: :destroy
   has_many :treatments, through: :user_treatments
   has_many :children, dependent: :destroy   
-  has_many :notifications, foreign_key: :recipient_id
+  has_many :notifications, foreign_key: :recipient_id  
 
   before_save :set_name!
   after_create :send_slack!
