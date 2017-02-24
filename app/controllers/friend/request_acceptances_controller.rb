@@ -5,7 +5,10 @@ class Friend::RequestAcceptancesController < ApplicationController
   def create    
     current_user.accept_request(@user)
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html do 
+        flash[:success] = "#{@user.decorate.display_name}と友達になりました！"
+        redirect_to :back
+      end
       format.js {}
       format.json { render json: 200 }
     end
