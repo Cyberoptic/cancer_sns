@@ -4,8 +4,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.visible_for(current_user).reorder(updated_at: :desc).paginate(page: params[:page], per_page: 3)
-    @post = Post.new    
-    @post_images = @post.post_images.build
+    @post = Post.new 
+    @post.post_taggings.build   
+    @post.post_images.build
     respond_to do |format|
       format.html
       format.js
@@ -29,9 +30,14 @@ class PostsController < ApplicationController
       if @post.save
         if params[:post_images]
           params[:post_images]['photo'].each do |a|
-            @post_image = @post.post_images.create(photo: a, user_id: current_user.id)
+            @post.post_images.create(photo: a, user_id: current_user.id)
           end
-        end
+        end        
+        if post_params[:post_taggings_attributes] 
+          post_params[:post_taggings_attributes]["0"]["post_tag_id"].each do |id|
+            @post.post_taggings.create(post_tag_id: id)
+          end
+        end        
         format.js {}
       else
         flash[:alert] = @post.errors.full_messages[0]
@@ -62,7 +68,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:content, :visibility, post_images_attributes: [:photo])
+      params.require(:post).permit(:content, :visibility, post_images_attributes: [:photo], post_taggings_attributes: [:id, :post_id, post_tag_id: []])
     end
 
     def ensure_owner

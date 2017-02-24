@@ -12,6 +12,7 @@ ja:
         content: 内容
         user: ユーザー
         post_images: 画像
+        post_taggings: タグ
       user:
         name: 名前
         nickname: ニックネーム

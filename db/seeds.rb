@@ -11,5 +11,10 @@ TREATMENTS.each do |treatment|
   Treatment.create(name: treatment, default: true)
 end if Treatment.count == 0
  
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if AdminUser.count == 0
 
+TAG_NAMES = %w(治療法 心の悩み お金の悩み 家族 こども 友人 仕事 病院 性の悩み 楽しいこと 悲しいこと 腹立たしいこと 生活のこと)
+
+TAG_NAMES.each do |name|
+  PostTag.create(name: name)
+end if PostTag.count == 0

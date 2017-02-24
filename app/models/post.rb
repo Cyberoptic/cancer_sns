@@ -3,8 +3,11 @@ class Post < ApplicationRecord
   has_many :comments, as: :post
   has_many :post_images, as: :post
   has_many :emotions, as: :post, dependent: :destroy
+  has_many :post_taggings
+  has_many :post_tags, through: :post_taggings
   
-  accepts_nested_attributes_for :post_images
+  accepts_nested_attributes_for :post_images 
+  accepts_nested_attributes_for :post_taggings, allow_destroy: true, reject_if: proc { |attributes| attributes['post_id'].blank? }
 
   validates :content, :user, presence: true
 

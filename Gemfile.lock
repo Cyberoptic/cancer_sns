@@ -123,6 +123,10 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chosen-rails (1.5.2)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     cocoon (1.2.9)
     coderay (1.1.1)
     coercible (1.0.0)
@@ -586,6 +590,7 @@ DEPENDENCIES
   bullet
   byebug
   carrierwave
+  chosen-rails
   cocoon
   coffee-rails (~> 4.2)
   derailed

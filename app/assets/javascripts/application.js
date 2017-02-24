@@ -4,6 +4,7 @@
 //= require prevent_mobile_init
 //= require jquery.mobile
 //= require foundation
+//= require chosen-jquery
 //= require cable
 //= require react
 //= require react_ujs
@@ -42,6 +43,12 @@ $(function(){
 
   $("#post_images_upload").on('change', function(){
     $("#js-file-count").text($(this)[0].files.length);
+  });
+
+  $('.chosen-select').chosen({
+    allow_single_deselect: true,
+    no_results_text: '見つかりませんでした。',
+    placeholder_text_multiple: 'タグを選択（任意）'   
   });
 
   $(".dropzone").dropzone({ 

@@ -27,7 +27,9 @@
           | 前
     .post-content
       div id="js-post-content-#{post.id}" 
-        = auto_link(simple_format(post.content), html: {target: '_blank'})
+        = auto_link(simple_format(post.content), html: {target: '_blank'})        
+        br
+        = post.post_tags.map{|tag| link_to "#" + tag.name, '', class: 'no-underline'}.join(" ").html_safe
     ul.product-gallery
       - post.post_images.each do |image|
         li.product-gallery-list.js-gallery-img
