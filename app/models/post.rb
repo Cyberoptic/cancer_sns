@@ -25,7 +25,15 @@ class Post < ApplicationRecord
   def self.visible_for(user)
     (
       visible_to_everyone.or(posts_by_friends_for(user)).or(where(user_id: user.id))
-    ).uniq.includes(:user, :post_images)
+    ).uniq.includes(:user, :post_images, :post_taggings, :post_tags)
+  end
+
+  def self.tagged_with(name)
+    PostTag.find_by_name(name).posts.includes(:user, :post_images, :post_taggings, :post_tags)
+  end
+
+  def tag_list
+    post_tags.map(&:name).join(", ")
   end
 
   def has_likes?

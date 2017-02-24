@@ -1,0 +1,22 @@
+.row
+  .columns.large-3.show-for-large data-sticky-container="true"
+    = render partial: 'shared/sidebar'
+
+  .columns.large-6.medium-12.small-12
+    #js-flash-messages
+      = render 'shared/flash_messages'    
+    .callout.primary
+      h6.text-center.mgbt-20
+        = "#" + params[:tag]
+    #posts
+      = render partial: 'posts/post', collection: @posts
+    #post-pagination
+      = will_paginate @posts
+    .spinner
+      .sk-cube1.sk-cube
+      .sk-cube2.sk-cube
+      .sk-cube4.sk-cube
+      .sk-cube3.sk-cube
+  .columns.large-3.show-for-large data-sticky-container="true"
+    = render partial: 'layouts/right_sidebar'
+  

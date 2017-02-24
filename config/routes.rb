@@ -25,7 +25,9 @@ Rails.application.routes.draw do
     member do
       get 'more_comments'
     end
-  end  
+  end
+
+  get 'posts/tags/:tag', to: 'posts/tags#index', as: "tag"
 
   resources :comments, only: [:update, :destroy] do
     post :visibility_toggles, to: "comments/visibility_toggles#create" 

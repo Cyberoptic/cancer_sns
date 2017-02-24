@@ -35,3 +35,11 @@
     small.float-right.underlined
       = link_to '詳細検索へ', users_path, class: 'faded'
     br
+
+    h7.faded
+      | タグクラウド
+
+    #tag_cloud
+      - tag_cloud PostTag.counts, %w{s m l} do |tag, css_class|
+        = link_to tag.name + " ", tag_path(tag.name), class: css_class
+     
