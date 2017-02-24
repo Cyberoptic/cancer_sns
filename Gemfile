@@ -20,6 +20,7 @@ gem 'newrelic_rpm'
 gem "rack-timeout"
 gem 'inline_svg'
 gem 'rails_autolink'
+gem 'slack-api'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

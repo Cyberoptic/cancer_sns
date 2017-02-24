@@ -3,10 +3,7 @@
     .message-body-container.message-body-container-right
       - if message.photo.url
         = link_to message.photo.url, target: '_blank'
-          - if message.photo.medium.url
-            = image_tag message.photo.medium.url, class: 'img-responsive float-right mgbt-20', id: "message-photo-#{message.id}"
-          - else
-            = image_tag message.photo.url, class: 'img-responsive float-right mgbt-20', id: "message-photo-#{message.id}"
+          = image_tag message.photo.medium.url, class: 'img-responsive float-right mgbt-20', id: "message-photo-#{message.id}"
       - else
         .card.card-green style=("margin-bottom: 0px;") 
           .card-section
@@ -25,10 +22,7 @@
     .message-body-container.message-body-container-left
       - if message.photo.url
         = link_to message.photo.url, target: '_blank'
-          - if message.photo.medium.url
-            = image_tag message.photo.medium.url, class: 'img-responsive float-right mgbt-20', id: "message-photo-#{message.id}"
-          - else
-            = image_tag message.photo.url, class: 'img-responsive float-right mgbt-20', id: "message-photo-#{message.id}"
+          = image_tag message.photo.medium.url, class: 'img-responsive float-right mgbt-20', id: "message-photo-#{message.id}"
       - else
         .card style=("margin-bottom: 0px;") 
           .card-section

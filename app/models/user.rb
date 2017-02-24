@@ -49,6 +49,7 @@ class User < ApplicationRecord
   has_many :notifications, foreign_key: :recipient_id
 
   before_save :set_name!
+  after_create :send_slack!
 
   accepts_nested_attributes_for :user_treatments, reject_if: proc { |attributes| attributes['name'].blank? }
   accepts_nested_attributes_for :treatments, reject_if: proc { |attributes| attributes['name'].blank? }
@@ -208,6 +209,13 @@ class User < ApplicationRecord
   end
 
   private  
+
+  def send_slack!
+    text = "#{email}さんが登録しました。"
+    channel = "#cp_signup"
+
+    NotifiableSlackJob.perform_later(text: text, channel: channel) if Rails.env.production?
+  end
 
   def display_name_to_everyone?
     name_visibility == SETTING_OPTIONS.first
