@@ -81,6 +81,20 @@ RSpec.describe User, type: :model do
 	end
 
 	describe "#name_search" do
+		context "when name_visibility is set to false" do
+			it "returns users where the nickname is equal to the argument" do
+				user_1 = create(:user, nickname: "たろう")
+				user_2 = create(:user, nickname: "タナカ")
+				user_1.update(settings: {name_visibility: "非公開"})
+				user_2.update(settings: {name_visibility: "非公開"})
+
+				expect(User.name_search("タナカ").pluck(:id)).to include(user_2.id) 
+				expect(User.name_search("タナカ").pluck(:id)).to_not include(user_1.id)
+				expect(User.name_search("たろう").pluck(:id)).to include(user_1.id)
+				expect(User.name_search("たろう").pluck(:id)).to_not include(user_2.id)
+			end
+		end
+
 		it "returns users where the name is equal to argument" do
 			user_1 = create(:user, name: "DoeJohn", first_name: "John", last_name: "Doe")
 			user_2 = create(:user, name: "ConnerMike", first_name: "Mike", last_name: "Conner")

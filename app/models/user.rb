@@ -154,7 +154,7 @@ class User < ApplicationRecord
   def self.name_search(name_search)    
     name_search = "#{name_search[0..3].downcase}%"
     
-    attribute_is_public("name_visibility").where("LOWER(name) LIKE ? or LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ? or LOWER(nickname) LIKE ?", name_search, name_search, name_search, name_search, name_search, name_search)
+    attribute_is_public("name_visibility").where("LOWER(name) LIKE ? or LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ? or LOWER(nickname) LIKE ?", name_search, name_search, name_search, name_search, name_search, name_search).or(where("LOWER(nickname) LIKE ?", name_search))
   end
 
   def self.find_child_by_age_range(min:, max:)    
