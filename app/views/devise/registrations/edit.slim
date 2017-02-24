@@ -46,13 +46,13 @@
         th
           = f.label :area, required: true
         td          
-          = f.input :area, collection: Area::LIST, include_blank: "選択する", required: true, label: false
+          = f.input :area, collection: Area::LIST, include_blank: "選択する", required: true, label: false, input_html: {class: 'select2'}
 
       tr
         th
           = f.label :prefecture
         td
-          = f.input :prefecture, collection: Area::PREFECTURES, include_blank: "選択する", label: false
+          = f.input :prefecture, collection: Area::PREFECTURES, include_blank: "選択する", label: false, input_html: {class: 'select2'}
 
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :area_visibility}
       tr
@@ -117,7 +117,7 @@
           = f.label :cancer_type, required: true
         td
           .input.select.required.user_cancer_type
-            select#user_cancer_type.select.required aria-required="true" name="user[cancer_type]" required="required" 
+            select#user_cancer_type.select.required.select2 aria-required="true" name="user[cancer_type]" required="required" 
               option value=""  選択する
               - Cancer::TYPES.each do |key, value|
                 optgroup label="#{key}"
@@ -169,7 +169,7 @@
         th
           = f.label :cancer_stage
         td
-          = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する", label: false
+          = f.input :cancer_stage, collection: Cancer::STAGES, include_blank: "選択する", label: false, input_html: {class: 'select2'}
 
           = render partial: 'visibility_options', locals: {resource: resource, visibility: :cancer_stage_visibility}
 

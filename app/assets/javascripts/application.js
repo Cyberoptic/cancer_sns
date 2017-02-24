@@ -61,7 +61,14 @@ $(function(){
       });
     },
     dictDefaultMessage: '<i class="fa fa-file-o fa-2x"></i><br>\n<br>\nファイルをここにドロップするかここをクリックして下さい'
+    }
+  );
+
+  $(window).resize(function () {
+    $( ".select2" ).select2({
+      placeholder: 'タグを選択（任意）'
     });
+  });
 });
 
 
