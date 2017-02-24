@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+	describe "#has_not_joined_group" do
+		it "returns users that have not joined the group" do
+			user = create(:user)
+			user_2 = create(:user)
+			user_3 = create(:user)
+			group = create(:group)
+			create(:group_membership, user: user, group: group)
+
+			expect(User.has_not_joined_group(group)).to include(user_3)
+		end
+	end
+	
 	describe "#joined?" do
 		context "when the user has joined the group" do
 			it "returns true" do

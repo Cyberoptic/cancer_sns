@@ -45,10 +45,6 @@ $(function(){
     $("#js-file-count").text($(this)[0].files.length);
   });
 
-  $( ".select2" ).select2({
-    placeholder: 'タグを選択（任意）'
-  });
-
   $(".dropzone").dropzone({ 
     url: "/chat_rooms/" + $('.dropzone').data('chat-room-id') + "/messages",
     headers: {
@@ -64,8 +60,14 @@ $(function(){
   );
 
   $(window).resize(function () {
-    $( ".select2" ).select2({
+    $( ".select2-posts" ).select2({
       placeholder: 'タグを選択（任意）'
+    });
+
+    $( ".select2-invitations" ).select2({
+      placeholder: '招待するユーザーを選択',
+      templateResult: addUserPic,
+      templateSelection: addUserPic
     });
   });
 });
@@ -86,3 +88,18 @@ function selectPhoto(e) {
     $(e).parent().parent().find("label i").addClass("is-active")
   }
 }
+
+function addUserPic (opt) {
+  if (!opt.id) {
+    return opt.text;
+  }               
+  var optimage = $(opt.element).data('image'); 
+  if(!optimage){
+    return opt.text;
+  } else {
+    var $opt = $(
+    '<span class="userName"><img src="' + optimage + '" class="user-image-xs" /> ' + $(opt.element).text() + '</span>'
+    );
+    return $opt;
+  }
+};

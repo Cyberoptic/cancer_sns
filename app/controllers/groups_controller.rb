@@ -10,8 +10,9 @@ class GroupsController < ApplicationController
 
   def show
     @group = find_group
-    @posts = @group.group_posts.includes(:user, :post_images).paginate(page: params[:page], per_page: 5).decorate
+    @posts = @group.group_posts.includes(:user, :post_images, :post_taggings, :post_tags).paginate(page: params[:page], per_page: 5).decorate
     @post = GroupPost.new
+    @post.post_taggings.build
     @post_images = @post.post_images.build
 
     @current_user_group_membership = current_user.group_memberships.find_by(group_id: @group.id)

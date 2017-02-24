@@ -13,6 +13,11 @@ ja:
         user: ユーザー
         post_images: 画像
         post_taggings: タグ
+      group_post:
+        content: 内容
+        user: ユーザー
+        post_images: 画像
+        post_taggings: タグ
       user:
         name: 名前
         nickname: ニックネーム
@@ -65,6 +70,8 @@ ja:
           accessible_to_everyone: 誰でも参加可能
           needs_owner_permission: オーナーの承認必要
       group_membership:
+        user: ユーザー
+        group: グループ
         roles:
           member: 一般メンバー
           moderator: 管理者

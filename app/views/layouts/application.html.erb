@@ -19,8 +19,14 @@
   <body data-enhance="false">
     <script type="text/javascript">
     $(function(){
-      $( ".select2" ).select2({
-        placeholder: 'タグを選択（任意）'        
+      $( ".select2-posts" ).select2({
+        placeholder: 'タグを選択（任意）'      
+      });
+
+      $( ".select2-invitations" ).select2({
+        placeholder: '招待するユーザーを選択',
+        templateResult: addUserPic,
+        templateSelection: addUserPic       
       });
     })
     </script>

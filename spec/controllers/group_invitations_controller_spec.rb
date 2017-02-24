@@ -16,6 +16,7 @@ RSpec.describe GroupInvitationsController, type: :controller do
         group = create(:group)
         create(:group_membership, group: group, user: user) 
 
+        sign_in user
         get :index, group_id: group.id
 
         expect(response).to render_template :index
@@ -27,6 +28,7 @@ RSpec.describe GroupInvitationsController, type: :controller do
         user = create(:user)
         group = create(:group)
 
+        sign_in user
         get :index, group_id: group.id
 
         expect(response).to redirect_to group_path(group)
@@ -42,10 +44,12 @@ RSpec.describe GroupInvitationsController, type: :controller do
         group = create(:group)
         create(:group_membership, group: group, user: user) 
 
+        sign_in user
+
         expect {
           post :create, params: { group_id: group.id, group_membership: {user_id: user_2.id} }
         }.to change(GroupMembership, :count).by(1)
-        expect(GroupMembership.last.status).to eq(:invited)
+        expect(GroupMembership.last.status).to eq("invited")
       end
     end
 
@@ -54,6 +58,8 @@ RSpec.describe GroupInvitationsController, type: :controller do
         user = create(:user)
         user_2 = create(:user)
         group = create(:group)
+
+        sign_in user
 
         expect {
           post :create, params: { group_id: group.id, group_membership: {user_id: user_2.id} }

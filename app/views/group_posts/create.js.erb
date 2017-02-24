@@ -1,7 +1,12 @@
-$('#new_post').trigger('reset');
+$('#new_group_post').trigger('reset');
 $('#js-file-count').text("0")
 
 $("<%= escape_javascript render partial: 'posts/post', locals: { post: @post.decorate }%>").prependTo('#posts').hide().fadeIn('slow');
 
 $('#posts').foundation(); 
 app.rebind();
+
+$('.js-gallery-img').Am2_SimpleSlider();
+
+
+$(".select2").val('').trigger('change')

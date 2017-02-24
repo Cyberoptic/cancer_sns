@@ -6,4 +6,8 @@ module ApplicationHelper
       yield(tag, classes[index.round])
     end
   end
+
+  def invitation_list_builder(user)
+    (image_tag user.photo).html_safe
+  end
 end
