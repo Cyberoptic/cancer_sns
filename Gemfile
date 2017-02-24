@@ -21,7 +21,7 @@ gem "rack-timeout"
 gem 'inline_svg'
 gem 'rails_autolink'
 gem 'slack-api'
-gem 'chosen-rails'
+gem "select2-rails"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

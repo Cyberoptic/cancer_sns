@@ -3,8 +3,9 @@
 //= require jquery.remotipart
 //= require prevent_mobile_init
 //= require jquery.mobile
+//= require select2
+//= require select2_locale_ja
 //= require foundation
-//= require chosen-jquery
 //= require cable
 //= require react
 //= require react_ujs
@@ -45,10 +46,8 @@ $(function(){
     $("#js-file-count").text($(this)[0].files.length);
   });
 
-  $('.chosen-select').chosen({
-    allow_single_deselect: true,
-    no_results_text: '見つかりませんでした。',
-    placeholder_text_multiple: 'タグを選択（任意）'   
+  $( ".select2" ).select2({
+    placeholder: 'タグを選択（任意）'
   });
 
   $(".dropzone").dropzone({ 

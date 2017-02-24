@@ -10,7 +10,7 @@
       = simple_form_for @post, remote: true do |f|        
         = f.input :content, label: false, placeholder: 'ここに投稿内容を入力', input_html: {rows: 2, class: 'post-textarea' } 
         = f.simple_fields_for :post_taggings do |tagging|
-          = tagging.input :post_tag_id, collection: PostTag.all.map{ |tag| ["#" + tag.name, tag.id]}, include_blank: true, label: false, input_html: {class: 'chosen-select', multiple: true}
+          = tagging.input :post_tag_id, collection: PostTag.all.map{ |tag| [tag.name, tag.id]}, label: false, input_html: {class: 'select2', multiple: true}
         = f.simple_fields_for :post_images do |p|
           = p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]", class: 'file-input post-images-file-field', id: 'post_images_upload' }
         label.file-upload-label.show-for-medium for="post_images_upload" 

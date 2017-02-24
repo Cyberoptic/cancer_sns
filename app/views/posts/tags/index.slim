@@ -5,9 +5,10 @@
   .columns.large-6.medium-12.small-12
     #js-flash-messages
       = render 'shared/flash_messages'    
+    
     .callout.primary
       h6.text-center.mgbt-20
-        = "#" + params[:tag]
+        | #{params[:tag]}に関する投稿
     #posts
       = render partial: 'posts/post', collection: @posts
     #post-pagination
