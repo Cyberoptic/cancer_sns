@@ -28,8 +28,8 @@
                   | #{time_ago_in_words(request.created_at)}前
 
                      
-              = link_to "<i class='fi-check'></i> 許可".html_safe, user_request_acceptances_path(request.friendable.id), class: 'button small mgrt-5'
-              = link_to '<i class="fi-x-circle"></i> 削除'.html_safe, user_request_declinals_path(request.friendable.id), class: 'button small gray'
+              = link_to "<i class='fi-check'></i> 許可".html_safe, user_request_acceptances_path(request.friendable.id), method: :post, class: 'button small mgrt-5'
+              = link_to '<i class="fi-x-circle"></i> 削除'.html_safe, user_request_declinals_path(request.friendable.id), method: :post, class: 'button small gray'
       #sent_requests.tabs-panel
         h6.bold
           | 申請済み
