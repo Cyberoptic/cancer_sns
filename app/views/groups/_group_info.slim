@@ -51,19 +51,19 @@
       = @group.description
      
   .divider
-  p
-    span.faded
-      | メンバーを追加
-    span.float-right
-      small
-        = link_to '招待済み', group_group_invitations_path(@group), class: 'faded underlined'
-  .mgbt-10
   - if current_user.joined?(@group)
-    = simple_form_for @group.group_memberships.build, url: group_group_invitations_path(@group), method: :post, remote: true do |f|
-      = f.input :user_id, collection: current_user.friends.has_not_joined_group(@group).map{|user| [user.decorate.display_name, user.id, data: {image: user.photo.url}] }, label: false, input_html: {class: "select2-invitations"}
-      = f.submit "招待する", class: 'button small expanded'
+    p
+      span.faded
+        | メンバーを追加
+      span.float-right
+        small
+          = link_to '招待済み', group_group_invitations_path(@group), class: 'faded underlined'
+    .mgbt-10
+      = simple_form_for @group.group_memberships.build, url: group_group_invitations_path(@group), method: :post, remote: true do |f|
+        = f.input :user_id, collection: current_user.friends.has_not_joined_group(@group).map{|user| [user.decorate.display_name, user.id, data: {image: user.photo.url}] }, label: false, input_html: {class: "select2-invitations"}
+        = f.submit "招待する", class: 'button small expanded'
 
-  .divider
+    .divider
 
   - if @current_user_group_membership.try(:moderator?) && @group.pending_group_memberships.count > 0
     p
