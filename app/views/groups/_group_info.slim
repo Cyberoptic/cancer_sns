@@ -47,8 +47,11 @@
       = @group.description
      
   .divider
-  h7.faded
-    | メンバーを追加
+  p
+    span.faded
+      | メンバーを追加
+    span.float-right
+      = link_to '招待済みを見る', group_group_invitations_path(@group), class: 'faded underlined'
   .mgbt-10
   - if current_user.joined?(@group)
     = simple_form_for @group.group_memberships.build, url: group_group_invitations_path(@group), method: :post, remote: true do |f|

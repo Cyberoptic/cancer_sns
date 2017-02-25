@@ -214,6 +214,10 @@ class User < ApplicationRecord
     Treatment.default + treatments.where(default: false)
   end
 
+  def has_moderator_rights_for?(group)
+    self == group.owner || group_memberships.find_by_group_id(group.id).present?
+  end
+
   private  
 
   def send_slack!

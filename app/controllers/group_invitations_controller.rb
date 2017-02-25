@@ -5,7 +5,7 @@ class GroupInvitationsController < ApplicationController
   def index
     @group = find_group
 
-    @invitations = @group.group_memberships.invited
+    @group_memberships = @group.group_memberships.invited.order(created_at: :desc).includes(:user).paginate(page: params[:page], per_page: 50)
   end
 
   def new
