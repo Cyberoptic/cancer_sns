@@ -4,21 +4,30 @@ class GroupInvitationAcceptancesController < ApplicationController
 
   def create
     @group_membership = find_group_membership
+    @group = group_membership.group
 
     respond_to do |format|
       if @group_membership.update!(status: :accepted)
-        flash[:success] = "#{@group_membership.group.name}に参加しました。"
+        flash[:success] = "#{@group.name}に参加しました。"
         format.js {}
-        format.html { redirect_to group_path(@group_membership.group) }
+        format.html { redirect_to group_path(@group) }
       else
         flash[:alert] = @group_membership.errors.full_messages[0]
         format.js {}
-        format.html { redirect_to group_path(@group_membership.group) }
+        format.html { redirect_to group_path(@group) }
       end
     end
   end
 
   private
+
+  def create_notifications
+    @group.moderators.each do |moderator|
+      Notification.create({recipient: moderator, actor: @group_membership.user, action: "#{@group.name}に参加", notifiable: @group}) unless (moderator == current_user)
+    end
+
+    Notification.create({recipient: @group.owner, actor: @group_membership.user, action: "#{@group.name}に参加", notifiable: @group}) unless (@group.owner == current_user)
+  end
 
   def find_group_membership
     @group_membership ||= GroupMembership.find(params[:group_invitation_id])

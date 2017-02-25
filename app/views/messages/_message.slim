@@ -10,7 +10,7 @@
             .message-body            
               p
                 = message.body
-  p.float-right
+  p.float-right.clearfix
     small
       | <span class="js-read-status" data-message-id="#{message.id}">#{message.unread?(message.chat_room.other_user_for(message.user)) ? "未読" : "既読"}</span> #{message.timestamp}
 
@@ -29,7 +29,7 @@
             .message-body
               p
                 = message.body
-      p.float-right
+      p.float-right.clearfix
         small
           | #{message.timestamp}
        

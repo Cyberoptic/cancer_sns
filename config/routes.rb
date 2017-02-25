@@ -23,11 +23,12 @@ Rails.application.routes.draw do
     resources :emotions, only: :index
     
     member do
-      get 'more_comments'
+      get 'more_comments'      
     end
   end
 
   get 'posts/tags/:tag', to: 'posts/tags#index', as: "tag"
+  get 'topics', to: 'posts/tags#index', as: "topics"
 
   resources :comments, only: [:update, :destroy] do
     post :visibility_toggles, to: "comments/visibility_toggles#create" 

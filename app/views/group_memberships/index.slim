@@ -15,7 +15,7 @@
             | 名前
           th
             | 参加日
-          - if @current_user_membership.try(:moderator?)
+          - if current_user.has_moderator_rights_for?(@group)
             th
             th
 

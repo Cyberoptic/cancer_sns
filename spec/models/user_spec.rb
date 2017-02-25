@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 	describe "#has_moderator_rights_for?" do
-		context "user is the owner of the group" do
+		context "when user is the owner of the group" do
 			it "returns true" do
 				user = create(:user)
 				group = create(:group, owner: user)
@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
 			end
 		end
 
-		context "user is a moderator of the group" do
+		context "when user is a moderator of the group" do
 			it "returns true" do
 				user = create(:user)
 				group = create(:group)
@@ -21,7 +21,17 @@ RSpec.describe User, type: :model do
 			end
 		end
 
-		context "user is neither a moderator or owner of the group" do
+		context "when user is a member but not a moderator" do
+			it "returns false" do
+				user = create(:user)
+				group = create(:group)
+				create(:group_membership, group: group, user: user, role: :member)
+
+				expect(user.has_moderator_rights_for?(group)).to eq(false)
+			end
+		end
+
+		context "when user is neither a moderator or owner of the group" do
 			it "returns false" do
 				user = create(:user)
 				group = create(:group)

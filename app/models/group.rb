@@ -14,6 +14,7 @@ class Group < ApplicationRecord
   has_many :group_memberships, dependent: :destroy  
   has_many :accepted_group_memberships, -> {where(status: :accepted)}, class_name: "GroupMembership"
   has_many :pending_group_memberships, -> {where(status: :pending)}, class_name: "GroupMembership"
+  has_many :moderators, -> {where(group_memberships: { role: :moderator })}, through: :group_memberships, source: :user
 
   scope :order_by_group_membership_counts, ->{ order(group_memberships_count: :desc) }
   scope :order_by_created_at, ->{ order(created_at: :desc) }

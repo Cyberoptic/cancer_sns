@@ -13,10 +13,11 @@ class GroupMembershipsController < ApplicationController
     @group = find_group
     status = @group.accessible_to_everyone? ? "accepted" : "pending"
 
-    group_membership = current_user.group_memberships.create(group_id: params[:group_id], status: status)    
+    @group_membership = current_user.group_memberships.create(group_id: params[:group_id], status: status)    
 
     respond_to do |format|
-      if group_membership.accepted?
+      if @group_membership.accepted?
+        create_notifications
         flash[:success] = "#{@group.name}に参加しました。"
         format.js {}
         format.html { redirect_to group_path(@group) }
@@ -57,6 +58,14 @@ class GroupMembershipsController < ApplicationController
 
 
   private
+
+  def create_notifications
+    @group.moderators.each do |moderator|
+      Notification.create({recipient: moderator, actor: @group_membership.user, action: "#{@group.name}に参加", notifiable: @group}) unless (moderator == current_user)
+    end
+
+    Notification.create({recipient: @group.owner, actor: @group_membership.user, action: "#{@group.name}に参加", notifiable: @group}) unless (@group.owner == current_user)
+  end
 
   def create_notification
     return unless group_membership_params[:status] == "accepted"

@@ -3,21 +3,37 @@
     = render partial: 'shared/sidebar'
 
   .columns.large-6.medium-12.small-12
-    #js-flash-messages
+    .js-flash-messages
       = render 'shared/flash_messages'    
     
-    .callout.primary
-      h6.text-center.mgbt-20
-        | #{params[:tag]}に関する投稿
-    #posts
-      = render partial: 'posts/post', collection: @posts
-    #post-pagination
-      = will_paginate @posts
-    .spinner
-      .sk-cube1.sk-cube
-      .sk-cube2.sk-cube
-      .sk-cube4.sk-cube
-      .sk-cube3.sk-cube
+    
+    - if params[:tag]
+      .callout.primary
+        h6.text-center.mgbt-20
+          | #{params[:tag]}に関する投稿
+    - else
+      .callout
+        h6.faded
+          | トピック
+        #tag_cloud
+          - tag_cloud PostTag.counts, %w{s m l} do |tag, css_class|
+            = link_to tag.name + " ", tag_path(tag.name), class: css_class
+       
+
+    - if @posts
+      - if params[:tag].nil?
+        h6.faded
+          | 最新の投稿
+      #posts
+        = render partial: 'posts/post', collection: @posts
+      #post-pagination
+        = will_paginate @posts
+      .spinner
+        .sk-cube1.sk-cube
+        .sk-cube2.sk-cube
+        .sk-cube4.sk-cube
+        .sk-cube3.sk-cube
+
   .columns.large-3.show-for-large data-sticky-container="true"
     = render partial: 'layouts/right_sidebar'
   

@@ -102,13 +102,15 @@ div data-sticky-container="" style="z-index: 1"
                 li.menu-text
                   = link_to 'ホーム', root_path
                 li.menu-text
-                  = link_to '友達申請', requests_path
+                  = link_to "メッセージ（#{unread_messages.count}）", chat_rooms_path  
                 li.menu-text
-                  = link_to "メッセージ（#{unread_messages.count}）", chat_rooms_path
+                  = link_to '友達申請', requests_path                
                 li.menu-text
                   = link_to 'グループの作成', new_group_path
                 li.menu-text
                   = link_to 'マイグループ', groups_path
+                li.menu-text
+                  = link_to 'トピック', topics_path
                 li.menu-text
                   = link_to '詳細検索', users_path
                 li.nav-menu-spacer

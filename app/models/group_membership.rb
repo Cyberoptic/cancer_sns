@@ -13,4 +13,5 @@ class GroupMembership < ApplicationRecord
   scope :accepted, ->{where(status: :accepted)}
   scope :pending, ->{where(status: :pending)}
   scope :invited, ->{where(status: :invited)}
+  scope :moderating, -> { where(role: :moderator) }
 end

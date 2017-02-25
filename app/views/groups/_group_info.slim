@@ -27,6 +27,10 @@
         = link_to "退会する", group_group_unmemberships_path(@group.id), method: :post, class: 'button gray tiny float-right mgtp-30', disabled: true, style: 'margin-bottom: 0px', data: {confirm: '本当に退会してよろしいでしょうか？'}
       - elsif current_user.has_pending_membership_for(@group)
         = link_to '申請を取り消す', group_group_unmemberships_path(@group.id), method: :post, class: 'button gray tiny float-right mgtp-30', disabled: true, style: 'margin-bottom: 0px', data: {confirm: '本当に申請を取り消ししてよろしいでしょうか？'}
+      - elsif invitation = current_user.group_invitations.find_by(group: @group)        
+        .mgtp-30
+          = link_to '<i class="fa fa-plus-circle" aria-hidden="true"></i> 参加'.html_safe, group_invitation_acceptances_path(invitation.id), method: :post, class: 'float-right  secondary-color', style: 'margin-bottom: 0px'
+          = link_to '<i class="fa fa-minus-circle" aria-hidden="true"></i> 拒否'.html_safe, group_group_unmemberships_path(@group.id), method: :post, class: 'float-right  secondary-color', style: 'margin-bottom: 0px; margin-right: 5px', data: {confirm: '本当にグループ招待を拒否してよろしいでしょうか？'}
       - else
         = link_to '<i class="fa fa-plus-circle" aria-hidden="true"></i> 参加する'.html_safe, group_group_memberships_path(@group.id), method: :post, class: 'button tiny float-right mgtp-30', style: 'margin-bottom: 0px'
         
@@ -51,7 +55,8 @@
     span.faded
       | メンバーを追加
     span.float-right
-      = link_to '招待済み', group_group_invitations_path(@group), class: 'faded underlined'
+      small
+        = link_to '招待済み', group_group_invitations_path(@group), class: 'faded underlined'
   .mgbt-10
   - if current_user.joined?(@group)
     = simple_form_for @group.group_memberships.build, url: group_group_invitations_path(@group), method: :post, remote: true do |f|
@@ -72,7 +77,8 @@
     span.faded
       | メンバー（#{@group.accepted_group_memberships.count}人）
     span.float-right
-      = link_to '全員見る', group_group_memberships_path(@group), class: 'faded underlined'
+      small
+        = link_to '全員見る', group_group_memberships_path(@group), class: 'faded underlined'
 
   .group-membership-list
     - @group.accepted_group_memberships.includes(:user).take(24).each do |group_membership|

@@ -3,10 +3,12 @@
     = render partial: 'shared/sidebar'
 
   .columns.small-12.hide-for-medium data-sticky-container="true"
+    .js-flash-messages.show-for-small-only
+      = render 'shared/flash_messages'
     = render partial: 'groups/group_info'
        
   .columns.large-6.medium-8.small-12
-    #js-flash-messages
+    .js-flash-messages.show-for-medium
       = render 'shared/flash_messages'
 
     - if current_user.joined?(@group)
@@ -47,6 +49,6 @@
       .sk-cube3.sk-cube
  
   .columns.large-3.medium-4.show-for-medium data-sticky-container="true"
-    .sticky data-sticky-on="medium" data-sticky="true" data-margin-top="6.3" data-top-anchor="56" data-btm-anchor="footer-anchor"
+    .sticky data-sticky-on="medium" data-sticky="true" data-margin-top="6.3" data-top-anchor="56" data-btm-anchor="footer-anchor"      
       = render partial: 'groups/group_info'
         

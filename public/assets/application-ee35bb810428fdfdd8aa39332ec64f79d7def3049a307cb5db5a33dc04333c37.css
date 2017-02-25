@@ -6492,513 +6492,743 @@ a.thumbnail image {
   animation-delay: 700ms !important;
 }
 
-/* @group Base */
-/* line 8, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container {
-  position: relative;
+/* line 1, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container {
+  box-sizing: border-box;
   display: inline-block;
+  margin: 0;
+  position: relative;
   vertical-align: middle;
-  font-size: 13px;
 }
-/* line 15, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container .chosen-drop {
-  position: absolute;
-  top: 100%;
-  left: -9999px;
-  z-index: 1010;
-  width: 100%;
+
+/* line 7, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container .select2-selection--single {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  height: 28px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* line 14, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container .select2-selection--single .select2-selection__rendered {
+  display: block;
+  padding-left: 8px;
+  padding-right: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* line 21, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container .select2-selection--single .select2-selection__clear {
+  position: relative;
+}
+
+/* line 23, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container[dir="rtl"] .select2-selection--single .select2-selection__rendered {
+  padding-right: 8px;
+  padding-left: 20px;
+}
+
+/* line 26, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container .select2-selection--multiple {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  min-height: 32px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* line 33, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container .select2-selection--multiple .select2-selection__rendered {
+  display: inline-block;
+  overflow: hidden;
+  padding-left: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* line 39, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container .select2-search--inline {
+  float: left;
+}
+
+/* line 41, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container .select2-search--inline .select2-search__field {
+  box-sizing: border-box;
+  border: none;
+  font-size: 100%;
+  margin-top: 5px;
+  padding: 0;
+}
+
+/* line 47, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container .select2-search--inline .select2-search__field::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* line 50, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-dropdown {
+  background-color: white;
   border: 1px solid #aaa;
-  border-top: 0;
-  background: #fff;
-  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  left: -100000px;
+  width: 100%;
+  z-index: 1051;
 }
-/* line 26, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container.chosen-with-drop .chosen-drop {
+
+/* line 61, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-results {
+  display: block;
+}
+
+/* line 64, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-results__options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 69, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-results__option {
+  padding: 6px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* line 73, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-results__option[aria-selected] {
+  cursor: pointer;
+}
+
+/* line 76, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--open .select2-dropdown {
   left: 0;
 }
-/* line 29, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container a {
-  cursor: pointer;
-}
-/* line 34, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container .search-choice .group-name, .chosen-container .chosen-single .group-name {
-  margin-right: 4px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-weight: normal;
-  color: #999999;
-}
-/* line 41, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container .search-choice .group-name:after, .chosen-container .chosen-single .group-name:after {
-  content: ":";
-  padding-left: 2px;
-  vertical-align: top;
-}
 
-/* @end */
-/* @group Single Chosen */
-/* line 53, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single .chosen-single {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  padding: 0 0 0 8px;
-  height: 25px;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-  background-color: #fff;
-  background-clip: padding-box;
-  box-shadow: 0 0 3px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);
-  color: #444;
-  text-decoration: none;
-  white-space: nowrap;
-  line-height: 24px;
-}
-/* line 69, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single .chosen-default {
-  color: #999;
-}
-/* line 72, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single .chosen-single span {
-  display: block;
-  overflow: hidden;
-  margin-right: 26px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-/* line 79, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single .chosen-single-with-deselect span {
-  margin-right: 38px;
-}
-/* line 82, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single .chosen-single abbr {
-  position: absolute;
-  top: 6px;
-  right: 26px;
-  display: block;
-  width: 12px;
-  height: 12px;
-  background: url(/assets/chosen-sprite-8aa69ee6b2376505578d758bfbbc52aec88fa5e591f1a7cabd8adfa80a7b613a.png) -42px 1px no-repeat;
-  font-size: 1px;
-}
-/* line 91, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single .chosen-single abbr:hover {
-  background-position: -42px -10px;
-}
-/* line 95, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single.chosen-disabled .chosen-single abbr:hover {
-  background-position: -42px -10px;
-}
-/* line 98, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single .chosen-single div {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: block;
-  width: 18px;
-  height: 100%;
-}
-/* line 105, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single .chosen-single div b {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: url(/assets/chosen-sprite-8aa69ee6b2376505578d758bfbbc52aec88fa5e591f1a7cabd8adfa80a7b613a.png) no-repeat 0px 2px;
-}
-/* line 112, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single .chosen-search {
-  position: relative;
-  z-index: 1010;
-  margin: 0;
-  padding: 3px 4px;
-  white-space: nowrap;
-}
-/* line 118, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single .chosen-search input[type="text"] {
-  margin: 1px 0;
-  padding: 4px 20px 4px 5px;
-  width: 100%;
-  height: auto;
-  outline: 0;
-  border: 1px solid #aaa;
-  background: #fff url(/assets/chosen-sprite-8aa69ee6b2376505578d758bfbbc52aec88fa5e591f1a7cabd8adfa80a7b613a.png) no-repeat 100% -20px;
-  font-size: 1em;
-  font-family: sans-serif;
-  line-height: normal;
-  border-radius: 0;
-}
-/* line 132, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single .chosen-drop {
-  margin-top: -1px;
-  border-radius: 0 0 4px 4px;
-  background-clip: padding-box;
-}
-/* line 137, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-single.chosen-container-single-nosearch .chosen-search {
-  position: absolute;
-  left: -9999px;
-}
-
-/* @end */
-/* @group Results */
-/* line 145, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container .chosen-results {
-  color: #444;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  margin: 0 4px 4px 0;
-  padding: 0 0 0 4px;
-  max-height: 240px;
-  -webkit-overflow-scrolling: touch;
-}
-/* line 154, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container .chosen-results li {
-  display: none;
-  margin: 0;
-  padding: 5px 6px;
-  list-style: none;
-  line-height: 15px;
-  word-wrap: break-word;
-  -webkit-touch-callout: none;
-}
-/* line 162, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container .chosen-results li.active-result {
-  display: list-item;
-  cursor: pointer;
-}
-/* line 166, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container .chosen-results li.disabled-result {
-  display: list-item;
-  color: #ccc;
-  cursor: default;
-}
-/* line 171, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container .chosen-results li.highlighted {
-  background-color: #3875d7;
-  color: #fff;
-}
-/* line 175, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container .chosen-results li.no-results {
-  color: #777;
-  display: list-item;
-  background: #f4f4f4;
-}
-/* line 180, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container .chosen-results li.group-result {
-  display: list-item;
-  font-weight: bold;
-  cursor: default;
-}
-/* line 185, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container .chosen-results li.group-option {
-  padding-left: 15px;
-}
-/* line 188, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container .chosen-results li em {
-  font-style: normal;
-  text-decoration: underline;
-}
-
-/* @end */
-/* @group Multi Chosen */
-/* line 198, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-choices {
-  position: relative;
-  overflow: hidden;
-  margin: 0;
-  padding: 0 5px;
-  width: 100%;
-  height: auto;
-  border: 1px solid #aaa;
-  background-color: #fff;
-  cursor: text;
-}
-/* line 209, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-choices li {
-  float: left;
-  list-style: none;
-}
-/* line 212, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-choices li.search-field {
-  margin: 0;
-  padding: 0;
-  white-space: nowrap;
-}
-/* line 216, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
-  margin: 1px 0;
-  padding: 0;
-  height: 25px;
-  outline: 0;
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none;
-  color: #999;
-  font-size: 100%;
-  font-family: sans-serif;
-  line-height: normal;
-  border-radius: 0;
-}
-/* line 231, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-choices li.search-choice {
-  position: relative;
-  margin: 3px 5px 3px 0;
-  padding: 3px 20px 3px 5px;
-  border: 1px solid #aaa;
-  max-width: 100%;
-  border-radius: 3px;
-  background-color: #eeeeee;
-  background-size: 100% 19px;
-  background-repeat: repeat-x;
-  background-clip: padding-box;
-  box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0, 0, 0, 0.05);
-  color: #333;
-  line-height: 13px;
-  cursor: default;
-}
-/* line 246, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-choices li.search-choice span {
-  word-wrap: break-word;
-}
-/* line 249, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
-  position: absolute;
-  top: 4px;
-  right: 3px;
-  display: block;
-  width: 12px;
-  height: 12px;
-  background: url(/assets/chosen-sprite-8aa69ee6b2376505578d758bfbbc52aec88fa5e591f1a7cabd8adfa80a7b613a.png) -42px 1px no-repeat;
-  font-size: 1px;
-}
-/* line 258, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-choices li.search-choice .search-choice-close:hover {
-  background-position: -42px -10px;
-}
-/* line 263, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-choices li.search-choice-disabled {
-  padding-right: 5px;
-  border: 1px solid #ccc;
-  background-color: #e4e4e4;
-  color: #666;
-}
-/* line 269, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-choices li.search-choice-focus {
-  background: #d4d4d4;
-}
-/* line 271, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-choices li.search-choice-focus .search-choice-close {
-  background-position: -42px -10px;
-}
-/* line 276, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-results {
-  margin: 0;
-  padding: 0;
-}
-/* line 280, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-multi .chosen-drop .result-selected {
-  display: list-item;
-  color: #ccc;
-  cursor: default;
-}
-
-/* @end */
-/* @group Active  */
-/* line 290, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-active .chosen-single {
-  border: 1px solid #5897fb;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
-/* line 295, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-active.chosen-with-drop .chosen-single {
-  border: 1px solid #aaa;
-  -moz-border-radius-bottomright: 0;
-  border-bottom-right-radius: 0;
-  -moz-border-radius-bottomleft: 0;
+/* line 79, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--open .select2-dropdown--above {
+  border-bottom: none;
   border-bottom-left-radius: 0;
-  box-shadow: 0 1px 0 #fff inset;
-}
-/* line 303, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-active.chosen-with-drop .chosen-single div {
-  border-left: none;
-  background: transparent;
-}
-/* line 306, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-active.chosen-with-drop .chosen-single div b {
-  background-position: -18px 2px;
-}
-/* line 311, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-active .chosen-choices {
-  border: 1px solid #5897fb;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
-/* line 314, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-container-active .chosen-choices li.search-field input[type="text"] {
-  color: #222 !important;
+  border-bottom-right-radius: 0;
 }
 
-/* @end */
-/* @group Disabled Support */
-/* line 322, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-disabled {
-  opacity: 0.5 !important;
-  cursor: default;
-}
-/* line 325, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-disabled .chosen-single {
-  cursor: default;
-}
-/* line 328, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-disabled .chosen-choices .search-choice .search-choice-close {
-  cursor: default;
+/* line 84, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--open .select2-dropdown--below {
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
-/* @end */
-/* @group Right to Left */
-/* line 335, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl {
-  text-align: right;
-}
-/* line 337, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl .chosen-single {
-  overflow: visible;
-  padding: 0 8px 0 0;
-}
-/* line 341, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl .chosen-single span {
-  margin-right: 0;
-  margin-left: 26px;
-  direction: rtl;
-}
-/* line 346, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl .chosen-single-with-deselect span {
-  margin-left: 38px;
-}
-/* line 349, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl .chosen-single div {
-  right: auto;
-  left: 3px;
-}
-/* line 353, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl .chosen-single abbr {
-  right: auto;
-  left: 26px;
-}
-/* line 357, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl .chosen-choices li {
-  float: right;
-}
-/* line 359, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl .chosen-choices li.search-field input[type="text"] {
-  direction: rtl;
-}
-/* line 362, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl .chosen-choices li.search-choice {
-  margin: 3px 5px 3px 0;
-  padding: 3px 5px 3px 19px;
-}
-/* line 365, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl .chosen-choices li.search-choice .search-choice-close {
-  right: auto;
-  left: 4px;
-}
-/* line 371, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl.chosen-container-single-nosearch .chosen-search,
-.chosen-rtl .chosen-drop {
-  left: 9999px;
-}
-/* line 375, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl.chosen-container-single .chosen-results {
-  margin: 0 0 4px 4px;
-  padding: 0 4px 0 0;
-}
-/* line 379, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl .chosen-results li.group-option {
-  padding-right: 15px;
-  padding-left: 0;
-}
-/* line 383, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl.chosen-container-active.chosen-with-drop .chosen-single div {
-  border-right: none;
-}
-/* line 386, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl .chosen-search input[type="text"] {
-  padding: 4px 5px 4px 20px;
-  background: #fff url(/assets/chosen-sprite-8aa69ee6b2376505578d758bfbbc52aec88fa5e591f1a7cabd8adfa80a7b613a.png) no-repeat -30px -20px;
-  direction: rtl;
-}
-/* line 392, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl.chosen-container-single .chosen-single div b {
-  background-position: 6px 2px;
-}
-/* line 396, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-.chosen-rtl.chosen-container-single.chosen-with-drop .chosen-single div b {
-  background-position: -12px 2px;
+/* line 89, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-search--dropdown {
+  display: block;
+  padding: 4px;
 }
 
-/* @end */
-/* @group Retina compatibility */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
-  /* line 407, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen-base.scss */
-  .chosen-rtl .chosen-search input[type="text"],
-  .chosen-container-single .chosen-single abbr,
-  .chosen-container-single .chosen-single div b,
-  .chosen-container-single .chosen-search input[type="text"],
-  .chosen-container-multi .chosen-choices .search-choice .search-choice-close,
-  .chosen-container .chosen-results-scroll-down span,
-  .chosen-container .chosen-results-scroll-up span {
-    background-image: url(/assets/chosen-sprite@2x-1e349b80fba8c23b63656925fda8dfe3c5927b5d0d8a1672143416caacf460fb.png) !important;
-    background-size: 52px 37px !important;
-    background-repeat: no-repeat !important;
-  }
-}
-/* @end */
-/* line 9, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen.scss */
-.chosen-container {
-  user-select: none;
-}
-/* line 11, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen.scss */
-.chosen-container * {
+/* line 92, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-search--dropdown .select2-search__field {
+  padding: 4px;
+  width: 100%;
   box-sizing: border-box;
 }
 
-/* line 17, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen.scss */
-.chosen-container-single .chosen-single {
-  background: linear-gradient(#fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
-}
-/* line 20, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen.scss */
-.chosen-container-single .chosen-search {
-  background: url(/assets/chosen-sprite-8aa69ee6b2376505578d758bfbbc52aec88fa5e591f1a7cabd8adfa80a7b613a.png) no-repeat 100% -20px;
+/* line 96, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-search--dropdown .select2-search__field::-webkit-search-cancel-button {
+  -webkit-appearance: none;
 }
 
-/* line 27, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen.scss */
-.chosen-container .chosen-results li.highlighted {
-  background-image: linear-gradient(#3875d7 20%, #2a62bc 90%);
+/* line 98, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-search--dropdown.select2-search--hide {
+  display: none;
 }
 
-/* line 34, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen.scss */
-.chosen-container-multi .chosen-choices {
-  background-image: linear-gradient(#eee 1%, #fff 15%);
-}
-/* line 38, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen.scss */
-.chosen-container-multi .chosen-choices li.search-choice {
-  background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%);
-}
-/* line 41, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen.scss */
-.chosen-container-multi .chosen-choices li.search-choice-disabled {
-  background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%);
+/* line 101, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-close-mask {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  min-height: 100%;
+  min-width: 100%;
+  height: auto;
+  width: auto;
+  opacity: 0;
+  z-index: 99;
+  background-color: #fff;
+  filter: alpha(opacity=0);
 }
 
-/* line 49, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen.scss */
-.chosen-container-active.chosen-with-drop .chosen-single {
-  background-image: linear-gradient(#eee 20%, #fff 80%);
+/* line 118, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-hidden-accessible {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
 }
 
-/* line 56, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/chosen-rails-1.5.2/vendor/assets/stylesheets/chosen.scss */
-.chosen-rtl .chosen-search input[type="text"] {
-  background: url(/assets/chosen-sprite-8aa69ee6b2376505578d758bfbbc52aec88fa5e591f1a7cabd8adfa80a7b613a.png) no-repeat -30px -20px;
+/* line 128, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--single {
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+/* line 132, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #444;
+  line-height: 28px;
+}
+
+/* line 135, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--single .select2-selection__clear {
+  cursor: pointer;
+  float: right;
+  font-weight: bold;
+}
+
+/* line 139, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: #999;
+}
+
+/* line 141, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 26px;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 20px;
+}
+
+/* line 147, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border-color: #888 transparent transparent transparent;
+  border-style: solid;
+  border-width: 5px 4px 0 4px;
+  height: 0;
+  left: 50%;
+  margin-left: -4px;
+  margin-top: -2px;
+  position: absolute;
+  top: 50%;
+  width: 0;
+}
+
+/* line 159, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default[dir="rtl"] .select2-selection--single .select2-selection__clear {
+  float: left;
+}
+
+/* line 162, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default[dir="rtl"] .select2-selection--single .select2-selection__arrow {
+  left: 1px;
+  right: auto;
+}
+
+/* line 166, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default.select2-container--disabled .select2-selection--single {
+  background-color: #eee;
+  cursor: default;
+}
+
+/* line 169, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default.select2-container--disabled .select2-selection--single .select2-selection__clear {
+  display: none;
+}
+
+/* line 172, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+  border-color: transparent transparent #888 transparent;
+  border-width: 0 4px 5px 4px;
+}
+
+/* line 176, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--multiple {
+  background-color: white;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  cursor: text;
+}
+
+/* line 181, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0 5px;
+  width: 100%;
+}
+
+/* line 187, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+  list-style: none;
+}
+
+/* line 189, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--multiple .select2-selection__placeholder {
+  color: #999;
+  margin-top: 5px;
+  float: left;
+}
+
+/* line 193, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--multiple .select2-selection__clear {
+  cursor: pointer;
+  float: right;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+/* line 199, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: #e4e4e4;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  cursor: default;
+  float: left;
+  margin-right: 5px;
+  margin-top: 5px;
+  padding: 0 5px;
+}
+
+/* line 208, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  color: #999;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 2px;
+}
+
+/* line 214, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+  color: #333;
+}
+
+/* line 217, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__choice, .select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__placeholder, .select2-container--default[dir="rtl"] .select2-selection--multiple .select2-search--inline {
+  float: right;
+}
+
+/* line 220, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__choice {
+  margin-left: 5px;
+  margin-right: auto;
+}
+
+/* line 224, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__choice__remove {
+  margin-left: 2px;
+  margin-right: auto;
+}
+
+/* line 228, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border: solid black 1px;
+  outline: 0;
+}
+
+/* line 232, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default.select2-container--disabled .select2-selection--multiple {
+  background-color: #eee;
+  cursor: default;
+}
+
+/* line 236, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default.select2-container--disabled .select2-selection__choice__remove {
+  display: none;
+}
+
+/* line 239, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default.select2-container--open.select2-container--above .select2-selection--single, .select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* line 243, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--single, .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* line 247, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  border: 1px solid #aaa;
+}
+
+/* line 250, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-search--inline .select2-search__field {
+  background: transparent;
+  border: none;
+  outline: 0;
+  box-shadow: none;
+  -webkit-appearance: textfield;
+}
+
+/* line 257, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results > .select2-results__options {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* line 261, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results__option[role=group] {
+  padding: 0;
+}
+
+/* line 264, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results__option[aria-disabled=true] {
+  color: #999;
+}
+
+/* line 267, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results__option[aria-selected=true] {
+  background-color: #ddd;
+}
+
+/* line 270, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results__option .select2-results__option {
+  padding-left: 1em;
+}
+
+/* line 272, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results__option .select2-results__option .select2-results__group {
+  padding-left: 0;
+}
+
+/* line 274, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results__option .select2-results__option .select2-results__option {
+  margin-left: -1em;
+  padding-left: 2em;
+}
+
+/* line 277, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option {
+  margin-left: -2em;
+  padding-left: 3em;
+}
+
+/* line 280, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option {
+  margin-left: -3em;
+  padding-left: 4em;
+}
+
+/* line 283, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option {
+  margin-left: -4em;
+  padding-left: 5em;
+}
+
+/* line 286, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option {
+  margin-left: -5em;
+  padding-left: 6em;
+}
+
+/* line 290, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: #5897fb;
+  color: white;
+}
+
+/* line 294, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--default .select2-results__group {
+  cursor: default;
+  display: block;
+  padding: 6px;
+}
+
+/* line 299, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--single {
+  background-color: #f7f7f7;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  outline: 0;
+  background-image: -webkit-linear-gradient(top, white 50%, #eeeeee 100%);
+  background-image: -o-linear-gradient(top, white 50%, #eeeeee 100%);
+  background-image: linear-gradient(to bottom, white 50%, #eeeeee 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0);
+}
+
+/* line 309, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--single:focus {
+  border: 1px solid #5897fb;
+}
+
+/* line 311, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--single .select2-selection__rendered {
+  color: #444;
+  line-height: 28px;
+}
+
+/* line 314, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--single .select2-selection__clear {
+  cursor: pointer;
+  float: right;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* line 319, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--single .select2-selection__placeholder {
+  color: #999;
+}
+
+/* line 321, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--single .select2-selection__arrow {
+  background-color: #ddd;
+  border: none;
+  border-left: 1px solid #aaa;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  height: 26px;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 20px;
+  background-image: -webkit-linear-gradient(top, #eeeeee 50%, #cccccc 100%);
+  background-image: -o-linear-gradient(top, #eeeeee 50%, #cccccc 100%);
+  background-image: linear-gradient(to bottom, #eeeeee 50%, #cccccc 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFCCCCCC', GradientType=0);
+}
+
+/* line 337, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--single .select2-selection__arrow b {
+  border-color: #888 transparent transparent transparent;
+  border-style: solid;
+  border-width: 5px 4px 0 4px;
+  height: 0;
+  left: 50%;
+  margin-left: -4px;
+  margin-top: -2px;
+  position: absolute;
+  top: 50%;
+  width: 0;
+}
+
+/* line 349, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic[dir="rtl"] .select2-selection--single .select2-selection__clear {
+  float: left;
+}
+
+/* line 352, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic[dir="rtl"] .select2-selection--single .select2-selection__arrow {
+  border: none;
+  border-right: 1px solid #aaa;
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  left: 1px;
+  right: auto;
+}
+
+/* line 361, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic.select2-container--open .select2-selection--single {
+  border: 1px solid #5897fb;
+}
+
+/* line 363, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic.select2-container--open .select2-selection--single .select2-selection__arrow {
+  background: transparent;
+  border: none;
+}
+
+/* line 366, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic.select2-container--open .select2-selection--single .select2-selection__arrow b {
+  border-color: transparent transparent #888 transparent;
+  border-width: 0 4px 5px 4px;
+}
+
+/* line 370, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic.select2-container--open.select2-container--above .select2-selection--single {
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-image: -webkit-linear-gradient(top, white 0%, #eeeeee 50%);
+  background-image: -o-linear-gradient(top, white 0%, #eeeeee 50%);
+  background-image: linear-gradient(to bottom, white 0%, #eeeeee 50%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0);
+}
+
+/* line 380, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic.select2-container--open.select2-container--below .select2-selection--single {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-image: -webkit-linear-gradient(top, #eeeeee 50%, white 100%);
+  background-image: -o-linear-gradient(top, #eeeeee 50%, white 100%);
+  background-image: linear-gradient(to bottom, #eeeeee 50%, white 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFFFFFFF', GradientType=0);
+}
+
+/* line 390, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--multiple {
+  background-color: white;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  cursor: text;
+  outline: 0;
+}
+
+/* line 396, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--multiple:focus {
+  border: 1px solid #5897fb;
+}
+
+/* line 398, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--multiple .select2-selection__rendered {
+  list-style: none;
+  margin: 0;
+  padding: 0 5px;
+}
+
+/* line 402, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--multiple .select2-selection__clear {
+  display: none;
+}
+
+/* line 404, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--multiple .select2-selection__choice {
+  background-color: #e4e4e4;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  cursor: default;
+  float: left;
+  margin-right: 5px;
+  margin-top: 5px;
+  padding: 0 5px;
+}
+
+/* line 413, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--multiple .select2-selection__choice__remove {
+  color: #888;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 2px;
+}
+
+/* line 419, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-selection--multiple .select2-selection__choice__remove:hover {
+  color: #555;
+}
+
+/* line 422, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic[dir="rtl"] .select2-selection--multiple .select2-selection__choice {
+  float: right;
+}
+
+/* line 425, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic[dir="rtl"] .select2-selection--multiple .select2-selection__choice {
+  margin-left: 5px;
+  margin-right: auto;
+}
+
+/* line 429, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic[dir="rtl"] .select2-selection--multiple .select2-selection__choice__remove {
+  margin-left: 2px;
+  margin-right: auto;
+}
+
+/* line 433, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic.select2-container--open .select2-selection--multiple {
+  border: 1px solid #5897fb;
+}
+
+/* line 436, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic.select2-container--open.select2-container--above .select2-selection--multiple {
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* line 441, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic.select2-container--open.select2-container--below .select2-selection--multiple {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* line 446, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-search--dropdown .select2-search__field {
+  border: 1px solid #aaa;
+  outline: 0;
+}
+
+/* line 450, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-search--inline .select2-search__field {
+  outline: 0;
+  box-shadow: none;
+}
+
+/* line 454, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-dropdown {
+  background-color: white;
+  border: 1px solid transparent;
+}
+
+/* line 458, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-dropdown--above {
+  border-bottom: none;
+}
+
+/* line 461, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-dropdown--below {
+  border-top: none;
+}
+
+/* line 464, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-results > .select2-results__options {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* line 468, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-results__option[role=group] {
+  padding: 0;
+}
+
+/* line 471, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-results__option[aria-disabled=true] {
+  color: grey;
+}
+
+/* line 474, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-results__option--highlighted[aria-selected] {
+  background-color: #3875d7;
+  color: white;
+}
+
+/* line 478, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic .select2-results__group {
+  cursor: default;
+  display: block;
+  padding: 6px;
+}
+
+/* line 483, /Users/takehiromouri/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/select2-rails-4.0.3/vendor/assets/stylesheets/select2.css */
+.select2-container--classic.select2-container--open .select2-dropdown {
+  border-color: #5897fb;
 }
 
 /* =======================
@@ -8179,34 +8409,6 @@ a {
   color: #3b3b3b;
 }
 
-/* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_chosen.sass */
-.chosen-container-multi .chosen-choices {
-  margin: 0;
-  border: 1px solid #e6e6e6;
-  border-radius: 4px;
-  background-color: #fefefe;
-}
-
-/* line 7, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_chosen.sass */
-.chosen-container-active .chosen-choices {
-  box-shadow: none;
-}
-
-/* line 10, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_chosen.sass */
-.chosen-container-multi .chosen-choices {
-  background-image: none;
-}
-
-/* line 13, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_chosen.sass */
-.chosen-container .chosen-drop {
-  border: 1px solid #e6e6e6;
-}
-
-/* line 16, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_chosen.sass */
-.chosen-container {
-  margin-bottom: 40px;
-}
-
 /* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_color.sass */
 .medium-gray {
   color: #7f7f7f;
@@ -9202,6 +9404,57 @@ body {
 /* line 24, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_pagination.sass */
 .user_pagination .disabled {
   color: #C0C0C0;
+}
+
+/* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_select2.sass */
+.select2-container {
+  margin-bottom: 10px !important;
+}
+
+/* line 4, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_select2.sass */
+.select2-dropdown {
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+}
+
+/* line 8, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_select2.sass */
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border: 1px solid #e6e6e6;
+}
+
+/* line 11, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_select2.sass */
+.select2-container--default .select2-selection--multiple {
+  border-radius: 4px;
+  border: 1px solid #e6e6e6;
+}
+
+/* line 15, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_select2.sass */
+.select2-container--default .select2-search--inline .select2-search__field {
+  margin-bottom: 0px;
+  margin-top: 8px;
+  height: 1rem;
+}
+
+/* line 20, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_select2.sass */
+.select2-container .select2-selection--single {
+  height: auto;
+}
+
+/* line 23, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_select2.sass */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  padding: 0.5rem;
+  line-height: inherit;
+}
+
+/* line 27, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_select2.sass */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 5px;
+}
+
+/* line 30, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_select2.sass */
+.select2-container--default .select2-selection--single {
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
 }
 
 /* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_sidebar.sass */
@@ -10214,6 +10467,7 @@ img.user-image-small {
 /* line 8, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
 .notification-menu {
   width: 400px;
+  max-width: 400px;
   height: 300px;
   overflow: auto;
   position: absolute;
@@ -10237,26 +10491,40 @@ img.user-image-small {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175) !important;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175) !important;
 }
-/* line 32, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
+/* line 33, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
 .notification-menu li:first-child {
   color: #333;
   padding: 3px 20px;
   border-bottom: 1px solid #ddd;
 }
-/* line 37, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
+/* line 38, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
 .notification-menu time {
   margin-top: 5px;
   display: block;
   color: #55AD81;
 }
+@media screen and (max-width: 39.9375em) {
+  /* line 8, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
+  .notification-menu {
+    left: -80vw !important;
+    width: auto;
+  }
+}
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+  /* line 8, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
+  .notification-menu {
+    left: -40vw !important;
+    width: auto;
+  }
+}
 
-/* line 43, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
+/* line 54, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
 .notification-menu.pull-right {
   right: 0;
   left: auto;
 }
 
-/* line 47, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
+/* line 58, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
 .notification-menu .divider {
   height: 1px;
   margin: 9px 0;
@@ -10264,7 +10532,7 @@ img.user-image-small {
   background-color: #ddd !important;
 }
 
-/* line 53, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
+/* line 64, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
 .notification-link {
   border-bottom: 1px solid #ccc !important;
   display: block;
@@ -10277,7 +10545,7 @@ img.user-image-small {
   font-weight: 300 !important;
 }
 
-/* line 64, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
+/* line 75, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
 .notification-link:hover,
 .notification-link:focus {
   color: #3b3b3b !important;
@@ -10285,7 +10553,7 @@ img.user-image-small {
   background-color: #f5f5f5 !important;
 }
 
-/* line 70, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
+/* line 81, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
 .notification-menu > .active > a,
 .notification-menu > .active > a:hover,
 .notification-menu > .active > a:focus {
@@ -10295,14 +10563,14 @@ img.user-image-small {
   outline: 0;
 }
 
-/* line 78, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
+/* line 89, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
 .notification-menu > .disabled > a,
 .notification-menu > .disabled > a:hover,
 .notification-menu > .disabled > a:focus {
   color: #777 !important;
 }
 
-/* line 83, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
+/* line 94, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
 .notification-menu > .disabled > a:hover,
 .notification-menu > .disabled > a:focus {
   text-decoration: none;
@@ -10312,7 +10580,7 @@ img.user-image-small {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 
-/* line 92, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
+/* line 103, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/notifications/notifications.scss */
 .notification-menu:before {
   border-bottom: 10px solid #ddd !important;
   right: 23px !important;
