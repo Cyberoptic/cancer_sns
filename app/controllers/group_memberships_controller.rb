@@ -78,6 +78,9 @@ class GroupMembershipsController < ApplicationController
   def ensure_moderator!
     @group_membership = find_group_membership
     group = @group_membership.group
+    
+    return if group.owner == current_user
+
     current_user_group_membership = current_user.group_memberships.find_by(group: group)
     return if current_user_group_membership.moderator?
     flash[:alert] = "グループ管理者以外編集できません。"

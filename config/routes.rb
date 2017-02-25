@@ -73,6 +73,7 @@ Rails.application.routes.draw do
   get '/discover/groups', to: 'group_discoveries#index'
 
   resources :group_memberships, only: [:update, :destroy]
+  resources :group_invitation_acceptances, only: :create
 
   resources :group_posts, only: [:show, :edit, :update, :destroy] do
     post :comments, to: "group_posts/comments#create"

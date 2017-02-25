@@ -14,10 +14,10 @@
           th
             | 名前
           th
-            | 参加日
-          - if @current_user_membership.try(:moderator?)
+            | 招待日
+          - if current_user.has_moderator_rights_for?(@group)
             th
-            th
+            
 
         - @group_memberships.each do |group_membership|
           tr data-group-membership-id="#{group_membership.id}"
@@ -30,10 +30,7 @@
               = display_date(group_membership.user.created_at)            
             - if current_user.has_moderator_rights_for?(@group)
               td
-                = link_to '取り消す', group_group_unmemberships_path(group_id: @group.id, user_id: group_membership.user.id), method: :post, remote: true, data: {confirm: "本当にグループ招待を取り消してよろしいでしょうか？"}, class: 'button small gray no-margin expanded'
-              td
-                = simple_form_for group_membership, url: group_membership_path(group_membership), method: :put, remote: true, html: {class: 'edit-group-membership-roles'} do |f|
-                  = f.input :role, collection: GroupMembership.roles.keys.map{|k| [I18n.t(:"activerecord.attributes.group_membership.roles.#{k}"), k]}, label: false, input_html: {class: 'no-margin'}
+                = link_to '取り消す', group_group_unmemberships_path(group_id: @group.id, user_id: group_membership.user.id), method: :post, remote: true, data: {confirm: "本当にグループ招待を取り消してよろしいでしょうか？"}, class: 'button small gray no-margin expanded'              
       .text-center.mgbt-20
         = will_paginate @group_memberships, class: 'user_pagination', previous_label: '&lt 前', next_label: '次 &gt'
 
