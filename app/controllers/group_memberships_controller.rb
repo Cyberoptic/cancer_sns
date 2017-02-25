@@ -16,7 +16,7 @@ class GroupMembershipsController < ApplicationController
     @group_membership = current_user.group_memberships.create(group_id: params[:group_id], status: status)    
 
     respond_to do |format|
-      if @group_membership.accepted?
+      if @group_membership.valid? && @group_membership.accepted?
         create_notifications
         flash[:success] = "#{@group.name}に参加しました。"
         format.js {}
@@ -81,7 +81,18 @@ class GroupMembershipsController < ApplicationController
   end
 
   def check_existing_membership
-    return unless current_user.group_memberships.exists?(group_id: params[:group_id])    
+    @group_membership = current_user.group_memberships.find_by(group_id: params[:group_id])
+    return unless @group_membership.present?
+    return accept_invitation! if @group_membership.invited?
+    flash[:alert] = "もうすでにメンバーか招待済みです。"
+    redirect_to group_path(params[:group_id])
+  end
+
+  def accept_invitation!
+    @group_membership.update(status: :accepted)
+    group = @group_membership.group
+    flash[:success] = "#{group.name}に参加しました。"
+    redirect_to group_path(group)
   end
 
   def ensure_moderator!

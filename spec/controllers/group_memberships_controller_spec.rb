@@ -35,6 +35,20 @@ RSpec.describe GroupMembershipsController, type: :controller do
           post :create, params: { group_id: group.id }, format: :js
         }.to change(GroupMembership, :count).by(1)
       end
+
+      context "when user is already invited" do
+        it "accepts the invitation" do
+          user = create(:user)
+          group = create(:group)
+          group_membership = create(:group_membership, group: group, user: user, status: :invited)
+
+          sign_in user
+          post :create, params: { group_id: group.id }, format: :js
+          group_membership.reload
+
+          expect(group_membership.status).to eq("accepted")
+        end
+      end
     end
 
     context "when the group is accessible by everyone" do
