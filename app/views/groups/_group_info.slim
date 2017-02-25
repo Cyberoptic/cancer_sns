@@ -4,7 +4,7 @@
       = image_tag @group.photo
       
     .columns.small-8
-      - if @current_user_group_membership.try(:moderator?)
+      - if current_user.has_moderator_rights_for?(@group)
         ul.float-right.dropdown.menu.show-for-large data-dropdown-menu="" 
           li
             a href="#"
@@ -65,7 +65,7 @@
 
     .divider
 
-  - if @current_user_group_membership.try(:moderator?) && @group.pending_group_memberships.count > 0
+  - if current_user.has_moderator_rights_for?(@group) && @group.pending_group_memberships.count > 0
     p
       span.faded
         | 参加リクエスト

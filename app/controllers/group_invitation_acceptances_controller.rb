@@ -7,7 +7,7 @@ class GroupInvitationAcceptancesController < ApplicationController
     @group = @group_membership.group
 
     respond_to do |format|
-      if @group_membership.update!(status: :accepted)
+      if @group_membership.update(status: :accepted)
         flash[:success] = "#{@group.name}に参加しました。"
         format.js {}
         format.html { redirect_to group_path(@group) }
