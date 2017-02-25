@@ -71,7 +71,9 @@ ja:
           needs_owner_permission: オーナーの承認必要
       group_membership:
         user: ユーザー
+        user_id: ユーザー
         group: グループ
+        group_id: グループ
         roles:
           member: 一般メンバー
           moderator: 管理者

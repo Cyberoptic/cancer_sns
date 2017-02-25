@@ -7,6 +7,7 @@
 
 .notification-menu {
   width: 400px;
+  max-width: 400px;
   height: 300px;
   overflow: auto;
   position: absolute;
@@ -38,6 +39,16 @@
     margin-top: 5px;
     display: block;
     color: $secondary-color;
+  }
+
+  @include breakpoint(small down) {
+    left: -80vw !important;
+    width: auto;
+  }
+
+  @include breakpoint(medium only) {
+    left: -40vw !important;
+    width: auto;
   }
 }
 .notification-menu.pull-right {
