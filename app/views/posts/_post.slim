@@ -25,7 +25,8 @@
         .timestamp
           = time_ago_in_words(post.created_at)
           | 前
-          | ・#{visibility_icon(post.visibility)} #{post.visibility}
+          - if post.is_a?(Post)
+            | ・#{visibility_icon(post.visibility)} #{post.visibility}
     .post-content
       div id="js-post-content-#{post.id}" 
         = auto_link(simple_format(post.content), html: {target: '_blank'})
