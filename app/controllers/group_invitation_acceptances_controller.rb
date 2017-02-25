@@ -4,7 +4,7 @@ class GroupInvitationAcceptancesController < ApplicationController
 
   def create
     @group_membership = find_group_membership
-    @group = group_membership.group
+    @group = @group_membership.group
 
     respond_to do |format|
       if @group_membership.update!(status: :accepted)
