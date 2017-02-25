@@ -28,6 +28,15 @@
       .callout
         p.text-center
           | グループ参加の許可待ちです。
+    - elsif invitation = current_user.group_invitations.find_by(group: @group)
+      .callout.show-for-large style="position: relative"
+        p
+          | このグループに参加して、投稿やコメントしましょう。
+          = link_to '<i class="fa fa-plus-circle" aria-hidden="true"></i> 参加する'.html_safe, group_invitation_acceptances_path(invitation.id), method: :post, class: 'button small', style: 'position: absolute; right: 10px; bottom: 9px; margin-bottom: 0px;'
+      .callout.hide-for-large
+        p.text-center
+          | このグループに参加して、投稿やコメントしましょう。
+        = link_to '<i class="fa fa-plus-circle" aria-hidden="true"></i> 参加する'.html_safe, group_invitation_acceptances_path(invitation.id), method: :post, class: 'button small expanded'
     - else
       .callout.show-for-large style="position: relative"
         p
