@@ -1,5 +1,7 @@
 .row
   .columns.small-12.medium-10.medium-offset-1
+    = render 'shared/flash_messages'
+    
     ul#friend-request-tabs.tabs data-tabs="" 
       li.tabs-title.is-active
         a aria-selected="true" href="#pending_requests" 友達申請
