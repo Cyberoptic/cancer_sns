@@ -8,12 +8,30 @@
           - chat_room = message.chat_room          
           = render partial: 'posts/recent_chats', locals: {other_user: chat_room.other_user_for(current_user), chat_room: chat_room}        
       .divider
+    - if current_user.group_invitations.count > 0
+      h7.faded
+        | グループ招待
+      ul.no-bullet.mgtp-10
+        - current_user.group_invitations.limit(5).each do |group_membership|
+          li.request-container data-invitation-id="#{group_membership.id}"
+            = link_to group_path(group_membership.group)
+              = image_tag group_membership.group.photo, class: 'user-image-small'
+            .request-content              
+              = link_to group_membership.group.name, group_path(group_membership.group), class: 'display-name'
+              .timestamp
+                | #{time_ago_in_words(group_membership.created_at)}前
+
+                   
+            = link_to "<i class='fi-check'></i>".html_safe, group_invitation_acceptances_path(group_membership.id), method: :post, class: 'button tiny mgrt-5', style: 'height: 100%'
+            = link_to '<i class="fi-x-circle"></i>'.html_safe, group_invitation_declinals_path(group_membership.id), method: :post, remote: true, class: 'button tiny gray', style: 'height: 100%'
+      
+      .divider
     - if current_user.pending_requests.count > 0
       h7.faded
         | 友達申請
       
       ul.no-bullet.mgtp-10
-        - current_user.pending_requests.each do |request|
+        - current_user.pending_requests.limit(5).each do |request|
           li.request-container
             = link_to user_path(request.friendable)
               = image_tag request.friendable.photo, class: 'user-image-small'
@@ -24,17 +42,23 @@
 
                    
             = link_to "<i class='fi-check'></i>".html_safe, user_request_acceptances_path(request.friendable.id), method: :post, class: 'button tiny mgrt-5', style: 'height: 100%'
-            = link_to '<i class="fi-x-circle"></i>'.html_safe, user_request_declinals_path(request.friendable.id), method: :post, class: 'button tiny gray', style: 'height: 100%'            
-
+            = link_to '<i class="fi-x-circle"></i>'.html_safe, user_request_declinals_path(request.friendable.id), method: :post, class: 'button tiny gray', style: 'height: 100%'
+      p.float-right
+        small
+          = link_to '全て見る', requests_path, class: 'faded underlined'            
+      .divider
     = simple_form_for UserSearch.new, url: users_path, method: :get do |f|
       .input-group
         = f.input :name_search, label: false, placeholder: '名前で検索', input_html: {class: 'input-group-field'}
         .input-group-button
           = button_tag class: 'button'            
             i.fi-magnifying-glass
-    small.float-right.underlined
-      = link_to '詳細検索へ', users_path, class: 'faded'
-    br
+
+    p.float-right
+      small.underlined
+        = link_to '詳細検索へ', users_path, class: 'faded'
+
+    .divider
 
     h7.faded
       | トピック

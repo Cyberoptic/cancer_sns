@@ -40,6 +40,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :groups_owned, class_name: 'Group', foreign_key: :owner_id
   has_many :groups_managing, -> { where(group_memberships: { role: :moderator }) }, through: :group_memberships, source: :group
+  has_many :group_invitations, -> { where(group_memberships: { status: :invited }) }, class_name: 'GroupMembership'
   has_many :groups, -> { where(group_memberships: { status: 'accepted' }) }, through: :group_memberships
   has_many :group_memberships, dependent: :destroy  
   has_many :group_posts, dependent: :destroy

@@ -28,7 +28,7 @@ class Notifications
     items = $.map data, (notification) ->
       "<li data-read-at='#{notification.read_at}'><a href='#{notification.url}' class='notification-link'><div class='row expanded'><div class='columns small-3 large-2'><img src=#{notification.actor_photo_url} class=''> </div><div class='columns small-9 large-10'><span style='white-space: pre-line'>#{notification.actor}が#{notification.notifiable.type}#{notification.action}しました。</span><br><time class='timeago' datetime='#{notification.created_at}'>#{notification.created_at}</time></div></div></a></li>"
     $("[data-behavior='notification-items']").append(items)
-    unread_count = $('*[data-read-at="null"]').length
+    unread_count = $('*[data-read-at="null"]').length / 2
     $("[data-behavior='unread-count']").text(unread_count)
     $("time.timeago").timeago()    
     if unread_count != 0

@@ -1,20 +1,15 @@
-class GroupInvitationAcceptancesController < ApplicationController
+class GroupInvitationDeclinalsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_owner_of_group_membership
 
   def create
     @group_membership = find_group_membership
+    @id = @group_membership.id
+    @group_membership.destroy
 
     respond_to do |format|
-      if @group_membership.update!(status: :accepted)
-        flash[:success] = "#{@group_membership.group.name}に参加しました。"
-        format.js {}
-        format.html { redirect_to group_path(@group_membership.group) }
-      else
-        flash[:alert] = @group_membership.errors.full_messages[0]
-        format.js {}
-        format.html { redirect_to group_path(@group_membership.group) }
-      end
+      format.js {}
+      format.html {redirect_to root_path}
     end
   end
 

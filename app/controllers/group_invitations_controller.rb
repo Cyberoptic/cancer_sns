@@ -20,8 +20,9 @@ class GroupInvitationsController < ApplicationController
     
     respond_to do |format|
       if @invitation.save
-        user = User.find(group_memberships_params[:user_id])
-        flash[:success] = "#{user.decorate.display_name}を招待しました。"
+        create_notification
+
+        flash[:success] = "#{@invitation.user.decorate.display_name}を招待しました。"
         format.js { render 'shared/flash_message' }
         format.html { redirect_to group_path(@group) }
       else
@@ -33,6 +34,12 @@ class GroupInvitationsController < ApplicationController
   end
 
   private
+
+  def create_notification
+    Notification.create(
+      {recipient: @invitation.user, actor: current_user, action: "あなたを#{@invitation.group.name}に招待", notifiable: @invitation.group}
+    )
+  end
 
   def group_memberships_params
     params.require(:group_membership).permit(:user_id)
