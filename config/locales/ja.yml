@@ -3,6 +3,7 @@ ja:
     models: 
       user: ユーザー
       news_article: ニュース
+      post_tag: タグ
     attributes:
       news_article:
         title: タイトル
