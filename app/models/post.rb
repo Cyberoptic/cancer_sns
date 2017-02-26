@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   has_many :post_tags, through: :post_taggings
   
   accepts_nested_attributes_for :post_images 
-  accepts_nested_attributes_for :post_taggings, allow_destroy: true, reject_if: proc { |attributes| attributes['post_id'].blank? }
+  accepts_nested_attributes_for :post_taggings, allow_destroy: true, reject_if: proc { |attributes| attributes['post_id'].blank? }, allow_destroy: true
 
   validates :content, :user, presence: true
 

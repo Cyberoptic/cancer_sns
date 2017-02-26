@@ -121,13 +121,14 @@ var app = {
 
   onEditPostClick: function(){
     $(".edit-post").on("click", function(){
-      var visibilityDropdown, visibility, id, content, action, name, html;
+      var visibilityDropdown, visibility, id, content, action, name, html, post_tag_ids;
       isPost = $(this).data("is-post") === true;
       visibility = $(this).data("visibility");
       id = $(this).data("id");  
       content = $(`#js-post-content-${id}`).text().trim();
       action = isPost ? `/posts/${id}` : `/group_posts/${id}`
-      name = isPost ? "post" : "group_post";      
+      name = isPost ? "post" : "group_post";
+      post_tag_ids = $(`#js-post-tags-${id}`).data("post-tag-ids");      
 
       if (isPost) {
         visibilityDropdown = `<select class="select optional" name="post[visibility]" id="post_visibility">
@@ -146,7 +147,13 @@ var app = {
                       
                       <textarea class="text required" rows="5" autofocus="true" name="${name}[content]" id="post_content">${content}</textarea>
 
-                      ${visibilityDropdown}
+                      <select class="select required select2-posts select2-hidden-accessible" multiple="" name="post[post_taggings_attributes][0][post_tag_id][]" id="js-post_tagging_attributes_${id}" tabindex="-1" aria-hidden="true">
+                        <% PostTag.all.each do |tag| %>
+                            <option value="<%= tag.id %>"><%= tag.name %></option>                          
+                        <% end %>
+                      </select>
+
+                      ${visibilityDropdown}                      
 
                       <input type="submit" name="commit" class="button secondary" value="へんこう" data-disable-with="へんこう"> 
                       <button type="button" class="button warning" data-close aria-label="Close modal">キャンセル</button>   
@@ -155,12 +162,29 @@ var app = {
                   </div>`    
 
       $("#edit-post-modal").remove();
-      $("#modal").html(html);
+      $("#modal").html(html);      
 
       $(`select option[value='${visibility}']`).attr("selected","selected");
 
       $('#edit-post-modal').foundation();
       $('#edit-post-modal').foundation('open');
+
+
+      setTimeout(function(){
+        $( ".select2-posts" ).select2({
+          placeholder: 'タグを選択（任意）'
+        });
+      }, 50)
+      $( ".select2-posts" ).select2({
+        placeholder: 'タグを選択（任意）'
+      });
+
+      for(var i = 0; i < post_tag_ids.length; i++) {
+        console.log(post_tag_ids[i])
+        $("#js-post_tagging_attributes_" + id + " option[value=" + post_tag_ids[i] + "]").prop("selected",true);
+      }
+
+   
     });
   },
 

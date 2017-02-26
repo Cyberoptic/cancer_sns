@@ -32,8 +32,8 @@ class PostsController < ApplicationController
           params[:post_images]['photo'].each do |a|
             @post.post_images.create(photo: a, user_id: current_user.id)
           end
-        end        
-        if post_params[:post_taggings_attributes] 
+        end
+        if post_params[:post_taggings_attributes]           
           post_params[:post_taggings_attributes]["0"]["post_tag_id"].each do |id|
             @post.post_taggings.create(post_tag_id: id)
           end
@@ -49,7 +49,21 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     update_attachments if params[:post_images]
-    @post.update(post_params)
+
+    respond_to do |format|
+      if @post.update(post_params)
+        @post.post_taggings.destroy_all
+        if post_params[:post_taggings_attributes] 
+          post_params[:post_taggings_attributes]["0"]["post_tag_id"].each do |id|
+            @post.post_taggings.create(post_tag_id: id)
+          end
+        end
+        format.js{}
+      else
+        flash[:alert] = @post.errors.full_messages[0]
+        format.js { render 'posts/update_error' }
+      end
+    end
   end
 
   def destroy
