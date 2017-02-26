@@ -128,7 +128,7 @@ var app = {
       content = $(`#js-post-content-${id}`).text().trim();
       action = isPost ? `/posts/${id}` : `/group_posts/${id}`
       name = isPost ? "post" : "group_post";
-      post_tag_ids = $(`#js-post-tags-${id}`).data("post-tag-ids");      
+      post_tag_ids = $("#js-post-tags-" + id).data("post-tag-ids");      
 
       if (isPost) {
         visibilityDropdown = `<select class="select optional" name="post[visibility]" id="post_visibility">
