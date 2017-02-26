@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :post_images, as: :post
   has_many :emotions, as: :post, dependent: :destroy
   has_many :post_taggings, as: :post
-  has_many :post_tags, through: :post_taggings
+  has_many :post_tags, through: :post_taggings, source: :post_tag
   
   accepts_nested_attributes_for :post_images 
   accepts_nested_attributes_for :post_taggings, allow_destroy: true, reject_if: proc { |attributes| attributes['post_id'].blank? }, allow_destroy: true
