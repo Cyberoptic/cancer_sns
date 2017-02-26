@@ -76513,13 +76513,14 @@ var app = {
 
   onEditPostClick: function () {
     $(".edit-post").on("click", function () {
-      var visibilityDropdown, visibility, id, content, action, name, html;
+      var visibilityDropdown, visibility, id, content, action, name, html, post_tag_ids;
       isPost = $(this).data("is-post") === true;
       visibility = $(this).data("visibility");
       id = $(this).data("id");
       content = $("#js-post-content-" + id).text().trim();
       action = isPost ? "/posts/" + id : "/group_posts/" + id;
       name = isPost ? "post" : "group_post";
+      post_tag_ids = $("#js-post-tags-" + id).data("post-tag-ids");
 
       if (isPost) {
         visibilityDropdown = "<select class=\"select optional\" name=\"post[visibility]\" id=\"post_visibility\">\n                                <option value=\"公開\">公開</option>\n                                <option value=\"友達にのみ公開\">友達にのみ公開</option>\n                                <option value=\"非公開\">非公開</option>\n                              </select>";
@@ -76527,7 +76528,7 @@ var app = {
         visibilityDropdown = "";
       }
 
-      html = "<div class=\"tiny reveal\" id=\"edit-post-modal\" data-reveal data-animation-in=\"fade-in\" data-animation-out=\"fade-out\">\n                    <form novalidate=\"novalidate\" class=\"simple_form edit_post\" id=\"edit_post_" + id + "\" enctype=\"multipart/form-data\" action=\"" + action + "\" accept-charset=\"UTF-8\" method=\"post\" data-remote=\"true\">\n                      <input type=\"hidden\" name=\"_method\" value=\"patch\">\n                      <input type=\"hidden\" name=\"authenticity_token\" value=\"" + window._token + "\">\n                      \n                      <textarea class=\"text required\" rows=\"5\" autofocus=\"true\" name=\"" + name + "[content]\" id=\"post_content\">" + content + "</textarea>\n\n                      " + visibilityDropdown + "\n\n                      <input type=\"submit\" name=\"commit\" class=\"button secondary\" value=\"へんこう\" data-disable-with=\"へんこう\"> \n                      <button type=\"button\" class=\"button warning\" data-close aria-label=\"Close modal\">キャンセル</button>   \n                    </form>\n                    \n                  </div>";
+      html = "<div class=\"tiny reveal\" id=\"edit-post-modal\" data-reveal data-animation-in=\"fade-in\" data-animation-out=\"fade-out\">\n                    <form novalidate=\"novalidate\" class=\"simple_form edit_post\" id=\"edit_post_" + id + "\" enctype=\"multipart/form-data\" action=\"" + action + "\" accept-charset=\"UTF-8\" method=\"post\" data-remote=\"true\">\n                      <input type=\"hidden\" name=\"_method\" value=\"patch\">\n                      <input type=\"hidden\" name=\"authenticity_token\" value=\"" + window._token + "\">\n                      \n                      <textarea class=\"text required\" rows=\"5\" autofocus=\"true\" name=\"" + name + "[content]\" id=\"post_content\">" + content + "</textarea>\n\n                      <select class=\"select required select2-posts select2-hidden-accessible\" multiple=\"\" name=\"post[post_taggings_attributes][0][post_tag_id][]\" id=\"js-post_tagging_attributes_" + id + "\" tabindex=\"-1\" aria-hidden=\"true\">\n                        \n                          <option value=\"14\">治療法</option>                     \n                        \n                          <option value=\"15\">心の悩み</option>                     \n                        \n                          <option value=\"16\">お金の悩み</option>                     \n                        \n                          <option value=\"17\">家族</option>                     \n                        \n                          <option value=\"18\">こども</option>                     \n                        \n                          <option value=\"19\">友人</option>                     \n                        \n                          <option value=\"20\">仕事</option>                     \n                        \n                          <option value=\"21\">病院</option>                     \n                        \n                          <option value=\"22\">性の悩み</option>                     \n                        \n                          <option value=\"23\">楽しいこと</option>                     \n                        \n                          <option value=\"24\">悲しいこと</option>                     \n                        \n                          <option value=\"25\">腹立たしいこと</option>                     \n                        \n                          <option value=\"26\">生活のこと</option>                     \n                        \n                      </select>\n\n                      " + visibilityDropdown + "                      \n\n                      <input type=\"submit\" name=\"commit\" class=\"button secondary\" value=\"へんこう\" data-disable-with=\"へんこう\"> \n                      <button type=\"button\" class=\"button warning\" data-close aria-label=\"Close modal\">キャンセル</button>   \n                    </form>\n                    \n                  </div>";
 
       $("#edit-post-modal").remove();
       $("#modal").html(html);
@@ -76536,6 +76537,20 @@ var app = {
 
       $('#edit-post-modal').foundation();
       $('#edit-post-modal').foundation('open');
+
+      setTimeout(function () {
+        $(".select2-posts").select2({
+          placeholder: 'タグを選択（任意）'
+        });
+      }, 50);
+      $(".select2-posts").select2({
+        placeholder: 'タグを選択（任意）'
+      });
+
+      for (var i = 0; i < post_tag_ids.length; i++) {
+        console.log(post_tag_ids[i]);
+        $("#js-post_tagging_attributes_" + id + " option[value=" + post_tag_ids[i] + "]").prop("selected", true);
+      }
     });
   },
 
@@ -78375,10 +78390,10 @@ $(function() {
     Notifications.prototype.handleSuccess = function(data) {
       var $bell, items, unread_count;
       items = $.map(data, function(notification) {
-        return "<li data-read-at='" + notification.read_at + "'><a href='" + notification.url + "' class='notification-link'><img src=" + notification.actor_photo_url + " class='notification-prof notification-img'> " + notification.actor + "が" + notification.notifiable.type + notification.action + "しました。 <br><time class='timeago' datetime='" + notification.created_at + "'>" + notification.created_at + "</time></a></li>";
+        return "<li data-read-at='" + notification.read_at + "'><a href='" + notification.url + "' class='notification-link'><div class='row expanded'><div class='columns small-3 large-2'><img src=" + notification.actor_photo_url + " class=''> </div><div class='columns small-9 large-10'><span style='white-space: pre-line'>" + notification.actor + "が" + notification.notifiable.type + notification.action + "しました。</span><br><time class='timeago' datetime='" + notification.created_at + "'>" + notification.created_at + "</time></div></div></a></li>";
       });
       $("[data-behavior='notification-items']").append(items);
-      unread_count = $('*[data-read-at="null"]').length;
+      unread_count = $('*[data-read-at="null"]').length / 2;
       $("[data-behavior='unread-count']").text(unread_count);
       $("time.timeago").timeago();
       if (unread_count !== 0) {
@@ -78725,10 +78740,6 @@ $(function(){
     $("#js-file-count").text($(this)[0].files.length);
   });
 
-  $( ".select2" ).select2({
-    placeholder: 'タグを選択（任意）'
-  });
-
   $(".dropzone").dropzone({ 
     url: "/chat_rooms/" + $('.dropzone').data('chat-room-id') + "/messages",
     headers: {
@@ -78744,8 +78755,14 @@ $(function(){
   );
 
   $(window).resize(function () {
-    $( ".select2" ).select2({
+    $( ".select2-posts" ).select2({
       placeholder: 'タグを選択（任意）'
+    });
+
+    $( ".select2-invitations" ).select2({
+      placeholder: '招待するユーザーを選択',
+      templateResult: addUserPic,
+      templateSelection: addUserPic
     });
   });
 });
@@ -78766,4 +78783,18 @@ function selectPhoto(e) {
     $(e).parent().parent().find("label i").addClass("is-active")
   }
 }
-;
+
+function addUserPic (opt) {
+  if (!opt.id) {
+    return opt.text;
+  }               
+  var optimage = $(opt.element).data('image'); 
+  if(!optimage){
+    return opt.text;
+  } else {
+    var $opt = $(
+    '<span class="userName"><img src="' + optimage + '" class="user-image-xs" /> ' + $(opt.element).text() + '</span>'
+    );
+    return $opt;
+  }
+};

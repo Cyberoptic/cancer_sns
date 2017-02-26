@@ -10,4 +10,8 @@ module ApplicationHelper
   def invitation_list_builder(user)
     (image_tag user.photo).html_safe
   end
+    
+  def _post_tags
+    PostTag.all
+  end
 end
