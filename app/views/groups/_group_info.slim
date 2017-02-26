@@ -39,13 +39,13 @@
   h7.faded
     | 説明
   div style="max-height: 200px; overflow: auto"
-    - if @group.description && @group.description.length > 150    
-      = truncate(@group.description, length: 150)
+    - if @group.description && @group.description.length > 100    
+      = simple_format truncate(@group.description, length: 100)
       = link_to '...（続きを読む）', '', class: "js-display-intro-#{@group.id}"
       javascript:
         $('.js-display-intro-#{@group.id}').on('click', function(e) {
           e.preventDefault()
-          $(this).parent().html('#{escape_javascript @group.description}')
+          $(this).parent().html('#{escape_javascript simple_format(@group.description)}')
         })
     - else
       = @group.description

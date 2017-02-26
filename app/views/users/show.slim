@@ -49,15 +49,15 @@
         hr
 
       div
-        - if @user.introduction && @user.introduction.length > 150
+        - if @user.introduction && @user.introduction.length > 100
           h6.bold
             <small>紹介文</small>
-          = truncate(@user.introduction, length: 150)
+          = truncate(@user.introduction, escape: false, length: 100)
           = link_to '...（続きを読む）', '', class: "js-display-intro-#{@user.id}"
           javascript:
             $('.js-display-intro-#{@user.id}').on('click', function(e) {
               e.preventDefault()
-              $(this).parent().html('#{escape_javascript @user.introduction}')
+              $(this).parent().html('#{escape_javascript simple_format(@user.introduction)}')
             })
         - else
           h6.bold
@@ -66,15 +66,15 @@
       hr/
       - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :problems).visible?
         div
-          - if @user.problems && @user.problems.length > 150
+          - if @user.problems && @user.problems.length > 100
             h6.bold
               <small>一番の悩み</small>
-            = truncate(@user.problems, length: 150)
+            = truncate(@user.problems, escape: false, length: 100)
             = link_to '...（続きを読む）', '', class: "js-display-problems-#{@user.id}"
             javascript:
               $('.js-display-problems-#{@user.id}').on('click', function(e) {
                 e.preventDefault()
-                $(this).parent().html('#{escape_javascript @user.problems}')
+                $(this).parent().html('#{escape_javascript simple_format(@user.problems)}')
               })
           - else
             h6.bold
