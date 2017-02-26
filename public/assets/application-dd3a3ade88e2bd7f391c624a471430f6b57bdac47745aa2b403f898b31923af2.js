@@ -76513,13 +76513,26 @@ var app = {
 
   onEditPostClick: function () {
     $(".edit-post").on("click", function () {
-      var visibilityDropdown, visibility, id, content, action, name, html;
+      var visibilityDropdown, visibility, id, content, action, name, html, post_tag_ids, post_tags, post_tag_html;
       isPost = $(this).data("is-post") === true;
       visibility = $(this).data("visibility");
       id = $(this).data("id");
       content = $("#js-post-content-" + id).text().trim();
+      post_tag_ids = $("#js-post-tags-" + id).data("post-tag-ids");
       action = isPost ? "/posts/" + id : "/group_posts/" + id;
       name = isPost ? "post" : "group_post";
+      post_tags = null;
+
+      $.ajax({
+        url: "/post_tags.json",
+        type: 'GET',
+        dataType: 'JSON',
+        context: 'this',
+        async: false,
+        success: function (data) {
+          post_tags = data;
+        }
+      });
 
       if (isPost) {
         visibilityDropdown = "<select class=\"select optional\" name=\"post[visibility]\" id=\"post_visibility\">\n                                <option value=\"公開\">公開</option>\n                                <option value=\"友達にのみ公開\">友達にのみ公開</option>\n                                <option value=\"非公開\">非公開</option>\n                              </select>";
@@ -76527,7 +76540,11 @@ var app = {
         visibilityDropdown = "";
       }
 
-      html = "<div class=\"tiny reveal\" id=\"edit-post-modal\" data-reveal data-animation-in=\"fade-in\" data-animation-out=\"fade-out\">\n                    <form novalidate=\"novalidate\" class=\"simple_form edit_post\" id=\"edit_post_" + id + "\" enctype=\"multipart/form-data\" action=\"" + action + "\" accept-charset=\"UTF-8\" method=\"post\" data-remote=\"true\">\n                      <input type=\"hidden\" name=\"_method\" value=\"patch\">\n                      <input type=\"hidden\" name=\"authenticity_token\" value=\"" + window._token + "\">\n                      \n                      <textarea class=\"text required\" rows=\"5\" autofocus=\"true\" name=\"" + name + "[content]\" id=\"post_content\">" + content + "</textarea>\n\n                      " + visibilityDropdown + "\n\n                      <input type=\"submit\" name=\"commit\" class=\"button secondary\" value=\"へんこう\" data-disable-with=\"へんこう\"> \n                      <button type=\"button\" class=\"button warning\" data-close aria-label=\"Close modal\">キャンセル</button>   \n                    </form>\n                    \n                  </div>";
+      post_tags.forEach(function (tag) {
+        post_tag_html += "<option value=" + tag.id + ">" + tag.name + "</option>";
+      });
+
+      html = "<div class=\"tiny reveal\" id=\"edit-post-modal\" data-reveal data-animation-in=\"fade-in\" data-animation-out=\"fade-out\">\n                    <form novalidate=\"novalidate\" class=\"simple_form edit_post\" id=\"edit_post_" + id + "\" enctype=\"multipart/form-data\" action=\"" + action + "\" accept-charset=\"UTF-8\" method=\"post\" data-remote=\"true\">\n                      <input type=\"hidden\" name=\"_method\" value=\"patch\">\n                      <input type=\"hidden\" name=\"authenticity_token\" value=\"" + window._token + "\">\n                      \n                      <textarea class=\"text required\" rows=\"5\" autofocus=\"true\" name=\"" + name + "[content]\" id=\"post_content\">" + content + "</textarea>\n\n                      <select class=\"select required select2-posts select2-hidden-accessible\" multiple=\"\" name=\"post[post_taggings_attributes][0][post_tag_id][]\" id=\"js-post_tagging_attributes_" + id + "\" tabindex=\"-1\" aria-hidden=\"true\">\n                        " + post_tag_html + "\n                      </select>\n\n                      " + visibilityDropdown + "                      \n\n                      <input type=\"submit\" name=\"commit\" class=\"button secondary\" value=\"へんこう\" data-disable-with=\"へんこう\"> \n                      <button type=\"button\" class=\"button warning\" data-close aria-label=\"Close modal\">キャンセル</button>   \n                    </form>\n                    \n                  </div>";
 
       $("#edit-post-modal").remove();
       $("#modal").html(html);
@@ -76536,6 +76553,19 @@ var app = {
 
       $('#edit-post-modal').foundation();
       $('#edit-post-modal').foundation('open');
+
+      setTimeout(function () {
+        $(".select2-posts").select2({
+          placeholder: 'タグを選択（任意）'
+        });
+      }, 50);
+      $(".select2-posts").select2({
+        placeholder: 'タグを選択（任意）'
+      });
+
+      for (var i = 0; i < post_tag_ids.length; i++) {
+        $("#js-post_tagging_attributes_" + id + " option[value=" + post_tag_ids[i] + "]").prop("selected", true);
+      }
     });
   },
 

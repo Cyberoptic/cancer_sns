@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   get 'posts/tags/:tag', to: 'posts/tags#index', as: "tag"
   get 'topics', to: 'posts/tags#index', as: "topics"
 
+  resources :post_tags, only: :index
+
   resources :comments, only: [:update, :destroy] do
     post :visibility_toggles, to: "comments/visibility_toggles#create" 
   end
