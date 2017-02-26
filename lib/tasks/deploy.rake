@@ -16,6 +16,9 @@ namespace :deploy do
         puts "Migrate Production Database"
         puts `heroku run rake db:migrate -a #{production_app}`
 
+        puts "Seed Production Database"
+        puts `heroku run rake db:seed -a #{production_app}`
+
         puts "Precompile Production Assets"
         puts `heroku run rake assets:precompile -a #{production_app}`
 
