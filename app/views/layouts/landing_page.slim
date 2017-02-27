@@ -36,10 +36,11 @@ html lang="en"
             button.close-button aria-label=("Dismiss alert") data-close="" type="button" 
               span aria-hidden="true"  ×
         - else
-          div class=("callout #{message_type} no-margin-bottom") data-closable=""
-            = message
-            button.close-button aria-label=("Dismiss alert") data-close="" type="button" 
-              span aria-hidden="true"  ×
+          - unless message_type == "timedout"
+            div class=("callout #{message_type} no-margin-bottom") data-closable=""
+              = message
+              button.close-button aria-label=("Dismiss alert") data-close="" type="button" 
+                span aria-hidden="true"  ×
       ul.orbit-container              
  
         button.orbit-previous

@@ -4,17 +4,20 @@
     = link_to root_path
       = image_tag 'logo.png', class: 'float-center', width: "150px"
   .title-bar-right
-    li data-behavior="notifications" style="line-height: 0"
-      ul.dropdown.menu.notifications-menu data-dropdown-menu="" data-close-on-click-inside="false" data-disable-hover="true" data-click-open="true" data-alignment="left"
-        li
-          a href="#" data-behavior="notifications-link" style="padding-right: 0.7rem"
-            i.fi-web
-            span data-behavior="unread-count"
-          ul.menu.notification-menu#notifications data-behavior="notification-items" 
-            li.nav-menu-dropdown-text
-              a
-                span#notification-header
-                  strong 通知        
+    - if user_signed_in?
+      li data-behavior="notifications" style="line-height: 0"
+        ul.dropdown.menu.notifications-menu data-dropdown-menu="" data-close-on-click-inside="false" data-disable-hover="true" data-click-open="true" data-alignment="left"
+          li
+            a href="#" data-behavior="notifications-link" style="padding-right: 0.7rem"
+              i.fi-web
+              span data-behavior="unread-count"
+            ul.menu.notification-menu#notifications data-behavior="notification-items" 
+              li.nav-menu-dropdown-text
+                a
+                  span#notification-header
+                    strong 通知
+    - else
+      = link_to '登録する', users_sign_up_top_path, class: 'button tiny no-margin'    
 div data-sticky-container="" style="z-index: 1"
   .sticky data-sticky="" data-options="marginTop:0;" style="width:100%"
     #top-bar-menu.top-bar
@@ -83,7 +86,7 @@ div data-sticky-container="" style="z-index: 1"
                     = react_component 'PendingFriendRequests', userId: current_user.id if user_signed_in?
               - else
                 li.menu-text
-                  = link_to '無料会員登録', users_sign_up_top_path
+                  = link_to '無料会員登録', users_sign_up_top_path, class: 'button warning'
                 li.menu-text
                   = link_to 'ログイン', new_user_session_path, class: 'button secondary'
 
