@@ -76,8 +76,18 @@
         td
           = f.input :introduction, input_html: {rows: 5}, label: false
 
-          = render partial: 'visibility_options', locals: {resource: resource, visibility: :introduction_visibility}
-          
+          .input.check_boxes.optional
+            .checkbox
+              - checked = resource.send(:introduction_visibility) == '公開' ? {checked: "checked"} : {}
+              label for="user_introduction_visibility_public" 
+                input.check_boxes.visibility_check_boxes id="user_introduction_visibility_public" name="user[introduction_visibility][]" type="checkbox" value="公開" *checked
+                | 公開
+            .checkbox
+              - checked = resource.send(:introduction_visibility) == '友達にのみ公開' ? {checked: "checked"} : {}
+              label for="user_introduction_visibility_friends" 
+                input.check_boxes.visibility_check_boxes id="user_introduction_visibility_friends" name="user[introduction_visibility][]" type="checkbox" value="友達にのみ公開" *checked
+                | 友達にのみ公開
+            
       tr
         th
           = f.label :problems

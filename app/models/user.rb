@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,
-  :omniauthable, :registerable, :confirmable, :secure_validatable, :omniauth_providers => [:facebook]  
+  :omniauthable, :registerable, :confirmable, :timeoutable, :secure_validatable, :omniauth_providers => [:facebook]  
   
   enum gender: {男性: 0, 女性: 1, その他: 2}
   enum partner_gender: {男性: 0, 女性: 1, その他: 2}, _prefix: :partner
