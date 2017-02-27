@@ -14,9 +14,11 @@
 			</ul>	
 		</div><!-- user-info -->
 
-		<p>
-			<%= user.introduction.truncate(150) %>
-		</p>
+		<% if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :introduction).visible? %>
+			<p>
+				<%= user.introduction.truncate(150) %>
+			</p>
+		<% end %>
 
 		<div class="user-tags">
 			<% if UserAttributesVisibilityPolicy.new(user: user, current_user: current_user, attribute: :area).visible? %>

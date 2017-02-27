@@ -21,20 +21,21 @@ hr
     = @other_user.gender_icon
 hr
 
-div
-  - if @other_user.introduction && @other_user.introduction.length > 75
-    h6.bold
-      <small>紹介文</small>
-    = truncate(@other_user.introduction, length: 75)
-    = link_to '...（続きを読む）', '', class: "js-display-intro-#{@other_user.id}"
-    javascript:
-      $('.js-display-intro-#{@other_user.id}').on('click', function(e) {
-        e.preventDefault()
-        $(this).parent().html('#{escape_javascript @other_user.introduction}')
-      })
-  - else
-    = @other_user.introduction
-hr/
+- if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :introduction).visible?
+  div
+    - if @other_user.introduction && @other_user.introduction.length > 75
+      h6.bold
+        <small>紹介文</small>
+      = truncate(@other_user.introduction, length: 75)
+      = link_to '...（続きを読む）', '', class: "js-display-intro-#{@other_user.id}"
+      javascript:
+        $('.js-display-intro-#{@other_user.id}').on('click', function(e) {
+          e.preventDefault()
+          $(this).parent().html('#{escape_javascript @other_user.introduction}')
+        })
+    - else
+      = @other_user.introduction
+  hr/
 - if UserAttributesVisibilityPolicy.new(user: @other_user, current_user: current_user, attribute: :problems).visible?
   div
     - if @other_user.problems && @other_user.problems.length > 75

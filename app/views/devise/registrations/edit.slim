@@ -75,6 +75,8 @@
             | 自己紹介
         td
           = f.input :introduction, input_html: {rows: 5}, label: false
+
+          = render partial: 'visibility_options', locals: {resource: resource, visibility: :introduction_visibility}
           
       tr
         th

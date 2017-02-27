@@ -104,6 +104,7 @@ class User < ApplicationRecord
   # Settings
   include Storext.model
   store_attributes :settings do
+    introduction_visibility String, default: SETTING_OPTIONS.first
     profession_visibility String, default: SETTING_OPTIONS.first
     partner_age_visibility String, default: SETTING_OPTIONS.first
     partner_gender_visibility String, default: SETTING_OPTIONS.first

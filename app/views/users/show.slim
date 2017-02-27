@@ -48,22 +48,23 @@
               | #{child.age}歳、#{child.gender}
         hr
 
-      div
-        - if @user.introduction && @user.introduction.length > 100
-          h6.bold
-            <small>紹介文</small>
-          = truncate(@user.introduction, escape: false, length: 100)
-          = link_to '...（続きを読む）', '', class: "js-display-intro-#{@user.id}"
-          javascript:
-            $('.js-display-intro-#{@user.id}').on('click', function(e) {
-              e.preventDefault()
-              $(this).parent().html('#{escape_javascript simple_format(@user.introduction)}')
-            })
-        - else
-          h6.bold
-            <small>紹介文</small>
-          = auto_link(simple_format(@user.introduction), html: {target: '_blank'})
-      hr/
+      - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :introduction).visible?
+        div
+          - if @user.introduction && @user.introduction.length > 100
+            h6.bold
+              <small>紹介文</small>
+            = truncate(@user.introduction, escape: false, length: 100)
+            = link_to '...（続きを読む）', '', class: "js-display-intro-#{@user.id}"
+            javascript:
+              $('.js-display-intro-#{@user.id}').on('click', function(e) {
+                e.preventDefault()
+                $(this).parent().html('#{escape_javascript simple_format(@user.introduction)}')
+              })
+          - else
+            h6.bold
+              <small>紹介文</small>
+            = auto_link(simple_format(@user.introduction), html: {target: '_blank'})
+        hr/
       - if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :problems).visible?
         div
           - if @user.problems && @user.problems.length > 100
