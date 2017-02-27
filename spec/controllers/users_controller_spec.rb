@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  describe "GET #index" do
+    context "when user is signed in" do
+      it "renders the index template" do
+        user = create(:user)
+
+        sign_in user
+        get :index
+
+        expect(response).to render_template :index
+      end
+    end
+  end
   describe "#Create new session" do
     it 'signins new user' do
       user = FactoryGirl.create(:user)
