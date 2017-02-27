@@ -21,7 +21,7 @@ hr
     = @other_user.gender_icon
 hr
 
-- if UserAttributesVisibilityPolicy.new(user: @user, current_user: current_user, attribute: :introduction).visible?
+- if UserAttributesVisibilityPolicy.new(user: @other_user, current_user: current_user, attribute: :introduction).visible?
   div
     - if @other_user.introduction && @other_user.introduction.length > 75
       h6.bold
