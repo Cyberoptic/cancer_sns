@@ -1,20 +1,17 @@
 $(document).ready(function() {
   if ($('#post-pagination .pagination').length) {
-    $(window).scroll(function() {
+    $(window).bindWithDelay("scroll", function() {
       var url = $('#post-pagination .pagination .next_page').attr('href');
       if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
-        $.getScript(url, function(){
+        return $.getScript(url, function(){
           app.rebind();
-          // Foundation.reInit($('#posts'));
-          $('#posts').foundation(); 
+          $('#posts').foundation();
           $('.sticky').foundation('_calc', true);          
         })
-
-        return;
       }
-    });    
+    }, 300);    
 
-    return $(window).scroll();    
+    return $(window).scroll();
   }
 });
 

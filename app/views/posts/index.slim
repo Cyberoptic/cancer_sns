@@ -25,10 +25,12 @@
           option value="友達にのみ公開"  友達にのみ公開
           option value="非公開"  非公開
         = f.submit "投稿", class: 'button small button-right'
-    #posts
-      = render @posts
     #post-pagination
       = will_paginate @posts
+      
+    #posts
+      = render @posts
+    
     .spinner
       .sk-cube1.sk-cube
       .sk-cube2.sk-cube

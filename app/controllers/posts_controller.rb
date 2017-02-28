@@ -3,8 +3,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.visible_for(current_user).reorder(updated_at: :desc).paginate(page: params[:page], per_page: 3)
-    @post = Post.new 
+    @posts = Post.visible_for(current_user).reorder(updated_at: :desc).paginate(page: params[:page], per_page: 3)    
+    @post = Post.new
     @post.post_taggings.build   
     @post.post_images.build
     respond_to do |format|
