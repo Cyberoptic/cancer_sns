@@ -23,9 +23,9 @@ class Post < ApplicationRecord
   enum visibility: {公開: 0, 友達にのみ公開: 1, 非公開: 2}
 
   def self.visible_for(user)
-    (
-      visible_to_everyone.or(posts_by_friends_for(user)).or(where(user_id: user.id))
-    ).uniq.includes(:user, :post_images, :post_taggings, :post_tags)
+    ids = (visible_to_everyone.or(posts_by_friends_for(user)).or(where(user_id: user.id))).pluck(:id).uniq
+
+    where(id: ids).includes(:user, :post_images, :post_taggings, :post_tags)
   end
 
   def self.tagged_with(name)
