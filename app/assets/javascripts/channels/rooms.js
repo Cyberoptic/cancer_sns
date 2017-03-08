@@ -84,7 +84,7 @@ $(document).on('ready', function () {
     });
 
     form.keypress(function(e){
-      if(e.which == 13){
+      if(e.which == 13 && e.shiftKey){
         $('#start-message').remove();
         $(this).closest('form').submit();   
         return false;

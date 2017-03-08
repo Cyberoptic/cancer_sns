@@ -54,4 +54,7 @@
 
 .message-body {
   clear: both;
+  p:last-child {
+    margin-bottom: 0px
+  }
 }

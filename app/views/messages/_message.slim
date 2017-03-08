@@ -7,9 +7,8 @@
       - else
         .card.card-green style=("margin-bottom: 0px;") 
           .card-section
-            .message-body            
-              p
-                = message.body
+            .message-body              
+              = auto_link(simple_format(message.body), html: {target: '_blank'})
   p.float-right.clearfix
     small
       | <span class="js-read-status" data-message-id="#{message.id}">#{message.unread?(message.chat_room.other_user_for(message.user)) ? "未読" : "既読"}</span> #{message.timestamp}
