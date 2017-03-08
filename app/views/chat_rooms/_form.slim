@@ -1,4 +1,6 @@
 .dropzone data-chat-room-id="#{@chat_room.id}"
   = form_for @message, url: '' do |f|
-    = f.text_area :body, class: 'message-form', autofocus: true, placeholder: 'メッセージ（Enter+Shiftで送信）'    
+    = f.text_area :body, class: 'message-form', autofocus: true, placeholder: 'メッセージ'
+    span.faded
+      |（Enter+Shiftで送信）    
     = f.submit '送信', class: 'button float-right'

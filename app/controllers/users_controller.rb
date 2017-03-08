@@ -12,14 +12,14 @@ class UsersController < ApplicationController
                                                       :partner_relationship, :partner_age,
                                                       :cancer_type, :cancer_stage))                   
                    .uniq
-                   .paginate(page: params[:page], per_page: 5)                 
+                   .paginate(page: params[:page], per_page: 10)                 
                    .decorate
 		elsif params[:display_all]
       @users = User.profile_completed                   
-                   .paginate(page: params[:page], per_page: 5)                 
+                   .paginate(page: params[:page], per_page: 10)                 
                    .decorate
     else
-			@users = User.none.paginate(page: params[:page], per_page: 5).decorate      
+			@users = User.none.paginate(page: params[:page], per_page: 10).decorate      
 		end
     @search = UserSearch.new(params[:user_search])
 	end
