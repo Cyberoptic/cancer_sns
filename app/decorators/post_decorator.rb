@@ -9,4 +9,8 @@ class PostDecorator < Draper::Decorator
   def class
     object.class
   end
+
+  def created_at
+    object.created_at.strftime("%m/%d/%Y %l:%M %p")
+  end
 end

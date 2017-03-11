@@ -32,6 +32,12 @@
         templateResult: addUserPic,
         templateSelection: addUserPic       
       });
+
+      setTimeout(function () {
+        $('textarea').css({
+          'height': 'auto'
+        });
+      }, 0);
     })
     </script>
     <%= render 'layouts/nav' %>

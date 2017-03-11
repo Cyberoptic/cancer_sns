@@ -1,0 +1,37 @@
+.row
+  .columns.large-3.show-for-large data-sticky-container="true"
+    = render partial: 'shared/sidebar'
+
+  .columns.large-6.medium-12.small-12
+    .js-flash-messages
+      = render 'shared/flash_messages'
+      
+    .callout
+      = simple_form_for @post, remote: true do |f|        
+        = f.input :title, label: false, placeholder: '題名'
+        = f.input :content, as: :text, label: false, placeholder: 'ここに投稿内容を入力', input_html: {rows: 15, class: 'post-textarea' }         
+        = f.simple_fields_for :post_taggings do |tagging|
+          = tagging.input :post_tag_id, collection: PostTag.all.map{ |tag| [tag.name, tag.id]}, label: false, input_html: {class: 'select2-posts', multiple: true}
+        .mgbt-30
+        = f.simple_fields_for :post_images do |p|
+          = p.input :photo, label: false, input_html: { multiple: true, name: "post_images[photo][]", class: 'file-input post-images-file-field', id: 'post_images_upload' }
+        label.file-upload-label.show-for-medium for="post_images_upload" 
+          i.fa.fa-camera.medium-gray
+          |  画像を選択する (<span id="js-file-count">0</span>)
+        label.file-upload-label.show-for-small-only for="post_images_upload" 
+          i.fa.fa-camera.medium-gray
+          |  (<span id="js-file-count">0</span>)
+        select.visibility-dropdown.visibility-dropdown-posts name="post[visibility]" 
+          option selected="selected" value="公開"  公開
+          option value="友達にのみ公開"  友達にのみ公開
+          option value="非公開"  非公開
+        = f.submit "投稿", class: 'button small button-right'
+    
+    .spinner
+      .sk-cube1.sk-cube
+      .sk-cube2.sk-cube
+      .sk-cube4.sk-cube
+      .sk-cube3.sk-cube
+  .columns.large-3.show-for-large data-sticky-container="true"
+    = render partial: 'layouts/right_sidebar'
+  

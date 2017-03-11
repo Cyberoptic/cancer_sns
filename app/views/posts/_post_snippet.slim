@@ -1,0 +1,21 @@
+.post-snippet
+  = link_to post_path(post)
+    - if post.title
+      = content_tag :h4, class: 'post-snippet__title bold'
+        = post.title
+
+    .post-snippet__content
+      = auto_link(truncate(simple_format(post.content), length: 50, escape: false, separator: '</p>', omission: ''), html: {target: '_blank'})
+
+    .post-snippet__user-info-container
+      .post-snippet__user-photo
+        = image_tag post.user_photo, class: 'user-image-small img-circle'
+
+      .post-snippet__name        
+        = link_to post.user_name, user_path(post.user), class: 'secondary-color bold'
+        br
+        small.faded
+          = post.created_at
+
+    br.clearfix
+    .post-snippet__line-break

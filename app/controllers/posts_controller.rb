@@ -82,7 +82,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:content, :visibility, post_images_attributes: [:photo], post_taggings_attributes: [:id, :post_id, post_tag_id: []])
+      params.require(:post).permit(:content, :visibility, :title, post_images_attributes: [:photo], post_taggings_attributes: [:id, :post_id, post_tag_id: []])
     end
 
     def ensure_owner

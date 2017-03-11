@@ -18,7 +18,7 @@ class Post < ApplicationRecord
     where(user_id: user.friends.pluck(:id)).where("visibility = ? OR visibility = ?", 0, 1) 
   }
 
-  delegate :photo, to: :user, prefix: true
+  delegate :photo, :name, to: :user, prefix: true
 
   enum visibility: {公開: 0, 友達にのみ公開: 1, 非公開: 2}
 

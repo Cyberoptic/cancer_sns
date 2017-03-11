@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   root 'static#home'
 
-  resources :posts, except: [:new, :edit] do
+  resources :posts, except: [:edit] do
     post :comments, to: "posts/comments#create"
     post :likes, to: "posts/likes#create"
     post :happies, to: "posts/happies#create"

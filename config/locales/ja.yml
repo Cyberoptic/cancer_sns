@@ -10,6 +10,7 @@ ja:
         content: コンテンツ
         photo: 写真
       post:
+        title: 題名
         content: 内容
         user: ユーザー
         post_images: 画像
