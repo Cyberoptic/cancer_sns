@@ -9,13 +9,12 @@
     #post-pagination
       = will_paginate @posts
     
-    #posts
-      .callout
-        h5.bold
-          | Trending: 最新のニュースとコメント
-        hr
-        - @posts.each do |post|
-          = render partial: 'post_snippet', locals: {post: post.decorate}
+    #posts.callout
+      h6
+        | Trending: 最新のニュースとコメント
+      hr
+      - @posts.each do |post|
+        = render partial: 'post_snippet', locals: {post: post.decorate}
     
     .spinner
       .sk-cube1.sk-cube

@@ -5,7 +5,15 @@
         = post.title
 
     .post-snippet__content
-      = auto_link(truncate(simple_format(post.content), length: 50, escape: false, separator: '</p>', omission: ''), html: {target: '_blank'})
+      - if post.title        
+        = auto_link(truncate(simple_format(post.content), length: 50, escape: false, separator: '</p>', omission: ''), html: {target: '_blank'})
+      - else
+        h4.bold
+          = auto_link(truncate(simple_format(post.content), length: 50, escape: false, separator: '</p>', omission: ''), html: {target: '_blank'})
+
+      = image_tag post.post_images.first.photo, class: 'post-snippet__image' if post.post_images.any?
+
+      .mgbt-30
 
     .post-snippet__user-info-container
       .post-snippet__user-photo
@@ -15,7 +23,8 @@
         = link_to post.user_name, user_path(post.user), class: 'secondary-color bold'
         br
         small.faded
-          = post.created_at
+          = display_datetime(post.created_at)
 
     br.clearfix
+    
     .post-snippet__line-break

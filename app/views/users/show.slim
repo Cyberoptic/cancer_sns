@@ -154,11 +154,11 @@
                 | 非公開                    
     
   .columns.large-6.medium-8.small-12
-    - if @user.posts.any?
-      - @user.posts_visible_for(current_user: current_user).each do |post|
-        = render partial: 'posts/post', locals: {post: post.decorate}
-    - else
-      .callout
+    .callout
+      - if @user.posts.any?
+        - @user.posts_visible_for(current_user: current_user).each do |post|
+          = render partial: 'posts/post_snippet', locals: {post: post.decorate}
+      - else
         h6.text-center このユーザーはまだ投稿していません。
   
   .columns.large-3.show-for-large data-sticky-container="true"

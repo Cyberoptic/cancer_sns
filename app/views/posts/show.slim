@@ -1,5 +1,7 @@
 .row      
   .columns.large-8.large-offset-2.small-12
+    .js-flash-messages
+      = render 'shared/flash_messages'
     .post-container
       .post-snippet__user-info-container
         .post-snippet__user-photo
@@ -28,7 +30,7 @@
 
         span
           a.js-comment-trigger.emotion-link data-post-id="#{@post.id}"
-            i.fi-comment 
+            i.fi-comment
             span.reaction-label
               |  コメント      
 
@@ -37,7 +39,7 @@
           = render partial: '/posts/emotion_counts', locals: {post: @post}  
 
         br
-        .post-snippet__user-info-container
+        .post-snippet__user-container
           .post-snippet__user-photo
             = image_tag @post.user_photo, class: 'user-image-md img-circle'
           .post-snippet__name
@@ -47,7 +49,7 @@
               = truncate(@post.user.introduction, length: 100)
         
         br.clearfix
-
+        .mgbt-40
         hr
 
         - comments = @post.comments.paginate(page: params[:page], per_page: 5).includes(:user).decorate
@@ -57,8 +59,11 @@
           a.more_comments_button.js-more_comments_button data-page="#{comments.next_page}" id="#{post.id}" 
             small さらに読み込む
         #comments
-          h7
+          h7.faded
             | コメント#{comments.total_entries}件
+
+          br
+          
           - comments.reverse.each do |comment|
             = render partial: 'shared/comment', locals: {comment: comment}
             

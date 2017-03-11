@@ -7,7 +7,7 @@
       = render 'shared/flash_messages'
       
     .callout
-      = simple_form_for @post, remote: true do |f|        
+      = simple_form_for @post do |f|        
         = f.input :title, label: false, placeholder: '題名'
         = f.input :content, as: :text, label: false, placeholder: 'ここに投稿内容を入力', input_html: {rows: 15, class: 'post-textarea' }         
         = f.simple_fields_for :post_taggings do |tagging|

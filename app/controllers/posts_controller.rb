@@ -39,9 +39,16 @@ class PostsController < ApplicationController
           end
         end        
         format.js {}
+        format.html {
+          flash[:success] = "日記を投稿しました。"
+          redirect_to post_path(@post)
+        }
       else
         flash[:alert] = @post.errors.full_messages[0]
         format.js { render 'posts/error' }
+        format.html {
+          render :new
+        }
       end
     end
   end

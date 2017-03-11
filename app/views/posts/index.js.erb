@@ -1,4 +1,4 @@
-$('#posts').append('<%= escape_javascript render(@posts) %>');
+$('#posts').append('<%= escape_javascript render partial: "post_snippet", collection: @posts.decorate, as: :post %>');
 
 <% if @posts.next_page %>
   $('#post-pagination .pagination').replaceWith('<%= escape_javascript will_paginate(@posts) %>');
