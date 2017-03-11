@@ -1,7 +1,7 @@
 div class=("comment #{'comment-hidden' if !comment.visible || comment.deleted?} #{'is-hidden' unless CommentVisibilityPolicy.new(current_user: current_user, comment: comment).visible?}") data-comment-id="#{comment.id}" 
   - if CommentVisibilityPolicy.new(current_user: current_user, comment: comment).visible?
     .user-image
-      = image_tag comment.user_photo, alt: comment.user.display_name
+      = image_tag comment.user_photo, alt: comment.user.display_name, class: 'img-circle'
     .comment-content
       - if CommentOptionsVisibilityPolicy.new(comment: comment, user: current_user).visible?
         a.float-right data-toggle="comment-options-dropdown-#{comment.id}" 

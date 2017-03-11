@@ -2,11 +2,13 @@ $img-height: 35px;
 $comment-font-size: 13px;
 
 .comment {
+	background: $background-color;
 	clear: both;
 	display: flex;	
 	margin-top: 10px;
 	margin-bottom: 10px;
-	min-height: $img-height;
+	min-height: $img-height;	
+  padding: 1rem;
 
 	.user-image {
 		margin-right: 10px;
@@ -28,7 +30,7 @@ $comment-font-size: 13px;
 	.comment-text {
 		font-size: $comment-font-size;
 
-		p {
+		p:last-child {
 			margin-bottom: 0px;
 		}
 
