@@ -19,6 +19,10 @@
           = @post.title
         = auto_link(simple_format(@post.content), html: {target: '_blank'})
 
+        - @post.post_tags.each do |post_tag|
+          span.label.secondary
+            = post_tag.name
+
       .post-reactions
         span id="js-iine-container-#{@post.id}"
           // problem is here

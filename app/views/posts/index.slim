@@ -12,7 +12,7 @@
     #posts.callout
       h6
         | Trending: 最新のニュースとコメント
-      hr
+      .post-snippet__line-break style="margin-top: 10px"
       - @posts.each do |post|
         = render partial: 'post_snippet', locals: {post: post.decorate}
     
