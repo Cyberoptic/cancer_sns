@@ -1,19 +1,19 @@
-.post-snippet
+.post-snippet  
+  .post-snippet__user-info-container
+    .post-snippet__user-photo
+      = image_tag post.user_photo, class: 'user-image-small img-circle'
+
+    .post-snippet__name        
+      = link_to post.user_name, user_path(post.user), class: 'secondary-color bold'
+      br
+      small.faded
+        = display_datetime(post.created_at)
+
+  br.clearfix
+
+  .mgbt-30
+
   = link_to post_path(post)
-    .post-snippet__user-info-container
-      .post-snippet__user-photo
-        = image_tag post.user_photo, class: 'user-image-small img-circle'
-
-      .post-snippet__name        
-        = link_to post.user_name, user_path(post.user), class: 'secondary-color bold'
-        br
-        small.faded
-          = display_datetime(post.created_at)
-
-    br.clearfix
-
-    .mgbt-30
-    
     - if post.title
       = content_tag :h4, class: 'post-snippet__title bold'
         = post.title
