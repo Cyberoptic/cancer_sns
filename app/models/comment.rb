@@ -32,7 +32,6 @@ class Comment < ApplicationRecord
     deleted_at.present?
   end
 
-
   private
 
   def photo_is_empty?    
@@ -40,10 +39,18 @@ class Comment < ApplicationRecord
   end
 
   def create_notifications
-    post.comments.each do |comment|
-      Notification.create({recipient: comment.user, actor: user, action: "コメント", notifiable: self.post}) unless (comment.user == self.user)
+    notify_commenters    
+
+    notify_post_owner    
+  end
+
+  def notify_commenters
+    post.comments.map(&:user).uniq.each do |comment_user|      
+      Notification.create({recipient: comment_user, actor: self.user, action: "コメント", notifiable: self.post}) unless (comment_user == self.user)
     end
-    
+  end
+
+  def notify_post_owner
     Notification.create({recipient: self.post.user, actor: self.user, action: "コメント", notifiable: self.post}) unless self.post.comments.pluck(:user_id).include?(self.post.user.id)
   end
 end

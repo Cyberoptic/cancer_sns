@@ -13,6 +13,28 @@ RSpec.describe Comment, type: :model do
         create(:comment, visible: true, post: post, user_id: user_3.id)
       }.to change(Notification, :count).by(2)
     end
+
+    ## bug fix
+    context "when user has commented multiple times" do
+      it "creates one notification for the user" do
+        user = create(:user)
+        user_2 = create(:user)
+        user_3 = create(:user)
+        post = create(:post, user: create(:user))
+        create(:comment, visible: true, post: post, user: user)
+        create(:comment, visible: true, post: post, user: user)
+        create(:comment, visible: true, post: post, user: user)
+        create(:comment, visible: true, post: post, user: user_2)
+        create(:comment, visible: true, post: post, user: user_2)
+        create(:comment, visible: true, post: post, user: user_3)
+        create(:comment, visible: true, post: post, user: user_3)
+        post.reload
+
+        expect {
+          create(:comment, visible: true, post: post, user: create(:user))
+        }.to change(user.notifications, :count).by(1)
+      end
+    end
   end
 
   describe "#toggle_visibility!" do
