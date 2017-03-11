@@ -11,12 +11,26 @@
           br
           small.faded
             = display_datetime(@post.created_at)
+            - if @post.is_a?(Post)
+            | ・#{visibility_icon(@post.visibility)} #{@post.visibility}
       
       br.clearfix
 
       .post-content__container
+        - if @post.user.id == current_user.id
+          = link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> この記事を編集する'.html_safe, edit_post_path(@post), class: 'secondary-color'
+          hr
+
         h3.bold
-          = @post.title
+          = @post.title        
+
+
+        ul.product-gallery
+          - @post.post_images.each do |image|
+            li.product-gallery-list.js-gallery-img
+              = image_tag image.photo, class: 'post-image', alt: image.id
+              div data-desc="#{@post.content}" 
+
         = auto_link(simple_format(@post.content), html: {target: '_blank'})
 
         div id="js-post-tags-#{@post.id}" data-post-tag-ids="#{@post.post_tags.map(&:id)}"

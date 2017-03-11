@@ -8,6 +8,8 @@
       br
       small.faded
         = display_datetime(post.created_at)
+        - if post.is_a?(Post)
+          | ・#{visibility_icon(post.visibility)} #{post.visibility}
 
   br.clearfix
 

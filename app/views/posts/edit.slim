@@ -1,0 +1,46 @@
+.row
+  .columns.large-3.show-for-large data-sticky-container="true"
+    = render partial: 'shared/sidebar'
+
+  .columns.large-6.medium-12.small-12
+    .js-flash-messages
+      = render 'shared/flash_messages'
+      
+    .callout
+      = simple_form_for @post do |f|        
+        = f.input :title, label: false, placeholder: '題名'
+        = f.input :content, as: :text, label: false, placeholder: 'ここに投稿内容を入力', input_html: {rows: 15, class: 'post-textarea' }         
+
+        select class="select required select2-posts select2-hidden-accessible" multiple="" name="post[post_taggings_attributes][0][post_tag_id][]" id="js-post_tagging_attributes_${id}" tabindex="-1" aria-hidden="true"
+          - PostTag.all.each do |tag|
+            - selected = @post.post_tags.include?(tag) ? {selected: "selected"} : {}
+            option value="#{tag.id}" *selected
+              = tag.name
+
+        .mgbt-30
+
+        
+        label.file-upload-label.show-for-medium for="post_images_upload" 
+          i.fa.fa-camera.medium-gray
+          |  画像を選択する (<span id="js-file-count">0</span>)
+        label.file-upload-label.show-for-small-only for="post_images_upload" 
+          i.fa.fa-camera.medium-gray
+          |  (<span id="js-file-count">0</span>)
+        select.visibility-dropdown.visibility-dropdown-posts name="post[visibility]" 
+          option selected="selected" value="公開"  公開
+          option value="友達にのみ公開"  友達にのみ公開
+          option value="非公開"  非公開
+        = f.submit "投稿", class: 'button small button-right'
+        
+  .columns.large-3.show-for-large data-sticky-container="true"
+    = render partial: 'layouts/right_sidebar'
+  
+javascript:
+  setTimeout(function(){
+    $( ".select2-posts" ).select2({
+      placeholder: 'タグを選択（任意）'
+    });
+  }, 50)
+  $( ".select2-posts" ).select2({
+    placeholder: 'タグを選択（任意）'
+  });

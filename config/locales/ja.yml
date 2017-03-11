@@ -15,6 +15,8 @@ ja:
         user: ユーザー
         post_images: 画像
         post_taggings: タグ
+      post_image:
+        photo: 画像
       group_post:
         content: 内容
         user: ユーザー

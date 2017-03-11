@@ -53,6 +53,12 @@ class PostsController < ApplicationController
       end
     end
   end
+
+  def edit
+    @post = Post.find(params[:id])
+    @post.post_images.build if @post.post_images.empty?
+    @post.post_taggings.build if @post.post_taggings.empty?
+  end
   
   def update
     @post = Post.find(params[:id])
@@ -66,10 +72,18 @@ class PostsController < ApplicationController
             @post.post_taggings.create(post_tag_id: id)
           end
         end
+
         format.js{}
+        format.html {
+          flash[:success] = "日記が更新されました。"
+          redirect_to post_path(@post)
+        }
       else
         flash[:alert] = @post.errors.full_messages[0]
         format.js { render 'posts/update_error' }
+        format.html {
+          render :edit
+        }
       end
     end
   end
@@ -98,12 +112,12 @@ class PostsController < ApplicationController
     end
     
     def update_attachments
-      @post = Post.find(params[:id])
+      return unless params[:post_images]
       @post.post_images.each(&:destroy) if @post.post_images.present?
-      params[:post_images]['photo'].each do |photo|
-        # binding.pry
-        @post_image = @post.post_images.create!(photo: photo, user_id: current_user.id)
-      end
+      
+      params[:post_images]['photo'].each do |a|
+        @post.post_images.create(photo: a, user_id: current_user.id)
+      end      
     end
 
 end
