@@ -19,9 +19,10 @@
           = @post.title
         = auto_link(simple_format(@post.content), html: {target: '_blank'})
 
-        - @post.post_tags.each do |post_tag|
-          span.label.secondary
-            = post_tag.name
+        div id="js-post-tags-#{@post.id}" data-post-tag-ids="#{@post.post_tags.map(&:id)}"
+          - if @post.post_tags.any?
+            br        
+            = @post.post_tags.map{|tag| link_to "<label class='label secondary label-user-attributes' style='cursor: pointer'>#{tag.name}</label>".html_safe, tag_path(tag.name), class: 'no-underline'}.join(" ").html_safe 
 
       .post-reactions
         span id="js-iine-container-#{@post.id}"

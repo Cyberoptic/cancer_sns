@@ -21,6 +21,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @post_image = @post.post_images.build
+    @post.post_taggings.build
   end
 
   def create

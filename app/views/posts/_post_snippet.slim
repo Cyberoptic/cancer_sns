@@ -25,13 +25,15 @@
         h4.bold
           = auto_link(truncate(simple_format(post.content), length: 50, escape: false, separator: '</p>', omission: ''), html: {target: '_blank'})
 
-      = image_tag post.post_images.first.photo, class: 'post-snippet__image' if post.post_images.any?
+      - if post.post_images.any?
+        = image_tag post.post_images.first.photo, class: 'post-snippet__image'
 
-      .mgbt-30
+        .mgbt-30
 
-      - post.post_tags.each do |post_tag|
-        span.label.secondary
-          = post_tag.name
+      div id="js-post-tags-#{post.id}" data-post-tag-ids="#{post.post_tags.map(&:id)}"
+        - if post.post_tags.any?
+          br        
+          = post.post_tags.map{|tag| link_to "<label class='label secondary label-user-attributes' style='cursor: pointer'>#{tag.name}</label>".html_safe, tag_path(tag.name), class: 'no-underline'}.join(" ").html_safe 
     
     
     .post-snippet__line-break
