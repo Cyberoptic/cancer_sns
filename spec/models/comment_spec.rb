@@ -13,8 +13,7 @@ RSpec.describe Comment, type: :model do
         create(:comment, visible: true, post: post, user_id: user_3.id)
       }.to change(Notification, :count).by(2)
     end
-
-    ## bug fix
+    
     context "when user has commented multiple times" do
       it "creates one notification for the user" do
         user = create(:user)
