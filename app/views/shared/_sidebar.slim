@@ -2,7 +2,7 @@
   ul.home-sidebar.no-bullet    
     = link_to user_path(current_user)
       li.home-sidebar-link.home-sidebar-user-link
-        = image_tag current_user.photo, class: 'user-image-xs'
+        = image_tag current_user.photo, class: 'user-image-xs img-circle'
         span.menu-user-profile-name
           | #{current_user.decorate.display_name} （#{current_user.age}歳）
         a.float-right data-toggle="sidebar-profile-dropdown" 
