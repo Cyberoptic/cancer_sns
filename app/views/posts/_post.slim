@@ -1,11 +1,11 @@
 .callout data-post-id="#{post.id}"
-  .post-container
+  .group-post-container
     - if post.user.id == current_user.id
       a.float-right data-toggle="post-options-dropdown-#{post.id}" 
         i.fa.fa-caret-down.dropdown-caret aria-hidden="true" 
       .dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" id="post-options-dropdown-#{post.id}" 
-        ul.post-options-menu.no-bullet          
-          a.edit-post data-id="#{post.id}" data-is-post="#{post.class.name == 'Post'}" data-visibility="#{post.visibility}"
+        ul.post-options-menu.no-bullet      
+          a.edit-post data-id="#{post.id}" data-is-post="#{post.class.name == 'Post'}" 
             li
               i.fa.fa-pencil aria-hidden="true" 
               |  編集
@@ -18,7 +18,7 @@
     .post-info
       span.user-image
         = link_to user_path(post.user)
-          = image_tag post.user_photo, alt: post.user.decorate.name.truncate(10)
+          = image_tag post.user_photo, alt: post.user.decorate.name.truncate(10), class: 'img-circle'
       .user-info
         span.display-name
           = link_to post.user.decorate.display_name, user_path(post.user)

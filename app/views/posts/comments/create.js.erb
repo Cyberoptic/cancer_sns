@@ -1,4 +1,4 @@
-$('#post-<%= @post.id %>-comments').append("<%= escape_javascript render partial: '/shared/comment', locals: {comment: @comment.decorate} %>");
+$('#post-<%= @post.id %>-comments #comments').append("<%= escape_javascript render partial: '/shared/comment', locals: {comment: @comment.decorate} %>");
 $('#js-comment-form-<%= @post.id %>').trigger('reset');
 $('#js-comment-form-<%= @post.id %>').find("label i").removeClass("is-active")
 
