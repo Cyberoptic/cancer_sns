@@ -9,7 +9,9 @@ $(function(){
 
   $('#js-emotion-count-container-<%= @post.id %>').html("<%= escape_javascript render partial: '/posts/emotion_counts', locals: {post: @post} %>");
 
-  $('.tooltip').each(function () {
+  $('#js-emotion-count-inline-container-<%= @post.id %>').html("<%= escape_javascript render partial: '/posts/emotion_counts_inline', locals: {post: @post} %>");
+
+  $('.tooltip').each(function() {
     var tooltip = $(this);
     tooltip.data("is-active", false);
     tooltip.css("display", "none");

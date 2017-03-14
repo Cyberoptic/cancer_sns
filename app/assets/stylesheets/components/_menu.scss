@@ -1,5 +1,5 @@
 .menu > li > a img, .menu > li > a i, .menu > li > a svg {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .menu {
@@ -30,6 +30,10 @@
 .menu-home {
   padding-right: 20px;
   a {
-    color: $dark-gray !important;
+    color: $dark-gray;
   }
+}
+
+.menu-post-link {
+  color: $secondary-color !important;
 }

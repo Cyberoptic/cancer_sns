@@ -8415,6 +8415,11 @@ a {
 }
 
 /* line 4, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_color.sass */
+.dark-gray {
+  color: #3b3b3b;
+}
+
+/* line 7, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_color.sass */
 .secondary-color {
   color: #55AD81;
 }
@@ -9265,9 +9270,15 @@ body {
   margin-left: 10px;
 }
 
+/* line 34, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_margin.sass */
+.negative-sidemargin-1 {
+  margin-right: -1rem;
+  margin-left: -1rem;
+}
+
 /* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu > li > a img, .menu > li > a i, .menu > li > a svg {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 /* line 7, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
@@ -9302,7 +9313,12 @@ body {
 }
 /* line 32, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-home a {
-  color: #3b3b3b !important;
+  color: #3b3b3b;
+}
+
+/* line 37, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+.menu-post-link {
+  color: #55AD81 !important;
 }
 
 /* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_misc.sass */
@@ -9424,6 +9440,8 @@ body {
 /* line 8, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post.sass */
 .post-content__container p {
   font-size: 1.3em;
+  line-height: 1.58;
+  letter-spacing: -0.003em;
 }
 
 /* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
@@ -9441,7 +9459,7 @@ body {
   border-bottom: 1px solid #e6e6e6;
   clear: both;
   margin-bottom: 2rem;
-  margin-top: 3.5rem;
+  margin-top: 1rem;
 }
 
 /* line 13, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
@@ -9466,7 +9484,7 @@ body {
   display: inline-block;
   float: left;
   margin-left: 1rem;
-  width: 35%;
+  width: 40%;
 }
 
 /* line 30, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */

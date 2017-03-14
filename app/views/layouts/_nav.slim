@@ -46,7 +46,7 @@ div data-sticky-container="" style="z-index: 1"
                     span.menu-user-profile-name
                       | #{current_user.decorate.display_name} （#{current_user.age}歳）
                 li.menu-home
-                  = link_to '<i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 16px"></i> 日記を投稿する'.html_safe, new_post_path
+                  = link_to '<i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 16px"></i> 日記を投稿する'.html_safe, new_post_path, class: 'menu-post-link'
                 li
                   a href="/requests" data-toggle="pending-friend-requests" 
                     i.fi-torsos-all
@@ -105,7 +105,7 @@ div data-sticky-container="" style="z-index: 1"
                 li.menu-text
                   = link_to 'ホーム', root_path
                 li.menu-text
-                  = link_to '日記を投稿する', new_post_path
+                  = link_to '日記を投稿する', new_post_path, class: 'menu-post-link'
                 li.menu-text
                   = link_to "メッセージ（#{unread_messages.count}）", chat_rooms_path  
                 li.menu-text

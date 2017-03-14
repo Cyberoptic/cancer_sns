@@ -17,14 +17,14 @@
 
   = link_to post_path(post)
     - if post.title
-      = content_tag :h4, class: 'post-snippet__title bold'
+      = content_tag :h5, class: 'post-snippet__title bold dark-gray'
         = post.title
 
     .post-snippet__content
       - if post.title        
         = auto_link(truncate(simple_format(post.content), length: 50, escape: false, separator: '</p>', omission: ''), html: {target: '_blank'})
       - else
-        h4.bold
+        h5.bold
           = auto_link(truncate(simple_format(post.content), length: 50, escape: false, separator: '</p>', omission: ''), html: {target: '_blank'})
 
       - if post.post_images.any?
@@ -36,6 +36,14 @@
         - if post.post_tags.any?
           br        
           = post.post_tags.map{|tag| link_to "<label class='label secondary label-user-attributes' style='cursor: pointer'>#{tag.name}</label>".html_safe, tag_path(tag.name), class: 'no-underline'}.join(" ").html_safe 
+
+    br
+
+    div id="js-emotion-count-inline-container-#{post.id}"
+      = render partial: '/posts/emotion_counts_inline', locals: {post: post}      
+
+    .dropdown-pane.top.dropdown-pane-emotions data-dropdown="" id="emotion-hover-#{post.id}" data-hover="true" data-hover-pane="true" data-hover-delay="300" data-v-offset="15"        
+      = render partial: '/posts/emotion-hover-content', locals: {post: post}
     
     
     .post-snippet__line-break
