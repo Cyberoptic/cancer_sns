@@ -24,7 +24,7 @@
       - if post.title        
         = auto_link(truncate(simple_format(post.content), length: 50, escape: false, separator: '</p>', omission: ''), html: {target: '_blank'})
       - else
-        h5.bold
+        h5.bold.post-snippet__title
           = auto_link(truncate(simple_format(post.content), length: 50, escape: false, separator: '</p>', omission: ''), html: {target: '_blank'})
 
       - if post.post_images.any?

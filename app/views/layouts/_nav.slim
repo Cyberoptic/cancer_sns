@@ -44,7 +44,7 @@ div data-sticky-container="" style="z-index: 1"
                   = link_to user_path(current_user)
                     = image_tag current_user.photo, class: 'nav-prof-img img-circle'
                     span.menu-user-profile-name
-                      | #{current_user.decorate.display_name} （#{current_user.age}歳）
+                      | #{current_user.decorate.display_name}
                 li.menu-home
                   = link_to '<i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 16px"></i> 日記を投稿する'.html_safe, new_post_path, class: 'menu-post-link'
                 li
