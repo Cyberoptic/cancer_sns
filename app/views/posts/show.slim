@@ -38,6 +38,7 @@
             br        
             = @post.post_tags.map{|tag| link_to "<label class='label secondary label-user-attributes' style='cursor: pointer'>#{tag.name}</label>".html_safe, tag_path(tag.name), class: 'no-underline'}.join(" ").html_safe 
 
+      .mgbt-20
       .post-reactions
         span id="js-iine-container-#{@post.id}"
           // problem is here
