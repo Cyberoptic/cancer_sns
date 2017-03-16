@@ -5,4 +5,4 @@
     = inline_svg 'svgs/happy', width: "18px", class: 'post-emotion-svgs' if post.has_happies?
     = inline_svg 'svgs/mad', width: "18px", class: 'post-emotion-svgs' if post.has_mads?
     span.emotion-count
-      = link_to post.emotions_count, "#", class: 'js-display-emotions emotion-count-link', data: { id: post.id }
+      = link_to post.emotions_count, "#", class: 'js-display-emotions emotion-count-link', data: { id: post.id, type: post.class.name.underscore.pluralize }

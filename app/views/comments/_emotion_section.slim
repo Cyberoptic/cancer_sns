@@ -5,7 +5,7 @@
 - if comment.emotions_count > 0
   |・
   = inline_svg 'svgs/like', width: "18px", class: 'comment-emotions__like'
-  = comment.emotions_count
+  = link_to comment.emotions_count, "#", class: 'js-display-emotions', data: { id: comment.id, type: comment.class.name.underscore.pluralize }
   
 = "・" + time_ago_in_words(comment.created_at)
 | 前

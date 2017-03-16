@@ -5,6 +5,6 @@
   = inline_svg 'svgs/mad', width: "18px", class: 'post-emotion-svgs' if post.has_mads?
   - if post.emotions_count > 0
     span.emotion-count
-      = link_to post.emotions_count, "#", class: 'js-display-emotions emotion-count-link', data: { id: post.id }
+      = link_to post.emotions_count, "#", class: 'js-display-emotions emotion-count-link', data: { id: post.id, type: post.class.name.underscore.pluralize }
 
 = link_to "#{post.comments.count}件のコメント", post_path(post) + "#comments", class: 'float-right secondary-color'

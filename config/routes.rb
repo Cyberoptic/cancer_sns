@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     post :unhappies, to: "posts/unhappies#create"
     post :unmads, to: "posts/unmads#create"
 
-    resources :emotions, only: :index
+    get :emotions, only: :index, to: "posts/emotions#index"
     
     member do
       get 'more_comments'      
@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     post :visibility_toggles, to: "comments/visibility_toggles#create" 
     post :likes, to: "comments/likes#create"
     post :unlikes, to: "comments/unlikes#create"
+
+    get :emotions, only: :index, to: "comments/emotions#index"
   end
 
   resources :chat_rooms, only: [:show, :index] do
@@ -94,6 +96,8 @@ Rails.application.routes.draw do
     post :unsads, to: "group_posts/unsads#create"
     post :unhappies, to: "group_posts/unhappies#create"
     post :unmads, to: "group_posts/unmads#create"
+
+    get :emotions, only: :index, to: "group_posts/emotions#index"
   end
 
   resources :notifications, only: :index do

@@ -44,10 +44,11 @@ var app = {
       e.preventDefault();
 
       var id = $(this).data("id"); 
-      var list = ""; 
+      var type = $(this).data("type");
+      var list = "";
 
       $.ajax({
-        url: `/posts/${id}/emotions`,
+        url: `/${type}/${id}/emotions`,
         type: 'GET',
         dataType: 'JSON',
         context: 'this',
