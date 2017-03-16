@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311050530) do
+ActiveRecord::Schema.define(version: 20170315165601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,12 +72,14 @@ ActiveRecord::Schema.define(version: 20170311050530) do
     t.integer  "post_id"
     t.integer  "user_id"
     t.text     "text"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.boolean  "visible",    default: true, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "visible",        default: true, null: false
     t.datetime "deleted_at"
     t.string   "post_type"
     t.string   "photo"
+    t.integer  "likes_count",    default: 0
+    t.integer  "emotions_count", default: 0
     t.index ["deleted_at"], name: "index_comments_on_deleted_at", using: :btree
     t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
     t.index ["user_id", "post_id"], name: "index_comments_on_user_id_and_post_id", using: :btree

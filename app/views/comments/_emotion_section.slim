@@ -1,0 +1,11 @@
+- if current_user.liked?(comment)
+  = link_to 'いいねを取り消す', comment_unlikes_path(comment), method: :post, remote: true, class: 'secondary-color'
+- else
+  = link_to 'いいね！', comment_likes_path(comment), method: :post, remote: true, class: 'secondary-color'
+- if comment.emotions_count > 0
+  |・
+  = inline_svg 'svgs/like', width: "18px", class: 'comment-emotions__like'
+  = comment.emotions_count
+  
+= "・" + time_ago_in_words(comment.created_at)
+| 前

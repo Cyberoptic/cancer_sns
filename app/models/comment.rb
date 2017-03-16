@@ -11,6 +11,7 @@ class Comment < ApplicationRecord
   
 	belongs_to :user
 	belongs_to :post, polymorphic: true, touch: true
+  has_many :emotions, as: :post, dependent: :destroy
 
 	delegate :photo, to: :user, prefix: true
 	delegate :user, to: :post, prefix: true

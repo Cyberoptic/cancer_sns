@@ -1,0 +1,5 @@
+$(function(){
+  var $comment = $("#comment-emotions-<%= @comment.id %>");
+
+  $comment.html("<%= escape_javascript render partial: '/comments/emotion_section', locals: { comment: @comment } %>");
+})

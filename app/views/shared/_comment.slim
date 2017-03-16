@@ -25,7 +25,7 @@ div class=("comment #{'comment-hidden' if !comment.visible || comment.deleted?} 
           = auto_link(simple_format(comment.text), html: {target: '_blank'})
       div
         = image_tag comment.photo, class: 'comment-photo' if comment.photo && !comment.deleted?
-      span.timestamp
-        = time_ago_in_words(comment.created_at)
-        | 前
+
+      div id="comment-emotions-#{comment.id}"
+        = render partial: 'comments/emotion_section', locals: {comment: comment}
  

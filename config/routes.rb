@@ -34,6 +34,8 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:update, :destroy] do
     post :visibility_toggles, to: "comments/visibility_toggles#create" 
+    post :likes, to: "comments/likes#create"
+    post :unlikes, to: "comments/unlikes#create"
   end
 
   resources :chat_rooms, only: [:show, :index] do
