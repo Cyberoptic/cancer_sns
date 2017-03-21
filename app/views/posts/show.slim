@@ -7,7 +7,7 @@
         .post-snippet__user-photo
           = image_tag @post.user_photo, class: 'user-image-sm img-circle'
         .post-snippet__name
-          = link_to @post.user_name, user_path(@post.user), class: 'secondary-color bold'
+          = link_to @post.user.decorate.display_name, user_path(@post.user), class: 'secondary-color bold'
           br
           small.faded
             = display_datetime(@post.created_at)
