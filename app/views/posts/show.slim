@@ -63,7 +63,7 @@
           .post-snippet__user-photo
             = image_tag @post.user_photo, class: 'user-image-md img-circle'
           .post-snippet__name
-            = link_to @post.user_name, user_path(@post.user), class: 'secondary-color bold'
+            = link_to @post.user.decorate.display_name, user_path(@post.user), class: 'secondary-color bold'
             br
             small.faded
               = truncate(@post.user.introduction, length: 100)
