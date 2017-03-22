@@ -9,7 +9,7 @@ $(document).ready(function() {
           $('.sticky').foundation('_calc', true);          
         })
       }
-    }, 300);    
+    }, 1000);    
 
     return $(window).scroll();
   }
