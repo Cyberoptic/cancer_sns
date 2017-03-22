@@ -1,0 +1,3 @@
+<%= link_to @message.user.decorate.display_name, user_url(@message.user) %>さんから新しいメッセージが届きました。
+
+<%= link_to 'こちらのリンク', chat_room_url(@message.chat_room) %>よりご確認ください。

@@ -14,6 +14,7 @@ class Message < ApplicationRecord
 
   after_create_commit { MessageBroadcastJob.perform_later(self) }
   after_create :set_read_for_current_user!
+  after_create :send_emails
 
   delegate :photo, to: :user, prefix: true
 
@@ -28,6 +29,10 @@ class Message < ApplicationRecord
   end  
 
   private
+
+  def send_emails    
+    NotifierMailer.new_message(self).deliver_later
+  end
 
   def photo_is_empty?    
     photo.url.nil?
