@@ -44294,7 +44294,7 @@ $(document).on('ready', function () {
     });
 
     form.keypress(function(e){
-      if(e.which == 13){
+      if(e.which == 13 && e.shiftKey){
         $('#start-message').remove();
         $(this).closest('form').submit();   
         return false;
@@ -76465,10 +76465,11 @@ var app = {
       e.preventDefault();
 
       var id = $(this).data("id");
+      var type = $(this).data("type");
       var list = "";
 
       $.ajax({
-        url: "/posts/" + id + "/emotions",
+        url: "/" + type + "/" + id + "/emotions",
         type: 'GET',
         dataType: 'JSON',
         context: 'this',
@@ -78491,7 +78492,7 @@ $(document).ready(function() {
           $('.sticky').foundation('_calc', true);          
         })
       }
-    }, 300);    
+    }, 1000);    
 
     return $(window).scroll();
   }

@@ -34,8 +34,8 @@ div data-sticky-container="" style="z-index: 1"
                 = simple_form_for UserSearch.new, url: users_path, method: :get, html: {style: 'display: inline-block'}
                   li.menu-search-li.float-center style="width: 100%"
                     input.menu-search-bar type="search" name="user_search[name_search]" placeholder="名前で検索"                
-                li.menu-text style="display: inline-block"
-                  = link_to '詳細検索へ', users_path, class: 'faded underlined'
+                / li.menu-text style="display: inline-block"
+                /   = link_to '詳細検索へ', users_path, class: 'faded underlined'
                   
           .top-bar-right.show-for-large
             ul.menu.medium-horizontal.vertical

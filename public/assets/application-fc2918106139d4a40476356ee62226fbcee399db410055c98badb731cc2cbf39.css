@@ -8432,6 +8432,11 @@ a {
   max-height: 220px;
 }
 
+/* line 7, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_comment.sass */
+.comment-emotions__like {
+  vertical-align: -4px;
+}
+
 /* line 1, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_container.scss */
 .container {
   min-height: 100vh;
@@ -9290,33 +9295,34 @@ body {
 /* line 14, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-search-li {
   display: inline-block;
+  margin-top: 0.25rem;
 }
 
-/* line 18, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+/* line 19, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-user-profile {
   border-right: 1px solid #e6e6e6;
   padding-right: 10px;
 }
-/* line 21, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+/* line 22, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-user-profile a {
   color: #3b3b3b !important;
 }
 
-/* line 26, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+/* line 27, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-user-profile-name {
   padding-left: 5px;
 }
 
-/* line 30, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+/* line 31, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-home {
   padding-right: 20px;
 }
-/* line 32, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+/* line 33, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-home a {
   color: #3b3b3b;
 }
 
-/* line 37, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
+/* line 38, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_menu.scss */
 .menu-post-link {
   color: #55AD81 !important;
 }
@@ -9450,11 +9456,16 @@ body {
 }
 
 /* line 4, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
+.post-snippet__title {
+  font-size: 1.5rem;
+}
+
+/* line 7, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
 .post-snippet__user-container {
   margin-top: 2rem;
 }
 
-/* line 7, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
+/* line 10, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
 .post-snippet__line-break {
   border-bottom: 1px solid #e6e6e6;
   clear: both;
@@ -9462,24 +9473,24 @@ body {
   margin-top: 1rem;
 }
 
-/* line 13, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
+/* line 16, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
 .post-snippet__content {
   font-size: 1.2em;
   color: #3b3b3b;
 }
 
-/* line 17, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
+/* line 20, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
 .post-snippet__user-info-container {
   width: 100%;
 }
 
-/* line 20, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
+/* line 23, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
 .post-snippet__user-photo {
   display: inline-block;
   float: left;
 }
 
-/* line 24, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
+/* line 27, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
 .post-snippet__name {
   display: inline-block;
   float: left;
@@ -9487,7 +9498,7 @@ body {
   width: 40%;
 }
 
-/* line 30, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
+/* line 33, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/components/_post_snippet.sass */
 .post-snippet__image {
   max-height: 200px;
 }
@@ -9964,7 +9975,7 @@ ul .request-container:last-child {
 
 /* line 26, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/nav/top_bar.scss */
 .top-bar-menu-logo {
-  height: 50px;
+  height: 40px;
 }
 
 /* line 30, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/nav/top_bar.scss */
@@ -9974,7 +9985,7 @@ ul .request-container:last-child {
 
 /* line 34, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/nav/top_bar.scss */
 .top-bar-search {
-  padding-top: 10px;
+  padding-top: 0.35rem;
 }
 
 /* line 38, /Users/takehiromouri/Documents/code/cancer_sns/app/assets/stylesheets/nav/top_bar.scss */
@@ -10001,7 +10012,7 @@ ul .request-container:last-child {
   display: block;
   height: 2rem;
   max-width: none !important;
-  padding: 1.1rem;
+  padding: 0.8rem;
   width: 100%;
 }
 
