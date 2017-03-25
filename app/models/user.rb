@@ -119,6 +119,7 @@ class User < ApplicationRecord
     prefecture_visibility String, default: SETTING_OPTIONS.first
     name_visibility String, default: SETTING_OPTIONS.first
     children_visibility String, default: SETTING_OPTIONS.first
+    send_notification_as_batch Boolean, default: false
   end
 
   def self.new_with_session(params, session)

@@ -30,7 +30,8 @@ class Message < ApplicationRecord
 
   private
 
-  def send_emails    
+  def send_emails
+    return if user.send_notification_as_batch
     NotifierMailer.new_message(self).deliver_later
   end
 
