@@ -5,4 +5,11 @@ class NotifierMailer < ApplicationMailer
 
     mail(from: "Cancer Partners <no-reply@cancer-partners.com>", to: @other_user.email, subject: "#{@message.user.decorate.display_name}さんから新しいメッセージが届きました。")
   end
+
+  def daily_message_digest(user)
+    @user = user
+    @messages = user.unread_messages
+
+    mail(from: "Cancer Partners <no-reply@cancer-partners.com>", to: @user.email, subject: "#{@messages.count}件の未読メッセージがあります。")
+  end
 end
