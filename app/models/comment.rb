@@ -35,19 +35,19 @@ class Comment < ApplicationRecord
 
   private
 
-  def photo_is_empty?    
+  def photo_is_empty?
     photo.url.nil?
   end
 
   def create_notifications
-    notify_commenters    
+    notify_commenters
 
     notify_post_owner    
   end
 
   def notify_commenters
     post.comments.map(&:user).uniq.each do |comment_user|      
-      Notification.create({recipient: comment_user, actor: self.user, action: "コメント", notifiable: self.post}) unless (comment_user == self.user)
+      Notification.create({recipient: comment_user, actor: self.user, action: "コメント", notifiable: self}) unless (comment_user == self.user)
     end
   end
 
