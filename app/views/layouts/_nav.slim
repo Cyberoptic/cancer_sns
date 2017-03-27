@@ -78,7 +78,7 @@ div data-sticky-container="" style="z-index: 1"
                           = link_to 'マイグループ', groups_path
                         li.nav-menu-spacer                      
                         li.nav-menu-dropdown-text
-                          = link_to 'プロフィール編集', edit_user_registration_path
+                          = link_to 'プロフィール編集/各種設定', edit_user_registration_path
                         li.nav-menu-dropdown-text
                           = link_to 'ログアウト', destroy_user_session_path, method: :delete
                 #pending-friend-requests.dropdown-pane.bottom.right data-dropdown="" data-hover="true" data-hover-pane="true" 
@@ -120,7 +120,7 @@ div data-sticky-container="" style="z-index: 1"
                   = link_to '詳細検索', users_path
                 li.nav-menu-spacer
                 li.menu-text
-                  = link_to 'プロフィール編集', edit_user_registration_path
+                  = link_to 'プロフィール編集/各種設定', edit_user_registration_path
                 li.menu-text
                   = link_to 'ログアウト', destroy_user_session_path, method: :delete
               - else
