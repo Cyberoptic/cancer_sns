@@ -189,7 +189,7 @@
         th
           = f.label :send_notification_as_batch
         td
-          = f.input :send_notification_as_batch, as: :radio_buttons, label: false
+          = f.collection_radio_buttons :send_notification_as_batch, [[true, '1日1回（毎朝7時）'], [false, '都度通知']], :first, :last
           
       tr
         th
