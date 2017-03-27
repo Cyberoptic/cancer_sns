@@ -41,6 +41,7 @@ class Emotion < ApplicationRecord
   end
 
   def create_notification
+    return if post.is_a? Comment
     Notification.create({ recipient: post.user, actor: user, action: "反応", notifiable: post }) if user != post.user
   end
 end
