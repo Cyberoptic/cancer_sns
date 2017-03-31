@@ -18,8 +18,10 @@ json.array! @notifications do |notification|
 
   if notification.notifiable.is_a? Comment
     notifiable_class = notification.notifiable.post.class.to_s.underscore.downcase
+    notifiable_id = notification.notifiable.post.try(:slug) ? notification.notifiable.post.slug : notification.notifiable.post.id
   else
     notifiable_class = notification.notifiable.class.to_s.underscore.downcase
+    notifiable_id = notification.notifiable.try(:slug) ? notification.notifiable.slug : notification.notifiable.id
   end
 
   json.action action
@@ -30,7 +32,7 @@ json.array! @notifications do |notification|
     json.type type
   end
 
-  notifiable_id = notification.notifiable.try(:slug) ? notification.notifiable.slug : notification.notifiable.id
+  
 
   json.url "/" + notifiable_class + "s/" + (notifiable_id).to_s
 end

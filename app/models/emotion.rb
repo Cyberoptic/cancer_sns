@@ -30,7 +30,7 @@ class Emotion < ApplicationRecord
     post.save(touch: false)
   end
 
-  def increment_counter!  
+  def increment_counter!
     post["#{emotion.pluralize}_count"] += 1
     post.save(touch: false)
   end

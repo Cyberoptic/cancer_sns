@@ -12,7 +12,7 @@ task send_batch_notifications: :environment do
   users.each do |user|    
     next if user.unread_messages.count == 0
     puts "Sending email to #{user.decorate.display_name}"
-    NotifierMailer.daily_message_digest(user).deliver_later
+    NotifierMailer.daily_message_digest(user).deliver_now
   end
 
   puts "done."
