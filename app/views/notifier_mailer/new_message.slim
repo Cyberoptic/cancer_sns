@@ -2,7 +2,7 @@ p
   | がん患者を支えるパートナーのためのピアサポートSNS「CancerPartners」よりお知らせです。
 
 p
-  | #{link_to @message.user.decorate.display_name, user_url(@message.user)}さんから、#{other_user.decorate.display_name}さん宛てに、新しいメッセージが届いています。
+  | #{link_to @message.user.decorate.display_name, user_url(@message.user)}さんから、#{@other_user.decorate.display_name}さん宛てに、新しいメッセージが届いています。
 p
   | メッセージの内容は#{link_to 'こちらのリンク', chat_room_url(@message.chat_room)}よりご確認ください。
 
