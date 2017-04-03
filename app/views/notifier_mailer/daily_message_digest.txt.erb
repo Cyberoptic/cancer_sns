@@ -1,0 +1,17 @@
+<% if @messages.count > 0 %>
+
+  がん患者を支えるパートナーのためのピアサポートSNS「CancerPartners」よりお知らせです。
+
+  <%= @other_user.decorate.display_name %>さん宛てに、新しいメッセージが届いています。
+
+  メッセージの内容は#{link_to 'こちらのリンク', chat_rooms_url}よりご確認ください。
+
+<% else %>
+
+  がん患者を支えるパートナーのためのピアサポートSNS「CancerPartners」よりお知らせです。
+
+  <%= @other_user.decorate.display_name %>さん宛ての新しいメッセージはありません。
+
+  日誌に対するコメントやフォロワー更新についてはログイン後通知センターにてご確認ください。
+
+<% end %>
