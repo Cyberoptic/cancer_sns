@@ -1,4 +1,4 @@
-class Message < ApplicationRecord  
+class Message < ApplicationRecord
   acts_as_readable on: :created_at
 
   belongs_to :user
@@ -7,7 +7,7 @@ class Message < ApplicationRecord
   mount_uploader :photo, MessagePhotoUploader
 
   validates :user, :chat_room, presence: true
-  
+
   with_options if: :photo_is_empty? do |user|
     user.validates :body, presence: true
   end
@@ -26,7 +26,7 @@ class Message < ApplicationRecord
     user = User.find(user_id)
     self.mark_as_read! for: user
     ReadStatusBroadcastJob.perform_later(message: self, user: chat_room.other_user_for(user))
-  end  
+  end
 
   private
 
@@ -35,7 +35,7 @@ class Message < ApplicationRecord
     NotifierMailer.new_message(self).deliver_later
   end
 
-  def photo_is_empty?    
+  def photo_is_empty?
     photo.url.nil?
   end
 

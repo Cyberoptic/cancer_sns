@@ -28,6 +28,8 @@ module CancerSns
     config.autoload_paths << Rails.root.join('policies')
     config.autoload_paths << Rails.root.join('view_objects')
 
-    config.action_view.embed_authenticity_token_in_remote_forms = true    
+    config.action_view.embed_authenticity_token_in_remote_forms = true
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
