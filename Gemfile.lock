@@ -416,8 +416,6 @@ GEM
     public_suffix (2.0.5)
     puma (3.7.1)
     rack (2.0.7)
-    rack-protection (1.5.3)
-      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-timeout (0.4.2)
@@ -514,11 +512,6 @@ GEM
       thor (~> 0.14)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
-    sidekiq (4.2.10)
-      concurrent-ruby (~> 1.0)
-      connection_pool (~> 2.2, >= 2.2.0)
-      rack-protection (>= 1.5.0)
-      redis (~> 3.2, >= 3.2.1)
     simple_form (3.4.0)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -640,7 +633,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   select2-rails
   shoulda-matchers (~> 3.1)
-  sidekiq
   simple_form
   slack-api
   slim-rails

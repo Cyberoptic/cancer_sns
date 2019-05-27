@@ -32,7 +32,7 @@ class Message < ApplicationRecord
 
   def send_emails
     return if user.send_notification_as_batch
-    NotifierMailer.new_message(self).deliver_later
+    NotifierMailer.new_message(self).deliver_now
   end
 
   def photo_is_empty?

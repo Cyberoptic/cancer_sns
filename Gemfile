@@ -82,7 +82,6 @@ gem 'friendly_id', '~> 5.2.0'
 gem "cocoon"
 gem 'unread'
 gem "mini_magick"
-gem "sidekiq"
 
 gem 'derailed', group: :development
 
