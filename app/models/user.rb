@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  extend FriendlyId  
+  extend FriendlyId
   include Filterable
   include Hashable
   include Emotionable
@@ -10,8 +10,8 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,
-  :omniauthable, :registerable, :confirmable, :timeoutable, :secure_validatable, :omniauth_providers => [:facebook]  
-  
+  :omniauthable, :registerable, :confirmable, :timeoutable, :secure_validatable, :omniauth_providers => [:facebook]
+
   enum gender: {男性: 0, 女性: 1, その他: 2}
   enum partner_gender: {男性: 0, 女性: 1, その他: 2}, _prefix: :partner
 
@@ -30,24 +30,24 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 1000 }
   validates :problems, length: { maximum: 1000 }
 
-  mount_uploader :photo, PhotoUploader  
-  
+  mount_uploader :photo, PhotoUploader
+
   has_many :comments
   has_many :emotions
   has_many :posts, dependent: :destroy
-  has_many :post_images, dependent: :destroy  
+  has_many :post_images, dependent: :destroy
   has_many :chat_rooms, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :groups_owned, class_name: 'Group', foreign_key: :owner_id
   has_many :groups_managing, -> { where(group_memberships: { role: :moderator }) }, through: :group_memberships, source: :group
   has_many :group_invitations, -> { where(group_memberships: { status: :invited }) }, class_name: 'GroupMembership'
   has_many :groups, -> { where(group_memberships: { status: 'accepted' }) }, through: :group_memberships
-  has_many :group_memberships, dependent: :destroy  
+  has_many :group_memberships, dependent: :destroy
   has_many :group_posts, dependent: :destroy
   has_many :user_treatments, dependent: :destroy
   has_many :treatments, through: :user_treatments
-  has_many :children, dependent: :destroy   
-  has_many :notifications, foreign_key: :recipient_id  
+  has_many :children, dependent: :destroy
+  has_many :notifications, foreign_key: :recipient_id
 
   before_save :set_name!
   after_create :send_slack!
@@ -59,38 +59,38 @@ class User < ApplicationRecord
 
   scope :profile_completed, ->{ where(profile_completed: true) }
   # Scopes for filtering
-  scope :profession, -> (profession){ 
-    attribute_is_public("profession_visibility").where(profession: profession) 
+  scope :profession, -> (profession){
+    attribute_is_public("profession_visibility").where(profession: profession)
   }
-  scope :partner_age, -> (partner_age){ 
-    attribute_is_public("partner_age_visibility").where(partner_age: partner_age) 
+  scope :partner_age, -> (partner_age){
+    attribute_is_public("partner_age_visibility").where(partner_age: partner_age)
   }
-  scope :partner_relationship, -> (partner_relationship){ 
-    attribute_is_public("partner_relationship_visibility").where(partner_relationship: partner_relationship) 
+  scope :partner_relationship, -> (partner_relationship){
+    attribute_is_public("partner_relationship_visibility").where(partner_relationship: partner_relationship)
   }
-  scope :cancer_type, -> (cancer_type){ 
-    attribute_is_public("cancer_type_visibility").where(cancer_type: cancer_type) 
+  scope :cancer_type, -> (cancer_type){
+    attribute_is_public("cancer_type_visibility").where(cancer_type: cancer_type)
   }
-  scope :cancer_stage, -> (cancer_stage){ 
-    attribute_is_public("cancer_stage_visibility").where(cancer_stage: cancer_stage) 
+  scope :cancer_stage, -> (cancer_stage){
+    attribute_is_public("cancer_stage_visibility").where(cancer_stage: cancer_stage)
   }
-  scope :hospital, -> (hospital){ 
-    attribute_is_public("hospital_visibility").where(hospital: hospital) 
+  scope :hospital, -> (hospital){
+    attribute_is_public("hospital_visibility").where(hospital: hospital)
   }
   scope :treatment, -> (treatment){
     attribute_is_public("treatment_visibility")
     .joins(:treatments)
-    .where("treatments.name LIKE ?", "#{treatment[0..2]}%") 
+    .where("treatments.name LIKE ?", "#{treatment[0..2]}%")
     .uniq
   }
-  scope :prefecture, -> (prefecture){ 
-    attribute_is_public("prefecture_visibility").where(prefecture: prefecture) 
+  scope :prefecture, -> (prefecture){
+    attribute_is_public("prefecture_visibility").where(prefecture: prefecture)
   }
-  scope :birthday, -> (birthday){ 
-    attribute_is_public("birthday_visibility").where(birthday: birthday) 
+  scope :birthday, -> (birthday){
+    attribute_is_public("birthday_visibility").where(birthday: birthday)
   }
-  scope :child_age, -> (child_age){ 
-    attribute_is_public("children_visibility").joins(:children).where("children.age = ?", child_age) 
+  scope :child_age, -> (child_age){
+    attribute_is_public("children_visibility").joins(:children).where("children.age = ?", child_age)
   }
 
   scope :attribute_is_public, ->(attribute) do
@@ -124,7 +124,7 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"]        
+      if data = session["devise.facebook_data"]
         user.provider = data["provider"]
         user.uid = data["uid"]
         user.email = data["info"]["email"] if user.email.blank?
@@ -135,12 +135,12 @@ class User < ApplicationRecord
     end
   end
 
-  def self.from_omniauth(auth)    
+  def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.first_name = auth.info.name.split.first
       user.last_name = auth.info.name.split.last
-      user.photo = auth.info.image      
+      user.photo = auth.info.image
     end
   end
 
@@ -157,16 +157,16 @@ class User < ApplicationRecord
     age
   end
 
-  def self.name_search(name_search)    
+  def self.name_search(name_search)
     name_search = "#{name_search[0..3].downcase}%"
-    
+
     attribute_is_public("name_visibility").where("LOWER(name) LIKE ? or LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? or LOWER(first_name_katakana) LIKE ? or LOWER(last_name_katakana) LIKE ? or LOWER(nickname) LIKE ?", name_search, name_search, name_search, name_search, name_search, name_search).or(where("LOWER(nickname) LIKE ?", name_search))
   end
 
-  def self.find_child_by_age_range(min:, max:)    
+  def self.find_child_by_age_range(min:, max:)
     return self.where(nil) unless min.present? || max.present?
     min = 0 unless min.present?
-    max = 1000 unless max.present?    
+    max = 1000 unless max.present?
     joins(:children).where("children.age >= ? AND children.age <= ?", min, max)
   end
 
@@ -174,7 +174,7 @@ class User < ApplicationRecord
     self.group_memberships.exists?(group_id: group.id, status: :accepted)
   end
 
-  def self.has_not_joined_group(group)    
+  def self.has_not_joined_group(group)
     self.where.not(id: group.group_memberships.pluck(:user_id))
   end
 
@@ -199,16 +199,16 @@ class User < ApplicationRecord
   end
 
   def chat_rooms
-    ChatRoom.where("member_id = ? or user_id = ?", id, id)    
+    ChatRoom.where("member_id = ? or user_id = ?", id, id)
   end
 
-  def posts_visible_for(current_user:)     
-    return posts.includes(:post_images, :user, :post_taggings, :post_tags, comments: [:user, :post]) if self == current_user 
+  def posts_visible_for(current_user:)
+    return posts.includes(:post_images, :user, :post_taggings, :post_tags, comments: [:user, :post]) if self == current_user
     return (posts.includes(:post_images, :user, :post_taggings, :post_tags, comments: [:user, :post])
-                .visible_to_friends + 
+                .visible_to_friends +
             posts.includes(:post_images, :user, :post_taggings, :post_tags, comments: [:user, :post])
                 .visible_to_everyone).sort_by(&:created_at)
-                                     .reverse if self.friends_with?(current_user) 
+                                     .reverse if self.friends_with?(current_user)
 
     posts.includes(:post_images, :user, :post_taggings, :post_tags, comments: [:user, :post]).visible_to_everyone
   end
@@ -221,7 +221,21 @@ class User < ApplicationRecord
     self == group.owner || group_memberships.moderating.find_by_group_id(group.id).present?
   end
 
-  private  
+  def has_new_comments_in_last_day?
+    post_ids = posts.pluck(:id)
+    post_ids.each do |post_id|
+      Comment.where(post_id: post_id, created_at: (Time.now - 24.hours)..Time.now).where.not(user_id: id)
+    end
+  end
+
+  def has_new_replies_in_last_day?
+    post_ids = comments.pluck(:post_id)
+    post_ids.each do |post_id|
+      Comment.where(post_id: post_id, created_at: (Time.now - 24.hours)..Time.now).where.not(user_id: id)
+    end
+  end
+
+  private
 
   def send_slack!
     text = "#{email}さんが登録しました。"
@@ -234,11 +248,11 @@ class User < ApplicationRecord
     name_visibility == SETTING_OPTIONS.first
   end
 
-  def signed_up?   
+  def signed_up?
     created_at.present? && profile_completed?
   end
 
-  def set_name!    
+  def set_name!
     self.name = "#{last_name}#{first_name}"
   end
 

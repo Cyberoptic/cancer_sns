@@ -31,7 +31,7 @@ class Message < ApplicationRecord
   private
 
   def send_emails
-    return if user.send_notification_as_batch
+    return if chat_room.other_user_for(user).send_notification_as_batch
     NotifierMailer.new_message(self).deliver_now
   end
 
