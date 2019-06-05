@@ -21,13 +21,13 @@ class NotifierMailer < ApplicationMailer
     @comment = comment
     @user = user
 
-    mail(from: "Cancer Partners <no-reply@cancer-partners.com>", to: @user, subject: "【Cancer Partners】あなたの投稿に対して新しいコメントがあります")
+    mail(from: "Cancer Partners <no-reply@cancer-partners.com>", to: @user.email, subject: "【Cancer Partners】あなたの投稿に対して新しいコメントがあります")
   end
 
   def new_reply(comment:, user:)
     @comment = comment
     @user = user
 
-    mail(from: "Cancer Partners <no-reply@cancer-partners.com>", to: @user, subject: "【Cancer Partners】あなたがコメントした投稿に新しいコメントがあります")
+    mail(from: "Cancer Partners <no-reply@cancer-partners.com>", to: @user.email, subject: "【Cancer Partners】あなたがコメントした投稿に新しいコメントがあります")
   end
 end
