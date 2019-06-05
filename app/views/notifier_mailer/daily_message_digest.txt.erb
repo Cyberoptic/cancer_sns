@@ -2,16 +2,20 @@
 
   がん患者を支えるパートナーのためのピアサポートSNS「CancerPartners」よりお知らせです。
 
-  <%= @other_user.decorate.display_name %>さん宛てに、新しいメッセージが届いています。
+  <%= @user.decorate.display_name %>さん宛のメッセージ、もしくは投稿/コメントに対するリアクションがあります。
 
-  メッセージの内容は#{link_to 'こちらのリンク', chat_rooms_url}よりご確認ください。
+  <%= link_to 'ログインして', new_user_session_url %>通知センターでご確認ください。
 
 <% else %>
 
   がん患者を支えるパートナーのためのピアサポートSNS「CancerPartners」よりお知らせです。
 
-  <%= @other_user.decorate.display_name %>さん宛ての新しいメッセージはありません。
+  更新情報はありません。
 
-  日誌に対するコメントやフォロワー更新についてはログイン後通知センターにてご確認ください。
+  <%= link_to 'ログインして', new_user_session_url %>新しい日誌を投稿してみませんか？
+
+  日常の記憶、モヤモヤした気持ち、なんでも結構です。同じように悩む仲間に吐き出してみてはいかがでしょうか。
+
+  <%= link_to 'ログインする', new_user_session_url %>
 
 <% end %>

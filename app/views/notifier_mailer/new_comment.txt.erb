@@ -1,8 +1,8 @@
 がん患者を支えるパートナーのためのピアサポートSNS「CancerPartners」よりお知らせです。
 
-あなたの投稿に対して新しいコメントがあります。
+<%= @user.decorate.display_name %>さんの日誌にリアクションがありました。
 
-コメントの内容は<%= link_to 'こちらのリンク', post_url(@comment.post) %>よりご確認ください。
+<%= link_to 'ログインして', post_url(@comment.post) %>通知センターでご確認ください。
 
 ----------------------------------------------
 Cancer Partners
