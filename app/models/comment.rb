@@ -63,6 +63,7 @@ class Comment < ApplicationRecord
 
   def send_email_to_post_owner
     return if self.post.user.send_notification_as_batch
+    return if self.user_id === self.post.user_id
     NotifierMailer.new_comment(comment: self, user: self.post.user).deliver_now
   end
 
