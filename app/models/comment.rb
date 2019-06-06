@@ -70,7 +70,7 @@ class Comment < ApplicationRecord
   def send_email_to_commenters
     post.comments.map(&:user).uniq.each do |comment_user|
       next if comment_user.id == post.user_id
-      next if comment_user.id == self.id
+      next if comment_user.id == self.user_id
       next if comment_user.send_notification_as_batch
       NotifierMailer.new_reply(comment: self, user: comment_user).deliver_now
     end
