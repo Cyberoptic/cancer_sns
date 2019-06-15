@@ -1,22 +1,22 @@
 .row.show-for-medium
-  .columns.large-3.medium-4    
-    = render partial: 'users/search'    
+  .columns.large-3.medium-4
+    = render partial: 'users/search'
 
   .columns.large-9.medium-8
     p.faded.text-center.no-margin
       | #{@users.count}件/#{@users.total_entries == 0 ? User.count : @users.total_entries}件の検索結果
-    h6.text-center      
+    h6.text-center
       = will_paginate @users, class: 'user_pagination', previous_label: '&lt 前', next_label: '次 &gt'
     - if @users.any?
       = render @users
       br
       p.faded.text-center.no-margin
         | #{@users.count}件/#{@users.total_entries}件の検索結果
-      h6.text-center      
+      h6.text-center
         = will_paginate @users, class: 'user_pagination', previous_label: '&lt 前へ', next_label: '次へ &gt'
     - elsif @users.empty? && params[:user_search].present?
       h5.text-center 該当するユーザーが見つかりませんでした。
-          
+
 
 .hide-for-medium
   button.button.expanded data-toggle="user-search-dropdown"
@@ -27,7 +27,7 @@
         = render partial: 'users/search'
 
   .row
-    .columns.large-8.large-offset-2.medium-6.medium-offset-3.small-12    
+    .columns.large-8.large-offset-2.medium-6.medium-offset-3.small-12
       .search-results
         h6.text-center
           = @users.count
@@ -36,4 +36,3 @@
           = render @users
         - else
           h5.text-center 該当するユーザーが見つかりませんでした。
-   
