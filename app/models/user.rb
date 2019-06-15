@@ -221,18 +221,8 @@ class User < ApplicationRecord
     self == group.owner || group_memberships.moderating.find_by_group_id(group.id).present?
   end
 
-  def has_new_comments_in_last_day?
-    post_ids = posts.pluck(:id)
-    post_ids.each do |post_id|
-      Comment.where(post_id: post_id, created_at: (Time.now - 24.hours)..Time.now).where.not(user_id: id)
-    end
-  end
-
-  def has_new_replies_in_last_day?
-    post_ids = comments.pluck(:post_id)
-    post_ids.each do |post_id|
-      Comment.where(post_id: post_id, created_at: (Time.now - 24.hours)..Time.now).where.not(user_id: id)
-    end
+  def has_new_comments_or_replies_in_last_day?
+    Notification.where(recipient: self, action: "コメント", created_at: (Time.now - 24.hours)..Time.now).unread.any?
   end
 
   private

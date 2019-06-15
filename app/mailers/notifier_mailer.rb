@@ -10,7 +10,7 @@ class NotifierMailer < ApplicationMailer
     @user = user
     @messages = user.unread_messages
 
-    @has_updates = @messages.count > 0 || user.has_new_comments_in_last_day? || user.has_new_replies_in_last_day?
+    @has_updates = @messages.count > 0 || user.has_new_comments_or_replies_in_last_day?
 
     subject = @has_updates ? "【Cancer Partners】新しいメッセージ/コメントがあります" : "【Cancer Partners】新しいメッセージ/コメントはありません"
 
