@@ -12,7 +12,7 @@ class NotifierMailer < ApplicationMailer
 
     @has_updates = @messages.count > 0 || user.has_new_comments_in_last_day? || user.has_new_replies_in_last_day?
 
-    subject = @has_updates ? "【Cancer Partners】新しいメッセージがあります" : "【Cancer Partners】新しいメッセージはありません"
+    subject = @has_updates ? "【Cancer Partners】新しいメッセージ/コメントがあります" : "【Cancer Partners】新しいメッセージ/コメントはありません"
 
     mail(from: "Cancer Partners <no-reply@cancer-partners.com>", to: @user.email, subject: subject)
   end
