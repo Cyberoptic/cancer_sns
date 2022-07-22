@@ -1,15 +1,4 @@
 GIT
-  remote: git://github.com/drapergem/draper.git
-  revision: 27357367c7bd59e41f56c764a8dd1f90518f183b
-  specs:
-    draper (3.0.0.pre1)
-      actionpack (~> 5.0)
-      activemodel (~> 5.0)
-      activemodel-serializers-xml (~> 1.0)
-      activesupport (~> 5.0)
-      request_store (~> 1.0)
-
-GIT
   remote: git://github.com/elasticsearch/elasticsearch-rails.git
   revision: 7aa03e87b7fee71007ff7aa1a6fb452de298587e
   specs:
@@ -20,15 +9,6 @@ GIT
     elasticsearch-rails (0.1.9)
 
 GIT
-  remote: git://github.com/rails/activemodel-serializers-xml.git
-  revision: dd9c0acf26aab111ebc647cd8deb99ebc6946531
-  specs:
-    activemodel-serializers-xml (1.0.1)
-      activemodel (> 5.x)
-      activesupport (> 5.x)
-      builder (~> 3.1)
-
-GIT
   remote: https://github.com/activeadmin/inherited_resources
   revision: 615b0d5c37a4bfc86ad18ec22b90d161fd996130
   specs:
@@ -37,6 +17,27 @@ GIT
       has_scope (~> 0.6)
       railties (>= 3.2, < 5.1)
       responders
+
+GIT
+  remote: https://github.com/drapergem/draper.git
+  revision: 26a18c8cc9ce112f7cf2a308b52952680d9a2cdf
+  specs:
+    draper (4.0.2)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+      activemodel-serializers-xml (>= 1.0)
+      activesupport (>= 5.0)
+      request_store (>= 1.0)
+      ruby2_keywords
+
+GIT
+  remote: https://github.com/rails/activemodel-serializers-xml.git
+  revision: 32841fdf59c2297436177a8e6d84f4f17e048005
+  specs:
+    activemodel-serializers-xml (1.0.2)
+      activemodel (>= 5.0.0.a)
+      activesupport (>= 5.0.0.a)
+      builder (~> 3.1)
 
 GEM
   remote: https://rubygems.org/
@@ -479,7 +480,8 @@ GEM
       tilt
     redis (3.3.3)
     remotipart (1.3.1)
-    request_store (1.3.2)
+    request_store (1.5.1)
+      rack (>= 1.4)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rollbar (2.14.0)
@@ -501,6 +503,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    ruby2_keywords (0.0.5)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -553,7 +556,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.6)
     trollop (2.1.2)
-    tzinfo (1.2.2)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
