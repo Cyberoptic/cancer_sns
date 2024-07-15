@@ -1,26 +1,37 @@
-[![CircleCI](https://circleci.com/gh/takehiromouri/cancer_sns/tree/master.svg?style=svg&circle-token=9786055c33f1a47d039563a79bd92be024ae8a7e)](https://circleci.com/gh/takehiromouri/cancer_sns/tree/master)
+# CANCER SNS
 
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## システム要求事項
 
-Things you may want to cover:
+Ruby 3.1.2
 
-* Ruby version
+Rails 5.0.0 [6.0以上へのアップデートが必要です]
 
-* System dependencies
+PostgreSQL 8.4以上
 
-* Configuration
+## 設定
 
-* Database creation
+./config/database.ymlでDBの設定を進めます。
 
-* Database initialization
+## データベースの作成
 
-* How to run the test suite
+以下のコマンドを使用してデータベースを作成します。
+```
+$ rake db:create
 
-* Services (job queues, cache servers, search engines, etc.)
+$ rake db:migrate
+```
+## ローカルサイトの動作
 
-* Deployment instructions
+以下のコマンドを使用してローカル サイトを起動します
+```
+$ bin/rails server
+```
+ブラウザで http://localhost:8000を訪問します。
 
-* ...
+## プロダクション·ディプロイ
+
+Heroku にデプロイするために下記のコマンドを利用します。
+```
+$ git push heroku master
+```
