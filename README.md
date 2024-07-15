@@ -27,7 +27,7 @@ $ rake db:migrate
 ```
 $ bin/rails server
 ```
-ブラウザで http://localhost:8000を訪問します。
+ブラウザで http://localhost:8000 を訪問します。
 
 ## プロダクション·ディプロイ
 
