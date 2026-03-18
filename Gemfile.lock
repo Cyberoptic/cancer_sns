@@ -765,7 +765,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   faker
   figaro
-  fog
+  fog-aws
   foundation-rails
   friendly_id (~> 5.2.0)
   has_friendship
