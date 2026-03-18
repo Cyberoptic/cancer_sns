@@ -1,6 +1,6 @@
 Rails.application.routes.draw do  
   devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  # ActiveAdmin.routes(self)
   mount ActionCable.server => '/cable'
 
   authenticated :user do
