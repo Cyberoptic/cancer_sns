@@ -65,8 +65,8 @@ gem 'draper', github: 'drapergem/draper'
 gem 'storext'
 
 # Admin
-gem 'activeadmin', '~> 1.0.0.pre4'
-gem 'inherited_resources'
+#gem 'activeadmin', '~> 1.0.0.pre4'
+#gem 'inherited_resources'
 
 # React.js
 gem 'react-rails'
