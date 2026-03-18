@@ -46,7 +46,7 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'omniauth-facebook'
 gem 'figaro'
-gem "fog"
+gem "fog-aws"
 gem 'has_friendship'
 gem 'will_paginate', '~> 3.1.0'
 gem "letter_opener", :group => :development
